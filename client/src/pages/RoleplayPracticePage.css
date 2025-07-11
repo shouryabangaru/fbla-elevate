@@ -770,3 +770,357 @@
     border-width: 3px;
   }
 }
+
+/* New Scenario Card Layout */
+.stats-section {
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  padding: 1.5rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-card .card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.stat-icon {
+  color: var(--fbla-yellow);
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--fbla-white);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-section {
+  margin-bottom: 2rem;
+}
+
+.filter-card {
+  padding: 1.5rem;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--fbla-white);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: var(--fbla-yellow);
+}
+
+.filter-btn.active {
+  background: var(--fbla-yellow);
+  color: var(--fbla-blue);
+  border-color: var(--fbla-yellow);
+}
+
+.scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.scenario-card {
+  position: relative;
+  padding: 1.5rem;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+}
+
+.scenario-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 215, 0, 0.4);
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+}
+
+.scenario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.scenario-icon {
+  color: var(--fbla-yellow);
+  background: rgba(255, 215, 0, 0.1);
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scenario-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-icon.completed {
+  color: #10b981;
+}
+
+.status-icon.available {
+  color: var(--fbla-yellow);
+}
+
+.scenario-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.scenario-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--fbla-white);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.scenario-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  word-break: break-word;
+}
+
+.scenario-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.scenario-details {
+  display: flex;
+  gap: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+}
+
+.detail-item svg {
+  color: var(--fbla-yellow);
+}
+
+.scenario-badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.scenario-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.scenario-btn {
+  width: 100%;
+  gap: 0.5rem;
+  background: var(--fbla-yellow);
+  color: var(--fbla-blue);
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.scenario-btn:hover {
+  background: rgba(255, 215, 0, 0.9);
+  transform: translateY(-1px);
+}
+
+.practice-session {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.practice-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.back-btn {
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--fbla-white);
+}
+
+.back-btn:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: var(--fbla-yellow);
+}
+
+.practice-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--fbla-white);
+  margin: 0;
+}
+
+.scenario-practice-card {
+  padding: 2rem;
+}
+
+.scenario-practice-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.scenario-prompt h3 {
+  color: var(--fbla-yellow);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.prompt-text {
+  color: var(--fbla-white);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  background: rgba(255, 215, 0, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--fbla-yellow);
+}
+
+.practice-info {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+.info-item svg {
+  color: var(--fbla-yellow);
+}
+
+.practice-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.start-practice-btn {
+  gap: 0.5rem;
+  background: var(--fbla-yellow);
+  color: var(--fbla-blue);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.start-practice-btn:hover {
+  background: rgba(255, 215, 0, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Additional mobile styles for new layout */
+@media (max-width: 768px) {
+  .scenarios-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .scenario-card {
+    min-height: 250px;
+    padding: 1.25rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .filter-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .practice-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .practice-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
