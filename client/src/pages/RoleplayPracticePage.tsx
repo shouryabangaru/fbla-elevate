@@ -541,11 +541,13 @@ export default function RoleplayPracticePage() {
   }, [resetTimer]);
 
   return (
-    <div className="roleplay-practice-page">
-
+    <PageLayout
+      title="Roleplay Practice"
+      subtitle="Master business scenarios with timed practice sessions"
+    >
+      <div className="roleplay-practice-content">
         {!selectedEvent ? (
           <div className="event-selection">
-            <h2 className="section-title">Choose Your Event</h2>
             <EventGrid events={events} onEventSelect={handleEventSelect} />
           </div>
         ) : (
@@ -576,14 +578,6 @@ export default function RoleplayPracticePage() {
           <h3 className="instructions-title">Practice Instructions</h3>
           <div className="instructions-grid">
             <div className="instruction-group">
-              <h4>Timer Controls:</h4>
-              <ul>
-                <li>Press <strong>Space</strong> to pause/resume</li>
-                <li>Timer turns red under 1 minute</li>
-                <li>Standard practice time: 10 minutes</li>
-              </ul>
-            </div>
-            <div className="instruction-group">
               <h4>Navigation:</h4>
               <ul>
                 <li>Press <strong>N</strong> for next prompt</li>
@@ -591,8 +585,17 @@ export default function RoleplayPracticePage() {
                 <li>Click prompt numbers for quick access</li>
               </ul>
             </div>
+            <div className="instruction-group">
+              <h4>Tips:</h4>
+              <ul>
+                <li>Practice each scenario multiple times</li>
+                <li>Focus on professional communication</li>
+                <li>Review approach steps before starting</li>
+              </ul>
+            </div>
           </div>
         </div>
-    </div>
+      </div>
+    </PageLayout>
   );
 }
