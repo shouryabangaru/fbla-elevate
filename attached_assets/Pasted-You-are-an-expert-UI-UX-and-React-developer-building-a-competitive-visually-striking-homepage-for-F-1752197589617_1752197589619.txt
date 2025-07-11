@@ -1,0 +1,53 @@
+You are an expert UI/UX and React developer building a competitive, visually striking homepage for FBLA Elevate.
+
+**Objective:** Redesign the home page to make it extremely visually appealing and immersive so users don’t leave. Incorporate more black in the design for a modern, powerful aesthetic.
+
+**Brand colors:** Blue (#003366), Yellow (#FFD700), White (#FFFFFF), Black (#000000)
+
+**Requirements:**
+
+1. **Overall style:**
+   - Use black as the **primary background** or in major sections for a powerful look.
+   - Incorporate gradients combining black and blue for depth.
+   - Use yellow for highlights, buttons, and icons.
+   - Use white for clean typography to ensure readability on black/blue backgrounds.
+   - Ensure the design is responsive and adapts to mobile and desktop seamlessly.
+
+2. **Navbar:**
+   - Background: Solid black or black to blue gradient.
+   - Logo on the left with an icon and “FBLA Elevate” in bold white text.
+   - Menu items aligned right in white with yellow hover underline.
+   - Display user greeting on the far right in yellow (e.g., “Welcome, [username]”).
+
+3. **Hero section:**
+   - Full-width black background with a subtle blue overlay gradient.
+   - Large FBLA Elevate logo or trophy icon in yellow at the top center.
+   - Headline: “FBLA Elevate” in bold white text, large font.
+   - Subheadline: “Your hub for preparing for FBLA competitive events!” in smaller white text.
+   - CTA button: Yellow with black text, bold font, slight shadow for elevation, hover effect darkens yellow.
+   - Add a subtle animated scroll indicator arrow below the CTA.
+
+4. **Features section:**
+   - Three feature cards horizontally aligned (stacked on mobile).
+   - Cards: Dark blue or black background, yellow icons at top, white headings, gray subtext.
+   - Features:
+     - Smart Practice (brain icon)
+     - Compete & Connect (users icon)
+     - Track Progress (medal icon)
+
+5. **Visual enhancements:**
+   - Subtle background shapes, gradients, or geometric patterns to create depth.
+   - Soft drop shadows for cards and buttons for modern elevation effect.
+   - Add a small footer with copyright text, navigation links, and a subtle black background.
+
+6. **Technical:**
+   - Use React functional components.
+   - Write clean, organized, well-commented code.
+   - Use standard CSS or CSS Modules (no Tailwind).
+   - Separate into components: Navbar, Hero, FeaturesSection, Footer.
+   - Include dummy images or icons as needed with comments to replace later.
+   - Optimize for performance and fast loading.
+
+**End goal:** The homepage should immediately capture attention with a powerful, professional, modern look using bold blacks, strategic color contrasts, and immersive design so FBLA Elevate stands out as an elite prep platform.
+
+Generate the **full React component code and CSS styling** for this homepage redesign.
