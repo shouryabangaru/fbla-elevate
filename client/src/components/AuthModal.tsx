@@ -91,8 +91,10 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
 
     try {
       if (mode === 'signup') {
+        console.log('Creating user with email:', email);
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+        console.log('User created successfully:', user.uid);
 
         // Create user in database
         const userData = {
@@ -103,19 +105,21 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
         };
 
         // Save to database
-        await fetch('/api/users', {
+        console.log('Saving user to database:', userData);
+        const response = await fetch('/api/users', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(userData),
         });
-
-        // Also save to Firestore as backup
-        await setDoc(doc(db, 'users', user.uid), {
-          ...userData,
-          points: 0,
-          streak: 0,
-          createdAt: new Date(),
-        });
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Database save failed:', errorText);
+          throw new Error(`Database error: ${response.status} - ${errorText}`);
+        }
+        
+        const savedUser = await response.json();
+        console.log('User saved to database:', savedUser);
 
         toast({
           title: "Success",
@@ -130,6 +134,7 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
       }
       onClose();
     } catch (error: any) {
+      console.error('Authentication error:', error);
       let errorMessage = "An unexpected error occurred. Please try again.";
       
       switch (error.code) {
@@ -151,8 +156,15 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
         case 'auth/too-many-requests':
           errorMessage = 'Too many failed attempts. Please wait a moment before trying again.';
           break;
+        case 'auth/network-request-failed':
+          errorMessage = 'Network error. Please check your connection and try again.';
+          break;
+        case 'auth/configuration-not-found':
+          errorMessage = 'Firebase configuration error. Please try again later.';
+          break;
         default:
           errorMessage = error.message || errorMessage;
+          console.error('Unknown auth error:', error.code, error.message);
       }
 
       toast({
@@ -178,10 +190,11 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
 
-      // Check if user document exists
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      // Check if user exists in database
+      const checkResponse = await fetch(`/api/users/by-uid/${user.uid}`);
+      const userExists = checkResponse.ok;
       
-      if (!userDoc.exists()) {
+      if (!userExists) {
         // Create new user in database
         const userData = {
           uid: user.uid,
@@ -191,19 +204,16 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
         };
 
         // Save to database
-        await fetch('/api/users', {
+        const response = await fetch('/api/users', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(userData),
         });
-
-        // Also save to Firestore as backup
-        await setDoc(doc(db, 'users', user.uid), {
-          ...userData,
-          points: 0,
-          streak: 0,
-          createdAt: new Date(),
-        });
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Database error: ${response.status} - ${errorText}`);
+        }
         
         toast({
           title: "Success",
@@ -218,6 +228,7 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
       
       onClose();
     } catch (error: any) {
+      console.error('Google auth error:', error);
       let errorMessage = "Google sign-in failed. Please try again.";
       
       switch (error.code) {
@@ -264,14 +275,14 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
       });
       setShowForgotPassword(false);
     } catch (error: any) {
-      let errorMessage = "Failed to send password reset email.";
+      let errorMessage = "Failed to send reset email. Please try again.";
       
       switch (error.code) {
         case 'auth/user-not-found':
           errorMessage = 'No account found with this email address.';
           break;
         case 'auth/invalid-email':
-          errorMessage = 'Invalid email address.';
+          errorMessage = 'Please enter a valid email address.';
           break;
         case 'auth/too-many-requests':
           errorMessage = 'Too many requests. Please wait before trying again.';
@@ -279,7 +290,7 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
       }
 
       toast({
-        title: "Password Reset Error",
+        title: "Reset Email Error",
         description: errorMessage,
         variant: "destructive",
       });
@@ -289,224 +300,194 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
   };
 
   return (
-    <Dialog open onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md" aria-describedby="auth-dialog-description">
+    <Dialog open={true} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[480px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-fbla-blue">
+          <DialogTitle className="text-2xl font-bold text-center">
             {mode === 'login' ? 'Welcome Back' : 'Join FBLA Elevate'}
           </DialogTitle>
-          <DialogDescription id="auth-dialog-description" className="text-gray-600">
+          <DialogDescription className="text-center text-gray-600">
             {mode === 'login' 
-              ? 'Sign in to continue your FBLA preparation journey' 
-              : 'Create your account to start mastering FBLA competitive events'}
+              ? 'Sign in to continue your FBLA journey' 
+              : 'Create your account to start preparing for FBLA competitions'
+            }
           </DialogDescription>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="absolute right-4 top-4 h-8 w-8 p-0"
-          >
-            <X className="w-4 h-4" />
-          </Button>
         </DialogHeader>
 
-        <form onSubmit={handleEmailAuth} className="space-y-4">
-          {mode === 'signup' && (
-            <>
+        <div className="space-y-6">
+          {showForgotPassword ? (
+            <div className="space-y-4">
+              <div className="text-center">
+                <KeyRound className="mx-auto h-12 w-12 text-blue-600 mb-4" />
+                <h3 className="text-lg font-semibold">Reset Your Password</h3>
+                <p className="text-sm text-gray-600 mt-2">
+                  Enter your email address and we'll send you a link to reset your password.
+                </p>
+              </div>
+              
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-fbla-blue font-semibold">Full Name</Label>
+                <Label htmlFor="reset-email">Email Address</Label>
                 <Input
-                  id="name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                    if (errors.name) setErrors(prev => ({ ...prev, name: '' }));
-                  }}
-                  placeholder="Enter your full name"
-                  required
-                  className={`focus:ring-fbla-yellow focus:border-transparent ${
-                    errors.name ? 'border-red-500' : ''
-                  }`}
+                  id="reset-email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={errors.email ? 'border-red-500' : ''}
                 />
-                {errors.name && (
-                  <p className="text-red-500 text-sm flex items-center gap-1">
-                    <AlertCircle className="w-4 h-4" />
-                    {errors.name}
-                  </p>
-                )}
+                {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="school" className="text-fbla-blue font-semibold">School</Label>
-                <Select 
-                  value={schoolId} 
-                  onValueChange={(value) => {
-                    setSchoolId(value);
-                    if (errors.schoolId) setErrors(prev => ({ ...prev, schoolId: '' }));
-                  }} 
-                  required
+              <div className="flex gap-3">
+                <Button
+                  onClick={handleForgotPassword}
+                  disabled={loading}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700"
                 >
-                  <SelectTrigger className={`focus:ring-fbla-yellow focus:border-transparent ${
-                    errors.schoolId ? 'border-red-500' : ''
-                  }`}>
-                    <SelectValue placeholder="Select your school" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {schools.map((school) => (
-                      <SelectItem key={school.id} value={school.id}>
-                        {school.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {errors.schoolId && (
-                  <p className="text-red-500 text-sm flex items-center gap-1">
-                    <AlertCircle className="w-4 h-4" />
-                    {errors.schoolId}
-                  </p>
+                  {loading ? 'Sending...' : 'Send Reset Email'}
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowForgotPassword(false)}
+                  className="flex-1"
+                >
+                  Back to Login
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <form onSubmit={handleEmailAuth} className="space-y-4">
+                {mode === 'signup' && (
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Full Name</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Enter your full name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className={errors.name ? 'border-red-500' : ''}
+                    />
+                    {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+                  </div>
                 )}
+
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={errors.email ? 'border-red-500' : ''}
+                  />
+                  {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="password">Password</Label>
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={errors.password ? 'border-red-500' : ''}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                    >
+                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    </button>
+                  </div>
+                  {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
+                </div>
+
+                {mode === 'signup' && password && (
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">Password Requirements</Label>
+                    <div className="space-y-1">
+                      {Object.entries({
+                        length: 'At least 8 characters',
+                        uppercase: 'One uppercase letter',
+                        lowercase: 'One lowercase letter',
+                        number: 'One number'
+                      }).map(([key, description]) => (
+                        <div key={key} className="flex items-center gap-2 text-sm">
+                          {passwordRequirements[key as keyof typeof passwordRequirements] ? (
+                            <CheckCircle className="h-4 w-4 text-green-500" />
+                          ) : (
+                            <AlertCircle className="h-4 w-4 text-red-500" />
+                          )}
+                          <span className={passwordRequirements[key as keyof typeof passwordRequirements] ? 'text-green-600' : 'text-red-600'}>
+                            {description}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {mode === 'signup' && (
+                  <div className="space-y-2">
+                    <Label htmlFor="school">School</Label>
+                    <Select value={schoolId} onValueChange={setSchoolId}>
+                      <SelectTrigger className={errors.schoolId ? 'border-red-500' : ''}>
+                        <SelectValue placeholder="Select your school" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {schools.map((school) => (
+                          <SelectItem key={school.id} value={school.id}>
+                            {school.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {errors.schoolId && <p className="text-sm text-red-500">{errors.schoolId}</p>}
+                  </div>
+                )}
+
+                <Button 
+                  type="submit" 
+                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  disabled={loading}
+                >
+                  {loading ? 'Please wait...' : (mode === 'login' ? 'Sign In' : 'Create Account')}
+                </Button>
+              </form>
+
+              {mode === 'login' && (
+                <div className="text-center">
+                  <button
+                    onClick={() => setShowForgotPassword(true)}
+                    className="text-sm text-blue-600 hover:text-blue-800"
+                  >
+                    Forgot your password?
+                  </button>
+                </div>
+              )}
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <Separator className="w-full" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-white px-2 text-gray-500">Or continue with</span>
+                </div>
               </div>
-            </>
-          )}
 
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-fbla-blue font-semibold">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (errors.email) setErrors(prev => ({ ...prev, email: '' }));
-              }}
-              placeholder="Enter your email"
-              required
-              className={`focus:ring-fbla-yellow focus:border-transparent ${
-                errors.email ? 'border-red-500' : ''
-              }`}
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm flex items-center gap-1">
-                <AlertCircle className="w-4 h-4" />
-                {errors.email}
-              </p>
-            )}
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="password" className="text-fbla-blue font-semibold">Password</Label>
-            <div className="relative">
-              <Input
-                id="password"
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  if (errors.password) setErrors(prev => ({ ...prev, password: '' }));
-                }}
-                placeholder={mode === 'signup' ? 'Create a password' : 'Enter your password'}
-                required
-                className={`focus:ring-fbla-yellow focus:border-transparent pr-10 ${
-                  errors.password ? 'border-red-500' : ''
-                }`}
-              />
               <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className="absolute right-0 top-0 h-full px-3"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </Button>
-            </div>
-            {errors.password && (
-              <p className="text-red-500 text-sm flex items-center gap-1">
-                <AlertCircle className="w-4 h-4" />
-                {errors.password}
-              </p>
-            )}
-            
-            {mode === 'signup' && password && (
-              <div className="mt-2 space-y-1">
-                <p className="text-sm font-medium text-gray-700">Password Requirements:</p>
-                <ul className="text-xs space-y-1">
-                  <li className={`flex items-center gap-1 ${passwordRequirements.length ? 'text-green-600' : 'text-gray-500'}`}>
-                    {passwordRequirements.length ? <CheckCircle className="w-3 h-3" /> : <AlertCircle className="w-3 h-3" />}
-                    At least 8 characters
-                  </li>
-                  <li className={`flex items-center gap-1 ${passwordRequirements.uppercase ? 'text-green-600' : 'text-gray-500'}`}>
-                    {passwordRequirements.uppercase ? <CheckCircle className="w-3 h-3" /> : <AlertCircle className="w-3 h-3" />}
-                    One uppercase letter
-                  </li>
-                  <li className={`flex items-center gap-1 ${passwordRequirements.lowercase ? 'text-green-600' : 'text-gray-500'}`}>
-                    {passwordRequirements.lowercase ? <CheckCircle className="w-3 h-3" /> : <AlertCircle className="w-3 h-3" />}
-                    One lowercase letter
-                  </li>
-                  <li className={`flex items-center gap-1 ${passwordRequirements.number ? 'text-green-600' : 'text-gray-500'}`}>
-                    {passwordRequirements.number ? <CheckCircle className="w-3 h-3" /> : <AlertCircle className="w-3 h-3" />}
-                    One number
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div>
-
-          {mode === 'login' && (
-            <div className="flex justify-end">
-              <Button
-                type="button"
-                variant="link"
-                onClick={handleForgotPassword}
+                onClick={handleGoogleAuth}
+                variant="outline"
+                className="w-full"
                 disabled={loading}
-                className="text-sm text-fbla-blue hover:text-blue-800 p-0"
               >
-                <KeyRound className="w-4 h-4 mr-1" />
-                Forgot password?
-              </Button>
-            </div>
-          )}
-
-          <Button
-            type="submit"
-            disabled={loading || (mode === 'signup' && !isPasswordValid)}
-            className="w-full bg-fbla-blue hover:bg-blue-800 text-white disabled:opacity-50"
-          >
-            {loading ? (
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                {mode === 'signup' ? 'Creating Account...' : 'Signing In...'}
-              </div>
-            ) : (
-              mode === 'signup' ? 'Create Account' : 'Sign In'
-            )}
-          </Button>
-
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-500">or</span>
-            </div>
-          </div>
-
-          <Button
-            type="button"
-            onClick={handleGoogleAuth}
-            disabled={loading}
-            variant="outline"
-            className="w-full"
-          >
-            {loading ? (
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-700 rounded-full animate-spin" />
-                Working...
-              </div>
-            ) : (
-              <>
-                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">
                   <path
                     fill="#4285f4"
                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -524,22 +505,23 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
-                {mode === 'signup' ? 'Sign up with Google' : 'Sign in with Google'}
-              </>
-            )}
-          </Button>
-        </form>
+                {loading ? 'Please wait...' : `Sign ${mode === 'login' ? 'in' : 'up'} with Google`}
+              </Button>
 
-        <p className="text-center text-gray-600 mt-4">
-          {mode === 'login' ? "Don't have an account?" : "Already have an account?"}
-          <Button
-            variant="link"
-            onClick={() => onSwitchMode(mode === 'login' ? 'signup' : 'login')}
-            className="text-fbla-blue hover:text-blue-800 font-semibold p-0 ml-1"
-          >
-            {mode === 'login' ? 'Sign up' : 'Sign in'}
-          </Button>
-        </p>
+              <div className="text-center text-sm">
+                <span className="text-gray-600">
+                  {mode === 'login' ? "Don't have an account?" : "Already have an account?"}
+                </span>
+                <button
+                  onClick={() => onSwitchMode(mode === 'login' ? 'signup' : 'login')}
+                  className="ml-2 text-blue-600 hover:text-blue-800 font-medium"
+                >
+                  {mode === 'login' ? 'Sign up' : 'Sign in'}
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );
