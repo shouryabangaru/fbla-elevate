@@ -1,0 +1,53 @@
+You are an expert full-stack developer building an FBLA preparation web app called FBLA Elevate using React and Firebase.
+
+**Goal:** Build a professional, clean, responsive homepage with Firebase authentication.
+
+**Requirements:**
+
+1. **Framework:** React (functional components)  
+2. **Design:**
+   - Use a blue (#003366), yellow (#FFD700), and white (#FFFFFF) color scheme.
+   - Modern, bold typography for headings.
+   - Clean navbar with links: Home, Practice Questions, Flashcards, Presentation Tips, Leaderboard, Achievements, About Us.
+   - Add a hero section with:
+     - FBLA Elevate logo or placeholder icon
+     - Headline: "FBLA Elevate"
+     - Subheadline: "Your hub for preparing for FBLA competitive events!"
+     - CTA button: "Start Practicing" (yellow with hover effect)
+
+3. **Authentication (Firebase):**
+   - Integrate Firebase Auth.
+   - Create a signup and login page with email/password and Google login options.
+   - Upon user signup, save user details (uid, name, email, schoolID) to Firestore in a 'users' collection.
+   - Create a dropdown menu during signup for users to select their school (placeholder options for now).
+
+4. **Database setup (Firestore):**
+   - Create collections for users, questions, flashcards, leaderboard, and achievements.
+   - For this task, create a sample 'flashcards' collection with:
+     - eventID
+     - term
+     - definition
+   - Create a Flashcards page that:
+     - Fetches flashcards from Firestore by eventID.
+     - Displays term and definition with next/previous buttons.
+
+5. **Leaderboard (future steps):**
+   - Placeholder leaderboard page for now with sample data.
+   - Heading: “Leaderboard” and dummy user rankings.
+
+6. **Achievements (future steps):**
+   - Placeholder achievements page with badge icons and sample achievement names.
+
+**Notes:**
+- Write clean, well-commented code.  
+- Structure with components: Navbar, HomePage, LoginPage, SignupPage, FlashcardsPage, LeaderboardPage, AchievementsPage.  
+- Use CSS Modules or standard CSS (no Tailwind).  
+- Ensure the site is responsive for mobile and desktop.
+
+Generate the full React code, including:
+- Firebase config initialization (placeholder config variables)  
+- App.js routing setup using React Router  
+- Individual components as described  
+- Basic CSS styling for a professional look
+
+**Objective:** This will be the MVP for FBLA Elevate to present in my NC FBLA VP campaign, so it should look clean and functional.
