@@ -1,0 +1,103 @@
+📝 Prompt for Replit AI or your developer
+You are an expert React and CSS UI designer. Redesign my Roleplay Practice Tab Event Selection screen to be professional, modern, and highly visually appealing.
+
+✅ Current Issues (fix these):
+The cards are too narrow and cramped.
+
+Text overflows or wraps awkwardly (e.g. Business Management).
+
+The icon glow and card shadows look unrefined.
+
+Overall layout lacks spacing, padding, and balance.
+
+Section header overlaps with navbar when scrolling.
+
+🎯 Goals for Redesign:
+🔲 1. Card Design
+
+Increase card width to better fit event titles without awkward wraps.
+
+Maintain consistent height and width ratios.
+
+Use rounded corners (radius: 16px) for a softer, modern look.
+
+Add a smooth drop shadow (e.g. rgba(0,0,0,0.6), 10px blur, 5px offset) for depth.
+
+Apply a subtle dark gradient background within each card (e.g. #001122 to #000000) for premium feel.
+
+On hover:
+
+Scale up card slightly (transform: scale(1.05)).
+
+Add a glowing border in FBLA yellow (#FFD700) with smooth transition.
+
+🔲 2. Icon Styling
+
+Increase icon size for prominence.
+
+Use a slight glowing effect or gradient overlay for vibrancy.
+
+Center icons horizontally with 20–30px top margin.
+
+🔲 3. Text Styling
+
+Event name:
+
+Use larger font (1.3–1.5rem), bold, and white (#FFFFFF).
+
+Centered horizontally with good line-height spacing to avoid cramped look.
+
+Subtext (e.g. “15 prompts”):
+
+Smaller (0.9rem), muted grey (#CCCCCC), with top margin for spacing.
+
+🔲 4. Layout
+
+Switch to a responsive grid layout:
+
+Desktop: 3 cards per row
+
+Tablet: 2 cards per row
+
+Mobile: 1 card per row
+
+Add sufficient horizontal and vertical spacing (gap: 20–30px) between cards.
+
+Ensure padding within each card (20px minimum) for breathing space.
+
+🔲 5. Section Title Styling
+
+"Choose Your Event" should:
+
+Be large (2rem or bigger), bold, and centered.
+
+Use FBLA yellow (#FFD700) with subtle text shadow for contrast on dark background.
+
+Add a thin underline or gold separator bar below for visual structure.
+
+Add top margin (40–60px) so it does not overlap with navbar.
+
+🔲 6. Background
+
+Use a clean dark gradient background for the page (top: #000000, bottom: #003366).
+
+Optionally add a subtle abstract or blurred pattern for depth.
+
+🔲 7. Transitions & Interactions
+
+Add smooth transitions (200–300ms) for hover scaling, border glow, and icon brightness.
+
+Cursor should change to pointer on hover over each card.
+
+🔲 8. Accessibility
+
+Ensure high color contrast ratios for readability.
+
+Make cards accessible via keyboard navigation (tab index) for inclusivity.
+
+💻 Implementation Notes
+Use React functional components and standard CSS or CSS modules.
+
+Organize cards in a RoleplayEventCard component with props (icon, title, promptCount).
+
+Use CSS grid for layout with grid-template-columns set for responsiveness.

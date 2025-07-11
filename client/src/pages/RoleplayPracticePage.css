@@ -164,8 +164,8 @@
 
 /* Events Section */
 .roleplay-events-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1400px;
+  margin: 60px auto 0;
   padding: 0 2rem;
   position: relative;
   z-index: 2;
@@ -176,7 +176,8 @@
   font-weight: 800;
   color: #FFD700;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   position: relative;
 }
@@ -184,11 +185,11 @@
 .events-section-title::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
+  width: 120px;
+  height: 4px;
   background: linear-gradient(90deg, transparent, #FFD700, transparent);
   border-radius: 2px;
 }
@@ -196,18 +197,18 @@
 .events-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-bottom: 3rem;
+  gap: 2.5rem;
+  margin-bottom: 4rem;
 }
 
 /* Individual Event Card */
 .roleplay-event-card {
   background: linear-gradient(135deg, 
-    rgba(0, 20, 40, 0.9) 0%, 
-    rgba(0, 0, 0, 0.8) 100%);
+    rgba(0, 17, 34, 0.95) 0%, 
+    rgba(0, 0, 0, 0.9) 100%);
   border: 2px solid rgba(255, 215, 0, 0.2);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -215,8 +216,13 @@
   overflow: hidden;
   backdrop-filter: blur(10px);
   box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .roleplay-event-card::before {
@@ -238,21 +244,27 @@
 }
 
 .roleplay-event-card:hover {
-  transform: scale(1.05) translateY(-5px);
+  transform: scale(1.05) translateY(-8px);
   border-color: #FFD700;
   box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(255, 215, 0, 0.3),
+    0 25px 50px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(255, 215, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .card-inner {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .card-icon-container {
   margin-bottom: 1.5rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -261,28 +273,36 @@
 
 .card-icon {
   color: #FFD700;
-  filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3));
+  filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.4));
   transition: all 0.3s ease;
 }
 
 .roleplay-event-card:hover .card-icon {
-  transform: scale(1.1);
-  filter: drop-shadow(0 6px 12px rgba(255, 215, 0, 0.5));
+  transform: scale(1.15);
+  filter: drop-shadow(0 8px 16px rgba(255, 215, 0, 0.6));
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  align-items: center;
+  width: 100%;
 }
 
 .card-title {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #FFFFFF;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   margin: 0;
   transition: color 0.3s ease;
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .roleplay-event-card:hover .card-title {
@@ -294,7 +314,8 @@
   color: #CCCCCC;
   font-weight: 500;
   margin: 0;
-  opacity: 0.8;
+  opacity: 0.9;
+  margin-top: 0.5rem;
 }
 
 /* Practice Session */
@@ -561,10 +582,20 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .roleplay-events-container {
+    max-width: 1000px;
+  }
+  
+  .events-grid {
+    gap: 2rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .events-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 2rem;
   }
   
   .events-section-title {
@@ -572,17 +603,20 @@
   }
   
   .roleplay-event-card {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
+    min-height: 260px;
   }
   
   .card-title {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
+    white-space: normal;
   }
 }
 
 @media (max-width: 768px) {
   .roleplay-events-container {
     padding: 0 1rem;
+    margin-top: 40px;
   }
   
   .events-grid {
@@ -592,15 +626,17 @@
   
   .events-section-title {
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
   
   .roleplay-event-card {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
+    min-height: 240px;
   }
   
   .card-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    white-space: normal;
   }
   
   .timer-content {
@@ -646,12 +682,18 @@
     padding: 1rem 0;
   }
   
+  .roleplay-events-container {
+    margin-top: 20px;
+  }
+  
   .events-section-title {
     font-size: 1.8rem;
+    margin-bottom: 2rem;
   }
   
   .roleplay-event-card {
-    padding: 1.25rem;
+    padding: 1.75rem 1.25rem;
+    min-height: 220px;
   }
   
   .card-icon-container {
@@ -665,7 +707,8 @@
   }
   
   .card-title {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    white-space: normal;
   }
   
   .card-subtitle {
