@@ -135,11 +135,6 @@ export default function FlashcardsPage() {
   };
 
   const currentCard = flashcards[currentIndex];
-  
-  // Safety check for currentCard
-  if (selectedEvent && flashcards.length > 0 && !currentCard) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <PageLayout
@@ -216,7 +211,7 @@ export default function FlashcardsPage() {
                           <Layers className="w-5 h-5 mr-2" />
                           <span>Term</span>
                         </div>
-                        <h2 className="flashcard-term">{currentCard.term}</h2>
+                        <h2 className="flashcard-term">{currentCard?.term}</h2>
                         <p className="flashcard-hint">Click to reveal definition</p>
                       </div>
                       
@@ -225,7 +220,7 @@ export default function FlashcardsPage() {
                           <Trophy className="w-5 h-5 mr-2" />
                           <span>Definition</span>
                         </div>
-                        <p className="flashcard-definition">{currentCard.definition}</p>
+                        <p className="flashcard-definition">{currentCard?.definition}</p>
                       </div>
                     </div>
                   </div>
