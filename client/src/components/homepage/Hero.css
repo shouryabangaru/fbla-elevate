@@ -196,6 +196,10 @@
 
 .hero-cta {
   margin-bottom: 4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cta-button {
