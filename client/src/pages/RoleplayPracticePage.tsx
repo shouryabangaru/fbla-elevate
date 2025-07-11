@@ -32,7 +32,75 @@ interface RoleplayScenario {
   completed: boolean;
 }
 
+interface RoleplayEvent {
+  id: string;
+  name: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  description: string;
+  scenarioCount: number;
+  category: string;
+  color: string;
+}
+
 export default function RoleplayPracticePage() {
+  // Define event categories
+  const roleplayEvents: RoleplayEvent[] = [
+    {
+      id: 'banking',
+      name: 'Banking & Financial Services',
+      icon: DollarSign,
+      description: 'Practice customer service scenarios in banking environments, handling financial products, and resolving account issues.',
+      scenarioCount: 15,
+      category: 'Banking & Financial Services',
+      color: 'from-green-500 to-emerald-600'
+    },
+    {
+      id: 'business',
+      name: 'Business Management',
+      icon: Building2,
+      description: 'Develop leadership and management skills through team conflict resolution, strategic planning, and operational challenges.',
+      scenarioCount: 15,
+      category: 'Business Management',
+      color: 'from-blue-500 to-cyan-600'
+    },
+    {
+      id: 'customer',
+      name: 'Customer Service',
+      icon: HeadsetIcon,
+      description: 'Master customer interaction techniques, complaint resolution, and service excellence in various business contexts.',
+      scenarioCount: 15,
+      category: 'Customer Service',
+      color: 'from-purple-500 to-violet-600'
+    },
+    {
+      id: 'entrepreneurship',
+      name: 'Entrepreneurship',
+      icon: Lightbulb,
+      description: 'Navigate startup challenges, investor relations, business model development, and entrepreneurial decision-making.',
+      scenarioCount: 15,
+      category: 'Entrepreneurship',
+      color: 'from-orange-500 to-red-600'
+    },
+    {
+      id: 'marketing',
+      name: 'Marketing',
+      icon: TrendingUp,
+      description: 'Tackle marketing strategy challenges, campaign management, brand positioning, and digital marketing scenarios.',
+      scenarioCount: 15,
+      category: 'Marketing',
+      color: 'from-pink-500 to-rose-600'
+    },
+    {
+      id: 'sales',
+      name: 'Sales',
+      icon: Users,
+      description: 'Perfect your sales techniques, objection handling, client relationship management, and closing strategies.',
+      scenarioCount: 15,
+      category: 'Sales',
+      color: 'from-indigo-500 to-purple-600'
+    }
+  ];
+
   // Create individual roleplay scenarios from the events
   const roleplayScenarios: RoleplayScenario[] = [
     // Banking & Financial Services scenarios
@@ -216,14 +284,13 @@ export default function RoleplayPracticePage() {
     }))
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedEvent, setSelectedEvent] = useState<string>('');
   const [selectedScenario, setSelectedScenario] = useState<RoleplayScenario | null>(null);
   
-  const categories = ['all', 'Banking & Financial Services', 'Business Management', 'Customer Service', 'Entrepreneurship', 'Marketing', 'Sales'];
-  
-  const filteredScenarios = selectedCategory === 'all' 
-    ? roleplayScenarios 
-    : roleplayScenarios.filter(scenario => scenario.category === selectedCategory);
+  const currentEvent = roleplayEvents.find(event => event.id === selectedEvent);
+  const eventScenarios = selectedEvent 
+    ? roleplayScenarios.filter(scenario => scenario.category === currentEvent?.category)
+    : [];
 
   return (
     <PageLayout 
@@ -231,8 +298,8 @@ export default function RoleplayPracticePage() {
       subtitle="Master business scenarios with timed practice sessions"
     >
       <div className="roleplay-practice-content">
-        {!selectedScenario ? (
-          <div className="roleplay-scenarios">
+        {!selectedEvent ? (
+          <div className="roleplay-events">
             {/* Stats Section */}
             <div className="stats-section">
               <div className="stats-grid">
@@ -278,26 +345,83 @@ export default function RoleplayPracticePage() {
               </div>
             </div>
 
-            {/* Filter Section */}
-            <div className="filter-section">
-              <StyledCard className="filter-card">
-                <div className="filter-buttons">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      onClick={() => setSelectedCategory(category)}
-                      className={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
-                    >
-                      {category === 'all' ? 'All Categories' : category}
-                    </button>
-                  ))}
-                </div>
-              </StyledCard>
+            {/* Events Grid */}
+            <div className="roleplay-events-grid">
+              {roleplayEvents.map((event) => {
+                const IconComponent = event.icon;
+                const completedCount = roleplayScenarios.filter(s => s.category === event.category && s.completed).length;
+                
+                return (
+                  <StyledCard 
+                    key={event.id}
+                    className="roleplay-event-card"
+                    onClick={() => setSelectedEvent(event.id)}
+                  >
+                    <div className="card-header">
+                      <div className="card-icon">
+                        <IconComponent size={48} className="icon-component" />
+                      </div>
+                      <div className="card-progress">
+                        <div className="progress-text">
+                          {completedCount}/{event.scenarioCount}
+                        </div>
+                        <div className="progress-label">Complete</div>
+                      </div>
+                    </div>
+                    
+                    <div className="card-content">
+                      <h3 className="card-title">{event.name}</h3>
+                      <p className="card-description">{event.description}</p>
+                      
+                      <div className="card-meta">
+                        <div className="meta-item">
+                          <PlayCircle size={16} />
+                          <span>{event.scenarioCount} scenarios</span>
+                        </div>
+                        <div className="meta-item">
+                          <Clock size={16} />
+                          <span>10 min each</span>
+                        </div>
+                      </div>
+                      
+                      <div className="card-progress-bar">
+                        <div 
+                          className="progress-fill"
+                          style={{ width: `${(completedCount / event.scenarioCount) * 100}%` }}
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="card-actions">
+                      <Button className="card-btn" variant="default">
+                        <PlayCircle size={16} />
+                        Start Practice
+                      </Button>
+                    </div>
+                  </StyledCard>
+                );
+              })}
             </div>
-
-            {/* Scenarios Grid */}
+          </div>
+        ) : !selectedScenario ? (
+          <div className="event-scenarios">
+            <div className="scenarios-header">
+              <Button
+                onClick={() => setSelectedEvent('')}
+                variant="outline"
+                className="back-btn"
+              >
+                <ArrowLeft size={16} />
+                Back to Events
+              </Button>
+              <div className="scenarios-title">
+                <h2>{currentEvent?.name}</h2>
+                <p>{currentEvent?.description}</p>
+              </div>
+            </div>
+            
             <div className="scenarios-grid">
-              {filteredScenarios.map((scenario) => {
+              {eventScenarios.map((scenario) => {
                 const IconComponent = scenario.icon;
                 return (
                   <StyledCard 
@@ -319,7 +443,7 @@ export default function RoleplayPracticePage() {
                     
                     <div className="scenario-info">
                       <h3 className="scenario-title">
-                        {scenario.eventName} - Scenario {scenario.scenarioNumber}
+                        Scenario {scenario.scenarioNumber}
                       </h3>
                       <p className="scenario-description">
                         {scenario.prompt.length > 100 
