@@ -165,7 +165,7 @@
 /* Events Section */
 .roleplay-events-container {
   max-width: 1400px;
-  margin: 60px auto 0;
+  margin: 2rem auto 0;
   padding: 0 2rem;
   position: relative;
   z-index: 2;
@@ -196,9 +196,12 @@
 
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
   margin-bottom: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Individual Event Card */
@@ -291,7 +294,7 @@
 }
 
 .card-title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #FFFFFF;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -299,9 +302,8 @@
   transition: color 0.3s ease;
   line-height: 1.3;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-wrap: break-word;
+  hyphens: auto;
   max-width: 100%;
 }
 
@@ -582,19 +584,27 @@
 }
 
 /* Responsive Design */
+@media (min-width: 1401px) {
+  .events-grid {
+    grid-template-columns: repeat(3, minmax(320px, 400px));
+    justify-content: center;
+  }
+}
+
 @media (max-width: 1200px) {
   .roleplay-events-container {
     max-width: 1000px;
   }
   
   .events-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
   }
 }
 
 @media (max-width: 1024px) {
   .events-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
   }
   
@@ -609,19 +619,19 @@
   
   .card-title {
     font-size: 1.35rem;
-    white-space: normal;
   }
 }
 
 @media (max-width: 768px) {
   .roleplay-events-container {
     padding: 0 1rem;
-    margin-top: 40px;
+    margin-top: 2rem;
   }
   
   .events-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    max-width: 500px;
   }
   
   .events-section-title {
@@ -636,7 +646,6 @@
   
   .card-title {
     font-size: 1.3rem;
-    white-space: normal;
   }
   
   .timer-content {
@@ -683,12 +692,16 @@
   }
   
   .roleplay-events-container {
-    margin-top: 20px;
+    margin-top: 1rem;
   }
   
   .events-section-title {
     font-size: 1.8rem;
     margin-bottom: 2rem;
+  }
+  
+  .events-grid {
+    max-width: 400px;
   }
   
   .roleplay-event-card {
@@ -708,7 +721,6 @@
   
   .card-title {
     font-size: 1.2rem;
-    white-space: normal;
   }
   
   .card-subtitle {

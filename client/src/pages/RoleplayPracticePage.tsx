@@ -543,15 +543,6 @@ export default function RoleplayPracticePage() {
   return (
     <div className="roleplay-practice-page">
 
-        <Timer
-          timeLeft={timeLeft}
-          isRunning={isRunning}
-          isPaused={isPaused}
-          onStart={startTimer}
-          onPause={pauseTimer}
-          onReset={resetTimer}
-        />
-
         {!selectedEvent ? (
           <div className="event-selection">
             <h2 className="section-title">Choose Your Event</h2>
