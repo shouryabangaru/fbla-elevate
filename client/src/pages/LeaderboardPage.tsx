@@ -1,19 +1,24 @@
 import { useState, useEffect } from 'react';
-import { collection, getDocs, orderBy, query, limit } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { PageLayout } from '@/components/shared/PageLayout';
+import { StyledCard } from '@/components/shared/StyledCard';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Crown } from 'lucide-react';
+import { Crown, Trophy, Medal, Award, Users, TrendingUp, Star, Zap } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
-import type { User } from '@shared/schema';
+import './LeaderboardPage.css';
 
-const eventFilters = [
-  { id: 'all', name: 'All Events' },
-  { id: 'business-law', name: 'Business Law' },
-  { id: 'marketing', name: 'Marketing' },
-  { id: 'economics', name: 'Economics' },
-];
+interface LeaderboardUser {
+  id: number;
+  name: string;
+  schoolId: string;
+  points: number;
+  streak: number;
+  avatar?: string;
+  rank: number;
+  weeklyPoints: number;
+  achievements: number;
+}
 
 const schools = {
   'east-high': 'East High School',
@@ -21,40 +26,28 @@ const schools = {
   'north-central': 'North Central High School',
   'south-ridge': 'South Ridge High School',
   'central-academy': 'Central Academy',
+  'mountain-view': 'Mountain View High',
+  'riverside': 'Riverside Preparatory',
+  'sunset-valley': 'Sunset Valley High',
 };
 
 export default function LeaderboardPage() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [users, setUsers] = useState<LeaderboardUser[]>([]);
+  const [filter, setFilter] = useState<'all' | 'weekly' | 'school'>('all');
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
   const { toast } = useToast();
 
   useEffect(() => {
     loadLeaderboard();
-  }, [selectedFilter]);
+  }, [filter]);
 
   const loadLeaderboard = async () => {
     setLoading(true);
     try {
-      const q = query(
-        collection(db, 'users'),
-        orderBy('points', 'desc'),
-        limit(50)
-      );
-      const querySnapshot = await getDocs(q);
-      const usersList: User[] = [];
-      
-      querySnapshot.forEach((doc) => {
-        usersList.push({ id: doc.id, ...doc.data() } as User);
-      });
-
-      if (usersList.length === 0) {
-        // Create sample data if no users exist
-        const sampleUsers = getSampleUsers();
-        setUsers(sampleUsers);
-      } else {
-        setUsers(usersList);
-      }
+      // For demo purposes, we'll use sample data
+      const sampleUsers = getSampleUsers();
+      setUsers(sampleUsers);
     } catch (error) {
       console.error('Error loading leaderboard:', error);
       toast({
@@ -67,152 +60,208 @@ export default function LeaderboardPage() {
     }
   };
 
-  const getSampleUsers = (): User[] => {
-    return [
-      {
-        id: 1,
-        uid: 'sample-1',
-        name: 'John Smith',
-        email: 'john@example.com',
-        schoolId: 'east-high',
-        points: 2847,
-        streak: 12,
-        createdAt: new Date(),
-      },
-      {
-        id: 2,
-        uid: 'sample-2',
-        name: 'Maria Johnson',
-        email: 'maria@example.com',
-        schoolId: 'west-valley',
-        points: 2634,
-        streak: 8,
-        createdAt: new Date(),
-      },
-      {
-        id: 3,
-        uid: 'sample-3',
-        name: 'Alex Davis',
-        email: 'alex@example.com',
-        schoolId: 'north-central',
-        points: 2421,
-        streak: 5,
-        createdAt: new Date(),
-      },
-      {
-        id: 4,
-        uid: 'sample-4',
-        name: 'Sarah Wilson',
-        email: 'sarah@example.com',
-        schoolId: 'south-ridge',
-        points: 2198,
-        streak: 15,
-        createdAt: new Date(),
-      },
-      {
-        id: 5,
-        uid: 'sample-5',
-        name: 'Michael Brown',
-        email: 'michael@example.com',
-        schoolId: 'central-academy',
-        points: 1987,
-        streak: 3,
-        createdAt: new Date(),
-      },
+  const getSampleUsers = (): LeaderboardUser[] => {
+    const sampleData = [
+      { id: 1, name: 'Alexandra Chen', schoolId: 'east-high', points: 2850, streak: 15, weeklyPoints: 420, achievements: 12 },
+      { id: 2, name: 'Marcus Johnson', schoolId: 'west-valley', points: 2720, streak: 12, weeklyPoints: 380, achievements: 10 },
+      { id: 3, name: 'Emily Rodriguez', schoolId: 'north-central', points: 2650, streak: 18, weeklyPoints: 450, achievements: 11 },
+      { id: 4, name: 'David Park', schoolId: 'south-ridge', points: 2580, streak: 9, weeklyPoints: 290, achievements: 9 },
+      { id: 5, name: 'Sarah Williams', schoolId: 'central-academy', points: 2420, streak: 14, weeklyPoints: 360, achievements: 8 },
+      { id: 6, name: 'James Thompson', schoolId: 'mountain-view', points: 2350, streak: 7, weeklyPoints: 250, achievements: 7 },
+      { id: 7, name: 'Maya Patel', schoolId: 'riverside', points: 2280, streak: 11, weeklyPoints: 320, achievements: 9 },
+      { id: 8, name: 'Connor Davis', schoolId: 'sunset-valley', points: 2210, streak: 6, weeklyPoints: 180, achievements: 6 },
+      { id: 9, name: 'Olivia Garcia', schoolId: 'east-high', points: 2150, streak: 13, weeklyPoints: 340, achievements: 8 },
+      { id: 10, name: 'Ryan Kim', schoolId: 'west-valley', points: 2080, streak: 5, weeklyPoints: 160, achievements: 5 },
     ];
+
+    return sampleData.map((user, index) => ({
+      ...user,
+      rank: index + 1,
+    }));
   };
 
-  const getInitials = (name: string): string => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  const getFilteredUsers = () => {
+    let filtered = [...users];
+    
+    if (filter === 'weekly') {
+      filtered.sort((a, b) => b.weeklyPoints - a.weeklyPoints);
+    } else if (filter === 'school' && user?.schoolId) {
+      filtered = filtered.filter(u => u.schoolId === user.schoolId);
+    }
+    
+    return filtered;
   };
 
-  const getStreakColor = (streak: number): string => {
-    if (streak >= 10) return 'bg-green-100 text-green-800';
-    if (streak >= 5) return 'bg-blue-100 text-blue-800';
-    return 'bg-yellow-100 text-yellow-800';
+  const getRankIcon = (rank: number) => {
+    switch (rank) {
+      case 1: return <Crown className="rank-icon gold" />;
+      case 2: return <Trophy className="rank-icon silver" />;
+      case 3: return <Medal className="rank-icon bronze" />;
+      default: return <Award className="rank-icon default" />;
+    }
   };
+
+  const getRankBadge = (rank: number) => {
+    if (rank === 1) return <Badge className="rank-badge gold">Champion</Badge>;
+    if (rank === 2) return <Badge className="rank-badge silver">Runner-up</Badge>;
+    if (rank === 3) return <Badge className="rank-badge bronze">Third Place</Badge>;
+    if (rank <= 10) return <Badge className="rank-badge top10">Top 10</Badge>;
+    return null;
+  };
+
+  const currentUser = users.find(u => u.name === user?.name);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-fbla-blue mb-4">Leaderboard</h1>
-          <p className="text-gray-600 text-lg">See how you stack up against other FBLA students</p>
-        </div>
-
-        {/* Event Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          {eventFilters.map((filter) => (
-            <Button
-              key={filter.id}
-              onClick={() => setSelectedFilter(filter.id)}
-              variant={selectedFilter === filter.id ? 'default' : 'outline'}
-              className={selectedFilter === filter.id 
-                ? 'bg-fbla-yellow text-fbla-blue hover:bg-yellow-600' 
-                : 'text-fbla-blue border-fbla-blue hover:bg-fbla-blue hover:text-white'
-              }
-            >
-              {filter.name}
-            </Button>
-          ))}
-        </div>
-
-        {/* Leaderboard */}
-        <Card className="bg-white shadow-lg overflow-hidden">
-          <div className="overflow-x-auto">
-            {loading ? (
-              <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-fbla-blue"></div>
+    <PageLayout
+      title="Leaderboard"
+      subtitle="See how you stack up against other FBLA champions"
+    >
+      <div className="leaderboard-container">
+        <div className="leaderboard-content">
+          {/* Filter Controls */}
+          <div className="filter-section">
+            <StyledCard className="filter-card">
+              <div className="card-content">
+                <div className="filter-header">
+                  <TrendingUp className="filter-icon" />
+                  <h3 className="filter-title">View Rankings</h3>
+                </div>
+                <div className="filter-buttons">
+                  <Button
+                    onClick={() => setFilter('all')}
+                    variant={filter === 'all' ? 'default' : 'outline'}
+                    className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
+                  >
+                    <Users className="w-4 h-4 mr-2" />
+                    All Time
+                  </Button>
+                  <Button
+                    onClick={() => setFilter('weekly')}
+                    variant={filter === 'weekly' ? 'default' : 'outline'}
+                    className={`filter-btn ${filter === 'weekly' ? 'active' : ''}`}
+                  >
+                    <Zap className="w-4 h-4 mr-2" />
+                    This Week
+                  </Button>
+                  <Button
+                    onClick={() => setFilter('school')}
+                    variant={filter === 'school' ? 'default' : 'outline'}
+                    className={`filter-btn ${filter === 'school' ? 'active' : ''}`}
+                  >
+                    <Star className="w-4 h-4 mr-2" />
+                    My School
+                  </Button>
+                </div>
               </div>
-            ) : (
-              <table className="w-full">
-                <thead className="bg-fbla-blue text-white">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">Rank</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">Student</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">School</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">Points</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">Streak</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {users.map((user, index) => (
-                    <tr key={user.id} className="hover:bg-gray-50 transition-colors duration-200">
-                      <td className="px-6 py-4">
-                        <div className="flex items-center">
-                          <span className={`font-bold text-lg ${index === 0 ? 'text-fbla-yellow' : 'text-gray-600'}`}>
-                            #{index + 1}
-                          </span>
-                          {index === 0 && <Crown className="text-fbla-yellow w-5 h-5 ml-2" />}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 bg-fbla-blue rounded-full flex items-center justify-center text-white font-semibold text-sm mr-3">
-                            {getInitials(user.name)}
-                          </div>
-                          <span className="font-semibold text-gray-900">{user.name}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-gray-600">
-                        {schools[user.schoolId as keyof typeof schools] || 'Unknown School'}
-                      </td>
-                      <td className="px-6 py-4 font-semibold text-fbla-blue">
-                        {user.points?.toLocaleString() || 0}
-                      </td>
-                      <td className="px-6 py-4">
-                        <Badge className={getStreakColor(user.streak || 0)}>
-                          {user.streak || 0} days
-                        </Badge>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
+            </StyledCard>
           </div>
-        </Card>
+
+          {/* Current User Stats */}
+          {currentUser && (
+            <div className="current-user-section">
+              <StyledCard className="current-user-card" variant="primary">
+                <div className="card-content">
+                  <div className="user-header">
+                    <div className="user-info">
+                      <div className="user-avatar">
+                        {currentUser.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div className="user-details">
+                        <h3 className="user-name">{currentUser.name}</h3>
+                        <p className="user-school">{schools[currentUser.schoolId as keyof typeof schools]}</p>
+                      </div>
+                    </div>
+                    <div className="user-rank">
+                      {getRankIcon(currentUser.rank)}
+                      <span className="rank-number">#{currentUser.rank}</span>
+                    </div>
+                  </div>
+                  <div className="user-stats">
+                    <div className="stat-item">
+                      <span className="stat-value">{currentUser.points.toLocaleString()}</span>
+                      <span className="stat-label">Total Points</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-value">{currentUser.streak}</span>
+                      <span className="stat-label">Day Streak</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-value">{currentUser.weeklyPoints}</span>
+                      <span className="stat-label">Weekly Points</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-value">{currentUser.achievements}</span>
+                      <span className="stat-label">Achievements</span>
+                    </div>
+                  </div>
+                </div>
+              </StyledCard>
+            </div>
+          )}
+
+          {/* Leaderboard */}
+          <div className="leaderboard-section">
+            <StyledCard className="leaderboard-card">
+              <div className="card-content">
+                <div className="leaderboard-header">
+                  <h3 className="leaderboard-title">
+                    {filter === 'all' && 'All-Time Champions'}
+                    {filter === 'weekly' && 'Weekly Leaders'}
+                    {filter === 'school' && 'School Rankings'}
+                  </h3>
+                  <div className="leaderboard-count">
+                    {getFilteredUsers().length} students
+                  </div>
+                </div>
+                
+                <div className="leaderboard-list">
+                  {getFilteredUsers().map((user, index) => (
+                    <div key={user.id} className={`leaderboard-item ${user.name === currentUser?.name ? 'current-user' : ''}`}>
+                      <div className="item-rank">
+                        {getRankIcon(index + 1)}
+                        <span className="rank-number">#{index + 1}</span>
+                      </div>
+                      
+                      <div className="item-user">
+                        <div className="user-avatar">
+                          {user.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div className="user-info">
+                          <h4 className="user-name">{user.name}</h4>
+                          <p className="user-school">{schools[user.schoolId as keyof typeof schools]}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="item-stats">
+                        <div className="stat-group">
+                          <span className="stat-value primary">
+                            {filter === 'weekly' ? user.weeklyPoints.toLocaleString() : user.points.toLocaleString()}
+                          </span>
+                          <span className="stat-label">
+                            {filter === 'weekly' ? 'Weekly' : 'Points'}
+                          </span>
+                        </div>
+                        <div className="stat-group">
+                          <span className="stat-value">{user.streak}</span>
+                          <span className="stat-label">Streak</span>
+                        </div>
+                        <div className="stat-group">
+                          <span className="stat-value">{user.achievements}</span>
+                          <span className="stat-label">Badges</span>
+                        </div>
+                      </div>
+                      
+                      <div className="item-badge">
+                        {getRankBadge(index + 1)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </StyledCard>
+          </div>
+        </div>
       </div>
-    </div>
+    </PageLayout>
   );
 }
