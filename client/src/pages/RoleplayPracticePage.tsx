@@ -14,6 +14,8 @@ import {
   ArrowLeft,
   Clock
 } from 'lucide-react';
+import { PageLayout } from '@/components/shared/PageLayout';
+import { StyledCard } from '@/components/shared/StyledCard';
 import './RoleplayPracticePage.css';
 
 interface RoleplayEvent {
@@ -125,15 +127,16 @@ const EventGrid: React.FC<EventGridProps> = ({ events, onEventSelect }) => {
       {events.map((event) => {
         const IconComponent = event.icon;
         return (
-          <div
+          <StyledCard
             key={event.id}
-            className="event-card"
-            onClick={() => onEventSelect(event.id)}
+            className="event-card cursor-pointer"
           >
-            <IconComponent size={32} className="event-icon" />
-            <h3 className="event-title">{event.name}</h3>
-            <p className="event-subtitle">{event.prompts.length} prompts</p>
-          </div>
+            <div className="event-content" onClick={() => onEventSelect(event.id)}>
+              <IconComponent size={32} className="event-icon" />
+              <h3 className="event-title">{event.name}</h3>
+              <p className="event-subtitle">{event.prompts.length} prompts</p>
+            </div>
+          </StyledCard>
         );
       })}
     </div>
@@ -519,12 +522,10 @@ export default function RoleplayPracticePage() {
   }, [resetTimer]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-fbla-blue mb-2">Roleplay Practice</h1>
-          <p className="text-gray-600 text-lg">Master business scenarios with timed practice sessions</p>
-        </div>
+    <PageLayout
+      title="Roleplay Practice"
+      subtitle="Master business scenarios with timed practice sessions"
+    >
 
         <Timer
           timeLeft={timeLeft}
@@ -585,7 +586,6 @@ export default function RoleplayPracticePage() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </PageLayout>
   );
 }
