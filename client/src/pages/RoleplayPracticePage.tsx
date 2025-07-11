@@ -519,11 +519,11 @@ export default function RoleplayPracticePage() {
   }, [resetTimer]);
 
   return (
-    <div className="roleplay-practice-page">
-      <div className="roleplay-container">
-        <div className="page-header">
-          <h1 className="page-title">Roleplay Practice</h1>
-          <p className="page-subtitle">Master business scenarios with timed practice sessions</p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-fbla-blue mb-2">Roleplay Practice</h1>
+          <p className="text-gray-600 text-lg">Master business scenarios with timed practice sessions</p>
         </div>
 
         <Timer
