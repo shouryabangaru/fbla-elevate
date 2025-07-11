@@ -355,7 +355,10 @@ export default function RoleplayPracticePage() {
                   <StyledCard 
                     key={event.id}
                     className="roleplay-event-card"
-                    onClick={() => setSelectedEvent(event.id)}
+                    onClick={() => {
+                      console.log('Clicked event:', event.id);
+                      setSelectedEvent(event.id);
+                    }}
                   >
                     <div className="card-header">
                       <div className="card-icon">
@@ -393,7 +396,15 @@ export default function RoleplayPracticePage() {
                     </div>
                     
                     <div className="card-actions">
-                      <Button className="card-btn" variant="default">
+                      <Button 
+                        className="card-btn" 
+                        variant="default"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log('Button clicked for event:', event.id);
+                          setSelectedEvent(event.id);
+                        }}
+                      >
                         <PlayCircle size={16} />
                         Start Practice
                       </Button>

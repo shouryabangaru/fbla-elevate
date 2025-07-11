@@ -15,6 +15,11 @@
   box-shadow: 0 15px 35px rgba(255, 215, 0, 0.15);
 }
 
+.styled-card.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
 .styled-card.primary {
   background: linear-gradient(135deg, #003366 0%, #001122 100%);
   border-color: rgba(255, 215, 0, 0.4);
