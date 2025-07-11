@@ -135,6 +135,11 @@ export default function FlashcardsPage() {
   };
 
   const currentCard = flashcards[currentIndex];
+  
+  // Safety check for currentCard
+  if (selectedEvent && flashcards.length > 0 && !currentCard) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <PageLayout
@@ -171,7 +176,7 @@ export default function FlashcardsPage() {
           </div>
 
           {/* Flashcard Study Area */}
-          {selectedEvent && flashcards.length > 0 && (
+          {selectedEvent && flashcards.length > 0 && currentCard && (
             <div className="study-area">
               {/* Progress Bar */}
               <div className="progress-section">
