@@ -24,7 +24,8 @@ Preferred communication style: Simple, everyday language.
 - **Database**: PostgreSQL with Drizzle ORM
 - **Database Provider**: Neon Database (serverless PostgreSQL)
 - **Authentication**: Firebase Auth with Google provider integration
-- **Session Management**: In-memory storage with fallback to database persistence
+- **Session Management**: Database-first storage with Firestore backup
+- **API**: RESTful API with Firebase integration endpoints
 
 ### Design System
 - **Component Library**: Custom implementation based on Radix UI primitives
@@ -36,9 +37,10 @@ Preferred communication style: Simple, everyday language.
 
 ### Authentication System
 - **Provider**: Firebase Authentication
-- **Methods**: Email/password and Google OAuth
-- **User Management**: Firestore for user profile storage
+- **Methods**: Email/password and Google OAuth with enhanced UX
+- **User Management**: PostgreSQL primary storage with Firestore backup
 - **Session Handling**: React Context for global authentication state
+- **Features**: Password strength validation, forgot password, real-time error feedback
 
 ### Database Schema
 - **Users**: Store user profiles with school affiliation, points, and streaks
@@ -57,11 +59,12 @@ Preferred communication style: Simple, everyday language.
 ## Data Flow
 
 ### Authentication Flow
-1. User initiates login/signup through AuthModal component
-2. Firebase Auth handles authentication process
-3. User data synced with Firestore database
-4. AuthContext provides global authentication state
-5. Protected routes redirect unauthenticated users
+1. User initiates login/signup through enhanced AuthModal component
+2. Firebase Auth handles authentication process with comprehensive validation
+3. User data saved to PostgreSQL database via REST API
+4. Firestore used as backup storage for reliability
+5. AuthContext provides global authentication state with database integration
+6. Protected routes redirect unauthenticated users
 
 ### Study Session Flow
 1. User selects study material (flashcards/practice questions)
@@ -80,8 +83,9 @@ Preferred communication style: Simple, everyday language.
 
 ### Firebase Services
 - **Authentication**: User management and OAuth integration
-- **Firestore**: Primary database for user data and content
+- **Firestore**: Backup database for user data and content
 - **Configuration**: Environment-based setup for development/production
+- **Integration**: RESTful API endpoints for seamless database synchronization
 
 ### UI Dependencies
 - **Radix UI**: Accessible component primitives

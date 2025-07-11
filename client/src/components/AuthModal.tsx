@@ -94,12 +94,24 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Create user document in Firestore
-        await setDoc(doc(db, 'users', user.uid), {
+        // Create user in database
+        const userData = {
           uid: user.uid,
           name: name.trim(),
           email: email.toLowerCase().trim(),
           schoolId,
+        };
+
+        // Save to database
+        await fetch('/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(userData),
+        });
+
+        // Also save to Firestore as backup
+        await setDoc(doc(db, 'users', user.uid), {
+          ...userData,
           points: 0,
           streak: 0,
           createdAt: new Date(),
@@ -170,12 +182,24 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
       const userDoc = await getDoc(doc(db, 'users', user.uid));
       
       if (!userDoc.exists()) {
-        // Create new user document
-        await setDoc(doc(db, 'users', user.uid), {
+        // Create new user in database
+        const userData = {
           uid: user.uid,
           name: user.displayName || 'User',
           email: user.email || '',
           schoolId: schoolId || 'unknown',
+        };
+
+        // Save to database
+        await fetch('/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(userData),
+        });
+
+        // Also save to Firestore as backup
+        await setDoc(doc(db, 'users', user.uid), {
+          ...userData,
           points: 0,
           streak: 0,
           createdAt: new Date(),

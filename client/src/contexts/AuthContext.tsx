@@ -23,9 +23,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!firebaseUser) return;
 
     try {
-      const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-      if (userDoc.exists()) {
-        setUser(userDoc.data() as User);
+      // First try to get user from our database
+      const response = await fetch(`/api/users/${firebaseUser.uid}`);
+      if (response.ok) {
+        const userData = await response.json();
+        setUser(userData);
+      } else if (response.status === 404) {
+        // User doesn't exist in database, try Firestore as fallback
+        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+        if (userDoc.exists()) {
+          const firestoreUser = userDoc.data() as User;
+          setUser(firestoreUser);
+          
+          // Sync to database
+          await fetch('/api/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(firestoreUser),
+          });
+        }
       }
     } catch (error) {
       console.error('Error refreshing user:', error);
@@ -48,9 +64,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       if (firebaseUser) {
         try {
-          const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-          if (userDoc.exists()) {
-            setUser(userDoc.data() as User);
+          // Try to get user from database first
+          const response = await fetch(`/api/users/${firebaseUser.uid}`);
+          if (response.ok) {
+            const userData = await response.json();
+            setUser(userData);
+          } else if (response.status === 404) {
+            // User doesn't exist in database, try Firestore as fallback
+            const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+            if (userDoc.exists()) {
+              const firestoreUser = userDoc.data() as User;
+              setUser(firestoreUser);
+              
+              // Sync to database
+              await fetch('/api/users', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(firestoreUser),
+              });
+            }
           }
         } catch (error) {
           console.error('Error fetching user data:', error);

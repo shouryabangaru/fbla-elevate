@@ -1,5 +1,6 @@
 import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
+import { relations } from "drizzle-orm";
 import { z } from "zod";
 
 export const users = pgTable("users", {
@@ -72,6 +73,30 @@ export const insertUserAchievementSchema = createInsertSchema(userAchievements).
   id: true,
   earnedAt: true,
 });
+
+// Relations
+export const usersRelations = relations(users, ({ many }) => ({
+  progress: many(userProgress),
+  achievements: many(userAchievements),
+}));
+
+export const flashcardsRelations = relations(flashcards, ({ many }) => ({
+  progress: many(userProgress),
+}));
+
+export const userProgressRelations = relations(userProgress, ({ one }) => ({
+  user: one(users, { fields: [userProgress.userId], references: [users.id] }),
+  flashcard: one(flashcards, { fields: [userProgress.flashcardId], references: [flashcards.id] }),
+}));
+
+export const achievementsRelations = relations(achievements, ({ many }) => ({
+  userAchievements: many(userAchievements),
+}));
+
+export const userAchievementsRelations = relations(userAchievements, ({ one }) => ({
+  user: one(users, { fields: [userAchievements.userId], references: [users.id] }),
+  achievement: one(achievements, { fields: [userAchievements.achievementId], references: [achievements.id] }),
+}));
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
