@@ -1,0 +1,102 @@
+You are an expert React and Firebase developer. Please build a **Roleplay Practice Tab** for my FBLA Elevate web app.
+
+**Goal:** Allow users to select their roleplay event, view sample prompts, get guidance on how to approach them, and practice with a built-in timer.
+
+**Requirements:**
+
+1️⃣ **Event Selector**
+- At the top, create a **dropdown menu** or side menu listing these roleplay events:
+  - Banking & Financial Systems
+  - Business Management
+  - Customer Service
+  - Entrepreneurship
+  - Hospitality & Event Management
+  - International Business
+  - Management Information Systems
+  - Marketing
+  - Network Design
+  - Parliamentary Procedure
+  - Sports & Entertainment Management
+  - Technology Support & Services
+- When a user selects an event, load **3–5 sample prompts** for that event.
+
+---
+
+2️⃣ **Prompt Display**
+- Below the event selector, show:
+  - The selected **prompt text** in a styled card or container.
+  - A “How to Approach This Prompt” section with bullet-pointed advice.
+  - Example structure: 
+    - Identify the main issue
+    - Define 2–3 clear solutions or strategies
+    - Address risks
+    - Close with a strong conclusion
+
+- Use **placeholder sample prompts** for now.
+
+---
+
+3️⃣ **Practice Timer**
+- Add a **10-minute countdown timer** at the top or side of the prompt.
+- Start/Stop/Reset buttons.
+- Timer starts at 10:00, counts down in MM:SS.
+- When the timer hits zero, display a message: *“Time’s up! Practice your delivery!”*
+
+---
+
+4️⃣ **Navigation**
+- Add **Next Prompt** and **Previous Prompt** buttons to cycle through the sample prompts for each event.
+- Add a **Back to Events** button to return to the selector.
+
+---
+
+5️⃣ **Design**
+- Use FBLA Elevate brand colors:
+  - Black (#000000) for the background or headers
+  - Blue (#003366) for sections and text accents
+  - Yellow (#FFD700) for buttons and highlights
+  - White (#FFFFFF) for text
+
+- Make the prompt card visually appealing:
+  - Rounded corners
+  - Drop shadow for depth
+  - Large readable font
+
+- Make the timer large and clear.
+
+---
+
+6️⃣ **Future Integration (Comment in Code)**
+- Add TODO comments for connecting to Firebase later:
+  - Store user practice history (event, prompt, date)
+  - Option to upload or record practice video/audio
+  - Community prompt submissions
+
+---
+
+7️⃣ **Tech Stack**
+- Use **React functional components**.
+- Use **standard CSS** or CSS Modules (no Tailwind).
+- Organize into components: 
+  - RoleplayTab (main container)
+  - EventSelector
+  - PromptCard
+  - Timer
+  - NavigationButtons
+
+- Use placeholder JSON for prompts:
+  ```js
+  const roleplayPrompts = {
+    "Banking & Financial Systems": [
+      {
+        prompt: "You are a bank branch manager tasked with increasing new account sign-ups by 20% this quarter.",
+        guidance: [
+          "Identify current weaknesses",
+          "Propose 2 marketing strategies",
+          "Discuss risk management"
+        ]
+      },
+      // Add more prompts here
+    ],
+    ...
+  };

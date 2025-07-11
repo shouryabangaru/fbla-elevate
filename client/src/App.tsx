@@ -10,8 +10,8 @@ import FlashcardsPage from "@/pages/FlashcardsPage";
 import LeaderboardPage from "@/pages/LeaderboardPage";
 import AchievementsPage from "@/pages/AchievementsPage";
 import PracticeQuestionsPage from "@/pages/PracticeQuestionsPage";
-import PresentationTipsPage from "@/pages/PresentationTipsPage";
 import PracticeTestPage from "@/pages/PracticeTestPage";
+import RoleplayPracticePage from "@/pages/RoleplayPracticePage";
 import AboutUsPage from "@/pages/AboutUsPage";
 import NotFound from "@/pages/not-found";
 
@@ -26,7 +26,7 @@ function Router() {
         <Route path="/achievements" component={AchievementsPage} />
         <Route path="/practice" component={PracticeQuestionsPage} />
         <Route path="/practice-test" component={PracticeTestPage} />
-        <Route path="/presentation" component={PresentationTipsPage} />
+        <Route path="/roleplay" component={RoleplayPracticePage} />
         <Route path="/about" component={AboutUsPage} />
         <Route component={NotFound} />
       </Switch>
