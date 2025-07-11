@@ -1,0 +1,86 @@
+You are an expert React and CSS UI designer. Redesign my Roleplay Practice Tab Event Selection screen to be extremely visually appealing, modern, and interactive.
+
+Current issues (fix these):
+
+The boxes look too flat and generic.
+
+The layout feels empty with insufficient contrast and depth.
+
+Icons and text lack dynamic visual hierarchy.
+
+✅ Goals for this redesign:
+🔲 1. Card Design
+
+Make each event box look like an interactive card:
+
+Use rounded corners (radius 12–16px).
+
+Add a subtle gradient background (dark blue → black) or a glassmorphism effect for modern style.
+
+Include a strong drop shadow for depth (e.g. rgba(0,0,0,0.5) with 10px blur and 5px offset).
+
+On hover:
+
+Slight scale-up animation (transform: scale(1.05)).
+
+Add a glowing border in FBLA yellow (#FFD700) or a glowing shadow effect.
+
+🔲 2. Icons
+
+Make icons larger and bolder with a slight glow or gradient overlay for vibrancy.
+
+Center icons vertically and horizontally within the card.
+
+🔲 3. Text Styling
+
+Event name: Bold, larger font size (1.2–1.4rem) with white (#FFFFFF).
+
+Subtext (e.g. “15 prompts”): Smaller, muted grey (#CCCCCC).
+
+🔲 4. Layout
+
+Use a responsive grid layout:
+
+3 cards per row on desktop.
+
+2 cards per row on tablet.
+
+1 card per row on mobile.
+
+Center the entire grid horizontally.
+
+🔲 5. Background
+
+Change the page background to:
+
+A dark gradient (top: #000000, bottom: #003366) or
+
+A subtle abstract blue-black background pattern for depth.
+
+🔲 6. Section Title
+
+"Choose Your Event" should:
+
+Be large (2rem or bigger), bold, and centered.
+
+Use FBLA yellow (#FFD700) with a subtle shadow for readability.
+
+Add a thin underline or separator line below for visual structure.
+
+🔲 7. Transitions
+
+Add smooth transitions (200–300ms) for hover and click interactions for a premium feel.
+
+🔲 8. Accessibility
+
+Ensure high color contrast for readability.
+
+Cursor should change to pointer on hover over each card.
+
+💻 Implementation Notes
+Use React functional components and standard CSS or CSS modules.
+
+Organize cards in a RoleplayEventCard component with props (icon, title, promptCount).
+
+Use flexbox or CSS grid for clean alignment and responsiveness.
+

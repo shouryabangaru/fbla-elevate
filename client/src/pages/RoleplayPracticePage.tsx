@@ -120,25 +120,44 @@ const Timer: React.FC<TimerProps> = ({
   );
 };
 
+// Individual Event Card Component
+const RoleplayEventCard: React.FC<{
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  title: string;
+  promptCount: number;
+  onSelect: () => void;
+}> = ({ icon: IconComponent, title, promptCount, onSelect }) => {
+  return (
+    <div className="roleplay-event-card" onClick={onSelect}>
+      <div className="card-inner">
+        <div className="card-icon-container">
+          <IconComponent size={48} className="card-icon" />
+        </div>
+        <div className="card-content">
+          <h3 className="card-title">{title}</h3>
+          <p className="card-subtitle">{promptCount} prompts</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Event Grid Component
 const EventGrid: React.FC<EventGridProps> = ({ events, onEventSelect }) => {
   return (
-    <div className="event-grid">
-      {events.map((event) => {
-        const IconComponent = event.icon;
-        return (
-          <StyledCard
+    <div className="roleplay-events-container">
+      <h2 className="events-section-title">Choose Your Event</h2>
+      <div className="events-grid">
+        {events.map((event) => (
+          <RoleplayEventCard
             key={event.id}
-            className="event-card cursor-pointer"
-          >
-            <div className="event-content" onClick={() => onEventSelect(event.id)}>
-              <IconComponent size={32} className="event-icon" />
-              <h3 className="event-title">{event.name}</h3>
-              <p className="event-subtitle">{event.prompts.length} prompts</p>
-            </div>
-          </StyledCard>
-        );
-      })}
+            icon={event.icon}
+            title={event.name}
+            promptCount={event.prompts.length}
+            onSelect={() => onEventSelect(event.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
@@ -522,10 +541,7 @@ export default function RoleplayPracticePage() {
   }, [resetTimer]);
 
   return (
-    <PageLayout
-      title="Roleplay Practice"
-      subtitle="Master business scenarios with timed practice sessions"
-    >
+    <div className="roleplay-practice-page">
 
         <Timer
           timeLeft={timeLeft}
@@ -586,6 +602,6 @@ export default function RoleplayPracticePage() {
             </div>
           </div>
         </div>
-    </PageLayout>
+    </div>
   );
 }
