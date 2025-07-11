@@ -11,6 +11,8 @@ export function Footer() {
       links: [
         { name: 'Flashcards', path: '/flashcards' },
         { name: 'Practice Questions', path: '/practice' },
+        { name: 'Practice Test', path: '/practice-test' },
+        { name: 'Roleplay Practice', path: '/roleplay' },
         { name: 'Leaderboard', path: '/leaderboard' },
         { name: 'Achievements', path: '/achievements' }
       ]
@@ -18,7 +20,6 @@ export function Footer() {
     {
       title: 'Resources',
       links: [
-        { name: 'Presentation Tips', path: '/tips' },
         { name: 'About FBLA', path: '/about' },
         { name: 'Study Guide', path: '/study' },
         { name: 'Competition Events', path: '/events' }
