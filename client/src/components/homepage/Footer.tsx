@@ -11,8 +11,7 @@ export function Footer() {
       links: [
         { name: 'Flashcards', path: '/flashcards' },
         { name: 'Practice Questions', path: '/practice' },
-        { name: 'Practice Test', path: '/practice-test' },
-        { name: 'Roleplay Practice', path: '/roleplay' },
+        { name: 'Roleplay', path: '/roleplay' },
         { name: 'Leaderboard', path: '/leaderboard' },
         { name: 'Achievements', path: '/achievements' }
       ]

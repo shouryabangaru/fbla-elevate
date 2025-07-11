@@ -14,8 +14,7 @@ export function Navbar() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/practice', label: 'Practice Questions' },
-    { href: '/roleplay', label: 'Roleplay Practice' },
-    { href: '/practice-test', label: 'Practice Test' },
+    { href: '/roleplay', label: 'Roleplay' },
     { href: '/flashcards', label: 'Flashcards' },
     { href: '/leaderboard', label: 'Leaderboard' },
     { href: '/achievements', label: 'Achievements' },

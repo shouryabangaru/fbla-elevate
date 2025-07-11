@@ -12,8 +12,7 @@ export function Navbar() {
   const menuItems = [
     { name: 'Home', path: '/' },
     { name: 'Practice', path: '/practice' },
-    { name: 'Roleplay Practice', path: '/roleplay' },
-    { name: 'Practice Test', path: '/practice-test' },
+    { name: 'Roleplay', path: '/roleplay' },
     { name: 'Flashcards', path: '/flashcards' },
     { name: 'Leaderboard', path: '/leaderboard' },
     { name: 'Achievements', path: '/achievements' },
