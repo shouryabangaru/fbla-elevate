@@ -12,23 +12,17 @@ import {
   CheckCircle,
   Target,
   BookOpen,
-  Brain,
-  Briefcase,
-  Mic,
-  MessageCircle,
-  UserCheck,
   Globe,
   Hotel,
-  ShoppingCart,
   Trophy,
-  Scale,
-  Shield
+  Monitor,
+  Network,
+  Scale
 } from 'lucide-react';
-import { PageLayout } from '@/components/shared/PageLayout';
-import { StyledCard } from '@/components/shared/StyledCard';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import './RoleplayPracticePage.css';
+import { StyledCard } from '../components/shared/StyledCard';
+import { PageLayout } from '../components/shared/PageLayout';
+import { Badge } from '../components/ui/badge';
+import { Button } from '../components/ui/button';
 
 interface RoleplayScenario {
   id: string;
@@ -54,53 +48,10 @@ interface RoleplayEvent {
 }
 
 export default function RoleplayPracticePage() {
-  // Define all FBLA roleplay events
+  const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
+  
+  // Define the 12 official FBLA roleplay events
   const roleplayEvents: RoleplayEvent[] = [
-    {
-      id: 'critical-thinking',
-      name: 'Critical Thinking',
-      icon: Brain,
-      description: 'Role play scenarios requiring on-the-spot problem solving and analytical thinking in business situations.',
-      scenarioCount: 15,
-      category: 'Critical Thinking',
-      color: 'from-purple-500 to-violet-600'
-    },
-    {
-      id: 'client-service',
-      name: 'Client Service',
-      icon: HeadsetIcon,
-      description: 'Interactive simulation focusing on customer service scenarios and client relationship management.',
-      scenarioCount: 15,
-      category: 'Client Service',
-      color: 'from-blue-500 to-cyan-600'
-    },
-    {
-      id: 'job-interview',
-      name: 'Job Interview',
-      icon: UserCheck,
-      description: 'Roleplay interview scenarios to practice professional communication and presentation skills.',
-      scenarioCount: 15,
-      category: 'Job Interview',
-      color: 'from-green-500 to-emerald-600'
-    },
-    {
-      id: 'sales-presentation',
-      name: 'Sales Presentation',
-      icon: TrendingUp,
-      description: 'Business sales scenario presentations with persuasive communication and product knowledge.',
-      scenarioCount: 15,
-      category: 'Sales Presentation',
-      color: 'from-orange-500 to-red-600'
-    },
-    {
-      id: 'impromptu-speaking',
-      name: 'Impromptu Speaking',
-      icon: Mic,
-      description: 'Extemporaneous business topic presentations requiring quick thinking and articulation.',
-      scenarioCount: 15,
-      category: 'Impromptu Speaking',
-      color: 'from-pink-500 to-rose-600'
-    },
     {
       id: 'banking-financial',
       name: 'Banking & Financial Systems',
@@ -120,6 +71,15 @@ export default function RoleplayPracticePage() {
       color: 'from-blue-600 to-cyan-700'
     },
     {
+      id: 'customer-service',
+      name: 'Customer Service',
+      icon: HeadsetIcon,
+      description: 'Master customer interaction techniques, complaint resolution, and service excellence in various business contexts.',
+      scenarioCount: 15,
+      category: 'Customer Service',
+      color: 'from-purple-500 to-violet-600'
+    },
+    {
       id: 'entrepreneurship',
       name: 'Entrepreneurship',
       icon: Lightbulb,
@@ -127,24 +87,6 @@ export default function RoleplayPracticePage() {
       scenarioCount: 15,
       category: 'Entrepreneurship',
       color: 'from-yellow-500 to-orange-600'
-    },
-    {
-      id: 'marketing',
-      name: 'Marketing',
-      icon: MessageCircle,
-      description: 'Marketing strategy challenges, campaign management, and brand positioning scenarios.',
-      scenarioCount: 15,
-      category: 'Marketing',
-      color: 'from-pink-600 to-rose-700'
-    },
-    {
-      id: 'international-business',
-      name: 'International Business',
-      icon: Globe,
-      description: 'Cross-cultural business scenarios, global trade situations, and international relations.',
-      scenarioCount: 15,
-      category: 'International Business',
-      color: 'from-indigo-500 to-purple-600'
     },
     {
       id: 'hospitality-event',
@@ -156,6 +98,51 @@ export default function RoleplayPracticePage() {
       color: 'from-teal-500 to-cyan-600'
     },
     {
+      id: 'international-business',
+      name: 'International Business',
+      icon: Globe,
+      description: 'Cross-cultural business scenarios, global trade situations, and international relations.',
+      scenarioCount: 15,
+      category: 'International Business',
+      color: 'from-indigo-500 to-purple-600'
+    },
+    {
+      id: 'management-information-systems',
+      name: 'Management Information Systems',
+      icon: Monitor,
+      description: 'IT management scenarios, system implementation, and technology decision-making in business contexts.',
+      scenarioCount: 15,
+      category: 'Management Information Systems',
+      color: 'from-blue-500 to-indigo-600'
+    },
+    {
+      id: 'marketing',
+      name: 'Marketing',
+      icon: TrendingUp,
+      description: 'Marketing strategy challenges, campaign management, and brand positioning scenarios.',
+      scenarioCount: 15,
+      category: 'Marketing',
+      color: 'from-pink-600 to-rose-700'
+    },
+    {
+      id: 'network-design',
+      name: 'Network Design',
+      icon: Network,
+      description: 'Network architecture scenarios, IT infrastructure planning, and technical problem-solving.',
+      scenarioCount: 15,
+      category: 'Network Design',
+      color: 'from-gray-500 to-slate-600'
+    },
+    {
+      id: 'parliamentary-procedure',
+      name: 'Parliamentary Procedure',
+      icon: Scale,
+      description: 'Meeting management scenarios, procedural knowledge, and leadership in formal settings.',
+      scenarioCount: 15,
+      category: 'Parliamentary Procedure',
+      color: 'from-red-600 to-orange-700'
+    },
+    {
       id: 'sports-entertainment',
       name: 'Sports & Entertainment Management',
       icon: Trophy,
@@ -165,135 +152,18 @@ export default function RoleplayPracticePage() {
       color: 'from-red-500 to-orange-600'
     },
     {
-      id: 'business-law',
-      name: 'Business Law',
-      icon: Scale,
-      description: 'Legal scenarios in business contexts, contract negotiations, and compliance situations.',
-      scenarioCount: 15,
-      category: 'Business Law',
-      color: 'from-gray-600 to-slate-700'
-    },
-    {
-      id: 'business-ethics',
-      name: 'Business Ethics',
-      icon: Shield,
-      description: 'Ethical dilemmas in business, moral decision-making, and professional integrity scenarios.',
-      scenarioCount: 15,
-      category: 'Business Ethics',
-      color: 'from-emerald-600 to-teal-700'
-    },
-    {
-      id: 'human-resources',
-      name: 'Human Resource Management',
+      id: 'technology-support',
+      name: 'Technology Support & Services',
       icon: Users,
-      description: 'Employee relations, hiring scenarios, workplace conflict resolution, and HR policy situations.',
+      description: 'Technical support scenarios, customer service in technology contexts, and IT problem resolution.',
       scenarioCount: 15,
-      category: 'Human Resource Management',
+      category: 'Technology Support & Services',
       color: 'from-violet-500 to-purple-600'
-    },
-    {
-      id: 'retail-merchandising',
-      name: 'Retail Merchandising',
-      icon: ShoppingCart,
-      description: 'Retail scenarios, customer service in stores, inventory management, and sales situations.',
-      scenarioCount: 15,
-      category: 'Retail Merchandising',
-      color: 'from-amber-500 to-yellow-600'
     }
   ];
 
   // Create individual roleplay scenarios from the events
   const roleplayScenarios: RoleplayScenario[] = [
-    // Critical Thinking scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `critical-thinking-${i + 1}`,
-      eventName: 'Critical Thinking',
-      scenarioNumber: i + 1,
-      prompt: [
-        "Your company's main supplier just announced they're going out of business next month. You have a major client launch in 6 weeks. What's your plan?",
-        "A competitor is spreading false rumors about your product quality on social media. How do you address this crisis?",
-        "Your team discovered a security vulnerability in your software after it's been shipped to 10,000 customers. What's your response?",
-        "A key employee just quit during your busiest season, and they took proprietary information with them. How do you handle this?",
-        "Your company's biggest client wants to renegotiate their contract terms significantly. How do you approach this?",
-        "A natural disaster has damaged your main warehouse. You have orders backed up for two weeks. What's your strategy?",
-        "Your product launch was scheduled for next week, but testing revealed a critical flaw. How do you proceed?",
-        "A major investor wants to pull out of your funding round due to market conditions. How do you respond?",
-        "Your company is being sued by a former employee for discrimination. How do you manage this situation?",
-        "A viral social media post is calling for a boycott of your company over an environmental issue. What's your response?",
-        "Your main competitor just released a product identical to yours at half the price. How do you compete?",
-        "A data breach has exposed customer information. You have one hour before the story breaks. What do you do?",
-        "Your company's CEO just resigned unexpectedly, and the board is divided on succession. How do you maintain stability?",
-        "A regulatory change will make your main product illegal to sell next year. How do you adapt?",
-        "Your company culture survey reveals widespread employee dissatisfaction. How do you address this crisis?"
-      ][i],
-      icon: Brain,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Critical Thinking',
-      completed: false
-    })),
-    
-    // Client Service scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `client-service-${i + 1}`,
-      eventName: 'Client Service',
-      scenarioNumber: i + 1,
-      prompt: [
-        "A longtime client is threatening to cancel their contract because of a recent service disruption. How do you retain them?",
-        "A client is asking for services that are outside your company's expertise. How do you handle this professionally?",
-        "A client has complained about poor communication from your team. How do you address their concerns?",
-        "A client wants a full refund for a project that's 80% complete. How do you negotiate this situation?",
-        "A client is comparing your services to a competitor's and demanding price matching. How do you respond?",
-        "A client deadline was missed due to internal issues. How do you manage this situation and rebuild trust?",
-        "A client is requesting modifications to their contract that would be unprofitable for your company. How do you handle this?",
-        "A client is dissatisfied with the quality of work delivered. How do you address their concerns?",
-        "A client wants to expand their project scope but doesn't want to pay additional fees. How do you approach this?",
-        "A client is being unreasonable with their demands and treating your staff poorly. How do you manage this?",
-        "A client has gone silent and stopped responding to your communications. How do you re-engage them?",
-        "A client is asking for confidential information about another client. How do you handle this request?",
-        "A client wants to terminate their contract early without paying penalties. How do you negotiate?",
-        "A client is questioning your expertise and competence. How do you rebuild their confidence?",
-        "A client has a complaint about one of your team members. How do you address this professionally?"
-      ][i],
-      icon: HeadsetIcon,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Client Service',
-      completed: false
-    })),
-    
-    // Job Interview scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `job-interview-${i + 1}`,
-      eventName: 'Job Interview',
-      scenarioNumber: i + 1,
-      prompt: [
-        "You're interviewing for a management position. The interviewer asks about a time you had to fire someone. How do you respond?",
-        "The interviewer asks why you left your last job, but you were actually fired. How do you handle this question?",
-        "You're asked to describe your biggest weakness. How do you turn this into a positive?",
-        "The interviewer asks about a gap in your employment history. How do you explain this professionally?",
-        "You're asked to describe a time you failed at something. How do you frame this response?",
-        "The interviewer asks about your salary expectations, but you're not sure what's appropriate. How do you respond?",
-        "You're asked to describe a conflict with a coworker and how you resolved it. What's your approach?",
-        "The interviewer asks why you want to work for this company specifically. How do you demonstrate your research?",
-        "You're asked to describe your leadership style. How do you showcase your management abilities?",
-        "The interviewer asks about your career goals in five years. How do you align this with the company's needs?",
-        "You're asked to describe a time you had to work with a difficult person. How do you handle this diplomatically?",
-        "The interviewer asks about your experience with a skill you don't have. How do you address this honestly?",
-        "You're asked to describe a time you went above and beyond for a customer or client. What example do you use?",
-        "The interviewer asks about your experience managing budgets or financial responsibilities. How do you respond?",
-        "You're asked to describe how you handle stress and pressure. What examples do you provide?"
-      ][i],
-      icon: UserCheck,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Job Interview',
-      completed: false
-    })),
-    
     // Banking & Financial Systems scenarios
     ...Array.from({ length: 15 }, (_, i) => ({
       id: `banking-financial-${i + 1}`,
@@ -326,7 +196,7 @@ export default function RoleplayPracticePage() {
     
     // Business Management scenarios
     ...Array.from({ length: 15 }, (_, i) => ({
-      id: `business-${i + 1}`,
+      id: `business-management-${i + 1}`,
       eventName: 'Business Management',
       scenarioNumber: i + 1,
       prompt: [
@@ -356,25 +226,25 @@ export default function RoleplayPracticePage() {
     
     // Customer Service scenarios
     ...Array.from({ length: 15 }, (_, i) => ({
-      id: `customer-${i + 1}`,
+      id: `customer-service-${i + 1}`,
       eventName: 'Customer Service',
       scenarioNumber: i + 1,
       prompt: [
-        "A customer received a damaged product and is extremely angry. They're using inappropriate language. How do you handle this situation?",
-        "A customer wants to return an item without a receipt, but company policy requires one. How do you resolve this?",
-        "A customer is complaining about a service they received from a colleague. How do you address their concerns?",
-        "A customer is asking for a refund on a non-refundable item. They claim they weren't informed of the policy. How do you respond?",
-        "A customer has been waiting on hold for 30 minutes and is very frustrated when you answer. How do you start the conversation?",
-        "A customer's order was shipped to the wrong address. They need the item urgently for an event. How do you help?",
-        "A customer is comparing your prices to a competitor's and demanding a price match. How do you handle this?",
-        "A customer received poor service and wants to speak to a manager, but none are available. How do you assist?",
-        "A customer is elderly and having trouble understanding how to use your online service. How do you help them?",
-        "A customer is trying to cancel their subscription but you notice they haven't used key features. How do you approach this?",
-        "A customer received an incorrect bill and is concerned about overcharges. How do you resolve this?",
-        "A customer wants to expedite their order but standard shipping has already been processed. What options do you provide?",
-        "A customer is frustrated because they've been transferred multiple times without resolution. How do you help?",
-        "A customer is asking for a service that your company doesn't provide. How do you respond helpfully?",
-        "A customer wants to file a complaint about your company's environmental practices. How do you handle this?"
+        "A customer is extremely angry about a delayed delivery and is demanding a full refund. How do you handle this situation?",
+        "A customer received a damaged product and wants immediate replacement, but you're out of stock. How do you address this?",
+        "A customer is complaining about poor service from another department. How do you handle this interdepartmental issue?",
+        "A customer is requesting a service that your company doesn't offer. How do you handle this professionally?",
+        "A customer is comparing your prices to a competitor and demanding price matching. How do you respond?",
+        "A customer has been waiting on hold for 20 minutes and is frustrated. How do you turn this situation around?",
+        "A customer is asking for a supervisor because they're dissatisfied with your assistance. How do you handle this?",
+        "A customer made a purchase but now wants to return it outside the return policy. How do you address this?",
+        "A customer is having technical difficulties with your product and is becoming increasingly frustrated. How do you help?",
+        "A customer is questioning your company's policies and calling them unreasonable. How do you respond?",
+        "A customer wants to cancel their service but you believe they might benefit from staying. How do you approach this?",
+        "A customer is upset about a billing error that occurred months ago. How do you resolve this situation?",
+        "A customer is demanding to speak to the CEO about a minor issue. How do you handle this escalation?",
+        "A customer is spreading negative reviews about your company online. How do you address this professionally?",
+        "A customer has a language barrier and is having trouble communicating their issue. How do you assist them?"
       ][i],
       icon: HeadsetIcon,
       difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
@@ -414,183 +284,33 @@ export default function RoleplayPracticePage() {
       completed: false
     })),
     
-    // Marketing scenarios
+    // Hospitality & Event Management scenarios
     ...Array.from({ length: 15 }, (_, i) => ({
-      id: `marketing-${i + 1}`,
-      eventName: 'Marketing',
+      id: `hospitality-event-${i + 1}`,
+      eventName: 'Hospitality & Event Management',
       scenarioNumber: i + 1,
       prompt: [
-        "Your marketing campaign has generated negative feedback on social media. How do you respond and manage the situation?",
-        "The CEO wants to target a new demographic, but your research shows it's not profitable. How do you present this to leadership?",
-        "A competitor is copying your marketing strategies. How do you maintain your competitive advantage?",
-        "Your marketing budget has been cut by 40%. How do you maintain effectiveness with fewer resources?",
-        "A major influencer wants to partner with your brand, but their values are questionable. How do you decide?",
-        "Your latest product launch campaign isn't generating the expected leads. How do you analyze and adjust?",
-        "A customer posted a negative review that's affecting your brand reputation. How do you address this?",
-        "Your team wants to use a trending but controversial topic in your marketing. How do you evaluate this risk?",
-        "Sales team claims marketing leads are low quality. How do you address this interdepartmental conflict?",
-        "A new social media platform is gaining popularity. How do you decide whether to invest in it?",
-        "Your brand message isn't resonating with your target audience. How do you research and refine it?",
-        "A marketing campaign performed well in one region but poorly in another. How do you analyze these differences?",
-        "Your company is launching in a new market with different cultural norms. How do you adapt your marketing?",
-        "A partnership opportunity could expand your reach but might dilute your brand. How do you evaluate this?",
-        "Your marketing automation system is generating spam complaints. How do you fix this while maintaining outreach?"
+        "A guest is complaining that their hotel room isn't ready despite having a confirmed reservation. How do you handle this?",
+        "You're planning a corporate event for 500 people, but the venue just canceled last minute. What's your backup plan?",
+        "A wedding client is demanding changes to the menu 3 days before the event. How do you manage this situation?",
+        "The catering for your event has been delayed by 2 hours due to traffic. How do you handle the hungry guests?",
+        "A VIP guest at your hotel is dissatisfied with the service and threatening to leave. How do you retain them?",
+        "Your event's keynote speaker has canceled at the last minute. How do you salvage the program?",
+        "A guest at your restaurant is claiming they found a hair in their food. How do you address this complaint?",
+        "You're managing a conference but the AV equipment keeps malfunctioning. How do you keep the event running?",
+        "A hotel guest is requesting a room change for the third time. How do you handle this diplomatically?",
+        "Your outdoor event is threatened by severe weather. How do you adapt your plans?",
+        "A client is demanding a refund for an event they claim didn't meet expectations. How do you handle this?",
+        "You're short-staffed for a major event due to several call-outs. How do you manage with limited resources?",
+        "A guest is intoxicated and becoming disruptive at your event. How do you handle this situation?",
+        "Your event venue has a plumbing issue that's affecting restroom facilities. How do you manage this crisis?",
+        "A corporate client wants to make major changes to their event contract. How do you negotiate these changes?"
       ][i],
-      icon: TrendingUp,
+      icon: Hotel,
       difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
       timeLimit: 10,
       points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Marketing',
-      completed: false
-    })),
-    
-    // Sales Presentation scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `sales-presentation-${i + 1}`,
-      eventName: 'Sales Presentation',
-      scenarioNumber: i + 1,
-      prompt: [
-        "Present a new software solution to a skeptical IT director who's been burned by previous vendors. How do you build trust?",
-        "You're presenting to a budget-conscious CFO who questions the ROI of your proposal. How do you demonstrate value?",
-        "Present your marketing services to a CEO who thinks they can do everything in-house. How do you show your worth?",
-        "You're pitching to a procurement team that's focused only on price. How do you shift focus to value?",
-        "Present your consulting services to a company that's had bad experiences with consultants. How do you differentiate?",
-        "You're presenting to a diverse committee with different priorities. How do you address everyone's concerns?",
-        "Present your product to a company that's already decided on a competitor. How do you change their mind?",
-        "You're pitching to a startup with limited budget but high growth potential. How do you structure your proposal?",
-        "Present your services to a traditional company that's resistant to change. How do you overcome objections?",
-        "You're presenting to a technical team that's focused on specifications. How do you also show business benefits?",
-        "Present your solution to a company that's been using the same vendor for years. How do you create urgency for change?",
-        "You're pitching to a company in crisis that needs immediate results. How do you show quick wins?",
-        "Present your premium service to a company that's currently using a budget solution. How do you justify the upgrade?",
-        "You're presenting to a global company with diverse market needs. How do you show scalability?",
-        "Present your innovative solution to a conservative industry leader. How do you minimize perceived risk?"
-      ][i],
-      icon: TrendingUp,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Sales Presentation',
-      completed: false
-    })),
-    
-    // Impromptu Speaking scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `impromptu-speaking-${i + 1}`,
-      eventName: 'Impromptu Speaking',
-      scenarioNumber: i + 1,
-      prompt: [
-        "Topic: The future of remote work. You have 2 minutes to prepare and 3 minutes to speak. What's your stance?",
-        "Topic: Why small businesses are crucial to the economy. Organize your thoughts and present your argument.",
-        "Topic: The impact of artificial intelligence on employment. Present both sides and your conclusion.",
-        "Topic: Should companies prioritize profit or social responsibility? Defend your position.",
-        "Topic: The role of leadership in times of crisis. Share your perspective with examples.",
-        "Topic: How social media has changed business marketing. Present your analysis.",
-        "Topic: The importance of financial literacy for young adults. Make your case.",
-        "Topic: Why customer service is more important than ever. Structure your argument.",
-        "Topic: The benefits and challenges of entrepreneurship. Present a balanced view.",
-        "Topic: How globalization affects local businesses. Share your insights.",
-        "Topic: The future of cryptocurrency in business. Present your predictions.",
-        "Topic: Why diversity in the workplace drives innovation. Make your argument.",
-        "Topic: The environmental responsibility of businesses. Present your stance.",
-        "Topic: How technology is changing the retail industry. Organize your thoughts.",
-        "Topic: The importance of ethical business practices. Defend your position."
-      ][i],
-      icon: Mic,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Impromptu Speaking',
-      completed: false
-    })),
-    
-    // Business Management scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `business-management-${i + 1}`,
-      eventName: 'Business Management',
-      scenarioNumber: i + 1,
-      prompt: [
-        "Your team is consistently missing project deadlines. As a manager, how do you address this performance issue?",
-        "Two department heads are in conflict over resource allocation. How do you mediate this dispute?",
-        "You need to implement a new company policy that employees are resistant to. How do you manage this change?",
-        "A key employee has submitted their resignation during a critical project. How do you handle this situation?",
-        "Your department is over budget for the quarter. What steps do you take to address this financial challenge?",
-        "An employee reports workplace harassment by a colleague. How do you handle this sensitive situation?",
-        "You need to downsize your team due to budget cuts. How do you approach this difficult decision?",
-        "A client is threatening to cancel a major contract due to service issues. How do you resolve this crisis?",
-        "Your team's productivity has declined significantly. How do you identify and address the root causes?",
-        "An employee is struggling with work-life balance and it's affecting their performance. How do you support them?",
-        "You need to promote someone from your team, but two equally qualified candidates are available. How do you decide?",
-        "A competitor is poaching your best employees with higher salaries. How do you retain your talent?",
-        "Your company is expanding internationally. How do you prepare your team for this transition?",
-        "A major supplier has failed to deliver on time, jeopardizing your project. How do you manage this crisis?",
-        "You need to present a business case for additional funding to senior management. How do you prepare?"
-      ][i],
-      icon: Building2,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Business Management',
-      completed: false
-    })),
-    
-    // Marketing scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `marketing-${i + 1}`,
-      eventName: 'Marketing',
-      scenarioNumber: i + 1,
-      prompt: [
-        "Your marketing campaign has generated negative feedback on social media. How do you respond and manage the situation?",
-        "The CEO wants to target a new demographic, but your research shows it's not profitable. How do you present this to leadership?",
-        "A competitor is copying your marketing strategies. How do you maintain your competitive advantage?",
-        "Your marketing budget has been cut by 40%. How do you maintain effectiveness with fewer resources?",
-        "A major influencer wants to partner with your brand, but their values are questionable. How do you decide?",
-        "Your latest product launch campaign isn't generating the expected leads. How do you analyze and adjust?",
-        "A customer posted a negative review that's affecting your brand reputation. How do you address this?",
-        "Your team wants to use a trending but controversial topic in your marketing. How do you evaluate this risk?",
-        "Sales team claims marketing leads are low quality. How do you address this interdepartmental conflict?",
-        "A new social media platform is gaining popularity. How do you decide whether to invest in it?",
-        "Your brand message isn't resonating with your target audience. How do you research and refine it?",
-        "A marketing campaign performed well in one region but poorly in another. How do you analyze these differences?",
-        "Your company is launching in a new market with different cultural norms. How do you adapt your marketing?",
-        "A partnership opportunity could expand your reach but might dilute your brand. How do you evaluate this?",
-        "Your marketing automation system is generating spam complaints. How do you fix this while maintaining outreach?"
-      ][i],
-      icon: MessageCircle,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Marketing',
-      completed: false
-    })),
-    
-    // Entrepreneurship scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `entrepreneurship-${i + 1}`,
-      eventName: 'Entrepreneurship',
-      scenarioNumber: i + 1,
-      prompt: [
-        "An investor is interested in your startup but wants to change your core business model. How do you respond?",
-        "Your main competitor has launched a product very similar to yours. How do you differentiate and compete?",
-        "You're running out of funding and need to make tough decisions about your team and operations. What's your approach?",
-        "A potential business partner wants to join your venture but their values don't align with yours. How do you handle this?",
-        "Your product launch failed to meet expectations. How do you analyze what went wrong and pivot?",
-        "A large corporation wants to acquire your startup. How do you evaluate this opportunity?",
-        "Your co-founder wants to take the company in a different direction than you envisioned. How do you resolve this conflict?",
-        "You need to raise capital but investors are concerned about market size. How do you address their concerns?",
-        "A key employee wants equity in the company in exchange for staying. How do you negotiate this?",
-        "Your business is growing rapidly but you're struggling to maintain quality. How do you scale effectively?",
-        "A customer wants to use your product for a purpose you didn't intend. How do you handle this opportunity?",
-        "You're considering expanding internationally but have limited resources. How do you prioritize markets?",
-        "A mentor is giving you advice that conflicts with your vision. How do you handle this relationship?",
-        "Your startup is struggling to find product-market fit. How do you approach this challenge?",
-        "You need to fire a founding team member who isn't performing. How do you handle this difficult situation?"
-      ][i],
-      icon: Lightbulb,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Entrepreneurship',
+      category: 'Hospitality & Event Management',
       completed: false
     })),
     
@@ -624,33 +344,123 @@ export default function RoleplayPracticePage() {
       completed: false
     })),
     
-    // Hospitality & Event Management scenarios
+    // Management Information Systems scenarios
     ...Array.from({ length: 15 }, (_, i) => ({
-      id: `hospitality-event-${i + 1}`,
-      eventName: 'Hospitality & Event Management',
+      id: `management-information-systems-${i + 1}`,
+      eventName: 'Management Information Systems',
       scenarioNumber: i + 1,
       prompt: [
-        "A guest is complaining that their hotel room isn't ready despite having a confirmed reservation. How do you handle this?",
-        "You're planning a corporate event for 500 people, but the venue just canceled last minute. What's your backup plan?",
-        "A wedding client is demanding changes to the menu 3 days before the event. How do you manage this situation?",
-        "The catering for your event has been delayed by 2 hours due to traffic. How do you handle the hungry guests?",
-        "A VIP guest at your hotel is dissatisfied with the service and threatening to leave. How do you retain them?",
-        "Your event's keynote speaker has canceled at the last minute. How do you salvage the program?",
-        "A guest at your restaurant is claiming they found a hair in their food. How do you address this complaint?",
-        "You're managing a conference but the AV equipment keeps malfunctioning. How do you keep the event running?",
-        "A hotel guest is requesting a room change for the third time. How do you handle this diplomatically?",
-        "Your outdoor event is threatened by severe weather. How do you adapt your plans?",
-        "A client is demanding a refund for an event they claim didn't meet expectations. How do you handle this?",
-        "You're short-staffed for a major event due to several call-outs. How do you manage with limited resources?",
-        "A guest is intoxicated and becoming disruptive at your event. How do you handle this situation?",
-        "Your event venue has a plumbing issue that's affecting restroom facilities. How do you manage this crisis?",
-        "A corporate client wants to make major changes to their event contract. How do you negotiate these changes?"
+        "Your company's ERP system crashed during peak business hours. How do you manage this crisis and restore operations?",
+        "The CEO wants to implement a new CRM system, but employees are resistant to change. How do you manage this transition?",
+        "A department is requesting a custom software solution that would cost 50% of your IT budget. How do you evaluate this?",
+        "Your company's data backup system failed, and you've lost a week's worth of data. How do you handle this situation?",
+        "A cybersecurity breach has compromised customer data. How do you respond to this crisis?",
+        "Your cloud provider is experiencing outages that are affecting your business operations. How do you manage this?",
+        "Employees are bypassing IT security protocols to use unauthorized software. How do you address this?",
+        "Your company is growing rapidly and the current IT infrastructure can't handle the load. How do you scale?",
+        "A key system integration project is six months behind schedule. How do you get it back on track?",
+        "Your IT budget has been cut by 30%, but you need to maintain service levels. How do you adapt?",
+        "A major software vendor is discontinuing support for a system your company relies on. How do you plan for this?",
+        "Employees are complaining that the new system is too complex and slowing down their work. How do you address this?",
+        "Your company is considering moving to the cloud, but there are concerns about data security. How do you advise?",
+        "A department head wants to purchase their own IT solutions without going through IT. How do you handle this?",
+        "Your company's website was hacked and defaced. How do you respond to this security incident?"
       ][i],
-      icon: Hotel,
+      icon: Monitor,
       difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
       timeLimit: 10,
       points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Hospitality & Event Management',
+      category: 'Management Information Systems',
+      completed: false
+    })),
+    
+    // Marketing scenarios
+    ...Array.from({ length: 15 }, (_, i) => ({
+      id: `marketing-${i + 1}`,
+      eventName: 'Marketing',
+      scenarioNumber: i + 1,
+      prompt: [
+        "Your marketing campaign has generated negative feedback on social media. How do you respond and manage the situation?",
+        "The CEO wants to target a new demographic, but your research shows it's not profitable. How do you present this to leadership?",
+        "A competitor is copying your marketing strategies. How do you maintain your competitive advantage?",
+        "Your marketing budget has been cut by 40%. How do you maintain effectiveness with fewer resources?",
+        "A major influencer wants to partner with your brand, but their values are questionable. How do you decide?",
+        "Your latest product launch campaign isn't generating the expected leads. How do you analyze and adjust?",
+        "A customer posted a negative review that's affecting your brand reputation. How do you address this?",
+        "Your team wants to use a trending but controversial topic in your marketing. How do you evaluate this risk?",
+        "Sales team claims marketing leads are low quality. How do you address this interdepartmental conflict?",
+        "A new social media platform is gaining popularity. How do you decide whether to invest in it?",
+        "Your brand message isn't resonating with your target audience. How do you research and refine it?",
+        "A marketing campaign performed well in one region but poorly in another. How do you analyze these differences?",
+        "Your company is launching in a new market with different cultural norms. How do you adapt your marketing?",
+        "A partnership opportunity could expand your reach but might dilute your brand. How do you evaluate this?",
+        "Your marketing automation system is generating spam complaints. How do you fix this while maintaining outreach?"
+      ][i],
+      icon: TrendingUp,
+      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
+      timeLimit: 10,
+      points: i < 5 ? 50 : i < 10 ? 75 : 100,
+      category: 'Marketing',
+      completed: false
+    })),
+    
+    // Network Design scenarios
+    ...Array.from({ length: 15 }, (_, i) => ({
+      id: `network-design-${i + 1}`,
+      eventName: 'Network Design',
+      scenarioNumber: i + 1,
+      prompt: [
+        "Your company's network is experiencing frequent outages. How do you diagnose and solve this problem?",
+        "A new office location needs network infrastructure, but budget is limited. How do you design an efficient solution?",
+        "Your network security has been compromised. How do you secure the network while maintaining operations?",
+        "Employees are complaining about slow internet speeds. How do you improve network performance?",
+        "Your company is implementing a bring-your-own-device policy. How do you adapt the network to handle this?",
+        "A critical network component has failed during business hours. How do you restore service quickly?",
+        "Your company needs to connect multiple office locations. How do you design a WAN solution?",
+        "The network can't handle the increased traffic from remote workers. How do you scale the infrastructure?",
+        "A department wants to isolate their network traffic for security reasons. How do you implement this?",
+        "Your wireless network is experiencing interference issues. How do you troubleshoot and resolve this?",
+        "Your company is moving to a new building. How do you plan and implement the network migration?",
+        "A vendor is proposing a network upgrade that costs twice your budget. How do you evaluate alternatives?",
+        "Your network monitoring shows unusual traffic patterns. How do you investigate and respond?",
+        "A natural disaster has damaged your network infrastructure. How do you implement disaster recovery?",
+        "Your company needs to comply with new data regulations. How do you modify the network architecture?"
+      ][i],
+      icon: Network,
+      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
+      timeLimit: 10,
+      points: i < 5 ? 50 : i < 10 ? 75 : 100,
+      category: 'Network Design',
+      completed: false
+    })),
+    
+    // Parliamentary Procedure scenarios
+    ...Array.from({ length: 15 }, (_, i) => ({
+      id: `parliamentary-procedure-${i + 1}`,
+      eventName: 'Parliamentary Procedure',
+      scenarioNumber: i + 1,
+      prompt: [
+        "During a board meeting, a member makes a motion that's clearly out of order. How do you handle this situation?",
+        "A heated debate is getting personal and disrupting the meeting. How do you restore order and focus?",
+        "A member is trying to speak without being recognized by the chair. How do you manage this breach of protocol?",
+        "The group needs to make a decision quickly, but debate is dragging on. How do you facilitate timely resolution?",
+        "A member challenges the chair's ruling on a procedural matter. How do you handle this challenge?",
+        "The meeting is running over time, but important business remains. How do you manage the agenda?",
+        "A member makes a motion to amend a motion that's already been amended. How do you handle this?",
+        "Someone calls 'Question!' to end debate, but not everyone has had a chance to speak. How do you proceed?",
+        "A member arrives late and wants to revisit a decision already made. How do you handle this request?",
+        "The group is deadlocked on a vote. How do you break the tie and move forward?",
+        "A member is repeatedly interrupting others during debate. How do you address this behavior?",
+        "Someone makes a motion to table a discussion indefinitely. How do you handle this procedural move?",
+        "A member questions whether there's a quorum present. How do you address this concern?",
+        "The meeting lacks focus and is covering too many topics. How do you bring structure to the discussion?",
+        "A member wants to reconsider a vote from the previous meeting. How do you handle this request?"
+      ][i],
+      icon: Scale,
+      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
+      timeLimit: 10,
+      points: i < 5 ? 50 : i < 10 ? 75 : 100,
+      category: 'Parliamentary Procedure',
       completed: false
     })),
     
@@ -684,393 +494,183 @@ export default function RoleplayPracticePage() {
       completed: false
     })),
     
-    // Business Law scenarios
+    // Technology Support & Services scenarios
     ...Array.from({ length: 15 }, (_, i) => ({
-      id: `business-law-${i + 1}`,
-      eventName: 'Business Law',
+      id: `technology-support-${i + 1}`,
+      eventName: 'Technology Support & Services',
       scenarioNumber: i + 1,
       prompt: [
-        "A contractor is claiming your company breached the contract terms. How do you assess the situation and respond?",
-        "Your employee is asking about their rights regarding overtime pay. How do you ensure compliance with labor laws?",
-        "A customer is threatening to sue over a product defect. How do you handle this potential liability?",
-        "Your company is being investigated for possible discrimination in hiring practices. How do you respond?",
-        "A competitor is claiming your product infringes on their patent. How do you address this intellectual property issue?",
-        "Your business partner wants to dissolve the partnership. How do you navigate this legal process?",
-        "An employee is claiming workers' compensation for an injury. How do you handle this claim properly?",
-        "Your company's terms of service are being challenged by a customer. How do you defend your position?",
-        "A vendor is demanding payment for work you believe was unsatisfactory. How do you resolve this dispute?",
-        "Your company is facing a class-action lawsuit from customers. How do you manage this legal challenge?",
-        "An employee is claiming wrongful termination. How do you document and defend your decision?",
-        "Your business is being audited by the IRS. How do you ensure compliance and cooperation?",
-        "A landlord is trying to evict your business over lease violations. How do you address this situation?",
-        "Your company's data privacy practices are being questioned. How do you ensure legal compliance?",
-        "A former employee is violating their non-compete agreement. How do you enforce this contract?"
-      ][i],
-      icon: Scale,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Business Law',
-      completed: false
-    })),
-    
-    // Business Ethics scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `business-ethics-${i + 1}`,
-      eventName: 'Business Ethics',
-      scenarioNumber: i + 1,
-      prompt: [
-        "You discover your company is using suppliers with poor labor practices. How do you address this ethical concern?",
-        "A major client is asking you to falsify records to help them avoid taxes. How do you handle this request?",
-        "Your boss is asking you to lie to investors about the company's financial situation. What's your response?",
-        "You learn that your company's product has safety issues that haven't been disclosed. How do you proceed?",
-        "A colleague is taking credit for your work and getting promoted. How do you handle this situation ethically?",
-        "Your company is considering layoffs to boost profits, but performance is strong. How do you advise leadership?",
-        "A competitor offers you confidential information about their business. How do you respond?",
-        "Your company's marketing is misleading customers about product benefits. How do you address this?",
-        "You discover a coworker is embezzling money from the company. What's your ethical obligation?",
-        "Your company is being pressured to donate to a political campaign. How do you handle this request?",
-        "A client is asking you to bend environmental regulations to cut costs. How do you respond?",
-        "Your company is considering moving operations to a country with lower labor standards. How do you advise?",
-        "You're asked to hire a less qualified candidate because of personal connections. How do you handle this?",
-        "Your company's CEO is engaging in insider trading. What's your ethical responsibility?",
-        "A vendor is offering you personal gifts to secure a contract. How do you respond appropriately?"
-      ][i],
-      icon: Shield,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Business Ethics',
-      completed: false
-    })),
-    
-    // Human Resource Management scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `human-resources-${i + 1}`,
-      eventName: 'Human Resource Management',
-      scenarioNumber: i + 1,
-      prompt: [
-        "An employee is consistently arriving late to work and it's affecting team morale. How do you address this?",
-        "You need to investigate a harassment complaint between two employees. How do you handle this sensitively?",
-        "A high-performing employee is asking for a significant raise that's outside budget. How do you respond?",
-        "Your company needs to implement layoffs, and you must decide who goes. How do you make this decision?",
-        "An employee is claiming their religious beliefs conflict with company policies. How do you accommodate this?",
-        "You discover an employee has been falsifying their timesheet. How do you address this misconduct?",
-        "A manager is playing favorites with their team members. How do you correct this behavior?",
-        "Your company culture survey shows widespread dissatisfaction. How do you address these concerns?",
-        "An employee is requesting extended leave for a family medical emergency. How do you handle this?",
-        "Two employees are in a romantic relationship that's affecting their work. How do you manage this situation?",
-        "A candidate in your interview process is clearly overqualified. How do you handle this diplomatically?",
-        "Your company is struggling to attract diverse candidates. How do you improve your recruitment strategy?",
-        "An employee is refusing to work with a new team member. How do you resolve this conflict?",
-        "A worker is claiming they're being discriminated against because of their age. How do you investigate this?",
-        "Your top performer is showing signs of burnout. How do you support them while maintaining productivity?"
+        "A user calls saying their computer won't start, and they have an important presentation in an hour. How do you help?",
+        "A department's server has crashed and they can't access their files. How do you restore service quickly?",
+        "A user accidentally deleted important files and needs them recovered immediately. How do you handle this?",
+        "Multiple users are reporting slow internet speeds. How do you diagnose and resolve this issue?",
+        "A user's email has been compromised and is sending spam to clients. How do you address this security breach?",
+        "The printer network is down and employees can't print important documents. How do you restore printing services?",
+        "A user is frustrated with a software application that keeps crashing. How do you troubleshoot and assist them?",
+        "A new employee needs IT setup but all standard equipment is out of stock. How do you provide alternative solutions?",
+        "A user claims their computer has a virus but your scans show it's clean. How do you handle this situation?",
+        "The phone system is experiencing issues and calls are being dropped. How do you resolve this communication problem?",
+        "A user wants to install unauthorized software for their job. How do you handle this request?",
+        "A department head is demanding immediate IT support but you have other urgent tickets. How do you prioritize?",
+        "A user's computer is running extremely slowly and they're blaming IT. How do you diagnose and fix this?",
+        "A user lost their password and is locked out of all systems. How do you verify their identity and restore access?",
+        "A critical business application is down company-wide. How do you manage this crisis and communicate with users?"
       ][i],
       icon: Users,
       difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
       timeLimit: 10,
       points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Human Resource Management',
-      completed: false
-    })),
-    
-    // Retail Merchandising scenarios
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `retail-merchandising-${i + 1}`,
-      eventName: 'Retail Merchandising',
-      scenarioNumber: i + 1,
-      prompt: [
-        "A customer is demanding a refund for a sale item without a receipt. How do you handle this situation?",
-        "Your store's inventory system shows products in stock, but you can't find them. How do you help the customer?",
-        "A customer is complaining that your competitor has the same item for 20% less. How do you respond?",
-        "You notice a customer concealing merchandise. How do you address this suspected shoplifting?",
-        "Your store is overstocked with seasonal items that aren't selling. How do you move this inventory?",
-        "A customer slipped and fell in your store. How do you handle this incident?",
-        "Your best-selling product has been recalled by the manufacturer. How do you manage customer concerns?",
-        "A customer is being rude to your staff members. How do you intervene professionally?",
-        "Your store's point-of-sale system is down during peak hours. How do you continue serving customers?",
-        "A customer wants to return a product that's clearly been used extensively. How do you handle this?",
-        "Your store received damaged merchandise in a shipment. How do you address this with suppliers?",
-        "A customer is asking for a discount on a full-price item. How do you respond?",
-        "Your store's display windows need updating but you have a limited budget. How do you create impact?",
-        "A customer is complaining about long checkout lines. How do you address their frustration?",
-        "Your store is implementing new loss prevention measures that customers find intrusive. How do you balance security with service?"
-      ][i],
-      icon: ShoppingCart,
-      difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-      timeLimit: 10,
-      points: i < 5 ? 50 : i < 10 ? 75 : 100,
-      category: 'Retail Merchandising',
+      category: 'Technology Support & Services',
       completed: false
     }))
   ];
 
-  const [selectedEvent, setSelectedEvent] = useState<string>('');
-  const [selectedScenario, setSelectedScenario] = useState<RoleplayScenario | null>(null);
-  
-  const currentEvent = roleplayEvents.find(event => event.id === selectedEvent);
-  const eventScenarios = selectedEvent 
-    ? roleplayScenarios.filter(scenario => scenario.category === currentEvent?.category)
-    : [];
+  const handleEventClick = (eventId: string) => {
+    console.log('Event clicked:', eventId);
+    setSelectedEvent(eventId);
+  };
+
+  const handleBackToEvents = () => {
+    setSelectedEvent(null);
+  };
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case 'Beginner': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+      case 'Intermediate': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
+      case 'Advanced': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+    }
+  };
+
+  if (selectedEvent) {
+    const event = roleplayEvents.find(e => e.id === selectedEvent);
+    const scenarios = roleplayScenarios.filter(s => s.eventName === event?.category);
+    
+    return (
+      <PageLayout title={`${event?.name} Scenarios`} subtitle="Practice roleplay scenarios for your selected event">
+        <div className="mb-6">
+          <Button 
+            onClick={handleBackToEvents}
+            variant="outline"
+            className="mb-4"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Events
+          </Button>
+          
+          <div className="flex items-center gap-4 mb-6">
+            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${event?.color} flex items-center justify-center`}>
+              {event?.icon && <event.icon className="w-6 h-6 text-white" />}
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{event?.name}</h2>
+              <p className="text-gray-600 dark:text-gray-300">{event?.description}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {scenarios.map((scenario) => (
+            <StyledCard key={scenario.id} className="p-6" hover onClick={() => {}}>
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                    <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                      {scenario.scenarioNumber}
+                    </span>
+                  </div>
+                  <Badge className={getDifficultyColor(scenario.difficulty)}>
+                    {scenario.difficulty}
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                  <Clock className="w-4 h-4" />
+                  {scenario.timeLimit}min
+                </div>
+              </div>
+              
+              <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+                {scenario.prompt}
+              </p>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Target className="w-4 h-4 text-yellow-500" />
+                  <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                    {scenario.points} points
+                  </span>
+                </div>
+                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <PlayCircle className="w-4 h-4 mr-1" />
+                  Start
+                </Button>
+              </div>
+            </StyledCard>
+          ))}
+        </div>
+      </PageLayout>
+    );
+  }
 
   return (
     <PageLayout 
-      title="Roleplay Practice"
-      subtitle="Master business scenarios with timed practice sessions"
+      title="Roleplay Practice" 
+      subtitle="Master business scenarios with interactive roleplay practice sessions"
     >
-      <div className="roleplay-practice-content">
-        {!selectedEvent ? (
-          <div className="roleplay-events">
-            {/* Stats Section */}
-            <div className="stats-section">
-              <div className="stats-grid">
-                <StyledCard className="stat-card">
-                  <div className="card-content">
-                    <div className="stat-icon">
-                      <Target size={24} />
-                    </div>
-                    <div className="stat-info">
-                      <div className="stat-value">
-                        {roleplayScenarios.filter(s => s.completed).length}
-                      </div>
-                      <div className="stat-label">Scenarios Completed</div>
-                    </div>
-                  </div>
-                </StyledCard>
-
-                <StyledCard className="stat-card">
-                  <div className="card-content">
-                    <div className="stat-icon">
-                      <BookOpen size={24} />
-                    </div>
-                    <div className="stat-info">
-                      <div className="stat-value">{roleplayScenarios.length}</div>
-                      <div className="stat-label">Total Scenarios</div>
-                    </div>
-                  </div>
-                </StyledCard>
-
-                <StyledCard className="stat-card">
-                  <div className="card-content">
-                    <div className="stat-icon">
-                      <TrendingUp size={24} />
-                    </div>
-                    <div className="stat-info">
-                      <div className="stat-value">
-                        {Math.round((roleplayScenarios.filter(s => s.completed).length / roleplayScenarios.length) * 100)}%
-                      </div>
-                      <div className="stat-label">Progress</div>
-                    </div>
-                  </div>
-                </StyledCard>
-              </div>
-            </div>
-
-            {/* Events Grid */}
-            <div className="roleplay-events-grid">
-              {roleplayEvents.map((event) => {
-                const IconComponent = event.icon;
-                const completedCount = roleplayScenarios.filter(s => s.category === event.category && s.completed).length;
-                
-                return (
-                  <StyledCard 
-                    key={event.id}
-                    className="roleplay-event-card"
-                    onClick={() => {
-                      console.log('Clicked event:', event.id);
-                      setSelectedEvent(event.id);
-                    }}
-                  >
-                    <div className="card-header">
-                      <div className="card-icon">
-                        <IconComponent size={48} className="icon-component" />
-                      </div>
-                      <div className="card-progress">
-                        <div className="progress-text">
-                          {completedCount}/{event.scenarioCount}
-                        </div>
-                        <div className="progress-label">Complete</div>
-                      </div>
-                    </div>
-                    
-                    <div className="card-content">
-                      <h3 className="card-title">{event.name}</h3>
-                      <p className="card-description">{event.description}</p>
-                      
-                      <div className="card-meta">
-                        <div className="meta-item">
-                          <PlayCircle size={16} />
-                          <span>{event.scenarioCount} scenarios</span>
-                        </div>
-                        <div className="meta-item">
-                          <Clock size={16} />
-                          <span>10 min each</span>
-                        </div>
-                      </div>
-                      
-                      <div className="card-progress-bar">
-                        <div 
-                          className="progress-fill"
-                          style={{ width: `${(completedCount / event.scenarioCount) * 100}%` }}
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="card-actions">
-                      <Button 
-                        className="card-btn" 
-                        variant="default"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          console.log('Button clicked for event:', event.id);
-                          setSelectedEvent(event.id);
-                        }}
-                      >
-                        <PlayCircle size={16} />
-                        Start Practice
-                      </Button>
-                    </div>
-                  </StyledCard>
-                );
-              })}
-            </div>
+      <div className="mb-8">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+            <Users className="w-6 h-6 text-white" />
           </div>
-        ) : !selectedScenario ? (
-          <div className="event-scenarios">
-            <div className="scenarios-header">
-              <Button
-                onClick={() => setSelectedEvent('')}
-                variant="outline"
-                className="back-btn"
-              >
-                <ArrowLeft size={16} />
-                Back to Events
-              </Button>
-              <div className="scenarios-title">
-                <h2>{currentEvent?.name}</h2>
-                <p>{currentEvent?.description}</p>
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Choose Your Event Category
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300">
+              Select an FBLA roleplay event to practice scenarios
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {roleplayEvents.map((event) => (
+          <StyledCard 
+            key={event.id} 
+            className="p-6 cursor-pointer" 
+            hover
+            onClick={() => handleEventClick(event.id)}
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${event.color} flex items-center justify-center`}>
+                <event.icon className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                  {event.name}
+                </h3>
+                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                  <BookOpen className="w-4 h-4" />
+                  <span>{event.scenarioCount} scenarios</span>
+                </div>
               </div>
             </div>
             
-            <div className="scenarios-grid">
-              {eventScenarios.map((scenario) => {
-                const IconComponent = scenario.icon;
-                return (
-                  <StyledCard 
-                    key={scenario.id}
-                    className={`scenario-card ${scenario.completed ? 'completed' : 'available'}`}
-                  >
-                    <div className="scenario-header">
-                      <div className="scenario-icon">
-                        <IconComponent size={32} className="icon-component" />
-                      </div>
-                      <div className="scenario-status">
-                        {scenario.completed ? (
-                          <CheckCircle size={24} className="status-icon completed" />
-                        ) : (
-                          <PlayCircle size={24} className="status-icon available" />
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className="scenario-info">
-                      <h3 className="scenario-title">
-                        Scenario {scenario.scenarioNumber}
-                      </h3>
-                      <p className="scenario-description">
-                        {scenario.prompt.length > 100 
-                          ? `${scenario.prompt.substring(0, 100)}...` 
-                          : scenario.prompt}
-                      </p>
-                      
-                      <div className="scenario-meta">
-                        <div className="scenario-details">
-                          <div className="detail-item">
-                            <Clock size={16} />
-                            <span>{scenario.timeLimit} min</span>
-                          </div>
-                          <div className="detail-item">
-                            <Target size={16} />
-                            <span>{scenario.points} pts</span>
-                          </div>
-                        </div>
-                        
-                        <div className="scenario-badges">
-                          <Badge 
-                            variant={scenario.difficulty === 'Beginner' ? 'default' : 
-                                     scenario.difficulty === 'Intermediate' ? 'secondary' : 'destructive'}
-                          >
-                            {scenario.difficulty}
-                          </Badge>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="scenario-actions">
-                      <Button
-                        onClick={() => setSelectedScenario(scenario)}
-                        className="scenario-btn"
-                        variant="default"
-                      >
-                        <PlayCircle size={16} />
-                        {scenario.completed ? 'Practice Again' : 'Start Practice'}
-                      </Button>
-                    </div>
-                  </StyledCard>
-                );
-              })}
-            </div>
-          </div>
-        ) : (
-          <div className="practice-session">
-            <div className="practice-header">
-              <Button
-                onClick={() => setSelectedScenario(null)}
-                variant="outline"
-                className="back-btn"
-              >
-                <ArrowLeft size={16} />
-                Back to Scenarios
-              </Button>
-              <h2 className="practice-title">
-                {selectedScenario.eventName} - Scenario {selectedScenario.scenarioNumber}
-              </h2>
-            </div>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+              {event.description}
+            </p>
             
-            <StyledCard className="scenario-practice-card">
-              <div className="scenario-practice-content">
-                <div className="scenario-prompt">
-                  <h3>Your Scenario:</h3>
-                  <p className="prompt-text">{selectedScenario.prompt}</p>
-                </div>
-                
-                <div className="practice-info">
-                  <div className="info-item">
-                    <Clock size={20} />
-                    <span>Time Limit: {selectedScenario.timeLimit} minutes</span>
-                  </div>
-                  <div className="info-item">
-                    <Target size={20} />
-                    <span>Points: {selectedScenario.points}</span>
-                  </div>
-                  <div className="info-item">
-                    <Badge variant={selectedScenario.difficulty === 'Beginner' ? 'default' : 
-                                    selectedScenario.difficulty === 'Intermediate' ? 'secondary' : 'destructive'}>
-                      {selectedScenario.difficulty}
-                    </Badge>
-                  </div>
-                </div>
-                
-                <div className="practice-actions">
-                  <Button className="start-practice-btn" size="lg">
-                    <PlayCircle size={20} />
-                    Start Practice Session
-                  </Button>
-                </div>
-              </div>
-            </StyledCard>
-          </div>
-        )}
+            <div className="flex items-center justify-between">
+              <Badge variant="secondary" className="text-xs">
+                {event.category}
+              </Badge>
+              <Button size="sm" variant="outline">
+                Practice Now
+              </Button>
+            </div>
+          </StyledCard>
+        ))}
       </div>
     </PageLayout>
   );
