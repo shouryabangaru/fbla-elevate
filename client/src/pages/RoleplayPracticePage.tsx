@@ -19,10 +19,7 @@ import {
   Network,
   Scale
 } from 'lucide-react';
-import { StyledCard } from '../components/shared/StyledCard';
-import { PageLayout } from '../components/shared/PageLayout';
-import { Badge } from '../components/ui/badge';
-import { Button } from '../components/ui/button';
+import './RoleplayPracticePage.css';
 
 interface RoleplayScenario {
   id: string;
@@ -548,130 +545,104 @@ export default function RoleplayPracticePage() {
     const scenarios = roleplayScenarios.filter(s => s.eventName === event?.category);
     
     return (
-      <PageLayout title={`${event?.name} Scenarios`} subtitle="Practice roleplay scenarios for your selected event">
-        <div className="mb-6">
-          <Button 
+      <div className="scenario-view">
+        <div className="scenario-header">
+          <button 
             onClick={handleBackToEvents}
-            variant="outline"
-            className="mb-4"
+            className="back-button"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-4 h-4" />
             Back to Events
-          </Button>
+          </button>
           
-          <div className="flex items-center gap-4 mb-6">
-            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${event?.color} flex items-center justify-center`}>
-              {event?.icon && <event.icon className="w-6 h-6 text-white" />}
+          <div className="scenario-event-info">
+            <div className="scenario-event-icon">
+              {event?.icon && <event.icon />}
             </div>
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{event?.name}</h2>
-              <p className="text-gray-600 dark:text-gray-300">{event?.description}</p>
+            <div className="scenario-event-details">
+              <h2>{event?.name}</h2>
+              <p>{event?.description}</p>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="scenarios-grid">
           {scenarios.map((scenario) => (
-            <StyledCard key={scenario.id} className="p-6" hover onClick={() => {}}>
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                    <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
-                      {scenario.scenarioNumber}
-                    </span>
-                  </div>
-                  <Badge className={getDifficultyColor(scenario.difficulty)}>
-                    {scenario.difficulty}
-                  </Badge>
+            <div key={scenario.id} className="scenario-card">
+              <div className="scenario-header-info">
+                <div className="scenario-number">
+                  {scenario.scenarioNumber}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                <div className={`scenario-difficulty ${scenario.difficulty.toLowerCase()}`}>
+                  {scenario.difficulty}
+                </div>
+                <div className="scenario-time">
                   <Clock className="w-4 h-4" />
                   {scenario.timeLimit}min
                 </div>
               </div>
               
-              <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+              <p className="scenario-prompt">
                 {scenario.prompt}
               </p>
               
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Target className="w-4 h-4 text-yellow-500" />
-                  <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    {scenario.points} points
-                  </span>
+              <div className="scenario-footer">
+                <div className="scenario-points">
+                  <Target className="w-4 h-4" />
+                  {scenario.points} points
                 </div>
-                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
-                  <PlayCircle className="w-4 h-4 mr-1" />
+                <button className="scenario-start-btn">
+                  <PlayCircle className="w-4 h-4" />
                   Start
-                </Button>
+                </button>
               </div>
-            </StyledCard>
+            </div>
           ))}
         </div>
-      </PageLayout>
+      </div>
     );
   }
 
   return (
-    <PageLayout 
-      title="Roleplay Practice" 
-      subtitle="Master business scenarios with interactive roleplay practice sessions"
-    >
-      <div className="mb-8">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-            <Users className="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Choose Your Event Category
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Select an FBLA roleplay event to practice scenarios
-            </p>
-          </div>
-        </div>
+    <div className="roleplay-container">
+      <div className="roleplay-header">
+        <h1 className="roleplay-title">Choose Your Event</h1>
+        <p className="roleplay-tagline">Master real FBLA roleplay scenarios and prepare to win.</p>
+        <p className="roleplay-subtitle">
+          Select an FBLA roleplay event category to practice realistic business scenarios
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="events-grid">
         {roleplayEvents.map((event) => (
-          <StyledCard 
+          <div 
             key={event.id} 
-            className="p-6 cursor-pointer" 
-            hover
+            className="event-card"
             onClick={() => handleEventClick(event.id)}
           >
-            <div className="flex items-center gap-4 mb-4">
-              <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${event.color} flex items-center justify-center`}>
-                <event.icon className="w-6 h-6 text-white" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                  {event.name}
-                </h3>
-                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                  <BookOpen className="w-4 h-4" />
-                  <span>{event.scenarioCount} scenarios</span>
-                </div>
+            <div className="event-icon-wrapper">
+              <div className="event-icon">
+                <event.icon />
               </div>
             </div>
             
-            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+            <h3 className="event-name">{event.name}</h3>
+            
+            <div className="event-scenarios">
+              <BookOpen className="w-4 h-4 inline mr-1" />
+              {event.scenarioCount} scenarios
+            </div>
+            
+            <p className="event-description">
               {event.description}
             </p>
             
-            <div className="flex items-center justify-between">
-              <Badge variant="secondary" className="text-xs">
-                {event.category}
-              </Badge>
-              <Button size="sm" variant="outline">
-                Practice Now
-              </Button>
-            </div>
-          </StyledCard>
+            <button className="event-button">
+              Practice Now
+            </button>
+          </div>
         ))}
       </div>
-    </PageLayout>
+    </div>
   );
 }

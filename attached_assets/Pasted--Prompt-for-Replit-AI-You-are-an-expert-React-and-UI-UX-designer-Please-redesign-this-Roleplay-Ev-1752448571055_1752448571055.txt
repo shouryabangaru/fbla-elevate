@@ -1,0 +1,118 @@
+💻 Prompt for Replit AI
+You are an expert React and UI/UX designer. Please redesign this Roleplay Event selection page to be highly visual and attractive to high school FBLA students.
+
+🎯 Goals
+Make each event card stand out beautifully, inviting students to click.
+
+Use modern gradients, shadows, icons, and hover effects.
+
+Ensure readability, strong visual hierarchy, and brand consistency.
+
+✨ Requirements
+1️⃣ Overall Layout
+
+Use a dark gradient background (midnight blue to black) for depth.
+
+Keep the header at the top, but reduce empty spacing above the cards.
+
+Add a motivational tagline below “Choose Your Event” like:
+
+“Master real FBLA roleplay scenarios and prepare to win.”
+
+2️⃣ Event Cards
+
+Design each event card as follows:
+
+Rounded corners with subtle gold or neon blue glow on hover.
+
+A large, vivid icon at the top, tailored to the event (placeholder icons for now).
+
+Event name in bold white text.
+
+Number of scenarios in small gold or light gray text.
+
+A short, clear description in light gray text for readability.
+
+Spacing & Alignment
+
+Increase spacing between cards for breathing room.
+
+Use grid layout with 3 cards per row on desktop, responsive to 1 per row on mobile.
+
+Hover Effects
+
+Slight scale up (1.05) on hover.
+
+Glow effect in gold or blue behind the card when hovered.
+
+Buttons
+
+Remove duplicate buttons if not needed, or redesign as a single clean CTA button per card with:
+
+Gold (#FFD700) background
+
+Rounded pill shape
+
+Bold black text
+
+3️⃣ Typography
+
+Use large bold sans-serif fonts for titles.
+
+Keep consistent font family and weights.
+
+4️⃣ Icons
+
+Replace current generic icons with unique icons per event category, e.g.:
+
+💰 Banking & Financial Systems → Dollar or Bank icon
+
+📈 Business Management → Graph or Chart icon
+
+💼 Customer Service → Headset icon
+
+🚀 Entrepreneurship → Rocket icon
+
+🏨 Hospitality & Event Management → Hotel icon
+
+🌐 International Business → Globe icon
+
+Use bright gradient or gold icons with a slight glow to match brand aesthetic.
+
+5️⃣ Animations
+
+Add fade-in animations for cards as the page loads for dynamic entrance.
+
+Subtle hover animations on icons (e.g. bounce or pulse).
+
+6️⃣ Design System
+
+Brand Colors:
+
+Black (#000000) for deep backgrounds
+
+Midnight Blue (#003366) for sections
+
+Gold (#FFD700) for buttons and highlights
+
+White (#FFFFFF) for text
+
+Light Gray (#CCCCCC) for descriptions
+
+7️⃣ Accessibility
+
+Ensure high contrast for all text.
+
+Buttons and icons must be keyboard accessible and readable by screen readers.
+
+8️⃣ Code Structure
+
+Use React functional components with clear naming:
+
+RoleplayPage
+
+EventCard
+
+Use CSS Modules or standard CSS (no Tailwind).
+
+Ensure responsiveness on all devices.
