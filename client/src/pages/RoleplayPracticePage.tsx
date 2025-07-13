@@ -19,7 +19,6 @@ import {
   Network,
   Scale
 } from 'lucide-react';
-import { Navbar } from '../components/Navbar';
 import './RoleplayPracticePage.css';
 
 interface RoleplayScenario {
@@ -546,9 +545,7 @@ export default function RoleplayPracticePage() {
     const scenarios = roleplayScenarios.filter(s => s.eventName === event?.category);
     
     return (
-      <>
-        <Navbar />
-        <div className="scenario-view">
+      <div className="scenario-view">
           <div className="scenario-header">
           <button 
             onClick={handleBackToEvents}
@@ -602,15 +599,12 @@ export default function RoleplayPracticePage() {
             </div>
           ))}
         </div>
-        </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="roleplay-container">
+    <div className="roleplay-container">
       <div className="roleplay-header">
         <h1 className="roleplay-title">Choose Your Event</h1>
         <p className="roleplay-tagline">Master real FBLA roleplay scenarios and prepare to win.</p>
@@ -649,7 +643,6 @@ export default function RoleplayPracticePage() {
           </div>
         ))}
       </div>
-      </div>
-    </>
+    </div>
   );
 }
