@@ -71,6 +71,32 @@ const roleplayDatabase = {
         "Your startup has been operating for 18 months but is still struggling to achieve product-market fit despite multiple iterations. How do you approach this persistent challenge?",
         "You need to terminate a founding team member who isn't performing adequately, but they hold significant equity and have personal relationships with other team members. How do you handle this sensitive situation?"
       ]
+    },
+    "banking-financial": {
+      name: "Banking and Financial Systems",
+      description: "Master banking operations, customer financial guidance, and comprehensive financial services across all complexity levels.",
+      prompts: [
+        // Easy Level (1-5)
+        "You are a customer service representative helping Maya, a high school student with her first part-time job, choose between a savings account, checking account, or both. Explain the purpose of each account type, discuss interest rates and fees, and help her set up digital banking tools for managing her money safely.",
+        "As a junior banker, help Leo, a college-bound student, understand credit concepts for his first credit card application. Explain how credit cards differ from debit cards, discuss interest charges and fees, define key terms like credit limit and APR, and provide tips for building strong credit as a young adult.",
+        "You're a digital banking assistant helping Mr. Thompson, who traditionally banks in person, learn about online banking tools. Walk him through login procedures, explain features like mobile check deposit and bill pay, address security concerns, and set up alerts and automatic payments.",
+        "As a bank associate, help Mrs. Garcia understand certificates of deposit (CDs) for her $5,000 inheritance. Explain how CDs work compared to savings accounts, discuss interest rates and early withdrawal penalties, and help her choose the best CD option for her financial goals.",
+        "You're helping Amir, a college student with a new restaurant job, set up direct deposit for his paychecks. Explain the direct deposit process, walk him through employer forms, discuss deposit timing and safety, and show him how to confirm deposits using online banking.",
+        
+        // Medium Level (6-10)
+        "As a financial consultant, advise John, a small retail store owner planning expansion, on whether to choose a business loan or line of credit. Compare both options, gather his financial information, discuss payroll services, and refer him to appropriate bank specialists for next steps.",
+        "You're a financial advisor helping Maria and Leo, a couple whose income increased from $85,000 to $130,000, explore investment options beyond their current mutual funds and CDs. Explain different investment vehicles, assess their risk tolerance, discuss tax implications, and recommend next steps.",
+        "As a loan specialist, help Talia choose between a fixed-rate or adjustable-rate mortgage. She plans to live in the home 5-10 years and has a growing business that may affect her income. Compare both mortgage types, assess her situation, and discuss long-term financial impacts.",
+        "You're a financial planning associate helping Darren, age 52, improve his retirement preparation. He has $80,000 in a 401(k) and wants to retire at 65. Explain IRA options, discuss catch-up strategies, address inflation and tax concerns, and recommend comprehensive planning resources.",
+        "As a digital banking representative, help Mr. Chen transition his online retail business to digital banking tools. Explain business platform features, recommend efficiency improvements, address cybersecurity concerns, and outline onboarding and training processes.",
+        
+        // Hard Level (11-15)
+        "You're a commercial banking officer advising Ms. Patel on financing a $1.2 million property for her fitness center chain. Compare SBA loans versus traditional commercial mortgages, analyze debt service coverage ratios, evaluate her liquidity situation, and recommend appropriate bank specialists.",
+        "As a senior loan underwriter, evaluate Devonte's $50,000 personal loan application for his startup. He has limited credit history and high debt-to-income ratio. Review credit evaluation factors, explain risk management approaches, propose alternative products, and recommend next steps.",
+        "You're the operations lead helping a business client implement stronger wire transfer controls after an attempted fraud incident. Explain common fraud methods, recommend prevention strategies, review liability policies, and balance security with operational efficiency.",
+        "As a wealth management advisor, help a high-net-worth client optimize their portfolio during market volatility. Assess their current allocation, discuss rebalancing strategies, explain tax-loss harvesting, and recommend risk management techniques for preserving wealth.",
+        "You're a commercial lending officer structuring a complex multi-million dollar acquisition loan for a manufacturing company. Analyze cash flow projections, negotiate loan covenants, assess collateral requirements, and coordinate with legal and compliance teams to close the transaction."
+      ]
     }
   }
 };
