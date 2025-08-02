@@ -269,6 +269,177 @@
   margin: 0 auto;
 }
 
+/* Updated Pill Styles */
+.duration-pill, .points-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: #FFD700;
+  color: #000000;
+  border: none;
+}
+
+.scenario-pills {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* New Scenario Section Styles */
+.scenario-section {
+  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.scenario-section h2 {
+  color: #FFD700;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.background-section h2 {
+  color: #10B981;
+}
+
+.scenario-main h2 {
+  color: #FFD700;
+}
+
+.objectives-section h2 {
+  color: #F59E0B;
+}
+
+.scenario-section p {
+  color: #FFFFFF;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.objectives-section ul {
+  color: #FFFFFF;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.objectives-section li {
+  margin-bottom: 0.5rem;
+}
+
+/* Timer Bar at Bottom */
+.timer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #003366 0%, #000000 100%);
+  border-top: 2px solid #FFD700;
+  padding: 1rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.timer-bar.time-up {
+  background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+  border-top-color: #EF4444;
+  animation: pulse 1s infinite;
+}
+
+.timer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.timer-bar.time-up .timer-content {
+  color: #FFFFFF;
+}
+
+.timer-text {
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+}
+
+/* Updated Scenario Card Styles */
+.scenario-preview {
+  margin: 1rem 0;
+}
+
+.scenario-preview h4 {
+  color: #FFD700;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  margin-top: 0.75rem;
+}
+
+.scenario-preview h4:first-child {
+  margin-top: 0;
+}
+
+.scenario-background, .scenario-description {
+  color: #CCCCCC;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.scenario-start-btn {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  border: none;
+  color: #000000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.scenario-start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+/* Practice content spacing adjustment for timer */
+.practice-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 100px; /* Space for timer bar */
+}
+
+/* Pulse animation for time up */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .event-card:hover {
   transform: scale(1.05) translateY(-10px);
   box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);

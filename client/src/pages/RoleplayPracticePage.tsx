@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Building2, 
   Users, 
@@ -9,7 +9,6 @@ import {
   ArrowLeft,
   Clock,
   PlayCircle,
-  CheckCircle,
   Target,
   BookOpen,
   Globe,
@@ -17,7 +16,8 @@ import {
   Trophy,
   Monitor,
   Network,
-  Scale
+  Scale,
+  Timer
 } from 'lucide-react';
 // @ts-ignore
 import { getAllEvents, getEventDetails } from '../../../shared/roleplayDatabase.js';
@@ -27,13 +27,13 @@ interface RoleplayScenario {
   id: string;
   eventName: string;
   scenarioNumber: number;
-  prompt: string;
-  icon: React.ComponentType<any>;
   difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
-  timeLimit: number;
+  duration: number;
   points: number;
-  category: string;
-  completed: boolean;
+  background: string;
+  scenario: string;
+  objectives: string[];
+  icon: React.ComponentType<any>;
 }
 
 interface RoleplayEvent {
@@ -49,8 +49,35 @@ interface RoleplayEvent {
 export default function RoleplayPracticePage() {
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
   const [practiceScenario, setPracticeScenario] = useState<{eventId: string, promptIndex: number} | null>(null);
-  const [userResponse, setUserResponse] = useState<string>('');
+  const [timeLeft, setTimeLeft] = useState<number>(20 * 60); // 20 minutes in seconds
+  const [timerActive, setTimerActive] = useState<boolean>(false);
+  const [timeUp, setTimeUp] = useState<boolean>(false);
   
+  // Timer effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    
+    if (timerActive && timeLeft > 0) {
+      interval = setInterval(() => {
+        setTimeLeft(prevTime => {
+          if (prevTime <= 1) {
+            setTimeUp(true);
+            setTimerActive(false);
+            alert("Time's Up!");
+            return 0;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+    } else if (timeLeft === 0) {
+      setTimerActive(false);
+    }
+    
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [timerActive, timeLeft]);
+
   // Load events from database and map to the component format
   const databaseEvents = getAllEvents();
   const roleplayEvents: RoleplayEvent[] = [
@@ -164,7 +191,7 @@ export default function RoleplayPracticePage() {
     }
   ];
 
-  // Generate roleplay scenarios from database
+  // Generate roleplay scenarios from database with new format
   const generateScenarios = (): RoleplayScenario[] => {
     const scenarios: RoleplayScenario[] = [];
     
@@ -172,17 +199,27 @@ export default function RoleplayPracticePage() {
     const bankingEvent = getEventDetails('banking-financial');
     if (bankingEvent) {
       bankingEvent.prompts.forEach((prompt: string, i: number) => {
+        // Parse the prompt to extract background, scenario, and objectives
+        const parts = prompt.split('\n\n');
+        const background = parts[0] || 'Background information not specified.';
+        const scenario = parts[1] || prompt;
+        const objectives = parts[2] ? parts[2].split('\n').filter(line => line.trim()) : [
+          'Address the customer\'s needs professionally',
+          'Provide accurate information',
+          'Ensure customer satisfaction'
+        ];
+
         scenarios.push({
           id: `banking-financial-${i + 1}`,
           eventName: bankingEvent.name,
           scenarioNumber: i + 1,
-          prompt,
-          icon: DollarSign,
           difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-          timeLimit: 10,
-          points: i < 5 ? 50 : i < 10 ? 75 : 100,
-          category: bankingEvent.name,
-          completed: false
+          duration: 20,
+          points: 50,
+          background,
+          scenario,
+          objectives,
+          icon: DollarSign
         });
       });
     }
@@ -191,17 +228,26 @@ export default function RoleplayPracticePage() {
     const businessEvent = getEventDetails('business-management');
     if (businessEvent) {
       businessEvent.prompts.forEach((prompt: string, i: number) => {
+        const parts = prompt.split('\n\n');
+        const background = parts[0] || 'Business management context.';
+        const scenario = parts[1] || prompt;
+        const objectives = parts[2] ? parts[2].split('\n').filter(line => line.trim()) : [
+          'Demonstrate leadership skills',
+          'Make strategic decisions',
+          'Communicate effectively'
+        ];
+
         scenarios.push({
           id: `business-management-${i + 1}`,
           eventName: businessEvent.name,
           scenarioNumber: i + 1,
-          prompt,
-          icon: Building2,
           difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-          timeLimit: 10,
-          points: i < 5 ? 50 : i < 10 ? 75 : 100,
-          category: businessEvent.name,
-          completed: false
+          duration: 20,
+          points: 50,
+          background,
+          scenario,
+          objectives,
+          icon: Building2
         });
       });
     }
@@ -209,17 +255,26 @@ export default function RoleplayPracticePage() {
     const customerEvent = getEventDetails('customer-service');
     if (customerEvent) {
       customerEvent.prompts.forEach((prompt: string, i: number) => {
+        const parts = prompt.split('\n\n');
+        const background = parts[0] || 'Customer service situation.';
+        const scenario = parts[1] || prompt;
+        const objectives = parts[2] ? parts[2].split('\n').filter(line => line.trim()) : [
+          'Provide excellent customer service',
+          'Resolve customer concerns',
+          'Maintain professional demeanor'
+        ];
+
         scenarios.push({
           id: `customer-service-${i + 1}`,
           eventName: customerEvent.name,
           scenarioNumber: i + 1,
-          prompt,
-          icon: HeadsetIcon,
           difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-          timeLimit: 10,
-          points: i < 5 ? 50 : i < 10 ? 75 : 100,
-          category: customerEvent.name,
-          completed: false
+          duration: 20,
+          points: 50,
+          background,
+          scenario,
+          objectives,
+          icon: HeadsetIcon
         });
       });
     }
@@ -227,17 +282,26 @@ export default function RoleplayPracticePage() {
     const entrepreneurEvent = getEventDetails('entrepreneurship');
     if (entrepreneurEvent) {
       entrepreneurEvent.prompts.forEach((prompt: string, i: number) => {
+        const parts = prompt.split('\n\n');
+        const background = parts[0] || 'Entrepreneurial context.';
+        const scenario = parts[1] || prompt;
+        const objectives = parts[2] ? parts[2].split('\n').filter(line => line.trim()) : [
+          'Identify business opportunities',
+          'Develop innovative solutions',
+          'Present compelling proposals'
+        ];
+
         scenarios.push({
           id: `entrepreneurship-${i + 1}`,
           eventName: entrepreneurEvent.name,
           scenarioNumber: i + 1,
-          prompt,
-          icon: Lightbulb,
           difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
-          timeLimit: 10,
-          points: i < 5 ? 50 : i < 10 ? 75 : 100,
-          category: entrepreneurEvent.name,
-          completed: false
+          duration: 20,
+          points: 50,
+          background,
+          scenario,
+          objectives,
+          icon: Lightbulb
         });
       });
     }
@@ -256,28 +320,39 @@ export default function RoleplayPracticePage() {
   const handleBackToEvents = () => {
     setSelectedEvent(null);
     setPracticeScenario(null);
-    setUserResponse(''); 
+    setTimeLeft(20 * 60);
+    setTimerActive(false);
+    setTimeUp(false);
   };
 
   const handleStartScenario = (eventId: string, promptIndex: number) => {
     setPracticeScenario({ eventId, promptIndex });
-    setUserResponse('');
+    setTimeLeft(20 * 60);
+    setTimerActive(true);
+    setTimeUp(false);
   };
 
   const handleFinishPractice = () => {
     setPracticeScenario(null);
-    setUserResponse('');
+    setTimeLeft(20 * 60);
+    setTimerActive(false);
+    setTimeUp(false);
+  };
+
+  // Format time for display
+  const formatTime = (seconds: number): string => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
   // If practicing a specific scenario
   if (practiceScenario) {
-    const eventDetails = getEventDetails(practiceScenario.eventId);
-    if (!eventDetails) return <div>Event not found</div>;
-    
-    const currentPrompt = eventDetails.prompts[practiceScenario.promptIndex];
     const scenario = roleplayScenarios.find(s => 
       s.id === `${practiceScenario.eventId}-${practiceScenario.promptIndex + 1}`
     );
+
+    if (!scenario) return <div>Scenario not found</div>;
 
     return (
       <div className="roleplay-container">
@@ -287,47 +362,55 @@ export default function RoleplayPracticePage() {
             Back to Scenarios
           </button>
           <div className="practice-title">
-            <h1>{eventDetails.name}</h1>
-            <p>Scenario {practiceScenario.promptIndex + 1} of {eventDetails.prompts.length}</p>
-            {scenario && (
-              <div className="scenario-meta">
-                <span className={`difficulty ${scenario.difficulty.toLowerCase()}`}>
-                  {scenario.difficulty}
-                </span>
-                <span className="time-limit">
-                  <Clock className="w-4 h-4" />
-                  {scenario.timeLimit} min
-                </span>
-                <span className="points">
-                  <Target className="w-4 h-4" />
-                  {scenario.points} points
-                </span>
-              </div>
-            )}
+            <h1>{scenario.eventName}</h1>
+            <p>Scenario {scenario.scenarioNumber} of 15</p>
+            <div className="scenario-meta">
+              <span className={`difficulty ${scenario.difficulty.toLowerCase()}`}>
+                {scenario.difficulty}
+              </span>
+              <span className="duration-pill">
+                <Clock className="w-4 h-4" />
+                20 min
+              </span>
+              <span className="points-pill">
+                <Target className="w-4 h-4" />
+                50 points
+              </span>
+            </div>
           </div>
         </div>
 
         <div className="practice-content">
-          <div className="scenario-prompt">
-            <h2>Your Challenge:</h2>
-            <p>{currentPrompt}</p>
+          {/* Background Information Section */}
+          <div className="scenario-section background-section">
+            <h2>Background Information</h2>
+            <p>{scenario.background}</p>
           </div>
 
-          <div className="response-section">
-            <h3>Your Response:</h3>
-            <textarea
-              value={userResponse}
-              onChange={(e) => setUserResponse(e.target.value)}
-              placeholder="Type your response to this roleplay scenario here..."
-              rows={12}
-              className="response-textarea"
-            />
+          {/* Scenario Section */}
+          <div className="scenario-section scenario-main">
+            <h2>Scenario</h2>
+            <p>{scenario.scenario}</p>
           </div>
 
-          <div className="practice-actions">
-            <button onClick={handleFinishPractice} className="finish-button">
-              Finish Practice
-            </button>
+          {/* Objectives Section */}
+          <div className="scenario-section objectives-section">
+            <h2>Objectives</h2>
+            <ul>
+              {scenario.objectives.map((objective, index) => (
+                <li key={index}>{objective}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Timer at bottom */}
+        <div className={`timer-bar ${timeUp ? 'time-up' : ''}`}>
+          <div className="timer-content">
+            <Timer className="w-5 h-5" />
+            <span className="timer-text">
+              {timeUp ? "Time's Up!" : formatTime(timeLeft)}
+            </span>
           </div>
         </div>
       </div>
@@ -364,27 +447,33 @@ export default function RoleplayPracticePage() {
                 <div className={`scenario-difficulty ${scenario.difficulty.toLowerCase()}`}>
                   {scenario.difficulty}
                 </div>
-                <div className="scenario-time">
-                  <Clock className="w-4 h-4" />
-                  {scenario.timeLimit}min
+                <div className="scenario-pills">
+                  <span className="duration-pill">
+                    <Clock className="w-4 h-4" />
+                    20 min
+                  </span>
+                  <span className="points-pill">
+                    <Target className="w-4 h-4" />
+                    50 points
+                  </span>
                 </div>
               </div>
               
-              <p className="scenario-prompt">
-                {scenario.prompt}
-              </p>
+              <div className="scenario-preview">
+                <h4>Background:</h4>
+                <p className="scenario-background">{scenario.background.substring(0, 80)}...</p>
+                
+                <h4>Scenario:</h4>
+                <p className="scenario-description">{scenario.scenario.substring(0, 120)}...</p>
+              </div>
               
               <div className="scenario-footer">
-                <div className="scenario-points">
-                  <Target className="w-4 h-4" />
-                  {scenario.points} points
-                </div>
                 <button 
                   className="scenario-start-btn"
                   onClick={() => handleStartScenario(selectedEvent, scenario.scenarioNumber - 1)}
                 >
                   <PlayCircle className="w-4 h-4" />
-                  Start
+                  Start Practice
                 </button>
               </div>
             </div>
