@@ -198,17 +198,158 @@ export default function RoleplayPracticePage() {
     // Get Banking & Financial Systems scenarios from database
     const bankingEvent = getEventDetails('banking-financial');
     if (bankingEvent) {
-      bankingEvent.prompts.forEach((prompt: string, i: number) => {
-        // Parse the prompt to extract background, scenario, and objectives
-        const parts = prompt.split('\n\n');
-        const background = parts[0] || 'Background information not specified.';
-        const scenario = parts[1] || prompt;
-        const objectives = parts[2] ? parts[2].split('\n').filter(line => line.trim()) : [
-          'Address the customer\'s needs professionally',
-          'Provide accurate information',
-          'Ensure customer satisfaction'
-        ];
+      const bankingScenarios = [
+        {
+          background: "Maya is a high school student who just got her first part-time job and wants to manage her money responsibly.",
+          scenario: "You are a customer service representative helping Maya choose between a savings account, checking account, or both.",
+          objectives: [
+            "Explain the purpose of each account type",
+            "Discuss interest rates and fees", 
+            "Help her set up digital banking tools for managing money safely"
+          ]
+        },
+        {
+          background: "Leo is a college-bound student applying for his first credit card and needs to understand credit basics.",
+          scenario: "As a junior banker, help Leo understand credit concepts for his first credit card application.",
+          objectives: [
+            "Explain how credit cards differ from debit cards",
+            "Discuss interest charges and fees",
+            "Define key terms like credit limit and APR",
+            "Provide tips for building strong credit as a young adult"
+          ]
+        },
+        {
+          background: "Mr. Thompson traditionally banks in person but wants to learn about online banking for convenience.",
+          scenario: "You're a digital banking assistant helping Mr. Thompson learn about online banking tools.",
+          objectives: [
+            "Walk him through login procedures",
+            "Explain features like mobile check deposit and bill pay",
+            "Address security concerns",
+            "Set up alerts and automatic payments"
+          ]
+        },
+        {
+          background: "Mrs. Garcia inherited $5,000 and wants to invest it safely with better returns than a savings account.",
+          scenario: "As a bank associate, help Mrs. Garcia understand certificates of deposit (CDs) for her inheritance.",
+          objectives: [
+            "Explain how CDs work compared to savings accounts",
+            "Discuss interest rates and early withdrawal penalties",
+            "Help her choose the best CD option for her financial goals"
+          ]
+        },
+        {
+          background: "Amir is a college student with a new restaurant job who needs to set up direct deposit for his paychecks.",
+          scenario: "You're helping Amir set up direct deposit for his paychecks from his new job.",
+          objectives: [
+            "Explain the direct deposit process",
+            "Walk him through employer forms",
+            "Discuss deposit timing and safety",
+            "Show him how to confirm deposits using online banking"
+          ]
+        },
+        {
+          background: "John owns a small retail store and is planning to expand his business but needs financing options.",
+          scenario: "As a financial consultant, advise John on whether to choose a business loan or line of credit for his expansion.",
+          objectives: [
+            "Compare business loan and line of credit options",
+            "Gather his financial information",
+            "Discuss payroll services",
+            "Refer him to appropriate bank specialists for next steps"
+          ]
+        },
+        {
+          background: "Maria and Leo are a couple whose household income increased from $85,000 to $130,000 and want to explore investment options.",
+          scenario: "You're a financial advisor helping Maria and Leo explore investment options beyond their current mutual funds and CDs.",
+          objectives: [
+            "Explain different investment vehicles",
+            "Assess their risk tolerance",
+            "Discuss tax implications",
+            "Recommend next steps for portfolio diversification"
+          ]
+        },
+        {
+          background: "Talia is planning to buy a home and will live there 5-10 years, with a growing business that may affect her income.",
+          scenario: "As a loan specialist, help Talia choose between a fixed-rate or adjustable-rate mortgage.",
+          objectives: [
+            "Compare fixed-rate and adjustable-rate mortgage types",
+            "Assess her specific financial situation",
+            "Discuss long-term financial impacts",
+            "Recommend the best mortgage option for her timeline"
+          ]
+        },
+        {
+          background: "Darren is 52 years old with $80,000 in his 401(k) and wants to retire at 65 but feels behind on retirement savings.",
+          scenario: "You're a financial planning associate helping Darren improve his retirement preparation strategy.",
+          objectives: [
+            "Explain IRA options and benefits",
+            "Discuss catch-up contribution strategies",
+            "Address inflation and tax concerns",
+            "Recommend comprehensive retirement planning resources"
+          ]
+        },
+        {
+          background: "Mr. Chen runs an online retail business and wants to transition to more efficient digital banking tools.",
+          scenario: "As a digital banking representative, help Mr. Chen transition his business to digital banking tools.",
+          objectives: [
+            "Explain business banking platform features",
+            "Recommend efficiency improvements for his operations",
+            "Address cybersecurity concerns",
+            "Outline onboarding and training processes"
+          ]
+        },
+        {
+          background: "Ms. Patel owns a fitness center chain and needs to finance a $1.2 million property purchase for expansion.",
+          scenario: "You're a commercial banking officer advising Ms. Patel on financing options for her property purchase.",
+          objectives: [
+            "Compare SBA loans versus traditional commercial mortgages",
+            "Analyze debt service coverage ratios",
+            "Evaluate her liquidity situation",
+            "Recommend appropriate bank specialists for complex financing"
+          ]
+        },
+        {
+          background: "Devonte wants a $50,000 personal loan for his startup but has limited credit history and high debt-to-income ratio.",
+          scenario: "As a senior loan underwriter, evaluate Devonte's personal loan application for his startup business.",
+          objectives: [
+            "Review credit evaluation factors and risk assessment",
+            "Explain risk management approaches",
+            "Propose alternative financing products",
+            "Recommend next steps for improving his application"
+          ]
+        },
+        {
+          background: "A business client experienced an attempted wire transfer fraud incident and needs stronger security controls.",
+          scenario: "You're the operations lead helping implement stronger wire transfer controls after a fraud attempt.",
+          objectives: [
+            "Explain common fraud methods and warning signs",
+            "Recommend prevention strategies and security protocols",
+            "Review liability policies and protection measures",
+            "Balance security requirements with operational efficiency"
+          ]
+        },
+        {
+          background: "A high-net-worth client is concerned about market volatility affecting their investment portfolio performance.",
+          scenario: "As a wealth management advisor, help optimize their portfolio during market volatility.",
+          objectives: [
+            "Assess their current asset allocation",
+            "Discuss rebalancing strategies for market conditions",
+            "Explain tax-loss harvesting opportunities",
+            "Recommend risk management techniques for wealth preservation"
+          ]
+        },
+        {
+          background: "A manufacturing company needs a complex multi-million dollar acquisition loan with specific terms and conditions.",
+          scenario: "You're a commercial lending officer structuring a complex acquisition loan for a manufacturing company.",
+          objectives: [
+            "Analyze cash flow projections and financial statements",
+            "Negotiate appropriate loan covenants and terms",
+            "Assess collateral requirements and security",
+            "Coordinate with legal and compliance teams for transaction closing"
+          ]
+        }
+      ];
 
+      bankingScenarios.forEach((scenarioData, i) => {
         scenarios.push({
           id: `banking-financial-${i + 1}`,
           eventName: bankingEvent.name,
@@ -216,25 +357,27 @@ export default function RoleplayPracticePage() {
           difficulty: i < 5 ? 'Beginner' : i < 10 ? 'Intermediate' : 'Advanced',
           duration: 20,
           points: 50,
-          background,
-          scenario,
-          objectives,
+          background: scenarioData.background,
+          scenario: scenarioData.scenario,
+          objectives: scenarioData.objectives,
           icon: DollarSign
         });
       });
     }
 
-    // Get other events from database
+    // Get other events from database - create structured data for each
     const businessEvent = getEventDetails('business-management');
     if (businessEvent) {
       businessEvent.prompts.forEach((prompt: string, i: number) => {
-        const parts = prompt.split('\n\n');
-        const background = parts[0] || 'Business management context.';
-        const scenario = parts[1] || prompt;
-        const objectives = parts[2] ? parts[2].split('\n').filter(line => line.trim()) : [
-          'Demonstrate leadership skills',
-          'Make strategic decisions',
-          'Communicate effectively'
+        // Extract meaningful background context and create distinct sections
+        const words = prompt.split(' ');
+        const background = `You are facing a ${i < 5 ? 'basic' : i < 10 ? 'intermediate' : 'complex'} business management challenge that requires leadership and strategic thinking.`;
+        const scenario = prompt;
+        const objectives = [
+          'Demonstrate effective leadership and communication skills',
+          'Analyze the situation and identify key issues',
+          'Develop practical solutions and implementation strategies',
+          'Consider impact on team morale and business operations'
         ];
 
         scenarios.push({
@@ -255,13 +398,13 @@ export default function RoleplayPracticePage() {
     const customerEvent = getEventDetails('customer-service');
     if (customerEvent) {
       customerEvent.prompts.forEach((prompt: string, i: number) => {
-        const parts = prompt.split('\n\n');
-        const background = parts[0] || 'Customer service situation.';
-        const scenario = parts[1] || prompt;
-        const objectives = parts[2] ? parts[2].split('\n').filter(line => line.trim()) : [
-          'Provide excellent customer service',
-          'Resolve customer concerns',
-          'Maintain professional demeanor'
+        const background = `You are working in a customer service role where excellent service and problem-solving skills are essential for ${i < 5 ? 'routine' : i < 10 ? 'challenging' : 'complex'} customer interactions.`;
+        const scenario = prompt;
+        const objectives = [
+          'Listen actively and empathize with the customer\'s concerns',
+          'Provide professional and helpful customer service',
+          'Find effective solutions within company policies',
+          'Maintain composure and positive attitude throughout the interaction'
         ];
 
         scenarios.push({
@@ -282,13 +425,13 @@ export default function RoleplayPracticePage() {
     const entrepreneurEvent = getEventDetails('entrepreneurship');
     if (entrepreneurEvent) {
       entrepreneurEvent.prompts.forEach((prompt: string, i: number) => {
-        const parts = prompt.split('\n\n');
-        const background = parts[0] || 'Entrepreneurial context.';
-        const scenario = parts[1] || prompt;
-        const objectives = parts[2] ? parts[2].split('\n').filter(line => line.trim()) : [
-          'Identify business opportunities',
-          'Develop innovative solutions',
-          'Present compelling proposals'
+        const background = `You are an entrepreneur facing a ${i < 5 ? 'common startup' : i < 10 ? 'significant business' : 'critical strategic'} challenge that requires innovative thinking and decisive action.`;
+        const scenario = prompt;
+        const objectives = [
+          'Analyze the business situation and potential opportunities',
+          'Develop creative and practical solutions',
+          'Consider financial implications and resource requirements',
+          'Present clear recommendations with supporting rationale'
         ];
 
         scenarios.push({

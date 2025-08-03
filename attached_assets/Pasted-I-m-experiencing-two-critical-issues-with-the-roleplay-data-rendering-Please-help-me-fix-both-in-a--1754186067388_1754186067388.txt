@@ -1,0 +1,90 @@
+I’m experiencing two critical issues with the roleplay data rendering. Please help me fix both in a clean and bug-free way.
+
+🔧 CONTEXT:
+I have a list of 15 custom roleplay prompts per event, each with its own:
+- Background Information
+- Scenario
+- Objectives
+
+I’ve stored this data as an array of objects (one for each prompt). Each prompt should render its own **unique** values when selected.
+
+---
+
+🪲 BUG 1: Background and Scenario are the Same
+
+🎯 PROBLEM:
+When the component renders a roleplay, the `background` and `scenario` are identical — even though they are different in the data I entered.
+
+✅ EXPECTED FIX:
+Check the `roleplayData` array to make sure each prompt has **distinct keys**:
+```js
+{
+  background: "...", // this is the context
+  scenario: "...",   // this is the prompt situation
+  objectives: [ ... ] // bullet list
+}
+Update the render logic so the UI shows the correct content:
+
+background should be shown in the Background Information section
+
+scenario should be shown in the Scenario section
+
+Use only the values from the specific prompt being passed/rendered.
+
+🪲 BUG 2: Objectives Are Always the Same
+
+🎯 PROBLEM:
+All 15 roleplays are showing the same objectives, even though I entered unique ones per prompt.
+
+✅ EXPECTED FIX:
+Make sure the UI dynamically pulls objectives from the current roleplayObject, not from a global or static array. For example:
+
+js
+Copy
+Edit
+<ul>
+  {roleplay.objectives.map((obj, i) => (
+    <li key={i}>• {obj}</li>
+  ))}
+</ul>
+Check the logic where roleplay is selected (e.g., from an index or ID), and ensure it's pointing to the correct prompt object in the array.
+
+🧠 TIP:
+Make sure that:
+
+Each prompt has its own object in the roleplayData array.
+
+You're not accidentally copying the same values when importing or generating the component.
+
+When a user clicks on a roleplay prompt (e.g., Scenario 3), you're passing the correct object into the component.
+
+✅ Bonus: If using state, confirm you update currentPromptIndex (or similar) correctly so it fetches the specific roleplay from the array:
+
+js
+Copy
+Edit
+const currentRoleplay = roleplayData[currentPromptIndex];
+Please rewrite the logic so:
+
+Each prompt’s content is pulled from its correct object.
+
+Nothing is reused or hardcoded.
+
+It works perfectly for 15 unique prompts.
+
+yaml
+Copy
+Edit
+
+---
+
+Let me know if you'd like a working React component sample to fully debug this.
+
+
+
+
+
+
+
+
+Ask ChatGPT
