@@ -200,151 +200,168 @@ export default function RoleplayPracticePage() {
     if (bankingEvent) {
       const bankingScenarios = [
         {
-          background: "Maya is a high school student who just got her first part-time job and wants to manage her money responsibly.",
-          scenario: "You are a customer service representative helping Maya choose between a savings account, checking account, or both.",
+          background: "You are a customer service representative at a local bank that specializes in helping young adults become financially independent. Today, a high school student named Maya has come in to open her first bank account and needs your guidance.",
+          scenario: "Maya recently got a part-time job at a grocery store and wants to safely store her earnings. She plans to occasionally use a debit card and also save for college, but she's unsure whether a savings account, a checking account, or both would be best.",
           objectives: [
-            "Explain the purpose of each account type",
-            "Discuss interest rates and fees", 
-            "Help her set up digital banking tools for managing money safely"
+            "Explain the primary purpose of checking vs. savings accounts.",
+            "Discuss interest rates, fees, and accessibility for both types.",
+            "Recommend the most appropriate account (or combination).",
+            "Provide tips on managing money digitally and using online banking tools.",
+            "Share how Maya can set financial goals using bank services."
           ]
         },
         {
-          background: "Leo is a college-bound student applying for his first credit card and needs to understand credit basics.",
-          scenario: "As a junior banker, help Leo understand credit concepts for his first credit card application.",
+          background: "You are a junior banker assisting new customers with credit education. A college-bound client named Leo has visited the bank to apply for his very first credit card and wants help understanding how credit works before applying.",
+          scenario: "Leo is nervous about getting into debt but knows that building credit is important. He doesn't understand how credit cards work, what a credit score is, or how interest accumulates, and wants your advice on how to use credit responsibly.",
           objectives: [
-            "Explain how credit cards differ from debit cards",
-            "Discuss interest charges and fees",
-            "Define key terms like credit limit and APR",
-            "Provide tips for building strong credit as a young adult"
+            "Explain what a credit card is and how it differs from a debit card.",
+            "Describe how interest is charged and how to avoid fees.",
+            "Define key terms: credit limit, minimum payment, APR.",
+            "Discuss how credit cards affect credit scores.",
+            "Offer tips for building strong credit as a young adult."
           ]
         },
         {
-          background: "Mr. Thompson traditionally banks in person but wants to learn about online banking for convenience.",
-          scenario: "You're a digital banking assistant helping Mr. Thompson learn about online banking tools.",
+          background: "You are a digital banking assistant trained to help customers use online financial tools. A new client, Mr. Thompson, recently opened a checking account and is interested in managing his finances digitally but has limited experience with technology.",
+          scenario: "Mr. Thompson has traditionally done all of his banking in person. He wants to know what features online and mobile banking offer, whether it's safe to use, and how he can get started without feeling overwhelmed.",
           objectives: [
-            "Walk him through login procedures",
-            "Explain features like mobile check deposit and bill pay",
-            "Address security concerns",
-            "Set up alerts and automatic payments"
+            "Explain how to log in and navigate the online/mobile banking portal.",
+            "Describe features like mobile check deposit, transfers, and bill pay.",
+            "Reassure him about cybersecurity measures and customer protection.",
+            "Walk through how to set up alerts and automatic payments.",
+            "Recommend bank support options if he needs future help."
           ]
         },
         {
-          background: "Mrs. Garcia inherited $5,000 and wants to invest it safely with better returns than a savings account.",
-          scenario: "As a bank associate, help Mrs. Garcia understand certificates of deposit (CDs) for her inheritance.",
+          background: "You are a bank associate working in the savings and investments department. Mrs. Garcia, a long-time customer, recently inherited $5,000 and is looking for a safe, interest-earning option that's more effective than a regular savings account.",
+          scenario: "Mrs. Garcia heard about certificates of deposit (CDs) but doesn't understand how they work or how they differ from savings accounts. She is interested in potentially opening a CD and wants to know her options.",
           objectives: [
-            "Explain how CDs work compared to savings accounts",
-            "Discuss interest rates and early withdrawal penalties",
-            "Help her choose the best CD option for her financial goals"
+            "Explain what a CD is and how it works.",
+            "Compare CD interest rates and terms to savings accounts.",
+            "Discuss early withdrawal penalties and fixed terms.",
+            "Help Mrs. Garcia choose the best CD option for her needs.",
+            "Recommend how she can use CDs as part of a broader savings plan."
           ]
         },
         {
-          background: "Amir is a college student with a new restaurant job who needs to set up direct deposit for his paychecks.",
-          scenario: "You're helping Amir set up direct deposit for his paychecks from his new job.",
+          background: "You are a banker in the new accounts department. Amir, a college student who just got a job at a local restaurant, recently opened a checking account and now wants to know how to set up direct deposit for his paychecks.",
+          scenario: "Amir has never used direct deposit before and isn't sure how it works. He also wants to make sure his money is deposited quickly, safely, and with no hidden fees, and would like you to walk him through the entire process.",
           objectives: [
-            "Explain the direct deposit process",
-            "Walk him through employer forms",
-            "Discuss deposit timing and safety",
-            "Show him how to confirm deposits using online banking"
+            "Explain what direct deposit is and how it works.",
+            "Walk Amir through the setup process using his employer's form.",
+            "Describe how quickly funds are deposited and available.",
+            "Assure him that there are no fees or risks with direct deposit.",
+            "Show him how to confirm a deposit using online banking."
           ]
         },
         {
-          background: "John owns a small retail store and is planning to expand his business but needs financing options.",
-          scenario: "As a financial consultant, advise John on whether to choose a business loan or line of credit for his expansion.",
+          background: "You are a financial consultant at a local bank. A new client, John, owns a small retail store and is planning to expand his business. John is unsure whether to apply for a business loan or open a line of credit to finance the expansion and manage daily cash flow. Additionally, John wants to streamline payroll processes for his eight employees.",
+          scenario: "Your role is to meet with John, gather key financial information (e.g., current revenue, existing debts, and financial goals), and explain the pros and cons of a business loan versus a line of credit. You also need to provide information on payroll services offered by the bank and suggest next steps, including which bank departments (e.g., loan officer, payroll specialist) John should consult for further assistance.",
           objectives: [
-            "Compare business loan and line of credit options",
-            "Gather his financial information",
-            "Discuss payroll services",
-            "Refer him to appropriate bank specialists for next steps"
+            "Compare the benefits and drawbacks of a business loan vs. line of credit.",
+            "Recommend a course of action based on the client's financial situation.",
+            "Describe bank payroll solutions and how they support small businesses.",
+            "Demonstrate effective techniques for gathering and managing client information.",
+            "Refer the client to appropriate bank professionals for next steps."
           ]
         },
         {
-          background: "Maria and Leo are a couple whose household income increased from $85,000 to $130,000 and want to explore investment options.",
-          scenario: "You're a financial advisor helping Maria and Leo explore investment options beyond their current mutual funds and CDs.",
+          background: "You are a financial advisor at a regional bank. Your long-time clients, Maria and Leo, are a couple in their early 40s who have recently received a significant raise at work. Their annual income has increased from $85,000 to $130,000, and they now have more money to invest than before.",
+          scenario: "Maria and Leo previously invested small amounts in mutual funds and certificates of deposit but are now looking for higher-return investment options with moderate risk. They are unsure whether they should continue with mutual funds, explore ETFs, or start purchasing individual stocks and bonds. They are also curious about the impact of taxes on their investment gains.",
           objectives: [
-            "Explain different investment vehicles",
-            "Assess their risk tolerance",
-            "Discuss tax implications",
-            "Recommend next steps for portfolio diversification"
+            "Explain the differences between mutual funds, ETFs, stocks, and bonds.",
+            "Recommend investment options that match the couple's risk tolerance and goals.",
+            "Define terms like diversification, rate of return, and risk management.",
+            "Discuss basic tax implications of investment income.",
+            "Suggest next steps, including speaking with a licensed investment advisor."
           ]
         },
         {
-          background: "Talia is planning to buy a home and will live there 5-10 years, with a growing business that may affect her income.",
-          scenario: "As a loan specialist, help Talia choose between a fixed-rate or adjustable-rate mortgage.",
+          background: "You are a loan specialist at Northwind Community Bank. A new client, Talia, has been pre-approved for a home loan and is considering whether to move forward with a fixed-rate or adjustable-rate mortgage.",
+          scenario: "Talia has questions about which mortgage type is best for her. She expects to live in her new home for 5–10 years and is also planning to grow her small business in the next few years, which may impact her income. She wants to understand the risks, benefits, and long-term costs of each loan option before making a decision.",
           objectives: [
-            "Compare fixed-rate and adjustable-rate mortgage types",
-            "Assess her specific financial situation",
-            "Discuss long-term financial impacts",
-            "Recommend the best mortgage option for her timeline"
+            "Compare fixed-rate and adjustable-rate mortgages in simple terms.",
+            "Assess the client's financial goals and stability to recommend an option.",
+            "Discuss how interest rates and loan terms affect monthly payments.",
+            "Provide guidance on how mortgage choices impact credit and budgeting.",
+            "Refer the client to the appropriate mortgage underwriting team if needed."
           ]
         },
         {
-          background: "Darren is 52 years old with $80,000 in his 401(k) and wants to retire at 65 but feels behind on retirement savings.",
-          scenario: "You're a financial planning associate helping Darren improve his retirement preparation strategy.",
+          background: "You are a financial planning associate at a full-service bank. A client, Darren, is 52 years old and recently realized he may not be as prepared for retirement as he hoped.",
+          scenario: "Darren has approximately $80,000 saved in a traditional 401(k) and no other investments. He plans to retire around age 65. He is unsure whether he should increase contributions to his 401(k), open an IRA, or explore other investment vehicles. Darren is also interested in understanding how inflation and taxes might affect his retirement income.",
           objectives: [
-            "Explain IRA options and benefits",
-            "Discuss catch-up contribution strategies",
-            "Address inflation and tax concerns",
-            "Recommend comprehensive retirement planning resources"
+            "Explain the differences between traditional and Roth IRAs and how they complement a 401(k).",
+            "Discuss how to increase retirement savings in the final working years.",
+            "Identify potential risks like inflation and taxation on retirement income.",
+            "Recommend a savings and investment strategy based on Darren's goals.",
+            "Offer follow-up options such as financial planning seminars or investment consultations."
           ]
         },
         {
-          background: "Mr. Chen runs an online retail business and wants to transition to more efficient digital banking tools.",
-          scenario: "As a digital banking representative, help Mr. Chen transition his business to digital banking tools.",
+          background: "You are a digital banking representative at a community bank. Your client, Mr. Chen, owns a growing online retail business and wants to move his financial processes to a more efficient, tech-driven system.",
+          scenario: "Mr. Chen is unfamiliar with online banking tools for businesses. He wants to automate bill payments, manage payroll digitally, and track expenses. He also worries about cybersecurity and data privacy. Your role is to help him transition into digital banking safely and efficiently.",
           objectives: [
-            "Explain business banking platform features",
-            "Recommend efficiency improvements for his operations",
-            "Address cybersecurity concerns",
-            "Outline onboarding and training processes"
+            "Explain the features of the bank's online business platform (bill pay, statements, transfers, alerts).",
+            "Recommend digital tools that improve efficiency and reduce manual errors.",
+            "Address the client's concerns about cybersecurity and data protection.",
+            "Outline the onboarding process and support services provided.",
+            "Recommend scheduling a training session with a digital banking specialist."
           ]
         },
         {
-          background: "Ms. Patel owns a fitness center chain and needs to finance a $1.2 million property purchase for expansion.",
-          scenario: "You're a commercial banking officer advising Ms. Patel on financing options for her property purchase.",
+          background: "You are a commercial banking officer at a regional bank. A client, Ms. Patel, owns a successful chain of fitness centers and is considering purchasing a $1.2 million property for a new location.",
+          scenario: "Ms. Patel is unsure whether she should apply for a traditional commercial mortgage or consider a Small Business Administration (SBA) loan. She has strong business revenue but limited liquidity. Your job is to help her understand the risks, financing structures, and eligibility requirements for each option.",
           objectives: [
-            "Compare SBA loans versus traditional commercial mortgages",
-            "Analyze debt service coverage ratios",
-            "Evaluate her liquidity situation",
-            "Recommend appropriate bank specialists for complex financing"
+            "Compare key features of SBA loans vs. traditional commercial mortgages.",
+            "Analyze the impact of interest rates, collateral, and terms on long-term affordability.",
+            "Discuss how debt service coverage ratio (DSCR) affects loan approval.",
+            "Evaluate how this decision fits into Ms. Patel's long-term growth plan.",
+            "Recommend which bank specialists or departments to consult next."
           ]
         },
         {
-          background: "Devonte wants a $50,000 personal loan for his startup but has limited credit history and high debt-to-income ratio.",
-          scenario: "As a senior loan underwriter, evaluate Devonte's personal loan application for his startup business.",
+          background: "You are a senior loan underwriter at a mid-sized bank. A client, Devonte, recently applied for a $50,000 personal loan to fund a startup. However, he has a limited credit history, inconsistent income, and a high debt-to-income ratio.",
+          scenario: "The bank's standard credit evaluation process flags the application as high risk. Devonte insists he can repay the loan but has little formal documentation. You must determine whether to recommend approval, denial, or offer an alternative product.",
           objectives: [
-            "Review credit evaluation factors and risk assessment",
-            "Explain risk management approaches",
-            "Propose alternative financing products",
-            "Recommend next steps for improving his application"
+            "Review key credit evaluation factors: credit score, DTI ratio, collateral, and income verification.",
+            "Explain the bank's risk management approach for unsecured loans.",
+            "Propose alternative lending products (e.g., secured loan, cosigner option).",
+            "Discuss the legal and ethical responsibilities of lending decisions.",
+            "Recommend next steps for Devonte based on the assessment."
           ]
         },
         {
-          background: "A business client experienced an attempted wire transfer fraud incident and needs stronger security controls.",
-          scenario: "You're the operations lead helping implement stronger wire transfer controls after a fraud attempt.",
+          background: "You are the operations lead at a commercial bank. A long-standing business client recently experienced an attempted wire fraud incident that was caught just in time.",
+          scenario: "The client is concerned about the security of future wire transfers and wants to implement stronger internal controls. You must guide them through risk mitigation strategies while maintaining efficient operations.",
           objectives: [
-            "Explain common fraud methods and warning signs",
-            "Recommend prevention strategies and security protocols",
-            "Review liability policies and protection measures",
-            "Balance security requirements with operational efficiency"
+            "Explain how wire fraud typically occurs (e.g., phishing, social engineering).",
+            "Recommend fraud prevention controls (dual authorization, callbacks, verification tools).",
+            "Review the bank's existing fraud liability policy and customer obligations.",
+            "Discuss how to balance security with convenience in business banking.",
+            "Offer a plan for ongoing employee training and monitoring."
           ]
         },
         {
-          background: "A high-net-worth client is concerned about market volatility affecting their investment portfolio performance.",
-          scenario: "As a wealth management advisor, help optimize their portfolio during market volatility.",
+          background: "You are a compliance officer at a national bank. A newly hired banker has questions about regulatory obligations related to Know Your Customer (KYC), Anti-Money Laundering (AML), and data privacy.",
+          scenario: "You've been asked to lead a quick training session to ensure the employee understands key compliance policies and how to apply them in daily operations.",
           objectives: [
-            "Assess their current asset allocation",
-            "Discuss rebalancing strategies for market conditions",
-            "Explain tax-loss harvesting opportunities",
-            "Recommend risk management techniques for wealth preservation"
+            "Explain the purpose and key steps of KYC and AML procedures.",
+            "Describe red flags that could indicate suspicious activity.",
+            "Review customer data protection policies and legal obligations.",
+            "Emphasize the importance of regulatory compliance in client interactions.",
+            "Provide actionable guidance for reporting and escalation procedures."
           ]
         },
         {
-          background: "A manufacturing company needs a complex multi-million dollar acquisition loan with specific terms and conditions.",
-          scenario: "You're a commercial lending officer structuring a complex acquisition loan for a manufacturing company.",
+          background: "You are a financial analyst at a regional bank. The CFO has asked you to prepare a summary of the bank's quarterly performance for the executive team.",
+          scenario: "You need to review the bank's income statement and balance sheet to explain how key financial metrics like net interest margin (NIM), return on equity (ROE), and loan loss provisions compare to last quarter. The CFO also wants recommendations for improving profitability without taking on excessive risk.",
           objectives: [
-            "Analyze cash flow projections and financial statements",
-            "Negotiate appropriate loan covenants and terms",
-            "Assess collateral requirements and security",
-            "Coordinate with legal and compliance teams for transaction closing"
+            "Interpret financial ratios such as NIM, ROE, and the efficiency ratio.",
+            "Explain how loan performance and interest rate changes impact earnings.",
+            "Identify any red flags or areas of concern from the financial statements.",
+            "Propose 1–2 strategies to improve short-term profitability.",
+            "Recommend how to communicate these findings clearly to non-financial staff."
           ]
         }
       ];

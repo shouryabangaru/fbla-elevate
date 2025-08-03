@@ -1,0 +1,79 @@
+🧠 CONTEXT:
+I already created 15 custom roleplay prompts for an FBLA event. For each prompt, I provided:
+
+- An exact **Background Information**
+- A unique **Scenario**
+- 3–5 detailed **Objectives**
+
+All of these were custom-written and must appear **exactly as I wrote them**.
+
+---
+
+❌ CURRENT ISSUE:
+While the system now differentiates the content per prompt, the rendered data does **not exactly match what I originally inputted**. Some words are changed, phrasing is off, and it doesn’t reflect my actual content.
+
+✅ GOAL:
+I want to make sure the app uses **my original prompt data word-for-word** with **no AI rephrasing, rewriting, summarizing, or optimization**.
+
+---
+
+✅ SOLUTION:
+1. **Update the data source:**
+   - Use a clean `roleplayPrompts` array of 15 objects, each like this:
+   ```js
+   {
+     background: "My exact background information for prompt #1",
+     scenario: "My exact scenario for prompt #1",
+     objectives: [
+       "My exact objective 1",
+       "My exact objective 2",
+       "My exact objective 3"
+     ]
+   }
+These strings should be copy-pasted from my original input, with no changes.
+
+Render logic:
+
+When a user selects a prompt (e.g. “Prompt #5”), fetch the corresponding object from the array without editing the content.
+
+Example:
+
+js
+Copy
+Edit
+const prompt = roleplayPrompts[selectedIndex];
+Display logic:
+
+Show the background in the Background Information section exactly as entered.
+
+Show the scenario in the Scenario section exactly as entered.
+
+Map over objectives to display each bullet point exactly as entered.
+
+No formatting changes:
+
+Do not shorten, restructure, or improve grammar.
+
+Preserve capitalization, line breaks, dashes, and everything else from my input.
+
+💡 EXTRA:
+If my input was copy-pasted into a file or raw array before, recheck that no extra whitespace, quote formatting, or auto-fixes (e.g., autocorrect) were applied. The current bug may stem from incorrectly parsed or reformatted prompt data.
+
+Once this is done, every user should see the exact same language I wrote — per prompt — across background, scenario, and objectives.
+
+yaml
+Copy
+Edit
+
+---
+
+Let me know if you'd like me to regenerate a clean JSON array based on your 15 original inputs for the dev to plug directly into the app.
+
+
+
+
+
+
+
+
+Ask ChatGPT
