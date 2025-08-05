@@ -619,51 +619,83 @@
   border-color: #FFD700;
 }
 
-.scenario-header-info {
+.scenario-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
 
+.roleplay-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .scenario-number {
-  background: linear-gradient(135deg, #003366 0%, #0066CC 100%);
+  background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
   color: #FFFFFF;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 0.9rem;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  flex-shrink: 0;
 }
 
 .scenario-difficulty {
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
 
 .scenario-difficulty.beginner {
-  background: rgba(34, 197, 94, 0.2);
-  color: #10b981;
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: #1d5f3f;
+  color: #FFFFFF;
+  border: 1px solid #10b981;
 }
 
 .scenario-difficulty.intermediate {
-  background: rgba(251, 191, 36, 0.2);
-  color: #f59e0b;
-  border: 1px solid rgba(251, 191, 36, 0.3);
+  background: #854d0e;
+  color: #FFFFFF;
+  border: 1px solid #f59e0b;
 }
 
 .scenario-difficulty.advanced {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: #7f1d1d;
+  color: #FFFFFF;
+  border: 1px solid #ef4444;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .roleplay-header-left {
+    gap: 8px;
+  }
+  
+  .scenario-number {
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+  }
+  
+  .scenario-difficulty {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  
+  .scenarios-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .scenario-time {

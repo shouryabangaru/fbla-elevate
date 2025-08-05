@@ -601,11 +601,13 @@ export default function RoleplayPracticePage() {
           {filteredScenarios.map((scenario) => (
             <div key={scenario.id} className="scenario-card">
               <div className="scenario-header">
-                <div className="scenario-number">
-                  {scenario.scenarioNumber}
-                </div>
-                <div className={`scenario-difficulty ${scenario.difficulty.toLowerCase()}`}>
-                  {scenario.difficulty}
+                <div className="roleplay-header-left">
+                  <div className="scenario-number">
+                    {scenario.scenarioNumber}
+                  </div>
+                  <div className={`scenario-difficulty ${scenario.difficulty.toLowerCase()}`}>
+                    {scenario.difficulty}
+                  </div>
                 </div>
                 <div className="scenario-pills">
                   <span className="duration-pill">
