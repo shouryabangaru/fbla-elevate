@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useRoute, useLocation } from 'wouter';
+import { useQuery } from '@tanstack/react-query';
 import { PageLayout } from '@/components/shared/PageLayout';
 import { StyledCard } from '@/components/shared/StyledCard';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, CheckCircle, XCircle, RotateCcw } from 'lucide-react';
+import type { Question, Event } from '@shared/schema';
 
-interface Question {
+// Transform database Question to component format
+interface ComponentQuestion {
   id: string;
   question: string;
   options: string[];
@@ -15,82 +18,65 @@ interface Question {
   explanation: string;
 }
 
-interface PracticeEvent {
-  id: string;
-  name: string;
-  description: string;
+interface PracticeEvent extends Event {
   icon: string;
-  difficulty: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
   category: string;
 }
 
-// Sample questions data (will be replaced with database data in task 5)
-const sampleQuestions: Record<string, Question[]> = {
-  'accounting': [
-    {
-      id: 'acc-1',
-      question: 'What is the accounting equation?',
-      options: [
-        'Assets = Liabilities + Owner\'s Equity',
-        'Assets = Liabilities - Owner\'s Equity', 
-        'Assets + Liabilities = Owner\'s Equity',
-        'Assets - Liabilities = Owner\'s Equity'
-      ],
-      correctAnswer: 0,
-      explanation: 'The fundamental accounting equation is Assets = Liabilities + Owner\'s Equity. This equation must always balance and forms the basis of double-entry bookkeeping.'
-    },
-    {
-      id: 'acc-2', 
-      question: 'Which financial statement shows a company\'s profitability over a period?',
-      options: [
-        'Balance Sheet',
-        'Income Statement',
-        'Cash Flow Statement',
-        'Statement of Retained Earnings'
-      ],
-      correctAnswer: 1,
-      explanation: 'The Income Statement (also called Profit & Loss Statement) shows revenues, expenses, and net income over a specific period, indicating profitability.'
-    }
-  ],
-  'marketing': [
-    {
-      id: 'mk-1',
-      question: 'What are the 4 Ps of marketing?',
-      options: [
-        'Price, Place, Promotion, People',
-        'Product, Price, Place, Promotion',
-        'Product, People, Place, Process',
-        'Price, Promotion, People, Process'
-      ],
-      correctAnswer: 1,
-      explanation: 'The 4 Ps of marketing are Product, Price, Place, and Promotion. These form the marketing mix that helps businesses develop effective marketing strategies.'
-    }
-  ]
-};
+// Transform database question to component format
+const transformQuestion = (dbQuestion: Question): ComponentQuestion => ({
+  id: dbQuestion.id.toString(),
+  question: dbQuestion.questionText,
+  options: [dbQuestion.optionA, dbQuestion.optionB, dbQuestion.optionC, dbQuestion.optionD],
+  correctAnswer: dbQuestion.correctAnswer.charCodeAt(0) - 'A'.charCodeAt(0),
+  explanation: `The correct answer is ${dbQuestion.correctAnswer}.` // Basic explanation for now
+});
 
-const practiceEvents: PracticeEvent[] = [
-  {
-    id: 'accounting',
-    name: 'Accounting',
-    description: 'Master accounting principles, financial statements, and business calculations.',
-    icon: '📊',
-    difficulty: 'Intermediate',
-    category: 'Business',
-  },
-  {
-    id: 'marketing',
-    name: 'Marketing',
-    description: 'Learn marketing strategies, consumer behavior, and promotional techniques.',
-    icon: '📈',
-    difficulty: 'Beginner',
-    category: 'Business',
-  }
-];
+// Event metadata mapping (icons, difficulty, category)
+const eventMetadata: Record<string, { icon: string; difficulty: 'Beginner' | 'Intermediate' | 'Advanced'; category: string }> = {
+  'Accounting I': { icon: '📊', difficulty: 'Intermediate', category: 'Finance' },
+  'Accounting II': { icon: '🧮', difficulty: 'Advanced', category: 'Finance' },
+  'Banking & Financial Systems': { icon: '🏦', difficulty: 'Intermediate', category: 'Finance' },
+  'Business Management': { icon: '💼', difficulty: 'Intermediate', category: 'Management' },
+  'Business Law': { icon: '⚖️', difficulty: 'Advanced', category: 'Legal' },
+  'Client Service': { icon: '🤝', difficulty: 'Beginner', category: 'Communication' },
+  'Economics': { icon: '📈', difficulty: 'Intermediate', category: 'Finance' },
+  'Entrepreneurship': { icon: '🚀', difficulty: 'Advanced', category: 'Business' },
+  'Introduction to Business Concepts': { icon: '📋', difficulty: 'Beginner', category: 'Business' },
+  'Introduction to Financial Math': { icon: '🔢', difficulty: 'Beginner', category: 'Finance' },
+  'Introduction to Marketing Concepts': { icon: '📢', difficulty: 'Beginner', category: 'Marketing' },
+  'Introduction to Parliamentary Procedure': { icon: '🏛️', difficulty: 'Beginner', category: 'Leadership' },
+  'Management Information Systems': { icon: '💻', difficulty: 'Advanced', category: 'Technology' },
+  'Personal Finance': { icon: '💰', difficulty: 'Beginner', category: 'Finance' },
+  'Securities & Investments': { icon: '📊', difficulty: 'Advanced', category: 'Finance' },
+  'Business Ethics': { icon: '🎯', difficulty: 'Intermediate', category: 'Business' },
+  'International Business': { icon: '🌍', difficulty: 'Advanced', category: 'Business' },
+  'Marketing': { icon: '📈', difficulty: 'Intermediate', category: 'Marketing' },
+  'Sports & Entertainment Marketing': { icon: '🎭', difficulty: 'Intermediate', category: 'Marketing' },
+  'Hospitality Management': { icon: '🏨', difficulty: 'Intermediate', category: 'Management' },
+  'Human Resource Management': { icon: '👥', difficulty: 'Intermediate', category: 'Management' },
+  'Public Speaking': { icon: '🎤', difficulty: 'Beginner', category: 'Communication' },
+  'Future Business Leader': { icon: '👑', difficulty: 'Intermediate', category: 'Leadership' },
+  'Introduction to Event Planning': { icon: '📅', difficulty: 'Beginner', category: 'Management' },
+  'Sales Presentation': { icon: '💡', difficulty: 'Intermediate', category: 'Communication' },
+};
 
 export default function PracticeModePage() {
   const [match, params] = useRoute('/practice/:eventId');
   const [, setLocation] = useLocation();
   const eventId = params?.eventId;
+  
+  // Fetch event details and questions from database
+  const { data: event, isLoading: eventLoading, error: eventError } = useQuery<Event>({
+    queryKey: ['/api/events', eventId],
+    enabled: !!eventId
+  });
+  
+  const { data: dbQuestions, isLoading: questionsLoading, error: questionsError } = useQuery<Question[]>({
+    queryKey: ['/api/events', eventId, 'questions'],
+    enabled: !!eventId
+  });
   
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -99,10 +85,17 @@ export default function PracticeModePage() {
   const [practiceComplete, setPracticeComplete] = useState(false);
   const [answers, setAnswers] = useState<{ questionId: string; selectedAnswer: number; correct: boolean }[]>([]);
 
-  // Get event and questions data
-  const event = practiceEvents.find(e => e.id === eventId);
-  const questions = eventId ? sampleQuestions[eventId] || [] : [];
+  // Transform database questions to component format and combine event with metadata
+  const questions: ComponentQuestion[] = dbQuestions ? dbQuestions.map(transformQuestion) : [];
+  const practiceEvent: PracticeEvent | null = event ? {
+    ...event,
+    ...eventMetadata[event.name] || { icon: '📝', difficulty: 'Beginner' as const, category: 'General' }
+  } : null;
   const currentQuestion = questions[currentQuestionIndex];
+  
+  // Loading state for both event and questions
+  const isLoading = eventLoading || questionsLoading;
+  const error = eventError || questionsError;
 
   // Reset state when component mounts or event changes
   useEffect(() => {
@@ -203,11 +196,11 @@ export default function PracticeModePage() {
   // Navigate to results page
   const handleFinishPractice = () => {
     // Save practice results to sessionStorage for results page
-    if (eventId && event) {
+    if (eventId && practiceEvent) {
       const resultsData = {
         eventId,
-        eventName: event.name,
-        eventIcon: event.icon,
+        eventName: practiceEvent.name,
+        eventIcon: practiceEvent.icon,
         answers: answers.map(answer => {
           const question = questions.find(q => q.id === answer.questionId);
           return {
@@ -255,6 +248,38 @@ export default function PracticeModePage() {
     }
   };
 
+  // Loading state
+  if (isLoading) {
+    return (
+      <PageLayout
+        title="Loading Practice..."
+        subtitle="Preparing your practice session"
+      >
+        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-fbla-blue"></div>
+          <p className="text-gray-600">Loading practice questions...</p>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <PageLayout
+        title="Practice Error"
+        subtitle="Failed to load practice session"
+      >
+        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+          <p className="text-red-600">Failed to load practice questions. Please try again.</p>
+          <Button onClick={() => window.location.reload()}>
+            Retry
+          </Button>
+        </div>
+      </PageLayout>
+    );
+  }
+
   // If event not found
   if (!match || !event) {
     return (
@@ -277,7 +302,7 @@ export default function PracticeModePage() {
   if (questions.length === 0) {
     return (
       <PageLayout
-        title={event.name}
+        title={practiceEvent?.name || 'Event'}
         subtitle="No questions available for this event"
       >
         <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
@@ -296,7 +321,7 @@ export default function PracticeModePage() {
   // Main practice interface
   return (
     <PageLayout
-      title={event.name}
+      title={practiceEvent?.name || 'Event'}
       subtitle={`Question ${currentQuestionIndex + 1} of ${questions.length}`}
     >
       <div className="max-w-4xl mx-auto p-6 space-y-6">
@@ -312,10 +337,10 @@ export default function PracticeModePage() {
           </Button>
           
           <div className="flex items-center space-x-4">
-            <Badge className={getDifficultyColor(event.difficulty)}>
-              {event.difficulty}
+            <Badge className={getDifficultyColor(practiceEvent?.difficulty || 'Beginner')}>
+              {practiceEvent?.difficulty || 'Beginner'}
             </Badge>
-            <Badge variant="outline">{event.category}</Badge>
+            <Badge variant="outline">{practiceEvent?.category || 'General'}</Badge>
           </div>
         </div>
 
