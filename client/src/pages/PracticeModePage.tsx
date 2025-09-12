@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useRoute } from 'wouter';
+import { useRoute, useLocation } from 'wouter';
 import { PageLayout } from '@/components/shared/PageLayout';
 import { StyledCard } from '@/components/shared/StyledCard';
 import { Button } from '@/components/ui/button';
@@ -89,6 +89,7 @@ const practiceEvents: PracticeEvent[] = [
 
 export default function PracticeModePage() {
   const [match, params] = useRoute('/practice/:eventId');
+  const [, setLocation] = useLocation();
   const eventId = params?.eventId;
   
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -112,6 +113,53 @@ export default function PracticeModePage() {
     setPracticeComplete(false);
     setAnswers([]);
   }, [eventId]);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      // Don't trigger shortcuts if user is typing in an input or if practice is complete
+      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement || practiceComplete) {
+        return;
+      }
+
+      const key = event.key.toLowerCase();
+      
+      // Answer selection shortcuts (1-4 or A-D)
+      if (['1', '2', '3', '4', 'a', 'b', 'c', 'd'].includes(key) && currentQuestion && !showFeedback) {
+        event.preventDefault();
+        let answerIndex: number;
+        
+        if (['1', '2', '3', '4'].includes(key)) {
+          answerIndex = parseInt(key) - 1;
+        } else {
+          answerIndex = key.charCodeAt(0) - 'a'.charCodeAt(0);
+        }
+        
+        if (answerIndex < currentQuestion.options.length) {
+          setSelectedAnswer(answerIndex);
+        }
+      }
+      
+      // Submit answer or go to next question
+      if (key === 'enter' || key === ' ') {
+        event.preventDefault();
+        if (!showFeedback && selectedAnswer !== null) {
+          handleSubmitAnswer();
+        } else if (showFeedback) {
+          handleNextQuestion();
+        }
+      }
+      
+      // End practice
+      if (key === 'escape') {
+        event.preventDefault();
+        handleEndPractice();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => document.removeEventListener('keydown', handleKeyPress);
+  }, [currentQuestion, selectedAnswer, showFeedback, practiceComplete]);
 
   // Handle answer selection
   const handleAnswerSelect = (answerIndex: number) => {
@@ -164,7 +212,7 @@ export default function PracticeModePage() {
 
   // Handle returning to practice list
   const handleBackToPractice = () => {
-    window.location.href = '/practice';
+    setLocation('/practice');
   };
 
   // Get difficulty color class
@@ -217,7 +265,7 @@ export default function PracticeModePage() {
   if (practiceComplete) {
     const correctAnswers = answers.filter(a => a.correct).length;
     const totalQuestions = answers.length;
-    const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+    const percentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
 
     return (
       <PageLayout

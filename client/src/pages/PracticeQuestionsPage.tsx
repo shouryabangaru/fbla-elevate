@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'wouter';
 import { PageLayout } from '@/components/shared/PageLayout';
 import { StyledCard } from '@/components/shared/StyledCard';
 import { Button } from '@/components/ui/button';
@@ -16,6 +17,7 @@ interface PracticeEvent {
 }
 
 export default function PracticeQuestionsPage() {
+  const [, setLocation] = useLocation();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   
   const practiceEvents: PracticeEvent[] = [
@@ -442,7 +444,7 @@ export default function PracticeQuestionsPage() {
                     <div className="event-actions">
                       <Button 
                         className="action-button primary"
-                        onClick={() => window.location.href = `/practice/${event.id}`}
+                        onClick={() => setLocation(`/practice/${event.id}`)}
                         data-testid={`button-start-practicing-${event.id}`}
                       >
                         <PlayCircle className="w-4 h-4 mr-2" />
