@@ -191,13 +191,43 @@ export default function PracticeModePage() {
       setShowFeedback(false);
       setIsCorrect(false);
     } else {
-      setPracticeComplete(true);
+      handleFinishPractice();
     }
   };
 
-  // Handle ending practice early
+  // Handle ending practice early or finishing
   const handleEndPractice = () => {
-    setPracticeComplete(true);
+    handleFinishPractice();
+  };
+
+  // Navigate to results page
+  const handleFinishPractice = () => {
+    // Save practice results to sessionStorage for results page
+    if (eventId && event) {
+      const resultsData = {
+        eventId,
+        eventName: event.name,
+        eventIcon: event.icon,
+        answers: answers.map(answer => {
+          const question = questions.find(q => q.id === answer.questionId);
+          return {
+            questionId: answer.questionId,
+            question: question?.question || '',
+            selectedAnswer: answer.selectedAnswer,
+            correctAnswer: question?.correctAnswer || 0,
+            options: question?.options || [],
+            explanation: question?.explanation || '',
+            correct: answer.correct
+          };
+        }),
+        completedAt: new Date().toISOString(),
+        totalTime: undefined // Could add timer in future
+      };
+      
+      sessionStorage.setItem(`practiceResults:${eventId}`, JSON.stringify(resultsData));
+    }
+    
+    setLocation(`/practice/${eventId}/results`);
   };
 
   // Handle restarting practice
@@ -261,43 +291,7 @@ export default function PracticeModePage() {
     );
   }
 
-  // Practice complete - results view
-  if (practiceComplete) {
-    const correctAnswers = answers.filter(a => a.correct).length;
-    const totalQuestions = answers.length;
-    const percentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
-
-    return (
-      <PageLayout
-        title={`${event.name} Practice Complete!`}
-        subtitle={`You answered ${correctAnswers} out of ${totalQuestions} questions correctly`}
-      >
-        <div className="max-w-2xl mx-auto p-6 space-y-6">
-          <StyledCard className="text-center p-8">
-            <div className="space-y-4">
-              <div className="text-6xl">{event.icon}</div>
-              <h2 className="text-2xl font-bold">Practice Complete!</h2>
-              <div className="text-4xl font-bold text-fbla-blue">{percentage}%</div>
-              <p className="text-gray-600">
-                You got {correctAnswers} out of {totalQuestions} questions correct
-              </p>
-              
-              <div className="flex justify-center space-x-4 mt-6">
-                <Button onClick={handleRestartPractice} variant="outline">
-                  <RotateCcw className="w-4 h-4 mr-2" />
-                  Practice Again
-                </Button>
-                <Button onClick={handleBackToPractice}>
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back to Practice
-                </Button>
-              </div>
-            </div>
-          </StyledCard>
-        </div>
-      </PageLayout>
-    );
-  }
+  // Remove inline results view - now navigates to dedicated results page
 
   // Main practice interface
   return (
