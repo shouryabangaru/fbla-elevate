@@ -10,6 +10,7 @@ import FlashcardsPage from "@/pages/FlashcardsPage";
 import LeaderboardPage from "@/pages/LeaderboardPage";
 import AchievementsPage from "@/pages/AchievementsPage";
 import PracticeQuestionsPage from "@/pages/PracticeQuestionsPage";
+import PracticeModePage from "@/pages/PracticeModePage";
 
 import RoleplayPracticePage from "@/pages/RoleplayPracticePage";
 import AboutUsPage from "@/pages/AboutUsPage";
@@ -25,6 +26,7 @@ function Router() {
         <Route path="/leaderboard" component={LeaderboardPage} />
         <Route path="/achievements" component={AchievementsPage} />
         <Route path="/practice" component={PracticeQuestionsPage} />
+        <Route path="/practice/:eventId" component={PracticeModePage} />
 
         <Route path="/roleplay" component={RoleplayPracticePage} />
         <Route path="/about" component={AboutUsPage} />

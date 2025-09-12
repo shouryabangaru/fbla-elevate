@@ -440,7 +440,11 @@ export default function PracticeQuestionsPage() {
                     
                     
                     <div className="event-actions">
-                      <Button className="action-button primary">
+                      <Button 
+                        className="action-button primary"
+                        onClick={() => window.location.href = `/practice/${event.id}`}
+                        data-testid={`button-start-practicing-${event.id}`}
+                      >
                         <PlayCircle className="w-4 h-4 mr-2" />
                         Start Practicing
                       </Button>
