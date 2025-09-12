@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useRoute, useLocation } from 'wouter';
+import { useQuery } from '@tanstack/react-query';
 import { PageLayout } from '@/components/shared/PageLayout';
 import { StyledCard } from '@/components/shared/StyledCard';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, RotateCcw, TrendingUp, CheckCircle, XCircle, Target, Clock, Award } from 'lucide-react';
+import type { Event } from '@shared/schema';
 
 interface ResultsData {
   eventId: string;
@@ -24,34 +26,40 @@ interface ResultsData {
   totalTime?: number; // in seconds
 }
 
-interface PracticeEvent {
-  id: string;
-  name: string;
-  description: string;
+interface PracticeEvent extends Event {
   icon: string;
-  difficulty: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
   category: string;
 }
 
-// Sample events data (matches PracticeModePage)
-const practiceEvents: PracticeEvent[] = [
-  {
-    id: 'accounting',
-    name: 'Accounting',
-    description: 'Master accounting principles, financial statements, and business calculations.',
-    icon: '📊',
-    difficulty: 'Intermediate',
-    category: 'Business',
-  },
-  {
-    id: 'marketing',
-    name: 'Marketing',
-    description: 'Learn marketing strategies, consumer behavior, and promotional techniques.',
-    icon: '📈',
-    difficulty: 'Beginner',
-    category: 'Business',
-  }
-];
+// Event metadata mapping (matches PracticeModePage)
+const eventMetadata: Record<string, { icon: string; difficulty: 'Beginner' | 'Intermediate' | 'Advanced'; category: string }> = {
+  'Accounting I': { icon: '📊', difficulty: 'Intermediate', category: 'Finance' },
+  'Accounting II': { icon: '🧮', difficulty: 'Advanced', category: 'Finance' },
+  'Banking & Financial Systems': { icon: '🏦', difficulty: 'Intermediate', category: 'Finance' },
+  'Business Management': { icon: '💼', difficulty: 'Intermediate', category: 'Management' },
+  'Business Law': { icon: '⚖️', difficulty: 'Advanced', category: 'Legal' },
+  'Client Service': { icon: '🤝', difficulty: 'Beginner', category: 'Communication' },
+  'Economics': { icon: '📈', difficulty: 'Intermediate', category: 'Finance' },
+  'Entrepreneurship': { icon: '🚀', difficulty: 'Advanced', category: 'Business' },
+  'Introduction to Business Concepts': { icon: '📋', difficulty: 'Beginner', category: 'Business' },
+  'Introduction to Financial Math': { icon: '🔢', difficulty: 'Beginner', category: 'Finance' },
+  'Introduction to Marketing Concepts': { icon: '📢', difficulty: 'Beginner', category: 'Marketing' },
+  'Introduction to Parliamentary Procedure': { icon: '🏛️', difficulty: 'Beginner', category: 'Leadership' },
+  'Management Information Systems': { icon: '💻', difficulty: 'Advanced', category: 'Technology' },
+  'Personal Finance': { icon: '💰', difficulty: 'Beginner', category: 'Finance' },
+  'Securities & Investments': { icon: '📊', difficulty: 'Advanced', category: 'Finance' },
+  'Business Ethics': { icon: '🎯', difficulty: 'Intermediate', category: 'Business' },
+  'International Business': { icon: '🌍', difficulty: 'Advanced', category: 'Business' },
+  'Marketing': { icon: '📈', difficulty: 'Intermediate', category: 'Marketing' },
+  'Sports & Entertainment Marketing': { icon: '🎭', difficulty: 'Intermediate', category: 'Marketing' },
+  'Hospitality Management': { icon: '🏨', difficulty: 'Intermediate', category: 'Management' },
+  'Human Resource Management': { icon: '👥', difficulty: 'Intermediate', category: 'Management' },
+  'Public Speaking': { icon: '🎤', difficulty: 'Beginner', category: 'Communication' },
+  'Future Business Leader': { icon: '👑', difficulty: 'Intermediate', category: 'Leadership' },
+  'Introduction to Event Planning': { icon: '📅', difficulty: 'Beginner', category: 'Management' },
+  'Sales Presentation': { icon: '💡', difficulty: 'Intermediate', category: 'Communication' },
+};
 
 export default function PracticeResultsPage() {
   const [match, params] = useRoute('/practice/:eventId/results');
@@ -59,23 +67,38 @@ export default function PracticeResultsPage() {
   const eventId = params?.eventId;
   
   const [resultsData, setResultsData] = useState<ResultsData | null>(null);
+  const [eventNotFound, setEventNotFound] = useState(false);
   
-  // Get event info
-  const event = practiceEvents.find(e => e.id === eventId);
+  // Fetch event details from database (matches PracticeModePage)
+  const { data: event, isLoading: eventLoading, error: eventError } = useQuery<Event>({
+    queryKey: ['/api/events', eventId],
+    enabled: !!eventId
+  });
   
-  // Load results data from sessionStorage
+  // Transform database event to component format with metadata
+  const practiceEvent: PracticeEvent | null = event ? {
+    ...event,
+    ...eventMetadata[event.name] || { icon: '📝', difficulty: 'Beginner' as const, category: 'General' }
+  } : null;
+  
+  // Load results data from sessionStorage with improved error handling
   useEffect(() => {
     if (!eventId) return;
     
     try {
       const storedResults = sessionStorage.getItem(`practiceResults:${eventId}`);
+      console.log('Loading results for eventId:', eventId);
+      console.log('Stored results:', storedResults ? 'found' : 'not found');
+      
       if (storedResults) {
         const parsedResults: ResultsData = JSON.parse(storedResults);
+        console.log('Parsed results:', parsedResults);
         setResultsData(parsedResults);
         // Clear the stored data after loading to prevent stale results
         sessionStorage.removeItem(`practiceResults:${eventId}`);
       } else {
         // No results found - user probably navigated directly to results page
+        console.log('No results data found in sessionStorage');
         setResultsData(null);
       }
     } catch (error) {
@@ -148,15 +171,103 @@ export default function PracticeResultsPage() {
     setLocation(`/practice/${eventId}`);
   };
 
-  // If no match or event not found
-  if (!match || !event || !resultsData) {
+  // Loading state
+  if (eventLoading && !resultsData) {
     return (
       <PageLayout
-        title="Results Not Found"
-        subtitle="Practice results could not be loaded"
+        title="Loading Results..."
+        subtitle="Loading your practice results"
       >
         <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
-          <p className="text-gray-600">Sorry, we couldn't load your practice results.</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-fbla-blue"></div>
+          <p className="text-gray-600">Loading your results...</p>
+        </div>
+      </PageLayout>
+    );
+  }
+  
+  // Error states with better diagnostics
+  if (!match) {
+    return (
+      <PageLayout
+        title="Invalid Results URL"
+        subtitle="The results URL is not valid"
+      >
+        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+          <p className="text-gray-600">The results URL format is not valid.</p>
+          <Button onClick={handleBackToPractice}>
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Practice
+          </Button>
+        </div>
+      </PageLayout>
+    );
+  }
+  
+  // Check for practice results data first
+  if (!resultsData) {
+    return (
+      <PageLayout
+        title="No Practice Results"
+        subtitle="Practice results data not found"
+      >
+        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+          <p className="text-gray-600">
+            No practice session data found. Complete a practice session first.
+          </p>
+          <Button onClick={handleBackToPractice}>
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Practice
+          </Button>
+        </div>
+      </PageLayout>
+    );
+  }
+  
+  // Event error handling
+  if (eventError) {
+    return (
+      <PageLayout
+        title="Error Loading Event"
+        subtitle="Failed to load event information"
+      >
+        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+          <p className="text-red-600">Failed to load event details. Please try again.</p>
+          <Button onClick={() => window.location.reload()}>
+            Retry
+          </Button>
+        </div>
+      </PageLayout>
+    );
+  }
+  
+  // If event not found in database but we have results, show results with basic info
+  if (!practiceEvent) {
+    return (
+      <PageLayout
+        title="Practice Results"
+        subtitle={`Practice completed on ${new Date(resultsData.completedAt).toLocaleDateString()}`}
+      >
+        <div className="max-w-4xl mx-auto p-6 space-y-6">
+          {/* Header with navigation */}
+          <div className="flex items-center justify-between">
+            <Button 
+              onClick={handleBackToPractice} 
+              variant="outline"
+              data-testid="button-back-to-practice"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Practice
+            </Button>
+          </div>
+          
+          <StyledCard className="p-6">
+            <p className="text-amber-600 mb-4">⚠️ Event details not found, but showing your practice results.</p>
+            <p>Event Name: {resultsData.eventName}</p>
+            <p>Questions Answered: {resultsData.answers.length}</p>
+            <p>Correct: {resultsData.answers.filter(a => a.correct).length}</p>
+          </StyledCard>
+          
           <Button onClick={handleBackToPractice}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Practice
@@ -173,7 +284,7 @@ export default function PracticeResultsPage() {
 
   return (
     <PageLayout
-      title={`${event.name} Results`}
+      title={`${practiceEvent.name} Results`}
       subtitle={`Practice completed on ${new Date(resultsData.completedAt).toLocaleDateString()}`}
     >
       <div className="max-w-4xl mx-auto p-6 space-y-6">
@@ -189,20 +300,20 @@ export default function PracticeResultsPage() {
           </Button>
           
           <div className="flex items-center space-x-4">
-            <Badge className={getDifficultyColor(event.difficulty)}>
-              {event.difficulty}
+            <Badge className={getDifficultyColor(practiceEvent.difficulty)}>
+              {practiceEvent.difficulty}
             </Badge>
-            <Badge variant="outline">{event.category}</Badge>
+            <Badge variant="outline">{practiceEvent.category}</Badge>
           </div>
         </div>
 
         {/* Overall Score Card */}
         <StyledCard className="text-center p-8">
           <div className="space-y-6">
-            <div className="text-6xl">{event.icon}</div>
+            <div className="text-6xl">{practiceEvent.icon}</div>
             <div>
               <h2 className="text-3xl font-bold mb-2">Practice Complete!</h2>
-              <p className="text-gray-600">Here's how you performed on {event.name}</p>
+              <p className="text-gray-600">Here's how you performed on {practiceEvent.name}</p>
             </div>
             
             {/* Score Circle */}
@@ -309,7 +420,7 @@ export default function PracticeResultsPage() {
                 <h4 className="font-medium mb-2">Strengths</h4>
                 {metrics.percentage >= 70 ? (
                   <p className="text-sm text-gray-600">
-                    Great work! You demonstrated solid understanding of {event.name} concepts.
+                    Great work! You demonstrated solid understanding of {practiceEvent.name} concepts.
                   </p>
                 ) : (
                   <p className="text-sm text-gray-600">

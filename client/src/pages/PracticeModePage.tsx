@@ -85,6 +85,10 @@ export default function PracticeModePage() {
   const [practiceComplete, setPracticeComplete] = useState(false);
   const [answers, setAnswers] = useState<{ questionId: string; selectedAnswer: number; correct: boolean }[]>([]);
 
+  // Loading state for both event and questions
+  const isLoading = eventLoading || questionsLoading;
+  const error = eventError || questionsError;
+
   // Transform database questions to component format and combine event with metadata
   const questions: ComponentQuestion[] = dbQuestions ? dbQuestions.map(transformQuestion) : [];
   const practiceEvent: PracticeEvent | null = event ? {
@@ -93,12 +97,21 @@ export default function PracticeModePage() {
   } : null;
   const currentQuestion = questions[currentQuestionIndex];
   
-  // Loading state for both event and questions
-  const isLoading = eventLoading || questionsLoading;
-  const error = eventError || questionsError;
+  // Debug logging for question state
+  console.log('PracticeModePage render:', {
+    eventId,
+    currentQuestionIndex,
+    questionsLength: questions.length,
+    currentQuestionExists: !!currentQuestion,
+    currentQuestionId: currentQuestion?.id,
+    dbQuestionsLength: dbQuestions?.length,
+    isLoading,
+    error: !!error
+  });
 
   // Reset state when component mounts or event changes
   useEffect(() => {
+    console.log('Resetting practice state for eventId:', eventId);
     setCurrentQuestionIndex(0);
     setSelectedAnswer(null);
     setShowFeedback(false);
@@ -106,6 +119,17 @@ export default function PracticeModePage() {
     setPracticeComplete(false);
     setAnswers([]);
   }, [eventId]);
+
+  // Validate currentQuestionIndex bounds when questions array changes
+  useEffect(() => {
+    if (questions.length > 0 && currentQuestionIndex >= questions.length) {
+      console.warn('Current question index out of bounds, resetting to 0:', {
+        currentQuestionIndex,
+        questionsLength: questions.length
+      });
+      setCurrentQuestionIndex(0);
+    }
+  }, [questions.length, currentQuestionIndex]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -128,7 +152,7 @@ export default function PracticeModePage() {
           answerIndex = key.charCodeAt(0) - 'a'.charCodeAt(0);
         }
         
-        if (answerIndex < currentQuestion.options.length) {
+        if (answerIndex < (currentQuestion?.options?.length || 0)) {
           setSelectedAnswer(answerIndex);
         }
       }
@@ -178,12 +202,24 @@ export default function PracticeModePage() {
 
   // Handle moving to next question
   const handleNextQuestion = () => {
+    console.log('handleNextQuestion called:', {
+      currentQuestionIndex,
+      questionsLength: questions.length,
+      nextIndex: currentQuestionIndex + 1,
+      hasNextQuestion: currentQuestionIndex < questions.length - 1,
+      questions: questions.map(q => ({ id: q.id, question: q.question.substring(0, 50) + '...' }))
+    });
+    
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
+      const nextIndex = currentQuestionIndex + 1;
+      console.log('Moving to next question:', { nextIndex, nextQuestion: questions[nextIndex] });
+      
+      setCurrentQuestionIndex(nextIndex);
       setSelectedAnswer(null);
       setShowFeedback(false);
       setIsCorrect(false);
     } else {
+      console.log('Practice complete, finishing...');
       handleFinishPractice();
     }
   };
@@ -195,8 +231,13 @@ export default function PracticeModePage() {
 
   // Navigate to results page
   const handleFinishPractice = () => {
-    // Save practice results to sessionStorage for results page
-    if (eventId && practiceEvent) {
+    // Save practice results to sessionStorage for results page with error handling
+    if (!eventId || !practiceEvent) {
+      console.error('Cannot save results: missing eventId or practiceEvent', { eventId, practiceEvent });
+      return;
+    }
+
+    try {
       const resultsData = {
         eventId,
         eventName: practiceEvent.name,
@@ -217,10 +258,33 @@ export default function PracticeModePage() {
         totalTime: undefined // Could add timer in future
       };
       
-      sessionStorage.setItem(`practiceResults:${eventId}`, JSON.stringify(resultsData));
+      console.log('Saving practice results for eventId:', eventId);
+      console.log('Results data:', resultsData);
+      
+      // Store with error checking
+      const storageKey = `practiceResults:${eventId}`;
+      const serializedData = JSON.stringify(resultsData);
+      sessionStorage.setItem(storageKey, serializedData);
+      
+      // Verify the data was stored correctly
+      const storedData = sessionStorage.getItem(storageKey);
+      if (!storedData) {
+        console.error('Failed to store results data to sessionStorage');
+        return;
+      }
+      
+      console.log('Successfully stored results data, navigating to results page');
+      
+      // Add a small delay to ensure storage is complete before navigation
+      setTimeout(() => {
+        setLocation(`/practice/${eventId}/results`);
+      }, 10);
+      
+    } catch (error) {
+      console.error('Error saving practice results:', error);
+      // Still navigate but user will see error page
+      setLocation(`/practice/${eventId}/results`);
     }
-    
-    setLocation(`/practice/${eventId}/results`);
   };
 
   // Handle restarting practice
@@ -316,6 +380,30 @@ export default function PracticeModePage() {
     );
   }
 
+  // If currentQuestion is not available (safety check)
+  if (!currentQuestion) {
+    console.error('Current question not found:', { currentQuestionIndex, questionsLength: questions.length, questions });
+    return (
+      <PageLayout
+        title={practiceEvent?.name || 'Event'}
+        subtitle="Question not available"
+      >
+        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+          <p className="text-gray-600">Unable to load question. Please try again.</p>
+          <div className="space-x-3">
+            <Button onClick={() => setCurrentQuestionIndex(0)} variant="outline">
+              Restart Practice
+            </Button>
+            <Button onClick={handleBackToPractice}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Practice
+            </Button>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
   // Remove inline results view - now navigates to dedicated results page
 
   // Main practice interface
@@ -362,12 +450,12 @@ export default function PracticeModePage() {
         <StyledCard className="p-8">
           <div className="space-y-6">
             <h2 className="text-xl font-semibold" data-testid="question-text">
-              {currentQuestion.question}
+              {currentQuestion?.question || 'Loading question...'}
             </h2>
             
             {/* Answer options */}
             <div className="space-y-3">
-              {currentQuestion.options.map((option, index) => (
+              {(currentQuestion?.options || []).map((option, index) => (
                 <button
                   key={index}
                   onClick={() => handleAnswerSelect(index)}
@@ -376,11 +464,11 @@ export default function PracticeModePage() {
                   className={`w-full p-4 text-left rounded-lg border transition-all ${
                     selectedAnswer === index
                       ? showFeedback
-                        ? index === currentQuestion.correctAnswer
+                        ? index === (currentQuestion?.correctAnswer ?? -1)
                           ? 'bg-green-50 border-green-500 text-green-800'
                           : 'bg-red-50 border-red-500 text-red-800'
                         : 'bg-fbla-blue text-white border-fbla-blue'
-                      : showFeedback && index === currentQuestion.correctAnswer
+                      : showFeedback && index === (currentQuestion?.correctAnswer ?? -1)
                       ? 'bg-green-50 border-green-500 text-green-800'
                       : 'bg-white border-gray-200 hover:border-fbla-blue hover:bg-gray-50'
                   } ${showFeedback ? 'cursor-not-allowed' : 'cursor-pointer'}`}
@@ -390,10 +478,10 @@ export default function PracticeModePage() {
                       {String.fromCharCode(65 + index)}
                     </span>
                     <span>{option}</span>
-                    {showFeedback && index === currentQuestion.correctAnswer && (
+                    {showFeedback && index === (currentQuestion?.correctAnswer ?? -1) && (
                       <CheckCircle className="w-5 h-5 text-green-600 ml-auto" />
                     )}
-                    {showFeedback && selectedAnswer === index && index !== currentQuestion.correctAnswer && (
+                    {showFeedback && selectedAnswer === index && index !== (currentQuestion?.correctAnswer ?? -1) && (
                       <XCircle className="w-5 h-5 text-red-600 ml-auto" />
                     )}
                   </div>
@@ -416,7 +504,7 @@ export default function PracticeModePage() {
                     <p className={`font-medium ${isCorrect ? 'text-green-800' : 'text-red-800'}`}>
                       {isCorrect ? 'Correct!' : 'Incorrect'}
                     </p>
-                    <p className="text-gray-700 mt-1">{currentQuestion.explanation}</p>
+                    <p className="text-gray-700 mt-1">{currentQuestion?.explanation || 'No explanation available.'}</p>
                   </div>
                 </div>
               </div>

@@ -4,7 +4,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
-import { Navbar } from "@/components/Navbar";
 import HomePage from "@/pages/HomePage";
 import FlashcardsPage from "@/pages/FlashcardsPage";
 import LeaderboardPage from "@/pages/LeaderboardPage";
@@ -20,7 +19,6 @@ import NotFound from "@/pages/not-found";
 function Router() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
       <Switch>
         <Route path="/" component={HomePage} />
         <Route path="/flashcards" component={FlashcardsPage} />

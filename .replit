@@ -42,5 +42,13 @@ externalPort = 80
 localPort = 33171
 externalPort = 3000
 
+[[ports]]
+localPort = 37347
+externalPort = 3002
+
+[[ports]]
+localPort = 39231
+externalPort = 3001
+
 [agent]
 integrations = ["firebase_barebones_javascript==1.0.0", "javascript_database==1.0.0"]
