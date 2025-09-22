@@ -600,11 +600,465 @@ export async function seedAccountingIIQuestions() {
   console.log(`✅ Successfully added ${accountingQuestions.length} questions to Accounting II`);
 }
 
+export async function seedAccountingIIExtensionQuestions() {
+  console.log("🌱 Seeding Accounting II additional questions (54-100)...");
+  
+  const additionalQuestions = [
+    {
+      question: "When declaring a cash dividend, which account is debited?",
+      optionA: "Common Stock",
+      optionB: "Cash",
+      optionC: "Retained Earnings",
+      optionD: "Additional Paid-in Capital",
+      correctAnswer: 'C' as const,
+      explanation: "Declaring a cash dividend reduces the company's retained earnings (the pool of profits available for distribution). The entry is a debit to Retained Earnings and a credit to Dividends Payable."
+    },
+    {
+      question: "How are profits typically divided in the absence of a partnership agreement?",
+      optionA: "According to capital contributions",
+      optionB: "Equally among partners",
+      optionC: "Based on time invested",
+      optionD: "Based on seniority",
+      correctAnswer: 'B' as const,
+      explanation: "The Uniform Partnership Act, which governs partnerships in the absence of a specific agreement, states that profits and losses are to be shared equally among the partners, regardless of their capital contributions or time invested."
+    },
+    {
+      question: "If a partner withdraws from a partnership, the remaining partners must:",
+      optionA: "Pay the departing partner a salary",
+      optionB: "Revalue the partnership assets",
+      optionC: "Reallocate ownership interests",
+      optionD: "Liquidate the business",
+      correctAnswer: 'B' as const,
+      explanation: "When a partner leaves, the old partnership is legally dissolved. To ensure fairness in the final settlement with the withdrawing partner, the partnership's assets and liabilities are revalued to their current fair market value. This establishes the true worth of the partner's capital balance."
+    },
+    {
+      question: "Which organization issues the Generally Accepted Accounting Principles (GAAP) in the U.S.?",
+      optionA: "IRS",
+      optionB: "AICPA",
+      optionC: "SEC",
+      optionD: "FASB",
+      correctAnswer: 'D' as const,
+      explanation: "The Financial Accounting Standards Board (FASB) is the private, non-profit organization responsible for establishing and improving financial accounting and reporting standards (GAAP) for public and private companies in the United States."
+    },
+    {
+      question: "Which of the following is considered unethical in accounting?",
+      optionA: "Delaying revenue recognition to the next period",
+      optionB: "Accrual-based revenue reporting",
+      optionC: "Using estimated depreciation",
+      optionD: "Providing financial forecasts",
+      correctAnswer: 'A' as const,
+      explanation: "The revenue recognition principle requires that revenue be recorded in the period it is earned. Intentionally delaying revenue recognition to manipulate financial results (e.g., to smooth income) is a violation of ethical standards and accounting principles."
+    },
+    {
+      question: "Which financial statement reports a company's assets and liabilities at a specific point in time?",
+      optionA: "Statement of Cash Flows",
+      optionB: "Balance Sheet",
+      optionC: "Income Statement",
+      optionD: "Statement of Stockholders' Equity",
+      correctAnswer: 'B' as const,
+      explanation: "The Balance Sheet (or Statement of Financial Position) is a snapshot of a company's assets, liabilities, and equity at a specific point in time, such as the end of a quarter or year."
+    },
+    {
+      question: "Return on equity (ROE) is calculated by dividing net income by:",
+      optionA: "Total liabilities",
+      optionB: "Total assets",
+      optionC: "Average stockholders' equity",
+      optionD: "Retained earnings",
+      correctAnswer: 'C' as const,
+      explanation: "Return on Equity (ROE) measures profitability relative to shareholders' investment. The formula is Net Income / Average Stockholders' Equity. Using the average equity accounts for changes that occurred during the period."
+    },
+    {
+      question: "Which of the following accounts would normally have a credit balance?",
+      optionA: "Accounts Receivable",
+      optionB: "Sales Revenue",
+      optionC: "Supplies",
+      optionD: "Cash",
+      correctAnswer: 'B' as const,
+      explanation: "Revenue accounts, like Sales Revenue, have normal credit balances because they increase equity. Assets (like Accounts Receivable, Supplies, and Cash) have normal debit balances."
+    },
+    {
+      question: "What type of account is Unearned Revenue?",
+      optionA: "Asset",
+      optionB: "Revenue",
+      optionC: "Liability",
+      optionD: "Expense",
+      correctAnswer: 'C' as const,
+      explanation: "Unearned Revenue represents cash received from a customer for services or goods not yet provided. Because the company has an obligation (a liability) to deliver the product or service in the future, it is classified as a liability."
+    },
+    {
+      question: "Which inventory costing method tends to result in higher income during periods of rising prices?",
+      optionA: "FIFO",
+      optionB: "LIFO",
+      optionC: "Weighted Average",
+      optionD: "Specific Identification",
+      correctAnswer: 'A' as const,
+      explanation: "During rising prices, FIFO (First-In, First-Out) assigns the oldest, lowest costs to Cost of Goods Sold. This results in a lower COGS and a higher reported net income compared to other methods like LIFO."
+    },
+    {
+      question: "If ending inventory is overstated, what is the impact on net income?",
+      optionA: "No impact",
+      optionB: "Net income is understated",
+      optionC: "Net income is overstated",
+      optionD: "Cannot be determined",
+      correctAnswer: 'C' as const,
+      explanation: "The formula for Cost of Goods Sold is: Beginning Inventory + Purchases - Ending Inventory. If Ending Inventory is overstated, COGS is understated. If COGS is understated, Net Income is overstated."
+    },
+    {
+      question: "Break-even point is the level of sales at which:",
+      optionA: "Total revenue equals total expenses",
+      optionB: "Profit is maximized",
+      optionC: "Variable costs are minimized",
+      optionD: "Fixed costs are zero",
+      correctAnswer: 'A' as const,
+      explanation: "The break-even point is the exact sales volume where a company's total revenues equal its total expenses, resulting in zero profit or loss."
+    },
+    {
+      question: "The formula for computing contribution margin is:",
+      optionA: "Sales – Fixed Costs",
+      optionB: "Sales – Variable Costs",
+      optionC: "Net Income + Operating Expenses",
+      optionD: "Gross Profit – Operating Expenses",
+      correctAnswer: 'B' as const,
+      explanation: "Contribution Margin is the amount of revenue remaining after subtracting all variable costs. It is the amount that \"contributes\" to covering fixed costs and generating profit."
+    },
+    {
+      question: "A company uses the allowance method to account for uncollectible accounts. What is the journal entry to write off a specific account?",
+      optionA: "Debit Bad Debt Expense; Credit Accounts Receivable",
+      optionB: "Debit Allowance for Doubtful Accounts; Credit Accounts Receivable",
+      optionC: "Debit Accounts Receivable; Credit Allowance for Doubtful Accounts",
+      optionD: "Debit Cash; Credit Allowance for Doubtful Accounts",
+      correctAnswer: 'B' as const,
+      explanation: "When a specific customer account is deemed uncollectible, it is written off. This entry reduces both the Allowance for Doubtful Accounts (the estimate) and Accounts Receivable (the specific asset). No expense is recorded at the time of write-off under the allowance method."
+    },
+    {
+      question: "Which of the following documents initiates the accounts payable process?",
+      optionA: "Purchase order",
+      optionB: "Sales invoice",
+      optionC: "Shipping document",
+      optionD: "Purchase invoice",
+      correctAnswer: 'A' as const,
+      explanation: "The purchase order is the document issued by the buyer to the vendor authorizing the purchase. It is the first document in the sequence that initiates the accounts payable process."
+    },
+    {
+      question: "Which of the following taxes is only paid by the employer?",
+      optionA: "Federal income tax",
+      optionB: "FICA–Social Security",
+      optionC: "FICA–Medicare",
+      optionD: "FUTA",
+      correctAnswer: 'D' as const,
+      explanation: "Federal Unemployment Tax (FUTA) is paid solely by the employer to fund state unemployment agencies. It is not withheld from the employee's wages."
+    },
+    {
+      question: "Which document is completed by an employee to indicate tax withholding preferences?",
+      optionA: "W-2",
+      optionB: "W-4",
+      optionC: "1099-MISC",
+      optionD: "1040EZ",
+      correctAnswer: 'B' as const,
+      explanation: "Form W-4, the Employee's Withholding Certificate, is filled out by the employee upon hire. It provides information on filing status and allowances so the employer can calculate how much federal income tax to withhold."
+    },
+    {
+      question: "Depreciation expense is reported on which financial statement?",
+      optionA: "Balance Sheet",
+      optionB: "Statement of Owner's Equity",
+      optionC: "Income Statement",
+      optionD: "Statement of Cash Flows",
+      correctAnswer: 'C' as const,
+      explanation: "Depreciation Expense is an operating expense and is reported on the Income Statement. The related accumulated depreciation account is reported on the Balance Sheet."
+    },
+    {
+      question: "Which depreciation method results in the same depreciation expense each year?",
+      optionA: "Straight-line",
+      optionB: "Double declining balance",
+      optionC: "Units-of-production",
+      optionD: "Sum-of-the-years'-digits",
+      correctAnswer: 'A' as const,
+      explanation: "The straight-line method allocates the depreciable cost of an asset evenly over its useful life, resulting in the same depreciation expense each full year."
+    },
+    {
+      question: "Preferred stock differs from common stock in that it typically:",
+      optionA: "Has voting rights",
+      optionB: "Is convertible into liabilities",
+      optionC: "Pays fixed dividends",
+      optionD: "Has a lower par value",
+      correctAnswer: 'C' as const,
+      explanation: "The key feature of preferred stock is that it usually pays a fixed dividend rate. Preferred stockholders typically do not have voting rights, unlike common stockholders."
+    },
+    {
+      question: "What is the effect of issuing common stock above par value?",
+      optionA: "Increase in liabilities",
+      optionB: "Increase in paid-in capital",
+      optionC: "Decrease in retained earnings",
+      optionD: "Decrease in assets",
+      correctAnswer: 'B' as const,
+      explanation: "When stock is issued above par value, the Common Stock account is credited for the par value. The amount received above par is credited to Additional Paid-in Capital, which increases total paid-in capital."
+    },
+    {
+      question: "In a partnership, drawings by a partner:",
+      optionA: "Are treated as a business expense",
+      optionB: "Increase the partner's capital account",
+      optionC: "Reduce the partner's capital account",
+      optionD: "Are not recorded in the books",
+      correctAnswer: 'C' as const,
+      explanation: "Drawings are withdrawals of assets from the partnership by a partner for personal use. These withdrawals reduce that partner's capital account balance."
+    },
+    {
+      question: "What happens when a new partner is admitted into an existing partnership?",
+      optionA: "Assets are distributed to old partners",
+      optionB: "The old partnership ends, and a new one begins",
+      optionC: "The partnership dissolves permanently",
+      optionD: "Only the capital account changes",
+      correctAnswer: 'B' as const,
+      explanation: "Legally, the admission of a new partner dissolves the old partnership and creates a new partnership entity. This often requires revaluation of assets and a new partnership agreement."
+    },
+    {
+      question: "Which of the following best describes ethical behavior in accounting?",
+      optionA: "Following internal company policies",
+      optionB: "Recording revenues early to boost performance",
+      optionC: "Providing accurate and honest financial information",
+      optionD: "Manipulating data for investor confidence",
+      correctAnswer: 'C' as const,
+      explanation: "The cornerstone of ethical behavior in accounting is integrity, which involves being honest, candid, and free of conflicts of interest. This means providing financial information that is accurate and honest."
+    },
+    {
+      question: "The Sarbanes-Oxley Act was passed to:",
+      optionA: "Lower corporate tax rates",
+      optionB: "Encourage public trading of stocks",
+      optionC: "Prevent accounting fraud and increase transparency",
+      optionD: "Simplify payroll calculations",
+      correctAnswer: 'C' as const,
+      explanation: "The Sarbanes-Oxley Act (SOX) of 2002 was enacted in response to major accounting scandals. Its primary goals are to prevent corporate accounting fraud and improve the accuracy and transparency of financial reporting."
+    },
+    {
+      question: "Which of the following is a measure of a company's liquidity?",
+      optionA: "Return on assets",
+      optionB: "Current ratio",
+      optionC: "Gross profit margin",
+      optionD: "Debt-to-equity ratio",
+      correctAnswer: 'B' as const,
+      explanation: "Liquidity refers to a company's ability to meet its short-term obligations. The Current Ratio (Current Assets / Current Liabilities) is a primary measure of liquidity."
+    },
+    {
+      question: "Which financial ratio is most useful in evaluating a company's ability to pay short-term obligations?",
+      optionA: "Quick ratio",
+      optionB: "Return on equity",
+      optionC: "Inventory turnover",
+      optionD: "Price-to-earnings ratio",
+      correctAnswer: 'A' as const,
+      explanation: "The Quick (Acid-Test) Ratio is a more stringent measure of liquidity than the current ratio because it excludes less liquid current assets like inventory. It measures the ability to pay short-term obligations using only the most liquid assets (cash, marketable securities, and receivables)."
+    },
+    {
+      question: "Which of the following entries is correct for purchasing supplies on account?",
+      optionA: "Debit Accounts Payable, Credit Supplies",
+      optionB: "Debit Supplies, Credit Accounts Payable",
+      optionC: "Debit Supplies Expense, Credit Accounts Receivable",
+      optionD: "Debit Cash, Credit Supplies",
+      correctAnswer: 'B' as const,
+      explanation: "Purchasing supplies increases the asset Supplies (debit) and creates a liability, Accounts Payable (credit), because the purchase was made \"on account\" (on credit)."
+    },
+    {
+      question: "Adjusting entries are made:",
+      optionA: "After the trial balance is prepared",
+      optionB: "Before transactions are recorded",
+      optionC: "To close temporary accounts",
+      optionD: "On a quarterly basis only",
+      correctAnswer: 'A' as const,
+      explanation: "In the accounting cycle, adjusting entries are journalized and posted after the unadjusted trial balance is prepared but before the financial statements are created."
+    },
+    {
+      question: "Which of the following accounts is used in a perpetual inventory system?",
+      optionA: "Purchases",
+      optionB: "Cost of Goods Sold",
+      optionC: "Inventory Loss",
+      optionD: "Purchase Discounts",
+      correctAnswer: 'B' as const,
+      explanation: "A key feature of a perpetual inventory system is that the Cost of Goods Sold account is updated continuously with each sale. Accounts like \"Purchases\" and \"Purchase Discounts\" are used in a periodic system."
+    },
+    {
+      question: "In a perpetual inventory system, when merchandise is returned by a customer, which accounts are affected?",
+      optionA: "Sales Returns and Allowances and Inventory",
+      optionB: "Purchases and Cost of Goods Sold",
+      optionC: "Accounts Payable and Inventory",
+      optionD: "Inventory and Purchases Returns",
+      correctAnswer: 'A' as const,
+      explanation: "In a perpetual system, a sales return requires two entries: 1) Debit to Sales Returns & Allowances (a contra-revenue account) and a credit to Accounts Receivable/Cash, and 2) Debit to Inventory and a credit to Cost of Goods Sold (to reverse the cost of the sale)."
+    },
+    {
+      question: "Which of the following would be considered a fixed cost?",
+      optionA: "Direct labor",
+      optionB: "Factory utilities",
+      optionC: "Rent",
+      optionD: "Raw materials",
+      correctAnswer: 'C' as const,
+      explanation: "A fixed cost remains constant in total regardless of the level of production or sales activity (within a relevant range). Rent is a classic example. The other options are variable costs."
+    },
+    {
+      question: "If sales increase but fixed costs remain the same, what happens to operating leverage?",
+      optionA: "It increases",
+      optionB: "It decreases",
+      optionC: "It remains unchanged",
+      optionD: "It becomes negative",
+      correctAnswer: 'B' as const,
+      explanation: "Operating leverage measures the proportion of fixed costs in a company's cost structure. If sales increase while fixed costs stay the same, the percentage of fixed costs to total costs decreases, thereby reducing the degree of operating leverage."
+    },
+    {
+      question: "Which method of estimating uncollectible accounts emphasizes the balance sheet?",
+      optionA: "Direct write-off method",
+      optionB: "Percentage of sales method",
+      optionC: "Allowance method based on aging",
+      optionD: "Straight-line method",
+      correctAnswer: 'C' as const,
+      explanation: "The aging of receivables method focuses on estimating the desired ending balance for the Allowance for Doubtful Accounts (a balance sheet account) based on the age and collectibility of existing receivables."
+    },
+    {
+      question: "Trade credit terms of \"2/10, net 30\" mean:",
+      optionA: "A 10% discount if paid within 2 days",
+      optionB: "No interest if paid in 30 days",
+      optionC: "A 2% discount if paid within 10 days",
+      optionD: "The invoice must be paid within 2 days",
+      correctAnswer: 'C' as const,
+      explanation: "The terms \"2/10, net 30\" mean the buyer can take a 2% discount if the invoice is paid within 10 days. Otherwise, the full (net) amount is due in 30 days."
+    },
+    {
+      question: "The employer's portion of FICA taxes is recorded as:",
+      optionA: "Payroll tax expense",
+      optionB: "Employee deduction",
+      optionC: "Liability reduction",
+      optionD: "Salaries expense",
+      correctAnswer: 'A' as const,
+      explanation: "The employer's share of FICA (Social Security and Medicare) taxes is an additional expense to the company. It is debited to an expense account, typically called Payroll Tax Expense."
+    },
+    {
+      question: "Which of the following would not be included in gross wages?",
+      optionA: "Bonus",
+      optionB: "Overtime",
+      optionC: "401(k) deduction",
+      optionD: "Regular pay",
+      correctAnswer: 'C' as const,
+      explanation: "Gross wages represent total earnings before any deductions are subtracted. A 401(k) deduction is a voluntary deduction taken from gross wages to arrive at net pay. It is not part of the gross amount."
+    },
+    {
+      question: "Which of the following assets is not depreciated?",
+      optionA: "Delivery truck",
+      optionB: "Equipment",
+      optionC: "Land",
+      optionD: "Building",
+      correctAnswer: 'C' as const,
+      explanation: "Land is considered to have an indefinite useful life and its value typically does not decline over time (it may even appreciate). Therefore, it is not depreciated. All other listed assets have finite useful lives."
+    },
+    {
+      question: "When a company disposes of equipment at a gain, it should:",
+      optionA: "Debit Loss on Sale",
+      optionB: "Credit Accumulated Depreciation",
+      optionC: "Credit Gain on Disposal",
+      optionD: "Debit Equipment",
+      correctAnswer: 'C' as const,
+      explanation: "If the cash received from the sale of an asset is greater than its book value, the company has a gain. This gain is recorded as a credit to an account such as Gain on Disposal of Equipment."
+    },
+    {
+      question: "Dividends declared but not yet paid are recorded as:",
+      optionA: "An expense",
+      optionB: "A current liability",
+      optionC: "A reduction in revenue",
+      optionD: "A prepaid asset",
+      correctAnswer: 'B' as const,
+      explanation: "When a company declares a dividend, it creates a legal obligation to pay shareholders. This obligation is recorded as a current liability called Dividends Payable until the payment is made."
+    },
+    {
+      question: "Which document authorizes the issuance of stock?",
+      optionA: "Prospectus",
+      optionB: "Articles of Incorporation",
+      optionC: "Certificate of Deposit",
+      optionD: "Income Statement",
+      correctAnswer: 'B' as const,
+      explanation: "The Articles of Incorporation is the legal document filed with the state that creates the corporation and specifies key details including the types and amounts of stock the corporation is authorized to issue."
+    },
+    {
+      question: "Which financial statement shows each partner's capital balance?",
+      optionA: "Balance Sheet",
+      optionB: "Statement of Partnership Equity",
+      optionC: "Statement of Cash Flows",
+      optionD: "Income Statement",
+      correctAnswer: 'B' as const,
+      explanation: "The Statement of Partnership Equity (similar to a Statement of Stockholders' Equity for corporations) shows the changes in each partner's capital account during the period, including contributions, withdrawals, and their share of partnership income or loss."
+    },
+    {
+      question: "A partner contributes equipment to a new partnership. The equipment should be recorded at:",
+      optionA: "Original purchase price",
+      optionB: "Market value",
+      optionC: "Book value",
+      optionD: "Zero",
+      correctAnswer: 'B' as const,
+      explanation: "When a partner contributes a non-cash asset to a partnership, it should be recorded at its current fair market value on the date of contribution. This ensures all partners receive fair credit for their contributions."
+    },
+    {
+      question: "Confidentiality in accounting refers to:",
+      optionA: "Hiding company losses",
+      optionB: "Not disclosing client information without permission",
+      optionC: "Encrypting financial statements",
+      optionD: "Avoiding audits",
+      correctAnswer: 'B' as const,
+      explanation: "Confidentiality is a fundamental principle in accounting ethics. It requires accountants to respect the confidentiality of information acquired as a result of professional relationships and not disclose any such information without proper authority or unless there is a legal or professional obligation to do so."
+    },
+    {
+      question: "An accountant who falsifies financial records is violating which principle?",
+      optionA: "Objectivity",
+      optionB: "Integrity",
+      optionC: "Competence",
+      optionD: "Due care",
+      correctAnswer: 'B' as const,
+      explanation: "Integrity is the fundamental principle that requires accountants to be straightforward and honest in all professional and business relationships. Falsifying financial records is a direct violation of the integrity principle."
+    },
+    {
+      question: "Which financial statement shows cash inflows and outflows?",
+      optionA: "Balance Sheet",
+      optionB: "Statement of Retained Earnings",
+      optionC: "Income Statement",
+      optionD: "Statement of Cash Flows",
+      correctAnswer: 'D' as const,
+      explanation: "The Statement of Cash Flows reports a company's cash receipts (inflows) and cash payments (outflows) during a specific period, organized into three categories: operating, investing, and financing activities."
+    },
+    {
+      question: "The primary purpose of financial statement analysis is to:",
+      optionA: "File tax returns",
+      optionB: "Identify accounting errors",
+      optionC: "Evaluate business performance",
+      optionD: "Prepare journal entries",
+      correctAnswer: 'C' as const,
+      explanation: "Financial statement analysis involves examining and interpreting financial statements to evaluate a company's performance, financial position, and future prospects. This helps stakeholders make informed economic decisions about investing, lending, or other business relationships."
+    }
+  ];
+
+  const accountingEvent = await getEventByName("Accounting II");
+  if (!accountingEvent) {
+    console.error("❌ Accounting II event not found");
+    return;
+  }
+
+  for (let i = 0; i < additionalQuestions.length; i++) {
+    const q = additionalQuestions[i];
+    await addQuestion(
+      accountingEvent.id,
+      q.question,
+      q.optionA,
+      q.optionB,
+      q.optionC,
+      q.optionD,
+      q.correctAnswer,
+      'Intermediate',
+      1
+    );
+  }
+  
+  console.log(`✅ Successfully added ${additionalQuestions.length} additional questions to Accounting II (Questions 54-100)`);
+}
+
 // Function to run the seeding (can be called directly)
 export async function runSeed() {
   try {
     await seedEvents();
     await seedAccountingIIQuestions();
+    await seedAccountingIIExtensionQuestions();
     console.log("🎉 Database seeding completed successfully!");
   } catch (error) {
     console.error("💥 Seeding failed:", error);

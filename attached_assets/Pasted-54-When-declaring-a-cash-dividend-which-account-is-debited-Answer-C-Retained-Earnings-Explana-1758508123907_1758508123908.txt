@@ -1,0 +1,281 @@
+54. When declaring a cash dividend, which account is debited?
+
+Answer: C) Retained Earnings
+
+Explanation: Declaring a cash dividend reduces the company's retained earnings (the pool of profits available for distribution). The entry is a debit to Retained Earnings and a credit to Dividends Payable.
+
+55. How are profits typically divided in the absence of a partnership agreement?
+
+Answer: B) Equally among partners
+
+Explanation: The Uniform Partnership Act, which governs partnerships in the absence of a specific agreement, states that profits and losses are to be shared equally among the partners, regardless of their capital contributions or time invested.
+
+56. If a partner withdraws from a partnership, the remaining partners must:
+
+Answer: B) Revalue the partnership assets
+
+Explanation: When a partner leaves, the old partnership is legally dissolved. To ensure fairness in the final settlement with the withdrawing partner, the partnership's assets and liabilities are revalued to their current fair market value. This establishes the true worth of the partner's capital balance.
+
+57. Which organization issues the Generally Accepted Accounting Principles (GAAP) in the U.S.?
+
+Answer: D) FASB
+
+Explanation: The Financial Accounting Standards Board (FASB) is the private, non-profit organization responsible for establishing and improving financial accounting and reporting standards (GAAP) for public and private companies in the United States.
+
+58. Which of the following is considered unethical in accounting?
+
+Answer: A) Delaying revenue recognition to the next period
+
+Explanation: The revenue recognition principle requires that revenue be recorded in the period it is earned. Intentionally delaying revenue recognition to manipulate financial results (e.g., to smooth income) is a violation of ethical standards and accounting principles.
+
+59. Which financial statement reports a company’s assets and liabilities at a specific point in time?
+
+Answer: B) Balance Sheet
+
+Explanation: The Balance Sheet (or Statement of Financial Position) is a snapshot of a company's assets, liabilities, and equity at a specific point in time, such as the end of a quarter or year.
+
+60. Return on equity (ROE) is calculated by dividing net income by:
+
+Answer: C) Average stockholders’ equity
+
+Explanation: Return on Equity (ROE) measures profitability relative to shareholders' investment. The formula is Net Income / Average Stockholders' Equity. Using the average equity accounts for changes that occurred during the period.
+
+61. Which of the following accounts would normally have a credit balance?
+
+Answer: B) Sales Revenue
+
+Explanation: Revenue accounts, like Sales Revenue, have normal credit balances because they increase equity. Assets (like Accounts Receivable, Supplies, and Cash) have normal debit balances.
+
+62. What type of account is Unearned Revenue?
+
+Answer: C) Liability
+
+Explanation: Unearned Revenue represents cash received from a customer for services or goods not yet provided. Because the company has an obligation (a liability) to deliver the product or service in the future, it is classified as a liability.
+
+63. Which inventory costing method tends to result in higher income during periods of rising prices?
+
+Answer: A) FIFO
+
+Explanation: During rising prices, FIFO (First-In, First-Out) assigns the oldest, lowest costs to Cost of Goods Sold. This results in a lower COGS and a higher reported net income compared to other methods like LIFO.
+
+64. If ending inventory is overstated, what is the impact on net income?
+
+Answer: C) Net income is overstated
+
+Explanation: The formula for Cost of Goods Sold is: Beginning Inventory + Purchases - Ending Inventory. If Ending Inventory is overstated, COGS is understated. If COGS is understated, Net Income is overstated.
+
+65. Break-even point is the level of sales at which:
+
+Answer: A) Total revenue equals total expenses
+
+Explanation: The break-even point is the exact sales volume where a company's total revenues equal its total expenses, resulting in zero profit or loss.
+
+66. The formula for computing contribution margin is:
+
+Answer: B) Sales – Variable Costs
+
+Explanation: Contribution Margin is the amount of revenue remaining after subtracting all variable costs. It is the amount that "contributes" to covering fixed costs and generating profit.
+
+67. A company uses the allowance method to account for uncollectible accounts. What is the journal entry to write off a specific account?
+
+Answer: B) Debit Allowance for Doubtful Accounts; Credit Accounts Receivable
+
+Explanation: When a specific customer account is deemed uncollectible, it is written off. This entry reduces both the Allowance for Doubtful Accounts (the estimate) and Accounts Receivable (the specific asset). No expense is recorded at the time of write-off under the allowance method.
+
+68. Which of the following documents initiates the accounts payable process?
+
+Answer: A) Purchase order
+
+Explanation: The purchase order is the document issued by the buyer to the vendor authorizing the purchase. It is the first document in the sequence that initiates the accounts payable process.
+
+69. Which of the following taxes is only paid by the employer?
+
+Answer: D) FUTA
+
+Explanation: Federal Unemployment Tax (FUTA) is paid solely by the employer to fund state unemployment agencies. It is not withheld from the employee's wages.
+
+70. Which document is completed by an employee to indicate tax withholding preferences?
+
+Answer: B) W-4
+
+Explanation: Form W-4, the Employee's Withholding Certificate, is filled out by the employee upon hire. It provides information on filing status and allowances so the employer can calculate how much federal income tax to withhold.
+
+71. Depreciation expense is reported on which financial statement?
+
+Answer: C) Income Statement
+
+Explanation: Depreciation Expense is an operating expense and is reported on the Income Statement. The related accumulated depreciation account is reported on the Balance Sheet.
+
+72. Which depreciation method results in the same depreciation expense each year?
+
+Answer: A) Straight-line
+
+Explanation: The straight-line method allocates the depreciable cost of an asset evenly over its useful life, resulting in the same depreciation expense each full year.
+
+73. Preferred stock differs from common stock in that it typically:
+
+Answer: C) Pays fixed dividends
+
+Explanation: The key feature of preferred stock is that it usually pays a fixed dividend rate. Preferred stockholders typically do not have voting rights, unlike common stockholders.
+
+74. What is the effect of issuing common stock above par value?
+
+Answer: B) Increase in paid-in capital
+
+Explanation: When stock is issued above par value, the Common Stock account is credited for the par value. The amount received above par is credited to Additional Paid-in Capital, which increases total paid-in capital.
+
+75. In a partnership, drawings by a partner:
+
+Answer: C) Reduce the partner’s capital account
+
+Explanation: Drawings are withdrawals of assets from the partnership by a partner for personal use. These withdrawals reduce that partner's capital account balance.
+
+76. What happens when a new partner is admitted into an existing partnership?
+
+Answer: B) The old partnership ends, and a new one begins
+
+Explanation: Legally, the admission of a new partner dissolves the old partnership and creates a new partnership entity. This often requires revaluation of assets and a new partnership agreement.
+
+77. Which of the following best describes ethical behavior in accounting?
+
+Answer: C) Providing accurate and honest financial information
+
+Explanation: The cornerstone of ethical behavior in accounting is integrity, which involves being honest, candid, and free of conflicts of interest. This means providing financial information that is accurate and honest.
+
+78. The Sarbanes-Oxley Act was passed to:
+
+Answer: C) Prevent accounting fraud and increase transparency
+
+Explanation: The Sarbanes-Oxley Act (SOX) of 2002 was enacted in response to major accounting scandals. Its primary goals are to prevent corporate accounting fraud and improve the accuracy and transparency of financial reporting.
+
+79. Which of the following is a measure of a company’s liquidity?
+
+Answer: B) Current ratio
+
+Explanation: Liquidity refers to a company's ability to meet its short-term obligations. The Current Ratio (Current Assets / Current Liabilities) is a primary measure of liquidity.
+
+80. Which financial ratio is most useful in evaluating a company’s ability to pay short-term obligations?
+
+Answer: A) Quick ratio
+
+Explanation: The Quick (Acid-Test) Ratio is a more stringent measure of liquidity than the current ratio because it excludes less liquid current assets like inventory. It measures the ability to pay short-term obligations using only the most liquid assets (cash, marketable securities, and receivables).
+
+81. Which of the following entries is correct for purchasing supplies on account?
+
+Answer: B) Debit Supplies, Credit Accounts Payable
+
+Explanation: Purchasing supplies increases the asset Supplies (debit) and creates a liability, Accounts Payable (credit), because the purchase was made "on account" (on credit).
+
+82. Adjusting entries are made:
+
+Answer: A) After the trial balance is prepared
+
+Explanation: In the accounting cycle, adjusting entries are journalized and posted after the unadjusted trial balance is prepared but before the financial statements are created.
+
+83. Which of the following accounts is used in a perpetual inventory system?
+
+Answer: B) Cost of Goods Sold
+
+Explanation: A key feature of a perpetual inventory system is that the Cost of Goods Sold account is updated continuously with each sale. Accounts like "Purchases" and "Purchase Discounts" are used in a periodic system.
+
+84. In a perpetual inventory system, when merchandise is returned by a customer, which accounts are affected?
+
+Answer: A) Sales Returns and Allowances and Inventory
+
+Explanation: In a perpetual system, a sales return requires two entries: 1) Debit to Sales Returns & Allowances (a contra-revenue account) and a credit to Accounts Receivable/Cash, and 2) Debit to Inventory and a credit to Cost of Goods Sold (to reverse the cost of the sale).
+
+85. Which of the following would be considered a fixed cost?
+
+Answer: C) Rent
+
+Explanation: A fixed cost remains constant in total regardless of the level of production or sales activity (within a relevant range). Rent is a classic example. The other options are variable costs.
+
+86. If sales increase but fixed costs remain the same, what happens to operating leverage?
+
+Answer: B) It decreases
+
+Explanation: Operating leverage measures the proportion of fixed costs in a company's cost structure. If sales increase while fixed costs stay the same, the percentage of fixed costs to total costs decreases, thereby reducing the degree of operating leverage.
+
+87. Which method of estimating uncollectible accounts emphasizes the balance sheet?
+
+Answer: C) Allowance method based on aging
+
+Explanation: The aging of receivables method focuses on estimating the desired ending balance for the Allowance for Doubtful Accounts (a balance sheet account) based on the age and collectibility of existing receivables.
+
+88. Trade credit terms of “2/10, net 30” mean:
+
+Answer: C) A 2% discount if paid within 10 days
+
+Explanation: The terms "2/10, net 30" mean the buyer can take a 2% discount if the invoice is paid within 10 days. Otherwise, the full (net) amount is due in 30 days.
+
+89. The employer’s portion of FICA taxes is recorded as:
+
+Answer: A) Payroll tax expense
+
+Explanation: The employer's share of FICA (Social Security and Medicare) taxes is an additional expense to the company. It is debited to an expense account, typically called Payroll Tax Expense.
+
+90. Which of the following would not be included in gross wages?
+
+Answer: C) 401(k) deduction
+
+Explanation: Gross wages represent total earnings before any deductions are subtracted. A 401(k) deduction is a voluntary deduction taken from gross wages to arrive at net pay. It is not part of the gross amount.
+
+91. Which of the following assets is not depreciated?
+
+Answer: C) Land
+
+Explanation: Land is considered to have an indefinite useful life and its value typically does not decline over time (it may even appreciate). Therefore, it is not depreciated. All other listed assets have finite useful lives.
+
+92. When a company disposes of equipment at a gain, it should:
+
+Answer: C) Credit Gain on Disposal
+
+Explanation: If the cash received from the sale of an asset is greater than its book value, the company has a gain. This gain is recorded as a credit to an account such as Gain on Disposal of Equipment.
+
+93. Dividends declared but not yet paid are recorded as:
+
+Answer: B) A current liability
+
+Explanation: Once a cash dividend is declared by the board of directors, it becomes a legal obligation of the corporation. Until it is paid, this obligation is recorded as a current liability called Dividends Payable.
+
+94. Which document authorizes the issuance of stock?
+
+Answer: B) Articles of Incorporation
+
+Explanation: The Articles of Incorporation (or Corporate Charter) are filed with the state to legally form a corporation. This document specifies the types and maximum number of shares the corporation is authorized to issue.
+
+95. Which financial statement shows each partner's capital balance?
+
+Answer: B) Statement of Partnership Equity
+
+Explanation: The Statement of Partners' Equity (or Statement of Partners' Capital) details the changes in each partner's capital account for the period, including investments, net income/loss allocation, and withdrawals.
+
+96. A partner contributes equipment to a new partnership. The equipment should be recorded at:
+
+Answer: B) Market value
+
+Explanation: To ensure equity among partners, non-cash assets contributed to a partnership are recorded at their fair market value on the date of contribution, as agreed upon by all partners.
+
+97. Confidentiality in accounting refers to:
+
+Answer: B) Not disclosing client information without permission
+
+Explanation: The ethical principle of confidentiality requires accountants to refrain from disclosing confidential client or employer information to third parties without specific consent, unless there is a legal or professional right or duty to disclose.
+
+98. An accountant who falsifies financial records is violating which principle?
+
+Answer: B) Integrity
+
+Explanation: Integrity is a fundamental ethical principle that requires accountants to be honest and candid within the constraints of confidentiality. Falsifying records is a direct and severe violation of integrity.
+
+99. Which financial statement shows cash inflows and outflows?
+
+Answer: D) Statement of Cash Flows
+
+Explanation: The Statement of Cash Flows summarizes a company's cash inflows (receipts) and cash outflows (payments) over a period of time, categorized into operating, investing, and financing activities.
+
+100. The primary purpose of financial statement analysis is to:
+
+Answer: C) Evaluate business performance
+
+Explanation: The primary purpose of analyzing financial statements is to evaluate a company's performance (profitability, liquidity, solvency), its financial position, and future potential to make informed economic decisions.

@@ -1,0 +1,285 @@
+54. (Corporate Accounting)
+ When declaring a cash dividend, which account is debited?
+ A. Common Stock
+ B. Cash
+ C. Retained Earnings
+ D. Additional Paid-in Capital
+55. (Partnerships)
+ How are profits typically divided in the absence of a partnership agreement?
+ A. According to capital contributions
+ B. Equally among partners
+ C. Based on time invested
+ D. Based on seniority
+56. (Partnerships)
+ If a partner withdraws from a partnership, the remaining partners must:
+ A. Pay the departing partner a salary
+ B. Revalue the partnership assets
+ C. Reallocate ownership interests
+ D. Liquidate the business
+57. (Ethics and Legal Responsibilities)
+ Which organization issues the Generally Accepted Accounting Principles (GAAP) in the U.S.?
+ A. IRS
+ B. AICPA
+ C. SEC
+ D. FASB
+58. (Ethics and Legal Responsibilities)
+ Which of the following is considered unethical in accounting?
+ A. Delaying revenue recognition to the next period
+ B. Accrual-based revenue reporting
+ C. Using estimated depreciation
+ D. Providing financial forecasts
+59. (Financial Statements and Analysis)
+ Which financial statement reports a company’s assets and liabilities at a specific point in time?
+ A. Statement of Cash Flows
+ B. Balance Sheet
+ C. Income Statement
+ D. Statement of Stockholders’ Equity
+60. (Financial Statements and Analysis)
+ Return on equity (ROE) is calculated by dividing net income by:
+ A. Total liabilities
+ B. Total assets
+ C. Average stockholders’ equity
+ D. Retained earnings
+61. (Accounting Process)
+ Which of the following accounts would normally have a credit balance?
+ A. Accounts Receivable
+ B. Sales Revenue
+ C. Supplies
+ D. Cash
+62. (Accounting Process)
+ What type of account is Unearned Revenue?
+ A. Asset
+ B. Revenue
+ C. Liability
+ D. Expense
+63. (Merchandising, Inventory, and Cost Accounting)
+ Which inventory costing method tends to result in higher income during periods of rising prices?
+ A. FIFO
+ B. LIFO
+ C. Weighted Average
+ D. Specific Identification
+64. (Merchandising, Inventory, and Cost Accounting)
+ If ending inventory is overstated, what is the impact on net income?
+ A. No impact
+ B. Net income is understated
+ C. Net income is overstated
+ D. Cannot be determined
+65. (Budgeting, Planning, and Financial Analysis)
+ Break-even point is the level of sales at which:
+ A. Total revenue equals total expenses
+ B. Profit is maximized
+ C. Variable costs are minimized
+ D. Fixed costs are zero
+66. (Budgeting, Planning, and Financial Analysis)
+ The formula for computing contribution margin is:
+ A. Sales – Fixed Costs
+ B. Sales – Variable Costs
+ C. Net Income + Operating Expenses
+ D. Gross Profit – Operating Expenses
+67. (Accounts Receivable/Payable)
+ A company uses the allowance method to account for uncollectible accounts. What is the journal entry to write off a specific account?
+ A. Debit Bad Debt Expense; Credit Accounts Receivable
+ B. Debit Allowance for Doubtful Accounts; Credit Accounts Receivable
+ C. Debit Accounts Receivable; Credit Allowance for Doubtful Accounts
+ D. Debit Cash; Credit Allowance for Doubtful Accounts
+68. (Accounts Receivable/Payable)
+ Which of the following documents initiates the accounts payable process?
+ A. Purchase order
+ B. Sales invoice
+ C. Shipping document
+ D. Purchase invoice
+69. (Payroll)
+ Which of the following taxes is only paid by the employer?
+ A. Federal income tax
+ B. FICA–Social Security
+ C. FICA–Medicare
+ D. FUTA
+70. (Payroll)
+ Which document is completed by an employee to indicate tax withholding preferences?
+ A. W-2
+ B. W-4
+ C. 1099-MISC
+ D. 1040EZ
+71. (Long-term Assets and Depreciation)
+ Depreciation expense is reported on which financial statement?
+ A. Balance Sheet
+ B. Statement of Owner’s Equity
+ C. Income Statement
+ D. Statement of Cash Flows
+72. (Long-term Assets and Depreciation)
+ Which depreciation method results in the same depreciation expense each year?
+ A. Straight-line
+ B. Double declining balance
+ C. Units-of-production
+ D. Sum-of-the-years’-digits
+73. (Corporate Accounting)
+ Preferred stock differs from common stock in that it typically:
+ A. Has voting rights
+ B. Is convertible into liabilities
+ C. Pays fixed dividends
+ D. Has a lower par value
+74. (Corporate Accounting)
+ What is the effect of issuing common stock above par value?
+ A. Increase in liabilities
+ B. Increase in paid-in capital
+ C. Decrease in retained earnings
+ D. Decrease in assets
+75. (Partnerships)
+ In a partnership, drawings by a partner:
+ A. Are treated as a business expense
+ B. Increase the partner’s capital account
+ C. Reduce the partner’s capital account
+ D. Are not recorded in the books
+76. (Partnerships)
+ What happens when a new partner is admitted into an existing partnership?
+ A. Assets are distributed to old partners
+ B. The old partnership ends, and a new one begins
+ C. The partnership dissolves permanently
+ D. Only the capital account changes
+77. (Ethics and Legal Responsibilities)
+ Which of the following best describes ethical behavior in accounting?
+ A. Following internal company policies
+ B. Recording revenues early to boost performance
+ C. Providing accurate and honest financial information
+ D. Manipulating data for investor confidence
+78. (Ethics and Legal Responsibilities)
+ The Sarbanes-Oxley Act was passed to:
+ A. Lower corporate tax rates
+ B. Encourage public trading of stocks
+ C. Prevent accounting fraud and increase transparency
+ D. Simplify payroll calculations
+79. (Financial Statements and Analysis)
+ Which of the following is a measure of a company’s liquidity?
+ A. Return on assets
+ B. Current ratio
+ C. Gross profit margin
+ D. Debt-to-equity ratio
+80. (Financial Statements and Analysis)
+ Which financial ratio is most useful in evaluating a company’s ability to pay short-term obligations?
+ A. Quick ratio
+ B. Return on equity
+ C. Inventory turnover
+ D. Price-to-earnings ratio
+81. (Accounting Process)
+ Which of the following entries is correct for purchasing supplies on account?
+ A. Debit Accounts Payable, Credit Supplies
+ B. Debit Supplies, Credit Accounts Payable
+ C. Debit Supplies Expense, Credit Accounts Receivable
+ D. Debit Cash, Credit Supplies
+82. (Accounting Process)
+ Adjusting entries are made:
+ A. After the trial balance is prepared
+ B. Before transactions are recorded
+ C. To close temporary accounts
+ D. On a quarterly basis only
+83. (Merchandising, Inventory, and Cost Accounting)
+ Which of the following accounts is used in a perpetual inventory system?
+ A. Purchases
+ B. Cost of Goods Sold
+ C. Inventory Loss
+ D. Purchase Discounts
+84. (Merchandising, Inventory, and Cost Accounting)
+ In a perpetual inventory system, when merchandise is returned by a customer, which accounts are affected?
+ A. Sales Returns and Allowances and Inventory
+ B. Purchases and Cost of Goods Sold
+ C. Accounts Payable and Inventory
+ D. Inventory and Purchases Returns
+85. (Budgeting, Planning, and Financial Analysis)
+ Which of the following would be considered a fixed cost?
+ A. Direct labor
+ B. Factory utilities
+ C. Rent
+ D. Raw materials
+86. (Budgeting, Planning, and Financial Analysis)
+ If sales increase but fixed costs remain the same, what happens to operating leverage?
+ A. It increases
+ B. It decreases
+ C. It remains unchanged
+ D. It becomes negative
+87. (Accounts Receivable/Payable)
+ Which method of estimating uncollectible accounts emphasizes the balance sheet?
+ A. Direct write-off method
+ B. Percentage of sales method
+ C. Allowance method based on aging
+ D. Straight-line method
+88. (Accounts Receivable/Payable)
+ Trade credit terms of “2/10, net 30” mean:
+ A. A 10% discount if paid within 2 days
+ B. No interest if paid in 30 days
+ C. A 2% discount if paid within 10 days
+ D. The invoice must be paid within 2 days
+89. (Payroll)
+ The employer’s portion of FICA taxes is recorded as:
+ A. Payroll tax expense
+ B. Employee deduction
+ C. Liability reduction
+ D. Salaries expense
+90. (Payroll)
+ Which of the following would not be included in gross wages?
+ A. Bonus
+ B. Overtime
+ C. 401(k) deduction
+ D. Regular pay
+91. (Long-term Assets and Depreciation)
+ Which of the following assets is not depreciated?
+ A. Delivery truck
+ B. Equipment
+ C. Land
+ D. Building
+92. (Long-term Assets and Depreciation)
+ When a company disposes of equipment at a gain, it should:
+ A. Debit Loss on Sale
+ B. Credit Accumulated Depreciation
+ C. Credit Gain on Disposal
+ D. Debit Equipment
+93. (Corporate Accounting)
+ Dividends declared but not yet paid are recorded as:
+ A. An expense
+ B. A current liability
+ C. A reduction in revenue
+ D. A prepaid asset
+94. (Corporate Accounting)
+ Which document authorizes the issuance of stock?
+ A. Prospectus
+ B. Articles of Incorporation
+ C. Certificate of Deposit
+ D. Income Statement
+95. (Partnerships)
+ Which financial statement shows each partner's capital balance?
+ A. Balance Sheet
+ B. Statement of Partnership Equity
+ C. Statement of Cash Flows
+ D. Income Statement
+96. (Partnerships)
+ A partner contributes equipment to a new partnership. The equipment should be recorded at:
+ A. Original purchase price
+ B. Market value
+ C. Book value
+ D. Zero
+97. (Ethics and Legal Responsibilities)
+ Confidentiality in accounting refers to:
+ A. Hiding company losses
+ B. Not disclosing client information without permission
+ C. Encrypting financial statements
+ D. Avoiding audits
+98. (Ethics and Legal Responsibilities)
+ An accountant who falsifies financial records is violating which principle?
+ A. Objectivity
+ B. Integrity
+ C. Competence
+ D. Due care
+99. (Financial Statements and Analysis)
+ Which financial statement shows cash inflows and outflows?
+ A. Balance Sheet
+ B. Statement of Retained Earnings
+ C. Income Statement
+ D. Statement of Cash Flows
+100. (Financial Statements and Analysis)
+ The primary purpose of financial statement analysis is to:
+ A. File tax returns
+ B. Identify accounting errors
+ C. Evaluate business performance
+ D. Prepare journal entries
+
+
+
