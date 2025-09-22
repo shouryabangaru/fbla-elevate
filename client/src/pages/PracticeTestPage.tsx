@@ -32,6 +32,7 @@ interface TestResult {
 
 const events = [
   { id: 'accounting', name: 'Accounting' },
+  { id: 'accounting-2', name: 'Accounting 2' },
   { id: 'business-law', name: 'Business Law' },
   { id: 'marketing', name: 'Marketing' },
   { id: 'economics', name: 'Economics' },
@@ -102,9 +103,11 @@ const questionBanks: Record<string, Question[]> = {
       },
       correctAnswer: 'B',
       explanation: "The trial balance is used to verify that total debits equal total credits in the accounting system, ensuring mathematical accuracy."
-    },
+    }
+  ],
+  'accounting-2': [
     {
-      id: 6,
+      id: 1,
       question: "A company issues 5,000 shares of $10 par common stock for $75,000. What amount is credited to the Paid-in Capital in Excess of Par account?",
       options: {
         A: "$25,000",
@@ -116,7 +119,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The total cash received is $75,000. The par value of the shares is calculated as 5,000 shares × $10 par = $50,000. The excess amount paid over par is $75,000 - $50,000 = $25,000. This excess is credited to the Paid-in Capital in Excess of Par account."
     },
     {
-      id: 7,
+      id: 2,
       question: "Which of the following accounts would not appear on the post-closing trial balance?",
       options: {
         A: "Accumulated Depreciation",
@@ -128,7 +131,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The post-closing trial balance only contains permanent accounts (assets, liabilities, and equity). Sales Revenue is a temporary account (revenue) that is closed to Retained Earnings at the end of the accounting period, so it will have a zero balance and not appear on the post-closing trial balance."
     },
     {
-      id: 8,
+      id: 3,
       question: "Using the FIFO method, what is the cost of goods sold if 80 units are sold from inventory with the following: 40 units at $20, 50 units at $22, 60 units at $24?",
       options: {
         A: "$1,800",
@@ -140,7 +143,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Under FIFO (First-In, First-Out), the oldest units are sold first. To find the cost of 80 units: Sell the first 40 units @ $20 = $800. Sell the next 40 units from the following purchase @ $22 = $880. Total Cost of Goods Sold = $800 + $880 = $1,680."
     },
     {
-      id: 9,
+      id: 4,
       question: "Which transaction increases both assets and liabilities?",
       options: {
         A: "Collection from a customer",
@@ -152,7 +155,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Purchasing supplies increases the asset account 'Supplies'. Purchasing them \"on account\" means you haven't paid yet, which increases the liability account 'Accounts Payable'."
     },
     {
-      id: 10,
+      id: 5,
       question: "The current ratio is 2.5. If current liabilities total $40,000, what are current assets?",
       options: {
         A: "$100,000",
@@ -164,7 +167,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The current ratio formula is Current Assets / Current Liabilities = 2.5. Plugging in the known value: Current Assets / $40,000 = 2.5. Therefore, Current Assets = 2.5 × $40,000 = $100,000."
     },
     {
-      id: 11,
+      id: 6,
       question: "A flexible budget is best used to:",
       options: {
         A: "Set long-term strategic goals",
@@ -176,7 +179,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "A flexible budget adjusts or \"flexes\" for changes in actual volume or activity levels. This allows managers to compare actual results to what the budget should have been at that level of activity, making it an excellent tool for performance evaluation."
     },
     {
-      id: 12,
+      id: 7,
       question: "If a partner contributes non-cash assets to a partnership, at what amount are they recorded?",
       options: {
         A: "Book value",
@@ -188,7 +191,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "When a partner contributes a non-cash asset, it is recorded at its fair market value on the date of contribution. This value must be agreed upon by all partners to ensure equity in the partnership."
     },
     {
-      id: 13,
+      id: 8,
       question: "The company has the following balances: Net Income: $20,000; Dividends Paid: $5,000; Beginning Retained Earnings: $40,000. What is the ending retained earnings?",
       options: {
         A: "$45,000",
@@ -200,7 +203,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The formula for Ending Retained Earnings is: Beginning Retained Earnings + Net Income - Dividends Paid. $40,000 + $20,000 - $5,000 = $55,000."
     },
     {
-      id: 14,
+      id: 9,
       question: "Which cost would be considered indirect labor in a manufacturing firm?",
       options: {
         A: "Factory line worker",
@@ -212,7 +215,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Indirect labor is the cost of employees who are necessary for the manufacturing process but are not directly involved in hands-on production of the product. A supervisor's salary fits this description, unlike the wages of a factory line worker or raw materials handler (direct labor)."
     },
     {
-      id: 15,
+      id: 10,
       question: "In accrual accounting, when should revenue be recorded?",
       options: {
         A: "When cash is received",
@@ -224,7 +227,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The core principle of accrual accounting is the revenue recognition principle. This principle states that revenue should be recorded when it is earned (i.e., when the service is performed or the good is delivered), regardless of when the cash is actually received."
     },
     {
-      id: 16,
+      id: 11,
       question: "A corporation declares a 10% stock dividend when there are 100,000 shares outstanding, and the market value is $30/share. The par value is $1. What is the total amount transferred from retained earnings?",
       options: {
         A: "$10,000",
@@ -236,7 +239,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "A stock dividend is based on the market value of the stock. The number of new shares issued is 10% of 100,000 = 10,000 shares. The total amount transferred from Retained Earnings to equity accounts is 10,000 shares × $30 market value per share = $300,000."
     },
     {
-      id: 17,
+      id: 12,
       question: "Which type of depreciation would result in the highest expense in the first year?",
       options: {
         A: "Straight-line",
@@ -248,7 +251,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The declining balance method is an accelerated depreciation method. It calculates depreciation based on a fixed percentage of the asset's book value, which is highest in the first year, resulting in a larger depreciation expense upfront compared to straight-line or units-of-production."
     },
     {
-      id: 18,
+      id: 13,
       question: "A factory incurs $5,000 in direct materials, $2,500 in direct labor, and $1,500 in overhead. What is the cost of goods manufactured?",
       options: {
         A: "$9,000",
@@ -260,7 +263,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The cost of goods manufactured is the total cost of all goods completed during the period. It is calculated as: Direct Materials + Direct Labor + Manufacturing Overhead. $5,000 + $2,500 + $1,500 = $9,000."
     },
     {
-      id: 19,
+      id: 14,
       question: "Which ratio best indicates how efficiently a company is using its assets to generate profit?",
       options: {
         A: "Current ratio",
@@ -272,7 +275,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Return on Assets (ROA) is calculated as Net Income / Average Total Assets. It measures how profitably a company uses its assets to generate earnings, making it a key efficiency ratio."
     },
     {
-      id: 20,
+      id: 15,
       question: "What is the main difference between LIFO and FIFO during periods of rising prices?",
       options: {
         A: "FIFO results in lower taxes",
@@ -284,7 +287,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "In a period of rising prices, LIFO (Last-In, First-Out) assigns the most recent, higher costs to Cost of Goods Sold (COGS). This higher COGS results in a lower gross profit and, consequently, a lower net income compared to FIFO."
     },
     {
-      id: 21,
+      id: 16,
       question: "Which of the following is not part of cash flows from operating activities?",
       options: {
         A: "Dividends received",
@@ -296,7 +299,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Operating activities are related to a company's core business operations (e.g., selling goods, providing services). The purchase of equipment is an investment in long-term assets and is classified as an investing activity on the statement of cash flows."
     },
     {
-      id: 22,
+      id: 17,
       question: "A business pays $12,000 in rent covering 12 months. After two months, what is the balance in the Prepaid Rent account?",
       options: {
         A: "$12,000",
@@ -308,7 +311,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The monthly rent is $12,000 / 12 months = $1,000 per month. After 2 months, 2 months' worth of expense has been recorded, leaving 10 months of rent still prepaid. The balance in the Prepaid Rent (asset) account is 10 months × $1,000 = $10,000."
     },
     {
-      id: 23,
+      id: 18,
       question: "Which method best allocates overhead based on multiple cost drivers?",
       options: {
         A: "Direct method",
@@ -320,7 +323,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Activity-based costing (ABC) is a precise method that identifies key activities in a process and assigns overhead costs to products based on the products' consumption of each activity, using multiple cost drivers."
     },
     {
-      id: 24,
+      id: 19,
       question: "An accounts receivable aging report shows $1,500 in likely uncollectible accounts. The current Allowance for Doubtful Accounts has a $200 credit balance. What is the required adjustment?",
       options: {
         A: "Debit Bad Debt Expense $1,700",
@@ -332,7 +335,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The aging report indicates the desired ending balance in the Allowance for Doubtful Accounts should be a $1,500 credit. Since there is already a $200 credit balance, only an additional $1,300 is needed to reach the desired balance. The adjusting entry is a debit to Bad Debt Expense and a credit to Allowance for Doubtful Accounts for $1,300."
     },
     {
-      id: 25,
+      id: 20,
       question: "When recording payroll, the employer portion of FICA taxes is recorded as:",
       options: {
         A: "A debit to Payroll Expense",
@@ -344,7 +347,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The employer's share of FICA (Social Security and Medicare) taxes is an additional expense to the company, separate from the wages earned by the employee. It is recorded as a debit to an expense account (e.g., Payroll Tax Expense) and a credit to a liability account (e.g., FICA Taxes Payable) until it is paid."
     },
     {
-      id: 26,
+      id: 21,
       question: "What is the primary purpose of adjusting entries in the accounting cycle?",
       options: {
         A: "To correct errors made in the general journal",
@@ -356,7 +359,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Adjusting entries are made at the end of an accounting period to ensure that revenues are recorded in the period they are earned and expenses are recorded in the period they are incurred (matching principle). This updates balance sheet and income statement accounts so the financial statements reflect the correct financial position and performance."
     },
     {
-      id: 27,
+      id: 22,
       question: "Which of the following accounts would typically require an adjusting entry?",
       options: {
         A: "Common Stock",
@@ -368,7 +371,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Prepaid Insurance is an asset that expires over time. An adjusting entry is needed to recognize the portion of the prepaid asset that has expired (i.e., insurance expense for the period)."
     },
     {
-      id: 28,
+      id: 23,
       question: "Under the perpetual inventory system, what entry is made when merchandise is sold?",
       options: {
         A: "Debit Inventory, Credit Sales",
@@ -380,7 +383,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "In a perpetual system, two entries are made at the point of sale: 1) To record the sale and receivable/revenue, and 2) To simultaneously update the inventory record and recognize the cost of the goods that were sold."
     },
     {
-      id: 29,
+      id: 24,
       question: "Which inventory costing method results in the highest net income during a period of rising prices?",
       options: {
         A: "LIFO",
@@ -392,7 +395,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "In rising prices, FIFO (First-In, First-Out) assigns the oldest, lowest costs to Cost of Goods Sold. This results in a lower COGS, a higher gross profit, and consequently, the highest net income compared to LIFO or weighted average."
     },
     {
-      id: 30,
+      id: 25,
       question: "What is the primary purpose of a flexible budget?",
       options: {
         A: "To reflect the cost of production at varying levels of output",
@@ -404,7 +407,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "A flexible budget is designed to adjust or \"flex\" based on changes in actual activity levels (e.g., units produced, units sold). It shows what revenues and costs should have been at the actual level of activity, which is crucial for accurate performance evaluation."
     },
     {
-      id: 31,
+      id: 26,
       question: "Which of the following is not typically included in a master budget?",
       options: {
         A: "Capital expenditures budget",
@@ -416,7 +419,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "A master budget is a comprehensive set of future budgeted financial statements and supporting schedules (sales, production, etc.). A trial balance is an actual internal accounting report from the general ledger, not a budget."
     },
     {
-      id: 32,
+      id: 27,
       question: "Which document authorizes a payment to a vendor?",
       options: {
         A: "Sales invoice",
@@ -428,7 +431,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "A voucher is an internal document, often part of a voucher system, that summarizes the supporting documents (invoice, purchase order, receiving report) and is used to authorize payment to a vendor."
     },
     {
-      id: 33,
+      id: 28,
       question: "A company uses the allowance method for bad debts. What entry is made when an account is written off?",
       options: {
         A: "Debit Bad Debt Expense, Credit Accounts Receivable",
@@ -440,7 +443,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Writing off a specific uncollectible account removes the receivable from the books. Since the loss was already estimated and recorded via the Allowance account, the write-off entry reduces both the Allowance (a contra-asset) and the Accounts Receivable (an asset). There is no expense recorded at the time of write-off."
     },
     {
-      id: 34,
+      id: 29,
       question: "Which tax is only paid by the employer and not withheld from the employee's paycheck?",
       options: {
         A: "Federal income tax",
@@ -452,7 +455,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Federal Unemployment Tax Act (FUTA) tax is paid solely by the employer to fund state unemployment agencies. It is not deducted from an employee's wages."
     },
     {
-      id: 35,
+      id: 30,
       question: "What is the purpose of a Form W-4?",
       options: {
         A: "To calculate an employee's Social Security contributions",
@@ -464,7 +467,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Form W-4, the Employee's Withholding Certificate, is completed by the employee. It provides the employer with information (like filing status and number of allowances) to calculate how much federal income tax to withhold from the employee's paycheck."
     },
     {
-      id: 36,
+      id: 31,
       question: "Which depreciation method results in higher depreciation expense in the earlier years of an asset's life?",
       options: {
         A: "Straight-line",
@@ -476,7 +479,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The declining-balance method is an accelerated depreciation method. It applies a constant depreciation rate to the asset's declining book value each year, resulting in higher expenses in the early years and lower expenses in the later years."
     },
     {
-      id: 37,
+      id: 32,
       question: "When a company disposes of an asset for more than its book value, what is the result?",
       options: {
         A: "A loss on disposal",
@@ -488,7 +491,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The book value is Cost - Accumulated Depreciation. If the cash received from the sale is greater than the book value, the company has sold the asset for more than its accounting value, resulting in a gain."
     },
     {
-      id: 38,
+      id: 33,
       question: "Which of the following accounts is affected when a company issues common stock for cash?",
       options: {
         A: "Treasury Stock",
@@ -500,7 +503,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "When stock is issued for cash, the Common Stock account is credited for the par value of the shares. The amount received above par value is credited to Additional Paid-in Capital."
     },
     {
-      id: 39,
+      id: 34,
       question: "Which dividend date requires a journal entry on the corporation's books?",
       options: {
         A: "Date of declaration",
@@ -512,7 +515,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "On the date of declaration, the board of directors formally announces the dividend. This action creates a legal liability for the corporation, requiring a journal entry to debit Retained Earnings and credit Dividends Payable."
     },
     {
-      id: 40,
+      id: 35,
       question: "Which of the following would be included in a partnership agreement?",
       options: {
         A: "Number of employees",
@@ -524,7 +527,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "A partnership agreement is a contract between partners. A fundamental element of this contract is how profits and losses will be divided among the partners, which may not necessarily be based on their capital contributions."
     },
     {
-      id: 41,
+      id: 36,
       question: "When a partner contributes a non-cash asset to a partnership, it should be recorded at:",
       options: {
         A: "Historical cost",
@@ -536,7 +539,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "To ensure equity among partners, a contributed non-cash asset is recorded at its fair market value on the date it is contributed to the partnership. This value is agreed upon by all partners."
     },
     {
-      id: 42,
+      id: 37,
       question: "Which of the following actions would violate the AICPA Code of Professional Conduct?",
       options: {
         A: "Preparing a client's tax return",
@@ -548,7 +551,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The AICPA Code of Professional Conduct includes a rule on confidential client information. Disclosing this information without specific consent from the client is a major violation of ethical standards, unless there is a legal or professional duty to do so."
     },
     {
-      id: 43,
+      id: 38,
       question: "Which law protects whistleblowers who report fraudulent accounting practices?",
       options: {
         A: "Sherman Antitrust Act",
@@ -560,7 +563,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The Sarbanes-Oxley Act of 2002 (SOX) contains specific provisions that protect employees of public companies who act as whistleblowers and report suspected fraud."
     },
     {
-      id: 44,
+      id: 39,
       question: "Which ratio best measures a company's ability to meet short-term obligations?",
       options: {
         A: "Price-to-Earnings Ratio",
@@ -572,7 +575,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The Current Ratio (Current Assets / Current Liabilities) is a primary liquidity ratio. It measures a company's ability to pay its short-term debts with its short-term assets."
     },
     {
-      id: 45,
+      id: 40,
       question: "Which financial statement shows the profitability of a company over a specific period?",
       options: {
         A: "Balance Sheet",
@@ -584,7 +587,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The Income Statement summarizes a company's revenues and expenses over a period of time (e.g., a month, quarter, or year), resulting in its net income or loss, which is a measure of profitability."
     },
     {
-      id: 46,
+      id: 41,
       question: "What is the correct order of the steps in the accounting cycle?",
       options: {
         A: "Journalize, post, prepare trial balance, prepare financial statements",
@@ -596,7 +599,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "The core sequence of the accounting cycle is: 1) Analyze and Journalize transactions, 2) Post to the general ledger, 3) Prepare an unadjusted trial balance, 4) Prepare adjusting entries, 5) Prepare an adjusted trial balance, 6) Prepare financial statements, and 7) Close temporary accounts."
     },
     {
-      id: 47,
+      id: 42,
       question: "Which of the following errors will not affect the trial balance totals?",
       options: {
         A: "Posting a debit as a credit",
@@ -608,7 +611,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "If a transaction is recorded with the correct debit and credit amounts but posted to the wrong account (e.g., debiting Supplies instead of Prepaid Rent), the total debits will still equal the total credits, and the trial balance will still balance. The error is one of classification, not arithmetic."
     },
     {
-      id: 48,
+      id: 43,
       question: "In a periodic inventory system, the cost of goods sold is calculated:",
       options: {
         A: "After each sale",
@@ -620,7 +623,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Under a periodic system, inventory and Cost of Goods Sold (COGS) are not updated continuously. COGS is calculated only at the end of the period using a formula: Beginning Inventory + Net Purchases - Ending Inventory = COGS."
     },
     {
-      id: 49,
+      id: 44,
       question: "Which of the following is not included in the cost of inventory under the periodic system?",
       options: {
         A: "Freight-in",
@@ -632,7 +635,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Freight-out (or delivery expense) is the cost of shipping goods to a customer. This is a selling expense, not a cost of acquiring or preparing inventory for sale. Freight-in, however, is part of inventory cost."
     },
     {
-      id: 50,
+      id: 45,
       question: "A variance in budgeting refers to:",
       options: {
         A: "A delay in preparing a budget",
@@ -644,7 +647,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Variance analysis is a key budgeting tool. A variance is simply the difference between an actual amount and the budgeted or standard amount. They are classified as favorable or unfavorable."
     },
     {
-      id: 51,
+      id: 46,
       question: "Which type of analysis compares financial data over several periods?",
       options: {
         A: "Vertical analysis",
@@ -656,7 +659,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Horizontal analysis (or trend analysis) looks at financial statement data across multiple time periods (e.g., comparing revenue growth year-over-year). It focuses on changes in dollar amounts and percentages over time."
     },
     {
-      id: 52,
+      id: 47,
       question: "What is the primary purpose of an aging schedule?",
       options: {
         A: "To identify errors in payroll",
@@ -668,7 +671,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "An accounts receivable aging schedule categorizes customer balances based on how long they have been outstanding. This analysis is used to estimate the amount of uncollectible accounts for the period, which is the basis for the adjusting entry for bad debt expense."
     },
     {
-      id: 53,
+      id: 48,
       question: "If a note receivable is dishonored, the payee should:",
       options: {
         A: "Write off the amount immediately",
@@ -680,7 +683,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "When a note is dishonored (not paid at maturity), the holder of the note should remove the Note Receivable from the books and transfer the full amount (principal + any accrued interest) to an Accounts Receivable account from the maker, as the debt is still owed."
     },
     {
-      id: 54,
+      id: 49,
       question: "Which form is issued to employees annually to summarize their earnings and tax withholdings?",
       options: {
         A: "W-2",
@@ -692,7 +695,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Form W-2, the Wage and Tax Statement, is provided by employers to employees and the IRS after the end of the year. It summarizes the employee's total annual earnings and the amounts withheld for taxes (federal income, Social Security, Medicare)."
     },
     {
-      id: 55,
+      id: 50,
       question: "Net pay is equal to:",
       options: {
         A: "Gross pay plus taxes",
@@ -704,7 +707,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Net pay is the amount of the paycheck the employee actually gets to take home. It is calculated as Gross Pay (total earnings) minus all mandatory and voluntary deductions (e.g., income taxes, FICA, health insurance, retirement contributions)."
     },
     {
-      id: 56,
+      id: 51,
       question: "The book value of a long-term asset is calculated as:",
       options: {
         A: "Historical cost + salvage value",
@@ -716,7 +719,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Book value (or carrying value) represents the net amount of the asset reported on the balance sheet. It is the original historical cost of the asset minus the total accumulated depreciation recorded to date."
     },
     {
-      id: 57,
+      id: 52,
       question: "Which of the following would not be capitalized as part of the cost of equipment?",
       options: {
         A: "Sales tax",
@@ -728,7 +731,7 @@ const questionBanks: Record<string, Question[]> = {
       explanation: "Costs to acquire and prepare an asset for use are capitalized (added to its cost). However, annual maintenance fees are recurring costs incurred to maintain the asset's operating efficiency and are expensed as incurred in the period they are paid."
     },
     {
-      id: 58,
+      id: 53,
       question: "A company repurchases its own stock. This transaction is recorded as:",
       options: {
         A: "A reduction in assets",
