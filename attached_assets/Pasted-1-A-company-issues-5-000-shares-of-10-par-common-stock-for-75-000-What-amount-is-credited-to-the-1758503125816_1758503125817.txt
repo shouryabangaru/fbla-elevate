@@ -1,0 +1,327 @@
+1. A company issues 5,000 shares of $10 par common stock for $75,000. What amount is credited to the Paid-in Capital in Excess of Par account?
+A) $25,000
+ B) $75,000
+ C) $50,000
+ D) $10,000
+2. Which of the following accounts would not appear on the post-closing trial balance?
+A) Accumulated Depreciation
+ B) Retained Earnings
+ C) Sales Revenue
+ D) Notes Payable
+
+3. Using the FIFO method, what is the cost of goods sold if 80 units are sold from inventory with the following:
+40 units at $20
+
+
+50 units at $22
+
+
+60 units at $24
+
+
+A) $1,800
+ B) $1,680
+ C) $1,720
+ D) $1,760
+4. Which transaction increases both assets and liabilities?
+A) Collection from a customer
+ B) Purchase of equipment for cash
+ C) Purchase of supplies on account
+ D) Payment of a note payable
+5. The current ratio is 2.5. If current liabilities total $40,000, what are current assets?
+A) $100,000
+ B) $60,000
+ C) $50,000
+ D) $90,000
+6. A flexible budget is best used to:
+A) Set long-term strategic goals
+ B) Evaluate performance at different activity levels
+ C) Track depreciation of assets
+ D) Allocate capital expenditures
+7. If a partner contributes non-cash assets to a partnership, at what amount are they recorded?
+A) Book value
+ B) Appraised value
+ C) Market value agreed by partners
+ D) Whichever is higher between book and market value
+8. The company has the following balances:
+Net Income: $20,000
+
+
+Dividends Paid: $5,000
+
+
+Beginning Retained Earnings: $40,000
+ What is the ending retained earnings?
+
+
+A) $45,000
+ B) $55,000
+ C) $65,000
+ D) $60,000
+9. Which cost would be considered indirect labor in a manufacturing firm?
+A) Factory line worker
+ B) Assembly supervisor salary
+ C) Sales department wages
+ D) Raw materials handler
+10. In accrual accounting, when should revenue be recorded?
+A) When cash is received
+ B) When the service is performed
+ C) When the invoice is paid
+ D) When the contract is signed
+11. A corporation declares a 10% stock dividend when there are 100,000 shares outstanding, and the market value is $30/share. The par value is $1. What is the total amount transferred from retained earnings?
+A) $10,000
+ B) $30,000
+ C) $300,000
+ D) $3,000
+
+12. Which type of depreciation would result in the highest expense in the first year?
+A) Straight-line
+ B) Units-of-production
+ C) Sum-of-the-years’-digits
+ D) Declining balance
+
+13. A factory incurs $5,000 in direct materials, $2,500 in direct labor, and $1,500 in overhead. What is the cost of goods manufactured?
+A) $9,000
+ B) $8,000
+ C) $6,500
+ D) $7,500
+
+14. Which ratio best indicates how efficiently a company is using its assets to generate profit?
+A) Current ratio
+ B) Gross profit margin
+ C) Return on assets
+ D) Debt-to-equity
+
+15. What is the main difference between LIFO and FIFO during periods of rising prices?
+A) FIFO results in lower taxes
+ B) LIFO results in lower net income
+ C) FIFO results in higher cost of goods sold
+ D) LIFO increases gross profit
+
+16. Which of the following is not part of cash flows from operating activities?
+A) Dividends received
+ B) Interest paid
+ C) Sale of inventory
+ D) Purchase of equipment
+
+17. A business pays $12,000 in rent covering 12 months. After two months, what is the balance in the Prepaid Rent account?
+A) $12,000
+ B) $10,000
+ C) $2,000
+ D) $1,000
+
+18. Which method best allocates overhead based on multiple cost drivers?
+A) Direct method
+ B) Plantwide rate
+ C) Activity-based costing
+ D) Traditional costing
+
+19. An accounts receivable aging report shows $1,500 in likely uncollectible accounts. The current Allowance for Doubtful Accounts has a $200 credit balance. What is the required adjustment?
+A) Debit Bad Debt Expense $1,700
+ B) Debit Bad Debt Expense $1,500
+ C) Debit Bad Debt Expense $1,300
+ D) Debit Allowance for Doubtful Accounts $1,300
+
+20. When recording payroll, the employer portion of FICA taxes is recorded as:
+A) A debit to Payroll Expense
+ B) A credit to Cash
+ C) A credit to FICA Payable
+ D) A debit to Payroll Tax Expense
+21. (Accounting Process)
+ What is the primary purpose of adjusting entries in the accounting cycle?
+ A. To correct errors made in the general journal
+ B. To record transactions that occurred after the accounting period
+ C. To update account balances before preparing financial statements
+ D. To reconcile the bank statement with the general ledger
+22. (Accounting Process)
+ Which of the following accounts would typically require an adjusting entry?
+ A. Common Stock
+ B. Notes Payable
+ C. Prepaid Insurance
+ D. Accounts Receivable
+23. (Merchandising, Inventory, and Cost Accounting)
+ Under the perpetual inventory system, what entry is made when merchandise is sold?
+ A. Debit Inventory, Credit Sales
+ B. Debit Sales, Credit Inventory
+ C. Debit Accounts Receivable, Credit Sales and Inventory
+ D. Debit Accounts Receivable, Credit Sales; Debit Cost of Goods Sold, Credit Inventory
+24. (Merchandising, Inventory, and Cost Accounting)
+ Which inventory costing method results in the highest net income during a period of rising prices?
+ A. LIFO
+ B. FIFO
+ C. Weighted Average
+ D. Specific Identification
+25. (Budgeting, Planning, and Financial Analysis)
+ What is the primary purpose of a flexible budget?
+ A. To reflect the cost of production at varying levels of output
+ B. To remain unchanged regardless of sales volume
+ C. To ensure consistent spending
+ D. To track depreciation expenses only
+26. (Budgeting, Planning, and Financial Analysis)
+ Which of the following is not typically included in a master budget?
+ A. Capital expenditures budget
+ B. Sales budget
+ C. Production budget
+ D. Trial balance
+27. (Accounts Receivable/Payable)
+ Which document authorizes a payment to a vendor?
+ A. Sales invoice
+ B. Purchase order
+ C. Receiving report
+ D. Voucher
+28. (Accounts Receivable/Payable)
+ A company uses the allowance method for bad debts. What entry is made when an account is written off?
+ A. Debit Bad Debt Expense, Credit Accounts Receivable
+ B. Debit Allowance for Doubtful Accounts, Credit Accounts Receivable
+ C. Debit Accounts Receivable, Credit Allowance for Doubtful Accounts
+ D. Debit Retained Earnings, Credit Accounts Receivable
+29. (Payroll)
+ Which tax is only paid by the employer and not withheld from the employee’s paycheck?
+ A. Federal income tax
+ B. Social Security tax
+ C. Medicare tax
+ D. Federal unemployment tax
+30. (Payroll)
+ What is the purpose of a Form W-4?
+ A. To calculate an employee’s Social Security contributions
+ B. To report annual wages and tax withheld
+ C. To determine federal income tax withholding
+ D. To summarize total payroll for the employer
+31. (Long-term Assets and Depreciation)
+ Which depreciation method results in higher depreciation expense in the earlier years of an asset's life?
+ A. Straight-line
+ B. Units-of-production
+ C. Declining-balance
+ D. Sum-of-the-years-digits
+32. (Long-term Assets and Depreciation)
+ When a company disposes of an asset for more than its book value, what is the result?
+ A. A loss on disposal
+ B. No financial effect
+ C. A gain on disposal
+ D. An increase in depreciation expense
+33. (Corporate Accounting)
+ Which of the following accounts is affected when a company issues common stock for cash?
+ A. Treasury Stock
+ B. Additional Paid-in Capital
+ C. Retained Earnings
+ D. Dividends Payable
+34. (Corporate Accounting)
+ Which dividend date requires a journal entry on the corporation's books?
+ A. Date of declaration
+ B. Date of record
+ C. Date of stockholder meeting
+ D. Date of incorporation
+35. (Partnerships)
+ Which of the following would be included in a partnership agreement?
+ A. Number of employees
+ B. Division of net income and losses
+ C. Depreciation method to be used
+ D. Type of business license required
+36. (Partnerships)
+ When a partner contributes a non-cash asset to a partnership, it should be recorded at:
+ A. Historical cost
+ B. Fair market value
+ C. Salvage value
+ D. Appraised value minus depreciation
+37. (Ethics and Legal Responsibilities)
+ Which of the following actions would violate the AICPA Code of Professional Conduct?
+ A. Preparing a client’s tax return
+ B. Charging an hourly rate for audit work
+ C. Disclosing client financial data without consent
+ D. Preparing financial forecasts
+38. (Ethics and Legal Responsibilities)
+ Which law protects whistleblowers who report fraudulent accounting practices?
+ A. Sherman Antitrust Act
+ B. Sarbanes-Oxley Act
+ C. Securities Act of 1933
+ D. Dodd-Frank Act
+39. (Financial Statements and Analysis)
+ Which ratio best measures a company’s ability to meet short-term obligations?
+ A. Price-to-Earnings Ratio
+ B. Current Ratio
+ C. Debt-to-Equity Ratio
+ D. Return on Equity
+40. (Financial Statements and Analysis)
+ Which financial statement shows the profitability of a company over a specific period?
+ A. Balance Sheet
+ B. Statement of Retained Earnings
+ C. Income Statement
+ D. Statement of Cash Flows
+41. (Accounting Process)
+ What is the correct order of the steps in the accounting cycle?
+ A. Journalize, post, prepare trial balance, prepare financial statements
+ B. Post, journalize, adjust entries, prepare financial statements
+ C. Prepare financial statements, post, journalize, prepare trial balance
+ D. Adjust entries, journalize, post, prepare financial statements
+42. (Accounting Process)
+ Which of the following errors will not affect the trial balance totals?
+ A. Posting a debit as a credit
+ B. Omitting a transaction entirely
+ C. Recording a transaction in the wrong account
+ D. Recording unequal debits and credits
+43. (Merchandising, Inventory, and Cost Accounting)
+ In a periodic inventory system, the cost of goods sold is calculated:
+ A. After each sale
+ B. At the end of the accounting period
+ C. When goods are purchased
+ D. Every time physical inventory is counted
+44. (Merchandising, Inventory, and Cost Accounting)
+ Which of the following is not included in the cost of inventory under the periodic system?
+ A. Freight-in
+ B. Purchase returns
+ C. Purchase discounts
+ D. Freight-out
+45. (Budgeting, Planning, and Financial Analysis)
+ A variance in budgeting refers to:
+ A. A delay in preparing a budget
+ B. A difference between actual and budgeted figures
+ C. An error in the accounting ledger
+ D. An adjustment made to fixed assets
+46. (Budgeting, Planning, and Financial Analysis)
+ Which type of analysis compares financial data over several periods?
+ A. Vertical analysis
+ B. Ratio analysis
+ C. Horizontal analysis
+ D. Break-even analysis
+47. (Accounts Receivable/Payable)
+ What is the primary purpose of an aging schedule?
+ A. To identify errors in payroll
+ B. To track the status of inventory
+ C. To estimate uncollectible accounts
+ D. To allocate depreciation expense
+48. (Accounts Receivable/Payable)
+ If a note receivable is dishonored, the payee should:
+ A. Write off the amount immediately
+ B. Reverse the original sales transaction
+ C. Transfer the amount to accounts receivable
+ D. Notify the bank for a chargeback
+49. (Payroll)
+ Which form is issued to employees annually to summarize their earnings and tax withholdings?
+ A. W-2
+ B. W-4
+ C. 1099-NEC
+ D. 1040
+50. (Payroll)
+ Net pay is equal to:
+ A. Gross pay plus taxes
+ B. Gross pay minus voluntary deductions
+ C. Gross pay minus taxes and other deductions
+ D. Payroll tax liability of the employer
+51. (Long-term Assets and Depreciation)
+ The book value of a long-term asset is calculated as:
+ A. Historical cost + salvage value
+ B. Salvage value - accumulated depreciation
+ C. Historical cost - accumulated depreciation
+ D. Replacement cost - salvage value
+52. (Long-term Assets and Depreciation)
+ Which of the following would not be capitalized as part of the cost of equipment?
+ A. Sales tax
+ B. Delivery fees
+ C. Installation costs
+ D. Annual maintenance fees
+53. (Corporate Accounting)
+ A company repurchases its own stock. This transaction is recorded as:
+ A. A reduction in assets
+ B. An increase in liabilities
+ C. Treasury stock, a contra-equity account
+ D. An increase in retained earnings
