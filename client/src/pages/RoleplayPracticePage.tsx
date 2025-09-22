@@ -19,6 +19,7 @@ import {
   Scale,
   Timer
 } from 'lucide-react';
+import { PageLayout } from '@/components/shared/PageLayout';
 // @ts-ignore
 import { getAllEvents, getEventDetails } from '../../../shared/roleplayDatabase.js';
 import './RoleplayPracticePage.css';
@@ -515,65 +516,68 @@ export default function RoleplayPracticePage() {
     if (!scenario) return <div>Scenario not found</div>;
 
     return (
-      <div className="roleplay-container">
-        <div className="practice-header">
-          <button onClick={handleFinishPractice} className="back-button">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Scenarios
-          </button>
-          <div className="practice-title">
-            <h1>{scenario.eventName}</h1>
-            <p>Scenario {scenario.scenarioNumber} of 15</p>
-            <div className="scenario-meta">
-              <span className={`difficulty ${scenario.difficulty.toLowerCase()}`}>
-                {scenario.difficulty}
-              </span>
-              <span className="duration-pill">
-                <Clock className="w-4 h-4" />
-                20 min
-              </span>
-              <span className="points-pill">
-                <Target className="w-4 h-4" />
-                50 points
+      <PageLayout
+        title={scenario.eventName}
+        subtitle={`Scenario ${scenario.scenarioNumber} of 15`}
+      >
+        <div className="roleplay-container">
+          <div className="practice-header">
+            <button onClick={handleFinishPractice} className="back-button">
+              <ArrowLeft className="w-4 h-4" />
+              Back to Scenarios
+            </button>
+            <div className="practice-title">
+              <div className="scenario-meta">
+                <span className={`difficulty ${scenario.difficulty.toLowerCase()}`}>
+                  {scenario.difficulty}
+                </span>
+                <span className="duration-pill">
+                  <Clock className="w-4 h-4" />
+                  20 min
+                </span>
+                <span className="points-pill">
+                  <Target className="w-4 h-4" />
+                  50 points
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="practice-content">
+            {/* Background Information Section */}
+            <div className="scenario-section background-section">
+              <h2>Background Information</h2>
+              <p>{scenario.background}</p>
+            </div>
+
+            {/* Scenario Section */}
+            <div className="scenario-section scenario-main">
+              <h2>Scenario</h2>
+              <p>{scenario.scenario}</p>
+            </div>
+
+            {/* Objectives Section */}
+            <div className="scenario-section objectives-section">
+              <h2>Objectives</h2>
+              <ul>
+                {scenario.objectives.map((objective, index) => (
+                  <li key={index}>{objective}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Timer at bottom */}
+          <div className={`timer-bar ${timeUp ? 'time-up' : ''}`}>
+            <div className="timer-content">
+              <Timer className="w-5 h-5" />
+              <span className="timer-text">
+                {timeUp ? "Time's Up!" : formatTime(timeLeft)}
               </span>
             </div>
           </div>
         </div>
-
-        <div className="practice-content">
-          {/* Background Information Section */}
-          <div className="scenario-section background-section">
-            <h2>Background Information</h2>
-            <p>{scenario.background}</p>
-          </div>
-
-          {/* Scenario Section */}
-          <div className="scenario-section scenario-main">
-            <h2>Scenario</h2>
-            <p>{scenario.scenario}</p>
-          </div>
-
-          {/* Objectives Section */}
-          <div className="scenario-section objectives-section">
-            <h2>Objectives</h2>
-            <ul>
-              {scenario.objectives.map((objective, index) => (
-                <li key={index}>{objective}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Timer at bottom */}
-        <div className={`timer-bar ${timeUp ? 'time-up' : ''}`}>
-          <div className="timer-content">
-            <Timer className="w-5 h-5" />
-            <span className="timer-text">
-              {timeUp ? "Time's Up!" : formatTime(timeLeft)}
-            </span>
-          </div>
-        </div>
-      </div>
+      </PageLayout>
     );
   }
 
@@ -585,106 +589,104 @@ export default function RoleplayPracticePage() {
     const event = roleplayEvents.find(e => e.id === selectedEvent);
 
     return (
-      <div className="roleplay-container">
-        <div className="scenarios-header">
-          <button onClick={handleBackToEvents} className="back-button">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Events
-          </button>
-          <div>
-            <h1 className="scenarios-title">{event?.name} Practice</h1>
-            <p className="scenarios-subtitle">Choose a scenario to practice</p>
+      <PageLayout
+        title={`${event?.name} Practice`}
+        subtitle="Choose a scenario to practice"
+      >
+        <div className="roleplay-container">
+          <div className="scenarios-header">
+            <button onClick={handleBackToEvents} className="back-button">
+              <ArrowLeft className="w-4 h-4" />
+              Back to Events
+            </button>
+          </div>
+
+          <div className="scenarios-grid">
+            {filteredScenarios.map((scenario) => (
+              <div key={scenario.id} className="scenario-card">
+                <div className="scenario-header">
+                  <div className="roleplay-header-left">
+                    <div className="scenario-number">
+                      {scenario.scenarioNumber}
+                    </div>
+                    <div className={`scenario-difficulty ${scenario.difficulty.toLowerCase()}`}>
+                      {scenario.difficulty}
+                    </div>
+                  </div>
+                  <div className="scenario-pills">
+                    <span className="duration-pill">
+                      <Clock className="w-4 h-4" />
+                      20 min
+                    </span>
+                    <span className="points-pill">
+                      <Target className="w-4 h-4" />
+                      50 points
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="scenario-preview">
+                  <h4>Background:</h4>
+                  <p className="scenario-background">{scenario.background.substring(0, 80)}...</p>
+                  
+                  <h4>Scenario:</h4>
+                  <p className="scenario-description">{scenario.scenario.substring(0, 120)}...</p>
+                </div>
+                
+                <div className="scenario-footer">
+                  <button 
+                    className="scenario-start-btn"
+                    onClick={() => handleStartScenario(selectedEvent, scenario.scenarioNumber - 1)}
+                  >
+                    <PlayCircle className="w-4 h-4" />
+                    Start Practice
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-
-        <div className="scenarios-grid">
-          {filteredScenarios.map((scenario) => (
-            <div key={scenario.id} className="scenario-card">
-              <div className="scenario-header">
-                <div className="roleplay-header-left">
-                  <div className="scenario-number">
-                    {scenario.scenarioNumber}
-                  </div>
-                  <div className={`scenario-difficulty ${scenario.difficulty.toLowerCase()}`}>
-                    {scenario.difficulty}
-                  </div>
-                </div>
-                <div className="scenario-pills">
-                  <span className="duration-pill">
-                    <Clock className="w-4 h-4" />
-                    20 min
-                  </span>
-                  <span className="points-pill">
-                    <Target className="w-4 h-4" />
-                    50 points
-                  </span>
-                </div>
-              </div>
-              
-              <div className="scenario-preview">
-                <h4>Background:</h4>
-                <p className="scenario-background">{scenario.background.substring(0, 80)}...</p>
-                
-                <h4>Scenario:</h4>
-                <p className="scenario-description">{scenario.scenario.substring(0, 120)}...</p>
-              </div>
-              
-              <div className="scenario-footer">
-                <button 
-                  className="scenario-start-btn"
-                  onClick={() => handleStartScenario(selectedEvent, scenario.scenarioNumber - 1)}
-                >
-                  <PlayCircle className="w-4 h-4" />
-                  Start Practice
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      </PageLayout>
     );
   }
 
   return (
-    <div className="roleplay-container">
-      <div className="roleplay-header">
-        <h1 className="roleplay-title">Choose Your Event</h1>
-        <p className="roleplay-tagline">Master real FBLA roleplay scenarios and prepare to win.</p>
-        <p className="roleplay-subtitle">
-          Select an FBLA roleplay event category to practice realistic business scenarios
-        </p>
-      </div>
-
-      <div className="events-grid">
-        {roleplayEvents.map((event) => (
-          <div 
-            key={event.id} 
-            className="event-card"
-            onClick={() => handleEventClick(event.id)}
-          >
-            <div className="event-icon-wrapper">
-              <div className="event-icon">
-                <event.icon />
+    <PageLayout
+      title="Roleplay Practice"
+      subtitle="Master real FBLA roleplay scenarios and prepare to win"
+    >
+      <div className="roleplay-container">
+        <div className="events-grid">
+          {roleplayEvents.map((event) => (
+            <div 
+              key={event.id} 
+              className="event-card"
+              onClick={() => handleEventClick(event.id)}
+            >
+              <div className="event-icon-wrapper">
+                <div className="event-icon">
+                  <event.icon />
+                </div>
               </div>
+              
+              <h3 className="event-name">{event.name}</h3>
+              
+              <div className="event-scenarios">
+                <BookOpen className="w-4 h-4 inline mr-1" />
+                {event.scenarioCount} scenarios
+              </div>
+              
+              <p className="event-description">
+                {event.description}
+              </p>
+              
+              <button className="event-button">
+                Practice Now
+              </button>
             </div>
-            
-            <h3 className="event-name">{event.name}</h3>
-            
-            <div className="event-scenarios">
-              <BookOpen className="w-4 h-4 inline mr-1" />
-              {event.scenarioCount} scenarios
-            </div>
-            
-            <p className="event-description">
-              {event.description}
-            </p>
-            
-            <button className="event-button">
-              Practice Now
-            </button>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </PageLayout>
   );
 }
