@@ -173,6 +173,9 @@ export default function PracticeModePage() {
   const [, setLocation] = useLocation();
   const eventId = params?.eventId;
   
+  // Create a session timestamp to force fresh data on each practice session
+  const [sessionTimestamp] = useState(() => Date.now());
+  
   // Fetch event details and questions from database
   const { data: event, isLoading: eventLoading, error: eventError } = useQuery<Event>({
     queryKey: ['/api/events', eventId],
@@ -180,7 +183,16 @@ export default function PracticeModePage() {
   });
   
   const { data: dbQuestions, isLoading: questionsLoading, error: questionsError } = useQuery<Question[]>({
-    queryKey: ['/api/events', eventId, 'questions'],
+    queryKey: ['/api/events', eventId, 'questions', sessionTimestamp],
+    queryFn: async () => {
+      const res = await fetch(`/api/events/${eventId}/questions`, {
+        credentials: "include",
+      });
+      if (!res.ok) {
+        throw new Error('Failed to fetch questions');
+      }
+      return await res.json();
+    },
     enabled: !!eventId
   });
   

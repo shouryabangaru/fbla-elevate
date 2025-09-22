@@ -5,7 +5,7 @@ import { insertUserSchema, insertEventSchema, insertQuestionSchema } from "@shar
 import { z } from "zod";
 import { db } from "./db";
 import { events, questions } from "@shared/schema";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Firebase Auth Integration Routes
@@ -153,7 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/events/:eventId/questions", async (req, res) => {
     try {
       const eventId = parseInt(req.params.eventId);
-      const eventQuestions = await db.select().from(questions).where(eq(questions.eventId, eventId));
+      const eventQuestions = await db.select().from(questions).where(eq(questions.eventId, eventId)).orderBy(sql`RANDOM()`);
       res.json(eventQuestions);
     } catch (error) {
       console.error("Error fetching questions:", error);
