@@ -1,0 +1,901 @@
+101. (Accounting Process)
+Which of the following entries is correct for purchasing supplies on account?
+A. Debit Accounts Payable, Credit Supplies
+B. Debit Supplies, Credit Accounts Payable
+C. Debit Supplies Expense, Credit Accounts Receivable
+D. Debit Cash, Credit Supplies
+
+Answer: B) Debit Supplies, Credit Accounts Payable
+
+Explanation: Purchasing supplies increases the asset account 'Supplies' (debit). Buying them "on account" increases the liability account 'Accounts Payable' (credit).
+
+102. (Financial Statements)
+Which financial statement shows the profitability of a business over a specific period?
+A. Balance Sheet
+B. Statement of Owner’s Equity
+C. Income Statement
+D. Trial Balance
+
+Answer: C) Income Statement
+
+Explanation: The Income Statement summarizes revenues and expenses over a period of time (e.g., a month or year) to show profitability (net income or loss).
+
+103. (Corporate Accounting)
+What is the impact of declaring and paying cash dividends on the accounting equation?
+A. Increase assets, increase equity
+B. Decrease assets, increase liabilities
+C. Decrease assets, decrease equity
+D. Increase liabilities, increase assets
+
+Answer: C) Decrease assets, decrease equity
+
+Explanation: Declaring a dividend reduces equity (Retained Earnings) and increases liabilities (Dividends Payable). When the dividend is paid, it decreases assets (Cash) and decreases liabilities (Dividends Payable). The net effect of the full cycle is a decrease in assets and a decrease in equity.
+
+104. (Payroll)
+Which of the following is deducted from an employee’s gross pay to arrive at net pay?
+A. Utilities
+B. Depreciation
+C. Medicare Tax
+D. Rent Expense
+
+Answer: C) Medicare Tax
+
+Explanation: Net pay is Gross Pay minus all deductions. Medicare Tax is a mandatory payroll deduction. Utilities, Depreciation, and Rent Expense are business expenses, not employee payroll deductions.
+
+105. (Partnerships)
+When a new partner is admitted by investment, the capital account is:
+A. Credited for the new partner
+B. Debited for the new partner
+C. Eliminated
+D. Unchanged
+
+Answer: A) Credited for the new partner
+
+Explanation: When a new partner invests in the partnership, the partnership receives assets (debit Cash) and the new partner's capital account is credited for their equity stake.
+
+106. (Ratios and Data Analysis)
+If current assets are $90,000 and current liabilities are $30,000, the current ratio is:
+A. 1.0
+B. 2.0
+C. 3.0
+D. 4.0
+
+Answer: C) 3.0
+
+Explanation: The Current Ratio is Current Assets / Current Liabilities. $90,000 / $30,000 = 3.0.
+
+107. (Inventory)
+Under the FIFO inventory method, the inventory that is sold first is:
+A. The newest inventory
+B. The oldest inventory
+C. The most expensive inventory
+D. Random inventory
+
+Answer: B) The oldest inventory
+
+Explanation: FIFO (First-In, First-Out) assumes the oldest units purchased (first-in) are the first ones sold (first-out).
+
+108. (Cost Accounting/Manufacturing)
+Which of the following is classified as a direct material cost?
+A. Factory Rent
+B. Supervisor Salary
+C. Steel used in making cars
+D. Indirect Labor
+
+Answer: C) Steel used in making cars
+
+Explanation: Direct materials are raw materials that are physically and conveniently traceable to a finished product. Steel in a car is a prime example.
+
+109. (Ethics)
+Falsifying accounting records to deceive stakeholders is an example of:
+A. Tax avoidance
+B. Conservatism
+C. Ethical conduct
+D. Fraud
+
+Answer: D) Fraud
+
+Explanation: Intentionally falsifying records to deceive is a deliberate act of dishonesty, which constitutes fraud.
+
+110. (Income Tax)
+Which form is typically used to report an employer’s quarterly federal tax return?
+A. W-2
+B. 1040
+C. 940
+D. 941
+
+Answer: D) 941
+
+Explanation: Form 941 is the Employer's Quarterly Federal Tax Return, used to report income taxes, Social Security tax, and Medicare tax withheld from employee pay.
+
+111. (Journalizing and Posting)
+A sale of merchandise on account would be recorded as:
+A. Debit Accounts Payable, Credit Sales
+B. Debit Accounts Receivable, Credit Sales
+C. Debit Sales, Credit Accounts Receivable
+D. Debit Cash, Credit Inventory
+
+Answer: B) Debit Accounts Receivable, Credit Sales
+
+Explanation: A sale on account increases a receivable (debit Accounts Receivable) and increases revenue (credit Sales).
+
+112. (Budgeting and Cash Flow)
+A flexible budget is best described as:
+A. A budget that does not change
+B. A budget based on fixed costs only
+C. A budget adjusted for actual activity levels
+D. A hypothetical budget
+
+Answer: C) A budget adjusted for actual activity levels
+
+Explanation: A flexible budget is designed to change or "flex" based on the actual level of output or sales, allowing for more meaningful performance evaluation.
+
+113. (Corporate Accounting)
+Which is a characteristic of preferred stock?
+A. Voting rights
+B. Higher risk
+C. Priority in dividends
+D. Convertible into liabilities
+
+Answer: C) Priority in dividends
+
+Explanation: A key characteristic of preferred stock is that it has priority over common stock in the payment of dividends.
+
+114. (Payroll)
+Which form summarizes employee wages and tax withholdings for the year?
+A. W-4
+B. W-9
+C. 941
+D. W-2
+
+Answer: D) W-2
+
+Explanation: Form W-2, the Wage and Tax Statement, is provided to employees annually and summarizes their annual earnings and tax withholdings.
+
+115. (Plant Assets and Depreciation)
+The straight-line method of depreciation assumes:
+A. Accelerated depreciation early in the asset’s life
+B. Constant expense over the asset’s life
+C. Greater depreciation in later years
+D. A variable salvage value
+
+Answer: B) Constant expense over the asset’s life
+
+Explanation: The straight-line method allocates the depreciable cost evenly over the asset's useful life, resulting in the same depreciation expense each year.
+
+116. (Financial Statements)
+The balance sheet reports:
+A. Revenues and expenses
+B. Assets, liabilities, and equity
+C. Net income only
+D. Cash inflows and outflows
+
+Answer: B) Assets, liabilities, and equity
+
+Explanation: The Balance Sheet is a snapshot of a company's financial position at a point in time, reporting its Assets, Liabilities, and Equity.
+
+117. (Inventory)
+Which of the following is used to estimate ending inventory without a physical count?
+A. LIFO
+B. FIFO
+C. Gross Profit Method
+D. Specific Identification
+
+Answer: C) Gross Profit Method
+
+Explanation: The Gross Profit Method is a technique used to estimate ending inventory for interim reports or in cases of loss, using the company's historical gross profit ratio.
+
+118. (Journalizing and Posting)
+Which journal is used to record credit sales?
+A. Cash Payments Journal
+B. Sales Journal
+C. Purchases Journal
+D. General Journal
+
+Answer: B) Sales Journal
+
+Explanation: A special journal, the Sales Journal, is used to record all credit sales.
+
+119. (Accounts Receivable & Payable)
+What is the journal entry for writing off an uncollectible account under the direct write-off method?
+A. Debit Allowance for Doubtful Accounts, Credit Accounts Receivable
+B. Debit Accounts Receivable, Credit Cash
+C. Debit Bad Debt Expense, Credit Accounts Receivable
+D. Debit Sales, Credit Bad Debt Expense
+
+Answer: C) Debit Bad Debt Expense, Credit Accounts Receivable
+
+Explanation: Under the direct write-off method, which is not GAAP but is used for tax purposes, the uncollectible amount is directly expensed (debit Bad Debt Expense) and the receivable is removed (credit Accounts Receivable).
+
+120. (Cost Accounting/Manufacturing)
+Which of the following is NOT included in factory overhead?
+A. Factory Utilities
+B. Factory Supervisor Salary
+C. Direct Materials
+D. Indirect Labor
+
+Answer: C) Direct Materials
+
+Explanation: Factory overhead consists of all manufacturing costs except direct materials and direct labor. Direct Materials is a separate, prime cost.
+
+121. (Ethics)
+An accountant who discloses confidential client information without consent is violating:
+A. The objectivity principle
+B. The cost principle
+C. The confidentiality principle
+D. The matching principle
+
+Answer: C) The confidentiality principle
+
+Explanation: The ethical principle of confidentiality requires accountants to refrain from disclosing confidential information without proper authorization.
+
+122. (Accounting Process)
+Which account is credited when services are rendered for cash?
+A. Accounts Receivable
+B. Service Revenue
+C. Unearned Revenue
+D. Cash
+
+Answer: B) Service Revenue
+
+Explanation: When services are rendered for cash, you debit Cash and credit a revenue account, in this case, Service Revenue.
+
+123. (Payroll)
+Which of the following taxes is paid equally by employers and employees?
+A. Federal income tax
+B. Medicare tax
+C. State unemployment tax
+D. FUTA
+
+Answer: B) Medicare tax
+
+Explanation: Medicare tax is a FICA tax that is split equally between the employee and employer. Federal income tax is only withheld from the employee.
+
+124. (Financial Statements)
+Which of the following affects the owner’s equity section of the balance sheet?
+A. Purchasing inventory with cash
+B. Earning net income
+C. Paying a utility bill
+D. Taking out a loan
+
+Answer: B) Earning net income
+
+Explanation: Net income increases Retained Earnings, which is a component of owner's (or stockholders') equity. The other transactions affect only assets and liabilities.
+
+125. (Inventory)
+A perpetual inventory system differs from a periodic system in that it:
+A. Requires physical counts monthly
+B. Updates inventory only at year-end
+C. Maintains continuous inventory records
+D. Is less expensive to implement
+
+Answer: C) Maintains continuous inventory records
+
+Explanation: The key feature of a perpetual system is that the inventory records are updated continuously with each purchase and sale.
+
+126. (Ratios and Data Analysis)
+The debt-to-equity ratio is calculated by dividing total liabilities by:
+A. Net income
+B. Total assets
+C. Total equity
+D. Working capital
+
+Answer: C) Total equity
+
+Explanation: The Debt-to-Equity Ratio = Total Liabilities / Total Equity. It measures a company's financial leverage.
+
+127. (Corporate Accounting)
+When common stock is issued above par value, the excess is recorded as:
+A. Discount on Stock
+B. Treasury Stock
+C. Paid-in Capital in Excess of Par
+D. Retained Earnings
+
+Answer: C) Paid-in Capital in Excess of Par
+
+Explanation: The par value is credited to Common Stock. Any amount received above par is credited to Paid-in Capital in Excess of Par (or Additional Paid-in Capital).
+
+128. (Partnerships)
+A partnership agreement should include all of the following EXCEPT:
+A. Withdrawal arrangements
+B. Allocation of profits
+C. Future sale price of the business
+D. Partner responsibilities
+
+Answer: C) Future sale price of the business
+
+Explanation: A partnership agreement covers partner duties, profit sharing, and withdrawal terms. The future sale price of the business cannot be predetermined and is not part of the agreement.
+
+129. (Plant Assets and Depreciation)
+Which of the following costs should be capitalized as part of equipment?
+A. Annual maintenance
+B. Training costs
+C. Sales tax on the purchase
+D. Interest on a loan after purchase
+
+Answer: C) Sales tax on the purchase
+
+Explanation: Costs to acquire and prepare an asset for use are capitalized. This includes the purchase price and sales tax. Maintenance, training, and interest after use are expenses.
+
+130. (Income Tax)
+What type of tax structure increases in rate as income increases?
+A. Regressive
+B. Flat
+C. Progressive
+D. Fixed
+
+Answer: C) Progressive
+
+Explanation: A progressive tax system imposes a higher tax rate on higher levels of taxable income. The U.S. federal income tax is progressive.
+
+131. (Cost Accounting/Manufacturing)
+Conversion costs consist of:
+A. Direct materials and factory overhead
+B. Direct labor and factory overhead
+C. Direct materials and direct labor
+D. Indirect materials and administrative costs
+
+Answer: B) Direct labor and factory overhead
+
+Explanation: Conversion Costs are the costs of converting raw materials into finished goods: Direct Labor + Factory Overhead.
+
+132. (Accounting Process)
+A trial balance that is out of balance could result from:
+A. Recording a transaction in the general journal
+B. Posting to the correct account
+C. Debiting a transaction for $500 and crediting it for $50
+D. Recording both sides of a transaction in the same account
+
+Answer: C) Debiting a transaction for $500 and crediting it for $50
+
+Explanation: A trial balance will be out of balance if a transaction is recorded with unequal debits and credits. The other errors would not cause an imbalance.
+
+133. (Financial Statements)
+An increase in Accounts Receivable affects the cash flow statement as a:
+A. Positive adjustment in operating activities
+B. Negative adjustment in financing activities
+C. Negative adjustment in operating activities
+D. Positive adjustment in investing activities
+
+Answer: C) Negative adjustment in operating activities
+
+Explanation: An increase in Accounts Receivable means sales revenue was recorded but cash was not yet collected. Under the indirect method, this increase is subtracted from net income (a negative adjustment) in the operating activities section.
+
+134. (Budgeting and Cash Flow)
+What is the primary purpose of a cash budget?
+A. To project long-term profitability
+B. To allocate overhead
+C. To estimate financing needs
+D. To record depreciation
+
+Answer: C) To estimate financing needs
+
+Explanation: The primary purpose of a cash budget is to forecast cash inflows and outflows to determine if the company will have a cash shortage (needing financing) or a cash surplus.
+
+135. (Corporate Accounting)
+What is treasury stock?
+A. Stock issued to new investors
+B. Previously issued stock repurchased by the company
+C. Stock reserved for future issuance
+D. Preferred stock with voting rights
+
+Answer: B) Previously issued stock repurchased by the company
+
+Explanation: Treasury stock is a corporation's own stock that has been issued and then reacquired (repurchased) by the company.
+
+136. (Payroll)
+Which of the following would increase gross earnings on a payroll register?
+A. Social Security withholding
+B. Federal income tax
+C. Overtime pay
+D. State income tax
+
+Answer: C) Overtime pay
+
+Explanation: Gross earnings are total earnings before deductions. Overtime pay increases gross earnings. The other options are deductions that reduce net pay.
+
+137. (Plant Assets and Depreciation)
+If a company sells an asset for more than its book value, the result is a:
+A. Loss
+B. Expense
+C. Gain
+D. Liability
+
+Answer: C) Gain
+
+Explanation: Selling an asset for more than its book value (Cost - Accumulated Depreciation) results in a gain on disposal.
+
+138. (Accounts Receivable & Payable)
+What is the term for money owed by customers for goods sold on credit?
+A. Accounts Payable
+B. Notes Payable
+C. Accounts Receivable
+D. Unearned Revenue
+
+Answer: C) Accounts Receivable
+
+Explanation: Accounts Receivable represents the amount owed to a company by its customers from credit sales.
+
+139. (Ethics)
+Which action best reflects integrity in accounting?
+A. Understating liabilities to meet loan requirements
+B. Following GAAP principles consistently
+C. Omitting expenses to increase profit
+D. Failing to disclose related-party transactions
+
+Answer: B) Following GAAP principles consistently
+
+Explanation: Integrity means being honest and principled. Consistently following GAAP, even when inconvenient, is a key demonstration of integrity.
+
+140. (Ratios and Data Analysis)
+The return on assets (ROA) ratio is calculated by dividing net income by:
+A. Current liabilities
+B. Average total assets
+C. Total equity
+D. Gross profit
+
+Answer: B) Average total assets
+
+Explanation: Return on Assets (ROA) = Net Income / Average Total Assets. It measures how efficiently a company uses its assets to generate profit.
+
+141. (Accounting Process)
+Posting a journal entry to the wrong account but with the correct dollar amount will:
+A. Not affect the trial balance
+B. Cause a debit/credit imbalance
+C. Require reversing entries
+D. Always increase liabilities
+
+Answer: A) Not affect the trial balance
+
+Explanation: If debits and credits are equal but posted to the wrong accounts, the trial balance will still balance because total debits still equal total credits. The error is one of misclassification.
+
+142. (Partnerships)
+What happens when a partner withdraws assets in excess of their capital balance?
+A. The partnership earns a gain
+B. Other partners absorb the loss
+C. The balance sheet remains unaffected
+D. Assets are understated
+
+Answer: B) Other partners absorb the loss
+
+Explanation: If a partner withdraws more than their capital balance, the excess is a loss to the partnership. This loss is typically allocated to the other partners' capital accounts according to their profit-and-loss ratio.
+
+143. (Inventory)
+Which inventory method often results in lower taxable income during inflation?
+A. FIFO
+B. LIFO
+C. Specific identification
+D. Weighted average
+
+Answer: B) LIFO
+
+Explanation: During inflation, LIFO (Last-In, First-Out) assigns the higher, more recent costs to Cost of Goods Sold. This higher COGS results in lower taxable income.
+
+144. (Cost Accounting/Manufacturing)
+Which of the following is a period cost in manufacturing?
+A. Factory rent
+B. Indirect labor
+C. Administrative salaries
+D. Depreciation on equipment
+
+Answer: C) Administrative salaries
+
+Explanation: Period costs are non-manufacturing costs (selling and administrative expenses) and are expensed in the period incurred. Administrative salaries are a period cost. The other options are product costs (manufacturing overhead).
+
+145. (Financial Statements)
+Which account is reported in the equity section of a sole proprietorship?
+A. Common Stock
+B. Retained Earnings
+C. Owner’s Capital
+D. Preferred Stock
+
+Answer: C) Owner’s Capital
+
+Explanation: A sole proprietorship uses a single Owner's Capital account instead of the Common Stock and Retained Earnings accounts used by a corporation.
+
+146. (Budgeting and Cash Flow)
+Which budget would most likely include estimates for advertising and office salaries?
+A. Production Budget
+B. Capital Expenditures Budget
+C. Selling and Administrative Budget
+D. Direct Materials Budget
+
+Answer: C) Selling and Administrative Budget
+
+Explanation: The Selling and Administrative Expense Budget plans for all non-manufacturing costs, such as advertising, office salaries, and other administrative expenses.
+
+147. (Payroll)
+What is the employer’s responsibility for FICA tax?
+A. Match the employee's contribution
+B. Withhold state income tax
+C. Pay FUTA tax
+D. Submit W-2s to the IRS
+
+Answer: A) Match the employee's contribution
+
+Explanation: For FICA taxes (Social Security and Medicare), the employer must match the dollar amount withheld from the employee's pay.
+
+148. (Income Tax)
+Which income is typically NOT taxable for an individual?
+A. Wages
+B. Lottery winnings
+C. Child support received
+D. Dividends
+
+Answer: C) Child support received
+
+Explanation: Child support payments received are not considered taxable income for the recipient.
+
+149. (Corporate Accounting)
+Which form is used to report corporate income to the IRS?
+A. Form 1040
+B. Form 1065
+C. Form 1120
+D. Form W-4
+
+Answer: C) Form 1120
+
+Explanation: Form 1120, U.S. Corporation Income Tax Return, is used by C corporations to report their income and calculate their tax liability.
+
+150. (Plant Assets and Depreciation)
+What is the purpose of recording depreciation?
+A. To increase asset value
+B. To match asset costs to revenue
+C. To calculate market value
+D. To reduce cash
+
+Answer: B) To match asset costs to revenue
+
+Explanation: Depreciation is an application of the matching principle. It allocates the cost of a long-lived asset to expense over its useful life to match the cost with the revenues it helps to generate.
+
+151. (Journalizing and Posting)
+What is the correct journal entry for receiving cash for services not yet performed?
+A. Debit Service Revenue, Credit Cash
+B. Debit Unearned Revenue, Credit Cash
+C. Debit Cash, Credit Unearned Revenue
+D. Debit Accounts Receivable, Credit Service Revenue
+
+Answer: C) Debit Cash, Credit Unearned Revenue
+
+Explanation: Receiving cash before earning it creates a liability. Debit Cash (asset increases) and credit Unearned Revenue (liability increases).
+
+152. (Payroll)
+Which of the following taxes is paid by both the employer and the employee?
+A. Federal income tax
+B. Medicare tax
+C. Federal unemployment tax
+D. State unemployment tax
+
+Answer: B) Medicare tax
+
+Explanation: Medicare tax is a FICA tax that is split equally between the employee and employer.
+
+153. (Inventory)
+Which inventory costing method assumes the earliest goods purchased are the first to be sold?
+A. LIFO
+B. FIFO
+C. Weighted Average
+D. Specific Identification
+
+Answer: B) FIFO
+
+Explanation: FIFO (First-In, First-Out) assumes the earliest (oldest) goods purchased are the first ones to be sold.
+
+154. (Financial Ratios)
+What does the current ratio measure?
+A. Profitability
+B. Liquidity
+C. Efficiency
+D. Solvency
+
+Answer: B) Liquidity
+
+Explanation: The Current Ratio (Current Assets / Current Liabilities) measures a company's liquidity, or its ability to pay its short-term obligations.
+
+155. (Corporate Accounting)
+Which transaction increases stockholders' equity?
+A. Declaring a dividend
+B. Purchasing treasury stock
+C. Issuing common stock
+D. Paying off a loan
+
+Answer: C) Issuing common stock
+
+Explanation: Issuing common stock in exchange for cash or other assets increases the company's paid-in capital, which is a component of stockholders' equity.
+
+156. (Partnerships)
+When a new partner is admitted to a partnership by investing cash, which account is credited?
+A. Partner, Capital (new partner)
+B. Cash
+C. Common Stock
+D. Retained Earnings
+
+Answer: A) Partner, Capital (new partner)
+
+Explanation: The new partner's investment increases the partnership's assets (debit Cash) and increases the new partner's equity (credit [New Partner's Name], Capital).
+
+157. (Ethics)
+Which of the following best describes confidentiality in accounting?
+A. Avoiding illegal acts
+B. Disclosing sensitive information only to authorized parties
+C. Keeping all records forever
+D. Preparing reports with estimated numbers
+
+Answer: B) Disclosing sensitive information only to authorized parties
+
+Explanation: The principle of confidentiality requires that professional accountants refrain from disclosing confidential information to third parties without proper authority.
+
+158. (Depreciation)
+Which method results in the highest depreciation expense in the first year?
+A. Straight-line
+B. Declining balance
+C. Sum-of-the-years'-digits
+D. Units-of-production
+
+Answer: B) Declining balance
+
+Explanation: The declining balance method is an accelerated depreciation method that applies a constant rate to a declining book value, resulting in the highest expense in the first year.
+
+159. (Cost Accounting)
+Factory overhead does not include:
+A. Factory rent
+B. Factory supervisor salary
+C. Direct materials
+D. Depreciation on factory equipment
+
+Answer: C) Direct materials
+
+Explanation: Factory overhead includes all indirect manufacturing costs. Direct materials is a separate, prime cost and is not part of overhead.
+
+160. (Cash Flow)
+Which of the following is a financing activity on the cash flow statement?
+A. Buying equipment
+B. Paying dividends
+C. Receiving interest revenue
+D. Purchasing inventory
+
+Answer: B) Paying dividends
+
+Explanation: Financing activities involve transactions with owners and creditors. Paying dividends to shareholders is a financing cash outflow.
+
+161. (Budgeting)
+A flexible budget adjusts for:
+A. Fixed overhead
+B. Actual activity levels
+C. Annual inflation
+D. Capital structure
+
+Answer: B) Actual activity levels
+
+Explanation: A flexible budget is designed to change or "flex" based on the actual level of activity achieved, unlike a static budget which is fixed.
+
+162. (Accounts Receivable)
+What is the effect of writing off an uncollectible account under the direct write-off method?
+A. Increase assets
+B. Decrease liabilities
+C. Decrease expenses
+D. No effect on total assets
+
+Answer: D) No effect on total assets
+
+Explanation: Under the direct write-off method, the entry is Debit Bad Debt Expense, Credit Accounts Receivable. This exchange reduces an asset (Accounts Receivable) and reduces equity (via the expense). The accounting equation remains in balance, and total assets do not change; one component of equity is simply converted into another.
+
+163. (Plant Assets)
+The cost of a plant asset does not include:
+A. Sales tax
+B. Installation charges
+C. Maintenance costs after use
+D. Delivery fees
+
+Answer: C) Maintenance costs after use
+
+Explanation: Costs to acquire and prepare an asset for use are capitalized. Maintenance costs incurred after the asset is in use are recurring operating expenses and are not part of the asset's cost.
+
+164. (Income Statement)
+Which of the following accounts appears on the income statement?
+A. Accumulated Depreciation
+B. Unearned Revenue
+C. Salaries Expense
+D. Retained Earnings
+
+Answer: C) Salaries Expense
+
+Explanation: The Income Statement reports revenues and expenses. Salaries Expense is an expense account. The others are balance sheet accounts.
+
+165. (Departmental Accounting)
+In departmental accounting, which statement is used to determine the profitability of each department?
+A. Balance Sheet
+B. Statement of Retained Earnings
+C. Departmental Statement of Gross Profit
+D. Cash Flow Statement
+
+Answer: C) Departmental Statement of Gross Profit
+
+Explanation: The Departmental Statement of Gross Profit (or Departmental Income Statement) is prepared to analyze the revenue, cost of goods sold, and gross profit for each individual department.
+
+166. (Corporate Accounting)
+What is the effect of a stock dividend on total stockholders' equity?
+A. It increases equity
+B. It decreases equity
+C. No change to total equity
+D. It increases liabilities
+
+Answer: C) No change to total equity
+
+Explanation: A stock dividend simply transfers an amount from Retained Earnings to Paid-in Capital accounts. It is a reclassification within stockholders' equity, so total stockholders' equity does not change.
+
+167. (Income Tax)
+Deferred tax liabilities arise when:
+A. Taxable income is less than accounting income
+B. Taxable income equals accounting income
+C. Taxable income is greater than accounting income
+D. There is no tax expense
+
+Answer: A) Taxable income is less than accounting income
+
+Explanation: A deferred tax liability arises when temporary differences cause taxable income to be less than pre-tax accounting income. This means the company has delayed paying taxes to a future period.
+
+168. (Accounting Process)
+Which of the following comes first in the accounting cycle?
+A. Posting to the ledger
+B. Preparing a trial balance
+C. Journalizing transactions
+D. Closing entries
+
+Answer: C) Journalizing transactions
+
+Explanation: The first step in the accounting cycle is to analyze transactions and journalize them in the general journal.
+
+169. (Purchases and Sales)
+What type of account is “Sales Returns and Allowances”?
+A. Asset
+B. Liability
+C. Contra-revenue
+D. Expense
+
+Answer: C) Contra-revenue
+
+Explanation: Sales Returns and Allowances is a contra-revenue account. It has a normal debit balance and is subtracted from Sales Revenue on the income statement.
+
+170. (Ratios and Data Analysis)
+Which ratio is most helpful in evaluating solvency?
+A. Acid-test ratio
+B. Current ratio
+C. Debt to equity ratio
+D. Gross margin ratio
+
+Answer: C) Debt to equity ratio
+
+Explanation: Solvency refers to a company's ability to meet its long-term obligations. The Debt-to-Equity Ratio is a key measure of long-term financial leverage and solvency.
+
+171. (Inventory)
+The Gross Profit Method is used to:
+A. Estimate ending inventory
+B. Determine cost of goods manufactured
+C. Calculate depreciation
+D. Allocate indirect costs
+
+Answer: A) Estimate ending inventory
+
+Explanation: The Gross Profit Method is a technique for estimating ending inventory without a physical count, often used for interim reporting or in case of a fire loss.
+
+172. (Cost Accounting)
+Which of the following is a variable cost?
+A. Factory rent
+B. Property taxes
+C. Direct labor
+D. Insurance
+
+Answer: C) Direct labor
+
+Explanation: A variable cost changes in direct proportion to the level of production. Direct labor is typically a variable cost. The other options are generally fixed costs.
+
+173. (Journalizing and Posting)
+Which entry is made when merchandise is returned to a supplier on account?
+A. Debit Purchases Returns and Allowances, Credit Accounts Payable
+B. Debit Accounts Payable, Credit Purchases
+C. Debit Supplies, Credit Accounts Payable
+D. Debit Accounts Receivable, Credit Sales
+
+Answer: A) Debit Purchases Returns and Allowances, Credit Accounts Payable
+
+Explanation: Returning merchandise to a supplier reduces the amount owed (credit Accounts Payable) and is recorded in a contra-purchases account (debit Purchases Returns and Allowances).
+
+174. (Plant Assets)
+The process of recording the use of natural resources is called:
+A. Depreciation
+B. Amortization
+C. Depletion
+D. Exhaustion
+
+Answer: C) Depletion
+
+Explanation: The systematic allocation of the cost of a natural resource (like a mine or timber tract) is called depletion.
+
+175. (Ethics)
+What is considered an unethical accounting practice?
+A. Estimating depreciation
+B. Using LIFO inventory costing
+C. Backdating revenue entries
+D. Recording accrued expenses
+
+Answer: C) Backdating revenue entries
+
+Explanation: Backdating entries to record revenue in a period when it was not earned is a deliberate act of misrepresentation and is unethical.
+
+176. (Corporate Accounting)
+What happens when a corporation declares a cash dividend?
+A. Assets increase
+B. Liabilities increase
+C. Stockholders’ equity increases
+D. Revenue increases
+
+Answer: B) Liabilities increase
+
+Explanation: When a cash dividend is declared, Retained Earnings (equity) decreases and a current liability, Dividends Payable, increases.
+
+177. (Payroll)
+Which document is completed by employees to determine tax withholding?
+A. W-2
+B. W-4
+C. 941
+D. 940
+
+Answer: B) W-4
+
+Explanation: Employees complete Form W-4 (Employee's Withholding Certificate) to provide their employer with information needed to calculate federal income tax withholding.
+
+178. (Journalizing and Posting)
+A correcting entry is required when:
+A. A transaction was posted twice
+B. A trial balance doesn't balance
+C. A transaction is recorded in the wrong account
+D. A payment is missed
+
+Answer: C) A transaction is recorded in the wrong account
+
+Explanation: A correcting entry is a journal entry made to fix an error in the ledger, such as a transaction that was recorded in the wrong account.
+
+179. (Budgeting)
+Which is not a component of a master budget?
+A. Capital expenditures budget
+B. Production budget
+C. Cash budget
+D. Partnership agreement
+
+Answer: D) Partnership agreement
+
+Explanation: A master budget is a comprehensive financial plan. A partnership agreement is a legal document governing the relationship between partners and is not a budgetary component.
+
+180. (Financial Statements)
+Which of the following would not be considered a current asset?
+A. Accounts Receivable
+B. Prepaid Insurance
+C. Equipment
+D. Supplies
+
+Answer: C) Equipment
+
+Explanation: Equipment is a long-term (plant) asset because it is used in operations for more than one year and is not intended for resale. The other options are assets expected to be used or converted to cash within one year.
+
+181. (Corporate Accounting)
+Which of the following is true about preferred stock?
+A. It always has voting rights
+B. It ranks above common stock in dividends and liquidation
+C. It is recorded in a liability account
+D. It must be issued before common stock
+
+Answer: B) It ranks above common stock in dividends and liquidation
+
+Explanation: A key feature of preferred stock is that it has priority (seniority) over common stock in the payment of dividends and in the distribution of assets during liquidation.
+
+182. (Accounts Payable)
+A schedule of accounts payable is used to:
+A. List all vendors and the amounts owed to them
+B. Reconcile bank statements
+C. Track customer payments
+D. Determine tax liabilities
+
+Answer: A) List all vendors and the amounts owed to them
+
+Explanation: A schedule of accounts payable is a listing of all vendors (creditors) in the accounts payable subsidiary ledger and the amount owed to each.

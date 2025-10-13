@@ -136,7 +136,7 @@ const transformQuestion = (dbQuestion: Question): ComponentQuestion => ({
   question: dbQuestion.questionText,
   options: [dbQuestion.optionA, dbQuestion.optionB, dbQuestion.optionC, dbQuestion.optionD],
   correctAnswer: dbQuestion.correctAnswer.charCodeAt(0) - 'A'.charCodeAt(0),
-  explanation: accountingIIExplanations[dbQuestion.questionText] || `The correct answer is ${dbQuestion.correctAnswer}.`
+  explanation: dbQuestion.explanation || `The correct answer is ${dbQuestion.correctAnswer}.`
 });
 
 // Event metadata mapping (icons, difficulty, category)

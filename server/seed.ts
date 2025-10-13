@@ -65,7 +65,8 @@ export async function addQuestion(
   optionD: string,
   correctAnswer: 'A' | 'B' | 'C' | 'D',
   difficulty: 'Beginner' | 'Intermediate' | 'Advanced',
-  points: number = 1
+  points: number = 1,
+  explanation?: string
 ): Promise<void> {
   try {
     const newQuestion: InsertQuestion = {
@@ -78,6 +79,7 @@ export async function addQuestion(
       correctAnswer,
       difficulty,
       points,
+      explanation,
     };
 
     await db.insert(questions).values(newQuestion);
@@ -593,7 +595,8 @@ export async function seedAccountingIIQuestions() {
       q.optionD,
       q.correctAnswer,
       'Intermediate',
-      1
+      1,
+      q.explanation
     );
   }
   
@@ -1046,11 +1049,943 @@ export async function seedAccountingIIExtensionQuestions() {
       q.optionD,
       q.correctAnswer,
       'Intermediate',
-      1
+      1,
+      q.explanation
     );
   }
   
   console.log(`✅ Successfully added ${additionalQuestions.length} additional questions to Accounting II (Questions 54-100)`);
+}
+
+export async function seedAccountingIIFinalQuestions() {
+  console.log("🌱 Seeding Accounting II final questions (101-200)...");
+  
+  const finalQuestions = [
+    {
+      question: "Which of the following entries is correct for purchasing supplies on account?",
+      optionA: "Debit Accounts Payable, Credit Supplies",
+      optionB: "Debit Supplies, Credit Accounts Payable",
+      optionC: "Debit Supplies Expense, Credit Accounts Receivable",
+      optionD: "Debit Cash, Credit Supplies",
+      correctAnswer: 'B' as const,
+      explanation: "Purchasing supplies increases the asset account 'Supplies' (debit). Buying them \"on account\" increases the liability account 'Accounts Payable' (credit)."
+    },
+    {
+      question: "Which financial statement shows the profitability of a business over a specific period?",
+      optionA: "Balance Sheet",
+      optionB: "Statement of Owner's Equity",
+      optionC: "Income Statement",
+      optionD: "Trial Balance",
+      correctAnswer: 'C' as const,
+      explanation: "The Income Statement summarizes revenues and expenses over a period of time (e.g., a month or year) to show profitability (net income or loss)."
+    },
+    {
+      question: "What is the impact of declaring and paying cash dividends on the accounting equation?",
+      optionA: "Increase assets, increase equity",
+      optionB: "Decrease assets, increase liabilities",
+      optionC: "Decrease assets, decrease equity",
+      optionD: "Increase liabilities, increase assets",
+      correctAnswer: 'C' as const,
+      explanation: "Declaring a dividend reduces equity (Retained Earnings) and increases liabilities (Dividends Payable). When the dividend is paid, it decreases assets (Cash) and decreases liabilities (Dividends Payable). The net effect of the full cycle is a decrease in assets and a decrease in equity."
+    },
+    {
+      question: "Which of the following is deducted from an employee's gross pay to arrive at net pay?",
+      optionA: "Utilities",
+      optionB: "Depreciation",
+      optionC: "Medicare Tax",
+      optionD: "Rent Expense",
+      correctAnswer: 'C' as const,
+      explanation: "Net pay is Gross Pay minus all deductions. Medicare Tax is a mandatory payroll deduction. Utilities, Depreciation, and Rent Expense are business expenses, not employee payroll deductions."
+    },
+    {
+      question: "When a new partner is admitted by investment, the capital account is:",
+      optionA: "Credited for the new partner",
+      optionB: "Debited for the new partner",
+      optionC: "Eliminated",
+      optionD: "Unchanged",
+      correctAnswer: 'A' as const,
+      explanation: "When a new partner invests in the partnership, the partnership receives assets (debit Cash) and the new partner's capital account is credited for their equity stake."
+    },
+    {
+      question: "If current assets are $90,000 and current liabilities are $30,000, the current ratio is:",
+      optionA: "1.0",
+      optionB: "2.0",
+      optionC: "3.0",
+      optionD: "4.0",
+      correctAnswer: 'C' as const,
+      explanation: "The Current Ratio is Current Assets / Current Liabilities. $90,000 / $30,000 = 3.0."
+    },
+    {
+      question: "Under the FIFO inventory method, the inventory that is sold first is:",
+      optionA: "The newest inventory",
+      optionB: "The oldest inventory",
+      optionC: "The most expensive inventory",
+      optionD: "Random inventory",
+      correctAnswer: 'B' as const,
+      explanation: "FIFO (First-In, First-Out) assumes the oldest units purchased (first-in) are the first ones sold (first-out)."
+    },
+    {
+      question: "Which of the following is classified as a direct material cost?",
+      optionA: "Factory Rent",
+      optionB: "Supervisor Salary",
+      optionC: "Steel used in making cars",
+      optionD: "Indirect Labor",
+      correctAnswer: 'C' as const,
+      explanation: "Direct materials are raw materials that are physically and conveniently traceable to a finished product. Steel in a car is a prime example."
+    },
+    {
+      question: "Falsifying accounting records to deceive stakeholders is an example of:",
+      optionA: "Tax avoidance",
+      optionB: "Conservatism",
+      optionC: "Ethical conduct",
+      optionD: "Fraud",
+      correctAnswer: 'D' as const,
+      explanation: "Intentionally falsifying records to deceive is a deliberate act of dishonesty, which constitutes fraud."
+    },
+    {
+      question: "Which form is typically used to report an employer's quarterly federal tax return?",
+      optionA: "W-2",
+      optionB: "1040",
+      optionC: "940",
+      optionD: "941",
+      correctAnswer: 'D' as const,
+      explanation: "Form 941 is the Employer's Quarterly Federal Tax Return, used to report income taxes, Social Security tax, and Medicare tax withheld from employee pay."
+    },
+    {
+      question: "A sale of merchandise on account would be recorded as:",
+      optionA: "Debit Accounts Payable, Credit Sales",
+      optionB: "Debit Accounts Receivable, Credit Sales",
+      optionC: "Debit Sales, Credit Accounts Receivable",
+      optionD: "Debit Cash, Credit Inventory",
+      correctAnswer: 'B' as const,
+      explanation: "A sale on account increases a receivable (debit Accounts Receivable) and increases revenue (credit Sales)."
+    },
+    {
+      question: "A flexible budget is best described as:",
+      optionA: "A budget that does not change",
+      optionB: "A budget based on fixed costs only",
+      optionC: "A budget adjusted for actual activity levels",
+      optionD: "A hypothetical budget",
+      correctAnswer: 'C' as const,
+      explanation: "A flexible budget is designed to change or \"flex\" based on the actual level of output or sales, allowing for more meaningful performance evaluation."
+    },
+    {
+      question: "Which is a characteristic of preferred stock?",
+      optionA: "Voting rights",
+      optionB: "Higher risk",
+      optionC: "Priority in dividends",
+      optionD: "Convertible into liabilities",
+      correctAnswer: 'C' as const,
+      explanation: "A key characteristic of preferred stock is that it has priority over common stock in the payment of dividends."
+    },
+    {
+      question: "Which form summarizes employee wages and tax withholdings for the year?",
+      optionA: "W-4",
+      optionB: "W-9",
+      optionC: "941",
+      optionD: "W-2",
+      correctAnswer: 'D' as const,
+      explanation: "Form W-2, the Wage and Tax Statement, is provided to employees annually and summarizes their annual earnings and tax withholdings."
+    },
+    {
+      question: "The straight-line method of depreciation assumes:",
+      optionA: "Accelerated depreciation early in the asset's life",
+      optionB: "Constant expense over the asset's life",
+      optionC: "Greater depreciation in later years",
+      optionD: "A variable salvage value",
+      correctAnswer: 'B' as const,
+      explanation: "The straight-line method allocates the depreciable cost evenly over the asset's useful life, resulting in the same depreciation expense each year."
+    },
+    {
+      question: "The balance sheet reports:",
+      optionA: "Revenues and expenses",
+      optionB: "Assets, liabilities, and equity",
+      optionC: "Net income only",
+      optionD: "Cash inflows and outflows",
+      correctAnswer: 'B' as const,
+      explanation: "The Balance Sheet is a snapshot of a company's financial position at a point in time, reporting its Assets, Liabilities, and Equity."
+    },
+    {
+      question: "Which of the following is used to estimate ending inventory without a physical count?",
+      optionA: "LIFO",
+      optionB: "FIFO",
+      optionC: "Gross Profit Method",
+      optionD: "Specific Identification",
+      correctAnswer: 'C' as const,
+      explanation: "The Gross Profit Method is a technique used to estimate ending inventory for interim reports or in cases of loss, using the company's historical gross profit ratio."
+    },
+    {
+      question: "Which journal is used to record credit sales?",
+      optionA: "Cash Payments Journal",
+      optionB: "Sales Journal",
+      optionC: "Purchases Journal",
+      optionD: "General Journal",
+      correctAnswer: 'B' as const,
+      explanation: "A special journal, the Sales Journal, is used to record all credit sales."
+    },
+    {
+      question: "What is the journal entry for writing off an uncollectible account under the direct write-off method?",
+      optionA: "Debit Allowance for Doubtful Accounts, Credit Accounts Receivable",
+      optionB: "Debit Accounts Receivable, Credit Cash",
+      optionC: "Debit Bad Debt Expense, Credit Accounts Receivable",
+      optionD: "Debit Sales, Credit Bad Debt Expense",
+      correctAnswer: 'C' as const,
+      explanation: "Under the direct write-off method, which is not GAAP but is used for tax purposes, the uncollectible amount is directly expensed (debit Bad Debt Expense) and the receivable is removed (credit Accounts Receivable)."
+    },
+    {
+      question: "Which of the following is NOT included in factory overhead?",
+      optionA: "Factory Utilities",
+      optionB: "Factory Supervisor Salary",
+      optionC: "Direct Materials",
+      optionD: "Indirect Labor",
+      correctAnswer: 'C' as const,
+      explanation: "Factory overhead consists of all manufacturing costs except direct materials and direct labor. Direct Materials is a separate, prime cost."
+    },
+    {
+      question: "An accountant who discloses confidential client information without consent is violating:",
+      optionA: "The objectivity principle",
+      optionB: "The cost principle",
+      optionC: "The confidentiality principle",
+      optionD: "The matching principle",
+      correctAnswer: 'C' as const,
+      explanation: "The ethical principle of confidentiality requires accountants to refrain from disclosing confidential information without proper authorization."
+    },
+    {
+      question: "Which account is credited when services are rendered for cash?",
+      optionA: "Accounts Receivable",
+      optionB: "Service Revenue",
+      optionC: "Unearned Revenue",
+      optionD: "Cash",
+      correctAnswer: 'B' as const,
+      explanation: "When services are rendered for cash, you debit Cash and credit a revenue account, in this case, Service Revenue."
+    },
+    {
+      question: "Which of the following taxes is paid equally by employers and employees?",
+      optionA: "Federal income tax",
+      optionB: "Medicare tax",
+      optionC: "State unemployment tax",
+      optionD: "FUTA",
+      correctAnswer: 'B' as const,
+      explanation: "Medicare tax is a FICA tax that is split equally between the employee and employer. Federal income tax is only withheld from the employee."
+    },
+    {
+      question: "Which of the following affects the owner's equity section of the balance sheet?",
+      optionA: "Purchasing inventory with cash",
+      optionB: "Earning net income",
+      optionC: "Paying a utility bill",
+      optionD: "Taking out a loan",
+      correctAnswer: 'B' as const,
+      explanation: "Net income increases Retained Earnings, which is a component of owner's (or stockholders') equity. The other transactions affect only assets and liabilities."
+    },
+    {
+      question: "A perpetual inventory system differs from a periodic system in that it:",
+      optionA: "Requires physical counts monthly",
+      optionB: "Updates inventory only at year-end",
+      optionC: "Maintains continuous inventory records",
+      optionD: "Is less expensive to implement",
+      correctAnswer: 'C' as const,
+      explanation: "The key feature of a perpetual system is that the inventory records are updated continuously with each purchase and sale."
+    },
+    {
+      question: "The debt-to-equity ratio is calculated by dividing total liabilities by:",
+      optionA: "Net income",
+      optionB: "Total assets",
+      optionC: "Total equity",
+      optionD: "Working capital",
+      correctAnswer: 'C' as const,
+      explanation: "The Debt-to-Equity Ratio = Total Liabilities / Total Equity. It measures a company's financial leverage."
+    },
+    {
+      question: "When common stock is issued above par value, the excess is recorded as:",
+      optionA: "Discount on Stock",
+      optionB: "Treasury Stock",
+      optionC: "Paid-in Capital in Excess of Par",
+      optionD: "Retained Earnings",
+      correctAnswer: 'C' as const,
+      explanation: "The par value is credited to Common Stock. Any amount received above par is credited to Paid-in Capital in Excess of Par (or Additional Paid-in Capital)."
+    },
+    {
+      question: "A partnership agreement should include all of the following EXCEPT:",
+      optionA: "Withdrawal arrangements",
+      optionB: "Allocation of profits",
+      optionC: "Future sale price of the business",
+      optionD: "Partner responsibilities",
+      correctAnswer: 'C' as const,
+      explanation: "A partnership agreement covers partner duties, profit sharing, and withdrawal terms. The future sale price of the business cannot be predetermined and is not part of the agreement."
+    },
+    {
+      question: "Which of the following costs should be capitalized as part of equipment?",
+      optionA: "Annual maintenance",
+      optionB: "Training costs",
+      optionC: "Sales tax on the purchase",
+      optionD: "Interest on a loan after purchase",
+      correctAnswer: 'C' as const,
+      explanation: "Costs to acquire and prepare an asset for use are capitalized. This includes the purchase price and sales tax. Maintenance, training, and interest after use are expenses."
+    },
+    {
+      question: "What type of tax structure increases in rate as income increases?",
+      optionA: "Regressive",
+      optionB: "Flat",
+      optionC: "Progressive",
+      optionD: "Fixed",
+      correctAnswer: 'C' as const,
+      explanation: "A progressive tax system imposes a higher tax rate on higher levels of taxable income. The U.S. federal income tax is progressive."
+    },
+    {
+      question: "Conversion costs consist of:",
+      optionA: "Direct materials and factory overhead",
+      optionB: "Direct labor and factory overhead",
+      optionC: "Direct materials and direct labor",
+      optionD: "Indirect materials and administrative costs",
+      correctAnswer: 'B' as const,
+      explanation: "Conversion Costs are the costs of converting raw materials into finished goods: Direct Labor + Factory Overhead."
+    },
+    {
+      question: "A trial balance that is out of balance could result from:",
+      optionA: "Recording a transaction in the general journal",
+      optionB: "Posting to the correct account",
+      optionC: "Debiting a transaction for $500 and crediting it for $50",
+      optionD: "Recording both sides of a transaction in the same account",
+      correctAnswer: 'C' as const,
+      explanation: "A trial balance will be out of balance if a transaction is recorded with unequal debits and credits. The other errors would not cause an imbalance."
+    },
+    {
+      question: "An increase in Accounts Receivable affects the cash flow statement as a:",
+      optionA: "Positive adjustment in operating activities",
+      optionB: "Negative adjustment in financing activities",
+      optionC: "Negative adjustment in operating activities",
+      optionD: "Positive adjustment in investing activities",
+      correctAnswer: 'C' as const,
+      explanation: "An increase in Accounts Receivable means sales revenue was recorded but cash was not yet collected. Under the indirect method, this increase is subtracted from net income (a negative adjustment) in the operating activities section."
+    },
+    {
+      question: "What is the primary purpose of a cash budget?",
+      optionA: "To project long-term profitability",
+      optionB: "To allocate overhead",
+      optionC: "To estimate financing needs",
+      optionD: "To record depreciation",
+      correctAnswer: 'C' as const,
+      explanation: "The primary purpose of a cash budget is to forecast cash inflows and outflows to determine if the company will have a cash shortage (needing financing) or a cash surplus."
+    },
+    {
+      question: "What is treasury stock?",
+      optionA: "Stock issued to new investors",
+      optionB: "Previously issued stock repurchased by the company",
+      optionC: "Stock reserved for future issuance",
+      optionD: "Preferred stock with voting rights",
+      correctAnswer: 'B' as const,
+      explanation: "Treasury stock is a corporation's own stock that has been issued and then reacquired (repurchased) by the company."
+    },
+    {
+      question: "Which of the following would increase gross earnings on a payroll register?",
+      optionA: "Social Security withholding",
+      optionB: "Federal income tax",
+      optionC: "Overtime pay",
+      optionD: "State income tax",
+      correctAnswer: 'C' as const,
+      explanation: "Gross earnings are total earnings before deductions. Overtime pay increases gross earnings. The other options are deductions that reduce net pay."
+    },
+    {
+      question: "If a company sells an asset for more than its book value, the result is a:",
+      optionA: "Loss",
+      optionB: "Expense",
+      optionC: "Gain",
+      optionD: "Liability",
+      correctAnswer: 'C' as const,
+      explanation: "Selling an asset for more than its book value (Cost - Accumulated Depreciation) results in a gain on disposal."
+    },
+    {
+      question: "What is the term for money owed by customers for goods sold on credit?",
+      optionA: "Accounts Payable",
+      optionB: "Notes Payable",
+      optionC: "Accounts Receivable",
+      optionD: "Unearned Revenue",
+      correctAnswer: 'C' as const,
+      explanation: "Accounts Receivable represents the amount owed to a company by its customers from credit sales."
+    },
+    {
+      question: "Which action best reflects integrity in accounting?",
+      optionA: "Understating liabilities to meet loan requirements",
+      optionB: "Following GAAP principles consistently",
+      optionC: "Omitting expenses to increase profit",
+      optionD: "Failing to disclose related-party transactions",
+      correctAnswer: 'B' as const,
+      explanation: "Integrity means being honest and principled. Consistently following GAAP, even when inconvenient, is a key demonstration of integrity."
+    },
+    {
+      question: "The return on assets (ROA) ratio is calculated by dividing net income by:",
+      optionA: "Current liabilities",
+      optionB: "Average total assets",
+      optionC: "Total equity",
+      optionD: "Gross profit",
+      correctAnswer: 'B' as const,
+      explanation: "Return on Assets (ROA) = Net Income / Average Total Assets. It measures how efficiently a company uses its assets to generate profit."
+    },
+    {
+      question: "Posting a journal entry to the wrong account but with the correct dollar amount will:",
+      optionA: "Not affect the trial balance",
+      optionB: "Cause a debit/credit imbalance",
+      optionC: "Require reversing entries",
+      optionD: "Always increase liabilities",
+      correctAnswer: 'A' as const,
+      explanation: "If debits and credits are equal but posted to the wrong accounts, the trial balance will still balance because total debits still equal total credits. The error is one of misclassification."
+    },
+    {
+      question: "What happens when a partner withdraws assets in excess of their capital balance?",
+      optionA: "The partnership earns a gain",
+      optionB: "Other partners absorb the loss",
+      optionC: "The balance sheet remains unaffected",
+      optionD: "Assets are understated",
+      correctAnswer: 'B' as const,
+      explanation: "If a partner withdraws more than their capital balance, the excess is a loss to the partnership. This loss is typically allocated to the other partners' capital accounts according to their profit-and-loss ratio."
+    },
+    {
+      question: "Which inventory method often results in lower taxable income during inflation?",
+      optionA: "FIFO",
+      optionB: "LIFO",
+      optionC: "Specific identification",
+      optionD: "Weighted average",
+      correctAnswer: 'B' as const,
+      explanation: "During inflation, LIFO (Last-In, First-Out) assigns the higher, more recent costs to Cost of Goods Sold. This higher COGS results in lower taxable income."
+    },
+    {
+      question: "Which of the following is a period cost in manufacturing?",
+      optionA: "Factory rent",
+      optionB: "Indirect labor",
+      optionC: "Administrative salaries",
+      optionD: "Depreciation on equipment",
+      correctAnswer: 'C' as const,
+      explanation: "Period costs are non-manufacturing costs (selling and administrative expenses) and are expensed in the period incurred. Administrative salaries are a period cost. The other options are product costs (manufacturing overhead)."
+    },
+    {
+      question: "Which account is reported in the equity section of a sole proprietorship?",
+      optionA: "Common Stock",
+      optionB: "Retained Earnings",
+      optionC: "Owner's Capital",
+      optionD: "Preferred Stock",
+      correctAnswer: 'C' as const,
+      explanation: "A sole proprietorship uses a single Owner's Capital account instead of the Common Stock and Retained Earnings accounts used by a corporation."
+    },
+    {
+      question: "Which budget would most likely include estimates for advertising and office salaries?",
+      optionA: "Production Budget",
+      optionB: "Capital Expenditures Budget",
+      optionC: "Selling and Administrative Budget",
+      optionD: "Direct Materials Budget",
+      correctAnswer: 'C' as const,
+      explanation: "The Selling and Administrative Expense Budget plans for all non-manufacturing costs, such as advertising, office salaries, and other administrative expenses."
+    },
+    {
+      question: "What is the employer's responsibility for FICA tax?",
+      optionA: "Match the employee's contribution",
+      optionB: "Withhold state income tax",
+      optionC: "Pay FUTA tax",
+      optionD: "Submit W-2s to the IRS",
+      correctAnswer: 'A' as const,
+      explanation: "For FICA taxes (Social Security and Medicare), the employer must match the dollar amount withheld from the employee's pay."
+    },
+    {
+      question: "Which income is typically NOT taxable for an individual?",
+      optionA: "Wages",
+      optionB: "Lottery winnings",
+      optionC: "Child support received",
+      optionD: "Dividends",
+      correctAnswer: 'C' as const,
+      explanation: "Child support payments received are not considered taxable income for the recipient."
+    },
+    {
+      question: "Which form is used to report corporate income to the IRS?",
+      optionA: "Form 1040",
+      optionB: "Form 1065",
+      optionC: "Form 1120",
+      optionD: "Form W-4",
+      correctAnswer: 'C' as const,
+      explanation: "Form 1120, U.S. Corporation Income Tax Return, is used by C corporations to report their income and calculate their tax liability."
+    },
+    {
+      question: "What is the purpose of recording depreciation?",
+      optionA: "To increase asset value",
+      optionB: "To match asset costs to revenue",
+      optionC: "To calculate market value",
+      optionD: "To reduce cash",
+      correctAnswer: 'B' as const,
+      explanation: "Depreciation is an application of the matching principle. It allocates the cost of a long-lived asset to expense over its useful life to match the cost with the revenues it helps to generate."
+    },
+    {
+      question: "What is the correct journal entry for receiving cash for services not yet performed?",
+      optionA: "Debit Service Revenue, Credit Cash",
+      optionB: "Debit Unearned Revenue, Credit Cash",
+      optionC: "Debit Cash, Credit Unearned Revenue",
+      optionD: "Debit Accounts Receivable, Credit Service Revenue",
+      correctAnswer: 'C' as const,
+      explanation: "Receiving cash before earning it creates a liability. Debit Cash (asset increases) and credit Unearned Revenue (liability increases)."
+    },
+    {
+      question: "Which of the following taxes is paid by both the employer and the employee?",
+      optionA: "Federal income tax",
+      optionB: "Medicare tax",
+      optionC: "Federal unemployment tax",
+      optionD: "State unemployment tax",
+      correctAnswer: 'B' as const,
+      explanation: "Medicare tax is a FICA tax that is split equally between the employee and employer."
+    },
+    {
+      question: "Which inventory costing method assumes the earliest goods purchased are the first to be sold?",
+      optionA: "LIFO",
+      optionB: "FIFO",
+      optionC: "Weighted Average",
+      optionD: "Specific Identification",
+      correctAnswer: 'B' as const,
+      explanation: "FIFO (First-In, First-Out) assumes the earliest (oldest) goods purchased are the first ones to be sold."
+    },
+    {
+      question: "What does the current ratio measure?",
+      optionA: "Profitability",
+      optionB: "Liquidity",
+      optionC: "Efficiency",
+      optionD: "Solvency",
+      correctAnswer: 'B' as const,
+      explanation: "The Current Ratio (Current Assets / Current Liabilities) measures a company's liquidity, or its ability to pay its short-term obligations."
+    },
+    {
+      question: "Which transaction increases stockholders' equity?",
+      optionA: "Declaring a dividend",
+      optionB: "Purchasing treasury stock",
+      optionC: "Issuing common stock",
+      optionD: "Paying off a loan",
+      correctAnswer: 'C' as const,
+      explanation: "Issuing common stock in exchange for cash or other assets increases the company's paid-in capital, which is a component of stockholders' equity."
+    },
+    {
+      question: "When a new partner is admitted to a partnership by investing cash, which account is credited?",
+      optionA: "Partner, Capital (new partner)",
+      optionB: "Cash",
+      optionC: "Common Stock",
+      optionD: "Retained Earnings",
+      correctAnswer: 'A' as const,
+      explanation: "The new partner's investment increases the partnership's assets (debit Cash) and increases the new partner's equity (credit [New Partner's Name], Capital)."
+    },
+    {
+      question: "Which of the following best describes confidentiality in accounting?",
+      optionA: "Avoiding illegal acts",
+      optionB: "Disclosing sensitive information only to authorized parties",
+      optionC: "Keeping all records forever",
+      optionD: "Preparing reports with estimated numbers",
+      correctAnswer: 'B' as const,
+      explanation: "The principle of confidentiality requires that professional accountants refrain from disclosing confidential information to third parties without proper authority."
+    },
+    {
+      question: "Which method results in the highest depreciation expense in the first year?",
+      optionA: "Straight-line",
+      optionB: "Declining balance",
+      optionC: "Sum-of-the-years'-digits",
+      optionD: "Units-of-production",
+      correctAnswer: 'B' as const,
+      explanation: "The declining balance method is an accelerated depreciation method that applies a constant rate to a declining book value, resulting in the highest expense in the first year."
+    },
+    {
+      question: "Factory overhead does not include:",
+      optionA: "Factory rent",
+      optionB: "Factory supervisor salary",
+      optionC: "Direct materials",
+      optionD: "Depreciation on factory equipment",
+      correctAnswer: 'C' as const,
+      explanation: "Factory overhead includes all indirect manufacturing costs. Direct materials is a separate, prime cost and is not part of overhead."
+    },
+    {
+      question: "Which of the following is a financing activity on the cash flow statement?",
+      optionA: "Buying equipment",
+      optionB: "Paying dividends",
+      optionC: "Receiving interest revenue",
+      optionD: "Purchasing inventory",
+      correctAnswer: 'B' as const,
+      explanation: "Financing activities involve transactions with owners and creditors. Paying dividends to shareholders is a financing cash outflow."
+    },
+    {
+      question: "A flexible budget adjusts for:",
+      optionA: "Fixed overhead",
+      optionB: "Actual activity levels",
+      optionC: "Annual inflation",
+      optionD: "Capital structure",
+      correctAnswer: 'B' as const,
+      explanation: "A flexible budget is designed to change or \"flex\" based on the actual level of activity achieved, unlike a static budget which is fixed."
+    },
+    {
+      question: "What is the effect of writing off an uncollectible account under the direct write-off method?",
+      optionA: "Increase assets",
+      optionB: "Decrease liabilities",
+      optionC: "Decrease expenses",
+      optionD: "No effect on total assets",
+      correctAnswer: 'D' as const,
+      explanation: "Under the direct write-off method, the entry is Debit Bad Debt Expense, Credit Accounts Receivable. This exchange reduces an asset (Accounts Receivable) and reduces equity (via the expense). The accounting equation remains in balance, and total assets do not change; one component of equity is simply converted into another."
+    },
+    {
+      question: "The cost of a plant asset does not include:",
+      optionA: "Sales tax",
+      optionB: "Installation charges",
+      optionC: "Maintenance costs after use",
+      optionD: "Delivery fees",
+      correctAnswer: 'C' as const,
+      explanation: "Costs to acquire and prepare an asset for use are capitalized. Maintenance costs incurred after the asset is in use are recurring operating expenses and are not part of the asset's cost."
+    },
+    {
+      question: "Which of the following accounts appears on the income statement?",
+      optionA: "Accumulated Depreciation",
+      optionB: "Unearned Revenue",
+      optionC: "Salaries Expense",
+      optionD: "Retained Earnings",
+      correctAnswer: 'C' as const,
+      explanation: "The Income Statement reports revenues and expenses. Salaries Expense is an expense account. The others are balance sheet accounts."
+    },
+    {
+      question: "In departmental accounting, which statement is used to determine the profitability of each department?",
+      optionA: "Balance Sheet",
+      optionB: "Statement of Retained Earnings",
+      optionC: "Departmental Statement of Gross Profit",
+      optionD: "Cash Flow Statement",
+      correctAnswer: 'C' as const,
+      explanation: "The Departmental Statement of Gross Profit (or Departmental Income Statement) is prepared to analyze the revenue, cost of goods sold, and gross profit for each individual department."
+    },
+    {
+      question: "What is the effect of a stock dividend on total stockholders' equity?",
+      optionA: "It increases equity",
+      optionB: "It decreases equity",
+      optionC: "No change to total equity",
+      optionD: "It increases liabilities",
+      correctAnswer: 'C' as const,
+      explanation: "A stock dividend simply transfers an amount from Retained Earnings to Paid-in Capital accounts. It is a reclassification within stockholders' equity, so total stockholders' equity does not change."
+    },
+    {
+      question: "Deferred tax liabilities arise when:",
+      optionA: "Taxable income is less than accounting income",
+      optionB: "Taxable income equals accounting income",
+      optionC: "Taxable income is greater than accounting income",
+      optionD: "There is no tax expense",
+      correctAnswer: 'A' as const,
+      explanation: "A deferred tax liability arises when temporary differences cause taxable income to be less than pre-tax accounting income. This means the company has delayed paying taxes to a future period."
+    },
+    {
+      question: "Which of the following comes first in the accounting cycle?",
+      optionA: "Posting to the ledger",
+      optionB: "Preparing a trial balance",
+      optionC: "Journalizing transactions",
+      optionD: "Closing entries",
+      correctAnswer: 'C' as const,
+      explanation: "The first step in the accounting cycle is to analyze transactions and journalize them in the general journal."
+    },
+    {
+      question: "What type of account is \"Sales Returns and Allowances\"?",
+      optionA: "Asset",
+      optionB: "Liability",
+      optionC: "Contra-revenue",
+      optionD: "Expense",
+      correctAnswer: 'C' as const,
+      explanation: "Sales Returns and Allowances is a contra-revenue account. It has a normal debit balance and is subtracted from Sales Revenue on the income statement."
+    },
+    {
+      question: "Which ratio is most helpful in evaluating solvency?",
+      optionA: "Acid-test ratio",
+      optionB: "Current ratio",
+      optionC: "Debt to equity ratio",
+      optionD: "Gross margin ratio",
+      correctAnswer: 'C' as const,
+      explanation: "Solvency refers to a company's ability to meet its long-term obligations. The Debt-to-Equity Ratio is a key measure of long-term financial leverage and solvency."
+    },
+    {
+      question: "The Gross Profit Method is used to:",
+      optionA: "Estimate ending inventory",
+      optionB: "Determine cost of goods manufactured",
+      optionC: "Calculate depreciation",
+      optionD: "Allocate indirect costs",
+      correctAnswer: 'A' as const,
+      explanation: "The Gross Profit Method is a technique for estimating ending inventory without a physical count, often used for interim reporting or in case of a fire loss."
+    },
+    {
+      question: "Which of the following is a variable cost?",
+      optionA: "Factory rent",
+      optionB: "Property taxes",
+      optionC: "Direct labor",
+      optionD: "Insurance",
+      correctAnswer: 'C' as const,
+      explanation: "A variable cost changes in direct proportion to the level of production. Direct labor is typically a variable cost. The other options are generally fixed costs."
+    },
+    {
+      question: "Which entry is made when merchandise is returned to a supplier on account?",
+      optionA: "Debit Purchases Returns and Allowances, Credit Accounts Payable",
+      optionB: "Debit Accounts Payable, Credit Purchases",
+      optionC: "Debit Supplies, Credit Accounts Payable",
+      optionD: "Debit Accounts Receivable, Credit Sales",
+      correctAnswer: 'A' as const,
+      explanation: "Returning merchandise to a supplier reduces the amount owed (credit Accounts Payable) and is recorded in a contra-purchases account (debit Purchases Returns and Allowances)."
+    },
+    {
+      question: "The process of recording the use of natural resources is called:",
+      optionA: "Depreciation",
+      optionB: "Amortization",
+      optionC: "Depletion",
+      optionD: "Exhaustion",
+      correctAnswer: 'C' as const,
+      explanation: "The systematic allocation of the cost of a natural resource (like a mine or timber tract) is called depletion."
+    },
+    {
+      question: "What is considered an unethical accounting practice?",
+      optionA: "Estimating depreciation",
+      optionB: "Using LIFO inventory costing",
+      optionC: "Backdating revenue entries",
+      optionD: "Recording accrued expenses",
+      correctAnswer: 'C' as const,
+      explanation: "Backdating entries to record revenue in a period when it was not earned is a deliberate act of misrepresentation and is unethical."
+    },
+    {
+      question: "What happens when a corporation declares a cash dividend?",
+      optionA: "Assets increase",
+      optionB: "Liabilities increase",
+      optionC: "Stockholders' equity increases",
+      optionD: "Revenue increases",
+      correctAnswer: 'B' as const,
+      explanation: "When a cash dividend is declared, Retained Earnings (equity) decreases and a current liability, Dividends Payable, increases."
+    },
+    {
+      question: "Which document is completed by employees to determine tax withholding?",
+      optionA: "W-2",
+      optionB: "W-4",
+      optionC: "941",
+      optionD: "940",
+      correctAnswer: 'B' as const,
+      explanation: "Employees complete Form W-4 (Employee's Withholding Certificate) to provide their employer with information needed to calculate federal income tax withholding."
+    },
+    {
+      question: "A correcting entry is required when:",
+      optionA: "A transaction was posted twice",
+      optionB: "A trial balance doesn't balance",
+      optionC: "A transaction is recorded in the wrong account",
+      optionD: "A payment is missed",
+      correctAnswer: 'C' as const,
+      explanation: "A correcting entry is a journal entry made to fix an error in the ledger, such as a transaction that was recorded in the wrong account."
+    },
+    {
+      question: "Which is not a component of a master budget?",
+      optionA: "Capital expenditures budget",
+      optionB: "Production budget",
+      optionC: "Cash budget",
+      optionD: "Partnership agreement",
+      correctAnswer: 'D' as const,
+      explanation: "A master budget is a comprehensive financial plan. A partnership agreement is a legal document governing the relationship between partners and is not a budgetary component."
+    },
+    {
+      question: "Which of the following would not be considered a current asset?",
+      optionA: "Accounts Receivable",
+      optionB: "Prepaid Insurance",
+      optionC: "Equipment",
+      optionD: "Supplies",
+      correctAnswer: 'C' as const,
+      explanation: "Equipment is a long-term (plant) asset because it is used in operations for more than one year and is not intended for resale. The other options are assets expected to be used or converted to cash within one year."
+    },
+    {
+      question: "Which of the following is true about preferred stock?",
+      optionA: "It always has voting rights",
+      optionB: "It ranks above common stock in dividends and liquidation",
+      optionC: "It is recorded in a liability account",
+      optionD: "It must be issued before common stock",
+      correctAnswer: 'B' as const,
+      explanation: "A key feature of preferred stock is that it has priority (seniority) over common stock in the payment of dividends and in the distribution of assets during liquidation."
+    },
+    {
+      question: "A schedule of accounts payable is used to:",
+      optionA: "List all vendors and the amounts owed to them",
+      optionB: "Reconcile bank statements",
+      optionC: "Track customer payments",
+      optionD: "Determine tax liabilities",
+      correctAnswer: 'A' as const,
+      explanation: "A schedule of accounts payable is a listing of all vendors (creditors) in the accounts payable subsidiary ledger and the amount owed to each."
+    },
+    {
+      question: "Which document tracks the movement of raw materials into production?",
+      optionA: "Materials requisition form",
+      optionB: "Purchase order",
+      optionC: "Sales invoice",
+      optionD: "Check register",
+      correctAnswer: 'A' as const,
+      explanation: "A materials requisition form is an internal document that authorizes the issuance of raw materials from the storeroom to the production department."
+    },
+    {
+      question: "Which of the following ratios measures profitability?",
+      optionA: "Current Ratio",
+      optionB: "Gross Profit Margin",
+      optionC: "Working Capital",
+      optionD: "Debt Ratio",
+      correctAnswer: 'B' as const,
+      explanation: "The Gross Profit Margin (Gross Profit / Net Sales) is a profitability ratio that measures the percentage of revenue exceeding the cost of goods sold."
+    },
+    {
+      question: "What is the formula for straight-line depreciation?",
+      optionA: "(Cost − Salvage Value) ÷ Useful Life",
+      optionB: "Cost × Rate",
+      optionC: "(Cost + Salvage Value) ÷ Useful Life",
+      optionD: "Salvage Value ÷ Useful Life",
+      correctAnswer: 'A' as const,
+      explanation: "The formula for straight-line depreciation is (Cost of Asset - Salvage Value) / Estimated Useful Life."
+    },
+    {
+      question: "Which form is used to report annual federal unemployment tax?",
+      optionA: "Form 940",
+      optionB: "Form 941",
+      optionC: "Form W-4",
+      optionD: "Form W-2",
+      correctAnswer: 'A' as const,
+      explanation: "Form 940 is used to report and pay the Federal Unemployment Tax Act (FUTA) tax on an annual basis."
+    },
+    {
+      question: "What is recorded when a company trades in old equipment for new equipment?",
+      optionA: "Loss on Disposal",
+      optionB: "Equipment is removed, and cash is debited",
+      optionC: "New equipment is debited; old asset and gain/loss are recorded",
+      optionD: "Depreciation is reversed",
+      correctAnswer: 'C' as const,
+      explanation: "In an exchange of assets, the new equipment is recorded at its fair value (or the fair value of the asset given up). The old asset and its accumulated depreciation are removed from the books, and a gain or loss is recognized for the difference."
+    },
+    {
+      question: "Which budget compares planned and actual results?",
+      optionA: "Performance budget",
+      optionB: "Static budget",
+      optionC: "Master budget",
+      optionD: "Cash budget",
+      correctAnswer: 'A' as const,
+      explanation: "A performance budget is a tool that directly compares budgeted (planned) figures with actual results to evaluate performance."
+    },
+    {
+      question: "Which action violates the principle of integrity in accounting?",
+      optionA: "Disclosing financial errors to management",
+      optionB: "Manipulating numbers to meet targets",
+      optionC: "Following GAAP",
+      optionD: "Reviewing controls",
+      correctAnswer: 'B' as const,
+      explanation: "Integrity requires honesty. Manipulating financial data is a direct violation of this principle."
+    },
+    {
+      question: "What type of account is credited when a business pays an account payable?",
+      optionA: "Cash",
+      optionB: "Accounts Receivable",
+      optionC: "Inventory",
+      optionD: "Supplies",
+      correctAnswer: 'A' as const,
+      explanation: "When an accounts payable is paid, the liability is reduced (debit Accounts Payable) and the asset Cash is reduced (credit Cash)."
+    },
+    {
+      question: "Which of the following is included in investing activities?",
+      optionA: "Paying wages",
+      optionB: "Issuing stock",
+      optionC: "Purchasing equipment",
+      optionD: "Paying dividends",
+      correctAnswer: 'C' as const,
+      explanation: "Investing activities involve the purchase and sale of long-term assets. Purchasing equipment is an investing cash outflow."
+    },
+    {
+      question: "The payroll register summarizes:",
+      optionA: "Vendor payments",
+      optionB: "Inventory purchases",
+      optionC: "Gross pay, deductions, and net pay",
+      optionD: "Revenue and expenses",
+      correctAnswer: 'C' as const,
+      explanation: "The payroll register is a detailed report for each pay period that lists each employee's gross pay, deductions, and net pay."
+    },
+    {
+      question: "Which method values inventory closest to current market prices under inflation?",
+      optionA: "FIFO",
+      optionB: "LIFO",
+      optionC: "Weighted Average",
+      optionD: "Retail Method",
+      correctAnswer: 'A' as const,
+      explanation: "During inflation, FIFO assigns the oldest, lowest costs to Cost of Goods Sold, leaving the newest, higher-cost items in ending inventory. Thus, ending inventory is valued closer to current replacement costs."
+    },
+    {
+      question: "What does the acid-test ratio exclude?",
+      optionA: "Cash",
+      optionB: "Accounts Receivable",
+      optionC: "Inventory",
+      optionD: "Marketable Securities",
+      correctAnswer: 'C' as const,
+      explanation: "The Acid-Test (Quick) Ratio is a stringent liquidity measure that excludes inventory and prepaid expenses, focusing on the most liquid assets (cash, marketable securities, and receivables)."
+    },
+    {
+      question: "Which of the following is considered direct labor?",
+      optionA: "Assembly line worker",
+      optionB: "Factory janitor",
+      optionC: "Machine maintenance technician",
+      optionD: "Factory manager",
+      correctAnswer: 'A' as const,
+      explanation: "Direct labor is the cost of employees who directly work on converting raw materials into the finished product. An assembly line worker's wages are a direct labor cost."
+    },
+    {
+      question: "Earnings per share is calculated using:",
+      optionA: "Total revenue ÷ Number of employees",
+      optionB: "Net income ÷ Number of common shares",
+      optionC: "Dividends paid ÷ Total equity",
+      optionD: "Net sales ÷ Number of shares issued",
+      correctAnswer: 'B' as const,
+      explanation: "Basic Earnings Per Share (EPS) = (Net Income - Preferred Dividends) / Weighted-Average Number of Common Shares Outstanding."
+    },
+    {
+      question: "What is a key reason to maintain accurate financial records?",
+      optionA: "To increase expenses",
+      optionB: "To hide losses",
+      optionC: "To comply with regulations",
+      optionD: "To avoid paying taxes",
+      correctAnswer: 'C' as const,
+      explanation: "A key reason for maintaining accurate records is to comply with laws, regulations, and financial reporting standards (like GAAP)."
+    },
+    {
+      question: "Which concept allows businesses to delay paying some taxes to future periods?",
+      optionA: "Deferred tax liability",
+      optionB: "Accrued expenses",
+      optionC: "Unearned revenue",
+      optionD: "Amortization",
+      correctAnswer: 'A' as const,
+      explanation: "A deferred tax liability is an account that represents taxes that have been accrued for accounting income but are not yet payable to the tax authorities, effectively delaying the tax payment to a future period."
+    },
+    {
+      question: "A voucher system is primarily used to:",
+      optionA: "Track payroll",
+      optionB: "Record cash payments",
+      optionC: "Approve and document purchases",
+      optionD: "Post to ledgers",
+      correctAnswer: 'C' as const,
+      explanation: "A voucher system is a set of procedures and approvals for authorizing and documenting cash disbursements, primarily for purchases."
+    },
+    {
+      question: "Which of the following would increase the cost of goods sold?",
+      optionA: "Purchase returns",
+      optionB: "Sales discounts",
+      optionC: "Freight-in",
+      optionD: "Ending inventory",
+      correctAnswer: 'C' as const,
+      explanation: "Freight-in (transportation-in) is a cost incurred to acquire inventory and is added to the cost of purchases, which ultimately increases the Cost of Goods Sold. Purchase returns and ending inventory decrease COGS. Sales discounts are a contra-revenue account."
+    }
+  ];
+
+  const accountingEvent = await getEventByName("Accounting II");
+  if (!accountingEvent) {
+    console.error("❌ Accounting II event not found");
+    return;
+  }
+
+  for (let i = 0; i < finalQuestions.length; i++) {
+    const q = finalQuestions[i];
+    await addQuestion(
+      accountingEvent.id,
+      q.question,
+      q.optionA,
+      q.optionB,
+      q.optionC,
+      q.optionD,
+      q.correctAnswer,
+      'Intermediate',
+      1,
+      q.explanation
+    );
+  }
+  
+  console.log(`✅ Successfully added ${finalQuestions.length} final questions to Accounting II (Questions 101-200)`);
 }
 
 // Function to run the seeding (can be called directly)
@@ -1059,6 +1994,7 @@ export async function runSeed() {
     await seedEvents();
     await seedAccountingIIQuestions();
     await seedAccountingIIExtensionQuestions();
+    await seedAccountingIIFinalQuestions();
     console.log("🎉 Database seeding completed successfully!");
   } catch (error) {
     console.error("💥 Seeding failed:", error);

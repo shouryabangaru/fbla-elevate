@@ -66,6 +66,7 @@ export const questions = pgTable("questions", {
   correctAnswer: text("correct_answer").notNull(), // stores 'A', 'B', 'C', or 'D'
   difficulty: text("difficulty").notNull(), // 'Beginner', 'Intermediate', 'Advanced'
   points: integer("points").default(1),
+  explanation: text("explanation"), // explanation for the correct answer
   createdAt: timestamp("created_at").defaultNow(),
 });
 

@@ -1,0 +1,197 @@
+183. (Cost Accounting)
+Which document tracks the movement of raw materials into production?
+A. Materials requisition form
+B. Purchase order
+C. Sales invoice
+D. Check register
+
+Answer: A) Materials requisition form
+
+Explanation: A materials requisition form is an internal document that authorizes the issuance of raw materials from the storeroom to the production department.
+
+184. (Financial Ratios)
+Which of the following ratios measures profitability?
+A. Current Ratio
+B. Gross Profit Margin
+C. Working Capital
+D. Debt Ratio
+
+Answer: B) Gross Profit Margin
+
+Explanation: The Gross Profit Margin (Gross Profit / Net Sales) is a profitability ratio that measures the percentage of revenue exceeding the cost of goods sold.
+
+185. (Depreciation)
+What is the formula for straight-line depreciation?
+A. (Cost − Salvage Value) ÷ Useful Life
+B. Cost × Rate
+C. (Cost + Salvage Value) ÷ Useful Life
+D. Salvage Value ÷ Useful Life
+
+Answer: A) (Cost − Salvage Value) ÷ Useful Life
+
+Explanation: The formula for straight-line depreciation is (Cost of Asset - Salvage Value) / Estimated Useful Life.
+
+186. (Income Tax)
+Which form is used to report annual federal unemployment tax?
+A. Form 940
+B. Form 941
+C. Form W-4
+D. Form W-2
+
+Answer: A) Form 940
+
+Explanation: Form 940 is used to report and pay the Federal Unemployment Tax Act (FUTA) tax on an annual basis.
+
+187. (Plant Assets)
+What is recorded when a company trades in old equipment for new equipment?
+A. Loss on Disposal
+B. Equipment is removed, and cash is debited
+C. New equipment is debited; old asset and gain/loss are recorded
+D. Depreciation is reversed
+
+Answer: C) New equipment is debited; old asset and gain/loss are recorded
+
+Explanation: In an exchange of assets, the new equipment is recorded at its fair value (or the fair value of the asset given up). The old asset and its accumulated depreciation are removed from the books, and a gain or loss is recognized for the difference.
+
+188. (Budgeting)
+Which budget compares planned and actual results?
+A. Performance budget
+B. Static budget
+C. Master budget
+D. Cash budget
+
+Answer: A) Performance budget
+
+Explanation: A performance budget is a tool that directly compares budgeted (planned) figures with actual results to evaluate performance.
+
+189. (Ethics)
+Which action violates the principle of integrity in accounting?
+A. Disclosing financial errors to management
+B. Manipulating numbers to meet targets
+C. Following GAAP
+D. Reviewing controls
+
+Answer: B) Manipulating numbers to meet targets
+
+Explanation: Integrity requires honesty. Manipulating financial data is a direct violation of this principle.
+
+190. (Journalizing and Posting)
+What type of account is credited when a business pays an account payable?
+A. Cash
+B. Accounts Receivable
+C. Inventory
+D. Supplies
+
+Answer: A) Cash
+
+Explanation: When an accounts payable is paid, the liability is reduced (debit Accounts Payable) and the asset Cash is reduced (credit Cash).
+
+191. (Cash Flow)
+Which of the following is included in investing activities?
+A. Paying wages
+B. Issuing stock
+C. Purchasing equipment
+D. Paying dividends
+
+Answer: C) Purchasing equipment
+
+Explanation: Investing activities involve the purchase and sale of long-term assets. Purchasing equipment is an investing cash outflow.
+
+192. (Payroll)
+The payroll register summarizes:
+A. Vendor payments
+B. Inventory purchases
+C. Gross pay, deductions, and net pay
+D. Revenue and expenses
+
+Answer: C) Gross pay, deductions, and net pay
+
+Explanation: The payroll register is a detailed report for each pay period that lists each employee's gross pay, deductions, and net pay.
+
+193. (Inventory)
+Which method values inventory closest to current market prices under inflation?
+A. FIFO
+B. LIFO
+C. Weighted Average
+D. Retail Method
+
+Answer: A) FIFO
+
+Explanation: During inflation, FIFO assigns the oldest, lowest costs to Cost of Goods Sold, leaving the newest, higher-cost items in ending inventory. Thus, ending inventory is valued closer to current replacement costs.
+
+194. (Financial Ratios)
+What does the acid-test ratio exclude?
+A. Cash
+B. Accounts Receivable
+C. Inventory
+D. Marketable Securities
+
+Answer: C) Inventory
+
+Explanation: The Acid-Test (Quick) Ratio is a stringent liquidity measure that excludes inventory and prepaid expenses, focusing on the most liquid assets (cash, marketable securities, and receivables).
+
+195. (Cost Accounting)
+Which of the following is considered direct labor?
+A. Assembly line worker
+B. Factory janitor
+C. Machine maintenance technician
+D. Factory manager
+
+Answer: A) Assembly line worker
+
+Explanation: Direct labor is the cost of employees who directly work on converting raw materials into the finished product. An assembly line worker's wages are a direct labor cost.
+
+196. (Corporate Accounting)
+Earnings per share is calculated using:
+A. Total revenue ÷ Number of employees
+B. Net income ÷ Number of common shares
+C. Dividends paid ÷ Total equity
+D. Net sales ÷ Number of shares issued
+
+Answer: B) Net income ÷ Number of common shares
+
+Explanation: Basic Earnings Per Share (EPS) = (Net Income - Preferred Dividends) / Weighted-Average Number of Common Shares Outstanding.
+
+197. (Ethics)
+What is a key reason to maintain accurate financial records?
+A. To increase expenses
+B. To hide losses
+C. To comply with regulations
+D. To avoid paying taxes
+
+Answer: C) To comply with regulations
+
+Explanation: A key reason for maintaining accurate records is to comply with laws, regulations, and financial reporting standards (like GAAP).
+
+198. (Income Tax)
+Which concept allows businesses to delay paying some taxes to future periods?
+A. Deferred tax liability
+B. Accrued expenses
+C. Unearned revenue
+D. Amortization
+
+Answer: A) Deferred tax liability
+
+Explanation: A deferred tax liability is an account that represents taxes that have been accrued for accounting income but are not yet payable to the tax authorities, effectively delaying the tax payment to a future period.
+
+199. (Journalizing and Posting)
+A voucher system is primarily used to:
+A. Track payroll
+B. Record cash payments
+C. Approve and document purchases
+D. Post to ledgers
+
+Answer: C) Approve and document purchases
+
+Explanation: A voucher system is a set of procedures and approvals for authorizing and documenting cash disbursements, primarily for purchases.
+
+200. (Inventory)
+Which of the following would increase the cost of goods sold?
+A. Purchase returns
+B. Sales discounts
+C. Freight-in
+D. Ending inventory
+
+Answer: C) Freight-in
+
+Explanation: Freight-in (transportation-in) is a cost incurred to acquire inventory and is added to the cost of purchases, which ultimately increases the Cost of Goods Sold. Purchase returns and ending inventory decrease COGS. Sales discounts are a contra-revenue account.
