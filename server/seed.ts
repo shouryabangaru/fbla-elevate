@@ -2925,6 +2925,898 @@ export async function seedParliamentaryProcedureQuestions() {
   console.log(`✅ Successfully added ${parliamentaryQuestions.length} questions to Introduction to Parliamentary Procedure`);
 }
 
+// Seed Parliamentary Procedure Extension Questions (101-200)
+export async function seedParliamentaryProcedureExtensionQuestions() {
+  console.log("🏛️ Seeding Introduction to Parliamentary Procedure extension questions (101-200)...");
+  
+  const getEventByName = async (name: string) => {
+    const result = await db.select().from(events).where(eq(events.name, name));
+    return result[0] || null;
+  };
+
+  const parliamentaryEvent = await getEventByName("Introduction to Parliamentary Procedure");
+  if (!parliamentaryEvent) {
+    console.error("❌ Introduction to Parliamentary Procedure event not found");
+    return;
+  }
+
+  const extensionQuestions = [
+    {
+      question: "A motion to \"Lay on the Table\" is often misused. According to Robert's Rules, its legitimate purpose is to:",
+      optionA: "Kill a motion without debate",
+      optionB: "Delay action until the next regular meeting",
+      optionC: "Temporarily set aside business for more urgent matters",
+      optionD: "Refer the motion to a committee",
+      correctAnswer: 'C' as const,
+      explanation: "The correct use of \"Lay on the Table\" is to temporarily set aside a pending motion to deal with an immediate, more urgent piece of business, with the intent to \"Take from the Table\" and resume consideration later in the same session."
+    },
+    {
+      question: "Which officer is responsible for compiling and distributing the FBLA National Leadership Conference minutes?",
+      optionA: "Executive Director",
+      optionB: "National Secretary",
+      optionC: "Parliamentarian",
+      optionD: "Association President",
+      correctAnswer: 'B' as const,
+      explanation: "The duty of recording, compiling, and distributing the minutes of national meetings, including the NLC, falls to the National Secretary."
+    },
+    {
+      question: "If a member rises to a point of order, when must the presiding officer respond?",
+      optionA: "Immediately, unless another member is speaking",
+      optionB: "After the current speaker finishes",
+      optionC: "At the end of debate",
+      optionD: "Only if a vote is being taken",
+      correctAnswer: 'A' as const,
+      explanation: "A Point of Order deals with a breach of the rules and is therefore a privileged interruption. The chair must rule on it immediately when it is raised, unless another member is speaking, in which case the point is addressed as soon as the speaker finishes."
+    },
+    {
+      question: "A motion to Reconsider can only be made by:",
+      optionA: "The secretary",
+      optionB: "A member who voted on the losing side",
+      optionC: "A member who voted on the prevailing side",
+      optionD: "The chairperson",
+      correctAnswer: 'C' as const,
+      explanation: "A fundamental rule for the motion to Reconsider is that it must be made by a member who voted on the winning side of the original vote."
+    },
+    {
+      question: "Which body approves amendments to the FBLA National Bylaws after national delegates pass them?",
+      optionA: "The U.S. Department of Education",
+      optionB: "The FBLA Board of Directors",
+      optionC: "The Executive Council",
+      optionD: "No further approval is required",
+      correctAnswer: 'D' as const,
+      explanation: "Once the voting delegates at the National Leadership Conference (NLC) adopt a bylaws amendment by the required two-thirds vote, the process is complete, and no further approval is needed."
+    },
+    {
+      question: "If debate has been closed by ordering the Previous Question, what follows?",
+      optionA: "Motion is withdrawn",
+      optionB: "Debate continues under extended rules",
+      optionC: "Immediate vote on the pending motion(s)",
+      optionD: "Chair decides based on member interest",
+      correctAnswer: 'C' as const,
+      explanation: "The sole purpose of the Previous Question is to close debate immediately and proceed to a vote on the pending motion(s)."
+    },
+    {
+      question: "The motion to \"Amend Something Previously Adopted\" requires what vote?",
+      optionA: "Majority",
+      optionB: "Two-thirds",
+      optionC: "Unanimous consent",
+      optionD: "Vote by ballot only",
+      correctAnswer: 'B' as const,
+      explanation: "Because it reverses a previous decision of the assembly, this motion typically requires a two-thirds vote, a majority of the entire membership, or a majority vote with previous notice."
+    },
+    {
+      question: "Which national officer must have knowledge of parliamentary procedure according to the FBLA bylaws?",
+      optionA: "National Vice President",
+      optionB: "National President",
+      optionC: "National Parliamentarian",
+      optionD: "National Secretary",
+      correctAnswer: 'C' as const,
+      explanation: "The Parliamentarian is the officer specifically designated to be an expert on and advise the organization on matters of parliamentary procedure."
+    },
+    {
+      question: "Which of the following is not debatable?",
+      optionA: "Postpone to a Certain Time",
+      optionB: "Commit or Refer",
+      optionC: "Lay on the Table",
+      optionD: "Postpone Indefinitely",
+      correctAnswer: 'C' as const,
+      explanation: "The motion to Lay on the Table is not debatable because its purpose is to make a quick, temporary disposition of a motion, not to discuss its merits."
+    },
+    {
+      question: "In a deliberative assembly, which of the following best describes a \"quorum\"?",
+      optionA: "The minimum number of members required to be elected",
+      optionB: "A majority of the officers",
+      optionC: "The number of members required to legally transact business",
+      optionD: "The total voting members present",
+      correctAnswer: 'C' as const,
+      explanation: "A quorum is the minimum number of members that must be present to make the proceedings valid, as defined in the organization's bylaws."
+    },
+    {
+      question: "What is the correct way to handle a motion when a member believes the rules are being violated?",
+      optionA: "Raise a Parliamentary Inquiry",
+      optionB: "Raise a Point of Information",
+      optionC: "Raise a Point of Order",
+      optionD: "Appeal from the Decision of the Chair",
+      correctAnswer: 'C' as const,
+      explanation: "A Point of Order is the proper motion to call attention to a violation of the rules or a departure from proper procedure."
+    },
+    {
+      question: "What is the term length of FBLA National Officers according to the bylaws?",
+      optionA: "Two years",
+      optionB: "Until graduation",
+      optionC: "One year",
+      optionD: "Until resignation or removal",
+      correctAnswer: 'C' as const,
+      explanation: "The term of office for FBLA national officers is one year, beginning at the conclusion of the NLC at which they are elected."
+    },
+    {
+      question: "Which type of motion ranks the highest among the following?",
+      optionA: "Recess",
+      optionB: "Call for the Orders of the Day",
+      optionC: "Previous Question",
+      optionD: "Postpone to a Certain Time",
+      correctAnswer: 'B' as const,
+      explanation: "Call for the Orders of the Day is a privileged motion and outranks all subsidiary motions like Previous Question and Postpone to a Certain Time. Recess is also privileged but has a lower rank than Call for the Orders of the Day."
+    },
+    {
+      question: "A member may interrupt a speaker to:",
+      optionA: "Offer an amendment",
+      optionB: "Raise a question of privilege",
+      optionC: "Make a subsidiary motion",
+      optionD: "Move to adjourn",
+      correctAnswer: 'B' as const,
+      explanation: "A Question of Privilege is a request dealing with the comfort, safety, or rights of the assembly and can interrupt a speaker because it may require immediate attention."
+    },
+    {
+      question: "Which of the following is not an official FBLA national officer title?",
+      optionA: "Executive Vice President",
+      optionB: "Treasurer",
+      optionC: "Parliamentarian",
+      optionD: "Eastern Region Vice President",
+      correctAnswer: 'A' as const,
+      explanation: "FBLA national officer titles include President, Secretary, Treasurer, Parliamentarian, and five Regional Vice Presidents. There is no \"Executive Vice President.\""
+    },
+    {
+      question: "Which is a characteristic of incidental motions?",
+      optionA: "They can never interrupt business",
+      optionB: "They deal with questions of procedure",
+      optionC: "They require previous notice",
+      optionD: "They only apply to bylaws",
+      correctAnswer: 'B' as const,
+      explanation: "Incidental motions arise from other questions or motions and deal with procedural issues related to the business at hand (e.g., Point of Order, Appeal, Division of the Assembly)."
+    },
+    {
+      question: "If two members rise simultaneously to speak, who decides who gets the floor?",
+      optionA: "The parliamentarian",
+      optionB: "The member who made the motion",
+      optionC: "The secretary",
+      optionD: "The presiding officer",
+      correctAnswer: 'D' as const,
+      explanation: "The presiding officer (chair) is responsible for recognizing members and assigning the floor. In a tie, they decide who spoke first or who has not yet spoken."
+    },
+    {
+      question: "In a committee meeting, the quorum is:",
+      optionA: "A majority of the entire organization",
+      optionB: "Defined by the organization's bylaws",
+      optionC: "All members present",
+      optionD: "A majority of the committee members",
+      correctAnswer: 'D' as const,
+      explanation: "In the absence of a specific rule, the quorum for a committee is a majority of its members."
+    },
+    {
+      question: "To be eligible to run for a national FBLA office, the candidate must have:",
+      optionA: "Attended a state officer training camp",
+      optionB: "Previously served as a chapter secretary",
+      optionC: "Held or currently hold an elected office at local, state, or national level",
+      optionD: "Received a unanimous endorsement by their state chapter",
+      correctAnswer: 'C' as const,
+      explanation: "A key eligibility requirement for national office is prior leadership experience, specifically having held an elected office at some level within FBLA."
+    },
+    {
+      question: "Which of the following motions may interrupt a speaker?",
+      optionA: "Point of Order",
+      optionB: "Motion to Amend",
+      optionC: "Motion to Reconsider",
+      optionD: "Lay on the Table",
+      correctAnswer: 'A' as const,
+      explanation: "A Point of Order, which deals with a breach of the rules, is one of the few motions that can interrupt a speaker."
+    },
+    {
+      question: "If a member wishes to withdraw a motion after debate has begun, what is required?",
+      optionA: "Nothing—the motion is automatically withdrawn",
+      optionB: "Permission from the chair",
+      optionC: "Unanimous consent",
+      optionD: "A majority vote of the assembly",
+      correctAnswer: 'C' as const,
+      explanation: "After a motion has been stated by the chair and debate has begun, the maker can only withdraw it by requesting permission, which is granted by unanimous consent of the assembly (if no one objects)."
+    },
+    {
+      question: "What is the effect of adopting the motion to \"Postpone Indefinitely\"?",
+      optionA: "Defers the motion to the next meeting",
+      optionB: "Postpones the motion until a specific date",
+      optionC: "Kills the main motion without direct vote",
+      optionD: "Suspends the motion for urgent business",
+      correctAnswer: 'C' as const,
+      explanation: "The purpose of Postpone Indefinitely is to dispose of the main motion for the session without a direct vote on the main motion itself."
+    },
+    {
+      question: "Which is the final authority on the interpretation of FBLA bylaws?",
+      optionA: "National Officers",
+      optionB: "Parliamentarian",
+      optionC: "Board of Directors",
+      optionD: "Voting delegates",
+      correctAnswer: 'C' as const,
+      explanation: "The FBLA Board of Directors is the ultimate governing body and holds the final authority on the interpretation of the national bylaws."
+    },
+    {
+      question: "What does \"obtaining the floor\" mean?",
+      optionA: "A member asks to be excused",
+      optionB: "A member receives permission to speak",
+      optionC: "A member leaves the assembly",
+      optionD: "A member challenges a ruling",
+      correctAnswer: 'B' as const,
+      explanation: "\"Obtaining the floor\" means a member has been recognized by the chair and has the exclusive right to speak."
+    },
+    {
+      question: "Which motion is used to modify the wording—and within limits—the meaning of a pending motion?",
+      optionA: "Postpone Indefinitely",
+      optionB: "Amend",
+      optionC: "Suspend the Rules",
+      optionD: "Appeal",
+      correctAnswer: 'B' as const,
+      explanation: "The subsidiary motion to Amend is used to modify the wording of a pending motion before it is voted on."
+    },
+    {
+      question: "A motion that seeks to close debate and vote immediately is called:",
+      optionA: "Limit Debate",
+      optionB: "Postpone Indefinitely",
+      optionC: "Previous Question",
+      optionD: "Reconsider",
+      correctAnswer: 'C' as const,
+      explanation: "The Previous Question is the motion used to close debate and force an immediate vote on the pending question(s)."
+    },
+    {
+      question: "Which of the following motions is not amendable?",
+      optionA: "Postpone to a Certain Time",
+      optionB: "Limit Debate",
+      optionC: "Main Motion",
+      optionD: "Adjourn (when unqualified)",
+      correctAnswer: 'D' as const,
+      explanation: "The privileged motion to Adjourn (when it does not set a time to reconstitute) is not debatable or amendable."
+    },
+    {
+      question: "What is the purpose of a motion to \"Commit or Refer\"?",
+      optionA: "Repeal a main motion",
+      optionB: "Defer discussion for 24 hours",
+      optionC: "Assign a motion to a committee for detailed study",
+      optionD: "Reorder items on the agenda",
+      correctAnswer: 'C' as const,
+      explanation: "The motion to Commit or Refer sends the main motion to a committee for investigation, report, and recommendation."
+    },
+    {
+      question: "National FBLA officers are elected by:",
+      optionA: "The Board of Directors",
+      optionB: "A vote of past national officers",
+      optionC: "Voting delegates at the National Leadership Conference",
+      optionD: "A nominating committee",
+      correctAnswer: 'C' as const,
+      explanation: "National officers are elected by the voting delegates at the annual National Leadership Conference (NLC)."
+    },
+    {
+      question: "The maker of a motion has the right to:",
+      optionA: "Speak first in debate on the motion",
+      optionB: "Withdraw the motion without consent",
+      optionC: "Choose who debates next",
+      optionD: "Amend the motion before the vote",
+      correctAnswer: 'A' as const,
+      explanation: "The member who makes a motion has the right to be the first speaker in debate on that motion."
+    },
+    {
+      question: "A tie vote on a main motion means the motion is:",
+      optionA: "Adopted",
+      optionB: "Deferred",
+      optionC: "Lost",
+      optionD: "Sent to committee",
+      correctAnswer: 'C' as const,
+      explanation: "A tie vote on a motion requiring a majority means the motion is lost (defeated), as it did not achieve more than half of the votes cast."
+    },
+    {
+      question: "The FBLA fiscal year begins on:",
+      optionA: "July 1",
+      optionB: "August 1",
+      optionC: "October 1",
+      optionD: "January 1",
+      correctAnswer: 'A' as const,
+      explanation: "The FBLA fiscal year runs from July 1 to June 30."
+    },
+    {
+      question: "The term \"pending\" refers to:",
+      optionA: "Motions submitted for future meetings",
+      optionB: "Items on the agenda",
+      optionC: "Motions currently under consideration",
+      optionD: "Debated but not yet seconded motions",
+      correctAnswer: 'C' as const,
+      explanation: "A \"pending\" motion is one that has been stated by the chair and is currently before the assembly for debate, amendment, or vote."
+    },
+    {
+      question: "Which of the following requires a two-thirds vote?",
+      optionA: "Amend",
+      optionB: "Main Motion",
+      optionC: "Recess",
+      optionD: "Suspend the Rules",
+      correctAnswer: 'D' as const,
+      explanation: "Suspending the rules requires a two-thirds vote because it overrides the established procedures of the assembly."
+    },
+    {
+      question: "If a national officer resigns, the vacancy is filled by:",
+      optionA: "Special election",
+      optionB: "Appointment by the FBLA board",
+      optionC: "The candidate with the second highest vote",
+      optionD: "Nomination by the National President",
+      correctAnswer: 'B' as const,
+      explanation: "Vacancies in national office are filled by appointment by the FBLA Board of Directors."
+    },
+    {
+      question: "Which of the following motions can be made while another is pending?",
+      optionA: "Main Motion",
+      optionB: "Appeal",
+      optionC: "Reconsider",
+      optionD: "Object to the Consideration of the Question",
+      correctAnswer: 'B' as const,
+      explanation: "An Appeal from the decision of the chair is an incidental motion that arises out of another question and can be made while another motion is pending."
+    },
+    {
+      question: "If a member rises and states \"Point of Order,\" the chair must:",
+      optionA: "Allow debate",
+      optionB: "Submit it to a vote",
+      optionC: "Rule immediately",
+      optionD: "Refer it to the parliamentarian",
+      correctAnswer: 'C' as const,
+      explanation: "The chair must rule immediately on a Point of Order, stating whether it is \"well taken\" (valid) or \"not well taken\" (invalid)."
+    },
+    {
+      question: "The motion to \"Rescind\" is best described as:",
+      optionA: "Delaying a motion",
+      optionB: "Reversing a previous decision",
+      optionC: "Referring a motion to a higher body",
+      optionD: "Creating a new standing rule",
+      correctAnswer: 'B' as const,
+      explanation: "The motion to Rescind (or Repeal) is used to cancel or reverse a motion that was previously adopted."
+    },
+    {
+      question: "To be eligible for national office, a member must have paid dues by:",
+      optionA: "April 1",
+      optionB: "March 1",
+      optionC: "February 1",
+      optionD: "May 1",
+      correctAnswer: 'B' as const,
+      explanation: "A candidate for national office must have their dues paid and recorded by the national center by March 1 of the year they run for office."
+    },
+    {
+      question: "Which subsidiary motion ranks lowest in precedence?",
+      optionA: "Postpone to a Certain Time",
+      optionB: "Amend",
+      optionC: "Refer",
+      optionD: "Lay on the Table",
+      correctAnswer: 'B' as const,
+      explanation: "In the standard order of precedence for subsidiary motions, Amend ranks lower than Postpone to a Certain Time and Commit or Refer. Postpone Indefinitely is the lowest."
+    },
+    {
+      question: "The chair may vote:",
+      optionA: "Only to break a tie",
+      optionB: "Only when vote is by ballot",
+      optionC: "When the vote changes the outcome",
+      optionD: "Whenever they choose",
+      correctAnswer: 'C' as const,
+      explanation: "The presiding officer votes only when their vote would affect the result, such as to break a tie or to create a tie (which defeats a motion requiring a majority)."
+    },
+    {
+      question: "Which of the following is a duty of the National FBLA Secretary?",
+      optionA: "Conduct parliamentary training",
+      optionB: "Oversee national finances",
+      optionC: "Maintain accurate records of national meetings",
+      optionD: "Enforce FBLA bylaws",
+      correctAnswer: 'C' as const,
+      explanation: "The primary duty of the Secretary is to record and maintain the minutes and other official records of the organization."
+    },
+    {
+      question: "A motion is considered \"out of order\" when:",
+      optionA: "It has already been discussed",
+      optionB: "It is introduced while another is pending and takes lower precedence",
+      optionC: "It has been tabled",
+      optionD: "It has been seconded",
+      correctAnswer: 'B' as const,
+      explanation: "A motion is out of order if it conflicts with the rules of precedence. A lower-ranking motion cannot be made while a higher-ranking motion is pending."
+    },
+    {
+      question: "A vote of \"Division of the Assembly\" is used to:",
+      optionA: "Challenge the vote count",
+      optionB: "Delay the vote",
+      optionC: "Divide the assembly into groups",
+      optionD: "Suspend the meeting",
+      correctAnswer: 'A' as const,
+      explanation: "A Division of the Assembly is a demand for a verification of a voice vote by a rising vote or show of hands when the result is unclear or doubted."
+    },
+    {
+      question: "Which national region does not elect a separate Vice President?",
+      optionA: "Eastern",
+      optionB: "North Central",
+      optionC: "Southern",
+      optionD: "Western",
+      correctAnswer: 'B' as const,
+      explanation: "FBLA's five regions are Western, Mountain Plains, Central, Southern, and Eastern. There is no \"North Central\" region."
+    },
+    {
+      question: "What kind of vote is required to close nominations?",
+      optionA: "Majority",
+      optionB: "Two-thirds",
+      optionC: "Unanimous",
+      optionD: "Plurality",
+      correctAnswer: 'B' as const,
+      explanation: "Closing nominations requires a two-thirds vote because it takes away the right of members to make further nominations."
+    },
+    {
+      question: "The term \"floor\" in parliamentary context refers to:",
+      optionA: "The physical meeting space",
+      optionB: "The agenda",
+      optionC: "The member currently allowed to speak",
+      optionD: "The area in front of the chair",
+      correctAnswer: 'C' as const,
+      explanation: "The member who has been recognized by the chair and has the right to speak is said to \"have the floor.\""
+    },
+    {
+      question: "National officers may be removed from office for:",
+      optionA: "Failing to complete officer training",
+      optionB: "Violating parliamentary law",
+      optionC: "Failing to meet constitutional duties",
+      optionD: "Skipping a national conference",
+      correctAnswer: 'C' as const,
+      explanation: "National officers can be removed for failing to perform their duties as outlined in the FBLA bylaws or for other violations of the organization's rules."
+    },
+    {
+      question: "Which motion cannot interrupt another speaker?",
+      optionA: "Point of Order",
+      optionB: "Appeal",
+      optionC: "Parliamentary Inquiry",
+      optionD: "Move to Reconsider",
+      correctAnswer: 'D' as const,
+      explanation: "The motion to Reconsider cannot interrupt a speaker. It must wait until the current speaker has finished and the floor is free."
+    },
+    {
+      question: "The vote required to adopt a motion that limits debate is:",
+      optionA: "Majority",
+      optionB: "Two-thirds",
+      optionC: "Three-fourths",
+      optionD: "Unanimous",
+      correctAnswer: 'B' as const,
+      explanation: "Because it restricts the rights of members to speak, the motion to Limit Debate requires a two-thirds vote."
+    },
+    {
+      question: "A motion to \"Divide a Question\" is used to:",
+      optionA: "Break debate into time limits",
+      optionB: "Split a motion into separate parts for separate votes",
+      optionC: "Take separate votes for officers",
+      optionD: "End debate quickly",
+      correctAnswer: 'B' as const,
+      explanation: "Divide a Question is used when a motion contains multiple, independent proposals that can stand alone. It allows the assembly to vote on each part separately."
+    },
+    {
+      question: "Which governing document has priority in resolving FBLA procedural disputes?",
+      optionA: "Robert's Rules",
+      optionB: "FBLA Local Chapter Handbook",
+      optionC: "FBLA Bylaws",
+      optionD: "State Officer Manual",
+      correctAnswer: 'C' as const,
+      explanation: "An organization's bylaws are its highest governing document. The FBLA Bylaws take precedence over all other rules, including Robert's Rules of Order."
+    },
+    {
+      question: "A motion becomes the \"immediately pending question\" when:",
+      optionA: "It is submitted in writing",
+      optionB: "It is stated by the chair",
+      optionC: "It is seconded",
+      optionD: "Debate begins",
+      correctAnswer: 'B' as const,
+      explanation: "A motion becomes \"pending\" and is the \"immediately pending question\" once it has been stated by the chair, which places it before the assembly for consideration."
+    },
+    {
+      question: "Which of the following is not a principle of parliamentary law?",
+      optionA: "Justice for all",
+      optionB: "One motion at a time",
+      optionC: "Rights of the minority",
+      optionD: "Favoring seniority",
+      correctAnswer: 'D' as const,
+      explanation: "Parliamentary law is based on fairness and equality. It does not grant special rights or privileges based on seniority."
+    },
+    {
+      question: "Which class of motions take precedence over all others?",
+      optionA: "Privileged",
+      optionB: "Main",
+      optionC: "Subsidiary",
+      optionD: "Incidental",
+      correctAnswer: 'A' as const,
+      explanation: "Privileged motions (e.g., Adjourn, Recess, Question of Privilege) relate to the comfort and convenience of the assembly and take precedence over all other motions."
+    },
+    {
+      question: "A member rises to \"Parliamentary Inquiry\" in order to:",
+      optionA: "Appeal the chair",
+      optionB: "Request information about rules",
+      optionC: "State an objection",
+      optionD: "Close debate",
+      correctAnswer: 'B' as const,
+      explanation: "A Parliamentary Inquiry is a request for the chair's opinion or information on a matter of parliamentary procedure as it relates to the current business."
+    },
+    {
+      question: "\"Fix the Time to Which to Adjourn\" is classified as a:",
+      optionA: "Main motion",
+      optionB: "Incidental motion",
+      optionC: "Privileged motion",
+      optionD: "Subsidiary motion",
+      correctAnswer: 'C' as const,
+      explanation: "Fix the Time to Which to Adjourn is the highest-ranking privileged motion. It sets the time for an adjourned meeting."
+    },
+    {
+      question: "A \"Standing Rule\" differs from a bylaw in that:",
+      optionA: "It applies only to debate",
+      optionB: "It requires a two-thirds vote",
+      optionC: "It is temporary",
+      optionD: "It relates to details of administration",
+      correctAnswer: 'D' as const,
+      explanation: "Standing rules relate to the administrative details of an organization (e.g., meeting start time), while bylaws define its fundamental structure and governance."
+    },
+    {
+      question: "Which of the following motions cannot have the Previous Question applied to it?",
+      optionA: "Main Motion",
+      optionB: "Amend",
+      optionC: "Point of Order",
+      optionD: "Postpone to a Certain Time",
+      correctAnswer: 'C' as const,
+      explanation: "The Previous Question (motion to close debate) can only be applied to debatable motions. Point of Order is not debatable, so Previous Question cannot be applied to it."
+    },
+    {
+      question: "The purpose of a \"second\" to a motion is to:",
+      optionA: "Ensure at least two members wish to consider it",
+      optionB: "Provide debate opportunity to the seconder",
+      optionC: "Validate the motion legally",
+      optionD: "Allow the chair to rule on it",
+      correctAnswer: 'A' as const,
+      explanation: "A second indicates that at least one other member (besides the maker) wishes the assembly to consider the motion. Without a second, the motion is not considered."
+    },
+    {
+      question: "In FBLA, the National Parliamentarian's primary responsibility is to:",
+      optionA: "Preside over meetings when the president is absent",
+      optionB: "Interpret and advise on parliamentary procedure",
+      optionC: "Record minutes of all national meetings",
+      optionD: "Vote only in case of a tie",
+      correctAnswer: 'B' as const,
+      explanation: "The Parliamentarian's primary role is to advise the presiding officer and members on matters of parliamentary procedure and proper interpretation of the rules."
+    },
+    {
+      question: "A motion requiring a two-thirds vote would fail if:",
+      optionA: "60 voted yes and 40 voted no",
+      optionB: "66 voted yes and 34 voted no",
+      optionC: "67 voted yes and 33 voted no",
+      optionD: "70 voted yes and 30 voted no",
+      correctAnswer: 'A' as const,
+      explanation: "A two-thirds vote means at least 2/3 of votes cast must be in favor. With 100 votes cast, at least 67 must be yes. 60 out of 100 (60%) does not meet the two-thirds (66.67%) requirement."
+    },
+    {
+      question: "Which of the following best describes \"germane\" in relation to amendments?",
+      optionA: "The amendment must be related to the subject of the motion",
+      optionB: "The amendment must be approved by the chair",
+      optionC: "The amendment must strengthen the motion",
+      optionD: "The amendment must be seconded by three members",
+      correctAnswer: 'A' as const,
+      explanation: "For an amendment to be germane, it must be directly related to and within the scope of the pending motion. It cannot introduce an entirely new subject."
+    },
+    {
+      question: "When may a member \"Call for the Orders of the Day\"?",
+      optionA: "Only at the beginning of a meeting",
+      optionB: "When the assembly has departed from the adopted agenda",
+      optionC: "Only during new business",
+      optionD: "When the chair requests it",
+      correctAnswer: 'B' as const,
+      explanation: "A Call for the Orders of the Day is used when the assembly has deviated from the established agenda or order of business and a member wishes to enforce the schedule."
+    },
+    {
+      question: "The primary difference between \"Rescind\" and \"Amend Something Previously Adopted\" is:",
+      optionA: "Rescind completely removes while Amend modifies",
+      optionB: "Rescind requires two-thirds while Amend requires majority",
+      optionC: "Rescind is debatable while Amend is not",
+      optionD: "Rescind can only be used on bylaws",
+      correctAnswer: 'A' as const,
+      explanation: "Rescind (or Repeal) completely nullifies a previously adopted motion, while Amend Something Previously Adopted changes or modifies it. Both typically require a two-thirds vote or previous notice with a majority."
+    },
+    {
+      question: "A \"Point of Information\" is directed to:",
+      optionA: "The assembly",
+      optionB: "The chair or through the chair to another member",
+      optionC: "The parliamentarian only",
+      optionD: "The recording secretary",
+      correctAnswer: 'B' as const,
+      explanation: "A Point of Information (or Request for Information) is a question directed to the chair or, through the chair, to another member to obtain factual information relevant to the pending business."
+    },
+    {
+      question: "Which of the following statements about \"Unanimous Consent\" is correct?",
+      optionA: "It requires every member to vote yes",
+      optionB: "It requires a formal vote",
+      optionC: "It means no member objects when the chair asks",
+      optionD: "It can override the bylaws",
+      correctAnswer: 'C' as const,
+      explanation: "Unanimous consent (or general consent) is an informal way to approve routine or non-controversial matters. If no member objects when the chair asks, the action is approved without a formal vote."
+    },
+    {
+      question: "The motion to \"Limit or Extend Limits of Debate\" can:",
+      optionA: "Only extend debate time",
+      optionB: "Both limit or extend the time or number of speakers",
+      optionC: "Only be applied to main motions",
+      optionD: "Be renewed without restriction",
+      correctAnswer: 'B' as const,
+      explanation: "This motion can either limit (reduce) or extend the limits of debate by setting time limits per speaker, total debate time, or the number of speakers allowed."
+    },
+    {
+      question: "What happens to a main motion if \"Object to Consideration of the Question\" is sustained?",
+      optionA: "It is postponed to the next meeting",
+      optionB: "It is sent to committee",
+      optionC: "It is dismissed without debate",
+      optionD: "It requires a two-thirds vote to pass",
+      correctAnswer: 'C' as const,
+      explanation: "If the objection to consideration is sustained (approved by two-thirds vote), the main motion is dismissed immediately without any debate or further consideration."
+    },
+    {
+      question: "In Robert's Rules, when can minutes be corrected?",
+      optionA: "Only at the meeting when they are read",
+      optionB: "At any time an error is noticed, regardless of when",
+      optionC: "Only by unanimous consent",
+      optionD: "Only by the secretary",
+      correctAnswer: 'B' as const,
+      explanation: "Minutes can be corrected at any time an error is noticed, even years later, through a motion to amend the minutes. The assembly must approve the correction."
+    },
+    {
+      question: "A \"friendly amendment\" is:",
+      optionA: "An official parliamentary term requiring no vote",
+      optionB: "An informal suggestion that must still be properly moved and voted on",
+      optionC: "Automatically accepted if the maker agrees",
+      optionD: "Only used in committee meetings",
+      correctAnswer: 'B' as const,
+      explanation: "There is no such thing as a \"friendly amendment\" in formal parliamentary procedure. All amendments must be properly moved, seconded, and voted on by the assembly, even if the motion's maker accepts it."
+    },
+    {
+      question: "Which of the following accurately describes \"ex officio\" members?",
+      optionA: "They are former officers with voting rights",
+      optionB: "They serve by virtue of their office or position",
+      optionC: "They can only attend executive sessions",
+      optionD: "They have no privileges or duties",
+      correctAnswer: 'B' as const,
+      explanation: "Ex officio members are individuals who are members of a body by virtue of holding another office or position. Their rights and duties should be specified in the bylaws."
+    },
+    {
+      question: "The motion to \"Take from the Table\" must be made:",
+      optionA: "At any time during the same session or the next session",
+      optionB: "Immediately after the item was tabled",
+      optionC: "Only by the member who made the original motion",
+      optionD: "With a two-thirds vote",
+      correctAnswer: 'A' as const,
+      explanation: "A motion can be taken from the table during the same session in which it was laid on the table, or at the next session (if held within a quarterly time interval). It requires a majority vote."
+    },
+    {
+      question: "When voting by ballot, the chair:",
+      optionA: "Never votes under any circumstance",
+      optionB: "Votes along with other members",
+      optionC: "Votes only to break ties",
+      optionD: "Assigns someone else to vote on their behalf",
+      correctAnswer: 'B' as const,
+      explanation: "When voting is by ballot (secret), the chair has the same voting rights as any other member and typically votes along with everyone else since the vote is anonymous."
+    },
+    {
+      question: "The term \"immediately pending\" refers to:",
+      optionA: "The first motion made at a meeting",
+      optionB: "The motion currently on the floor for immediate consideration",
+      optionC: "Any motion awaiting a second",
+      optionD: "Motions scheduled for the next meeting",
+      correctAnswer: 'B' as const,
+      explanation: "The immediately pending question is the motion that is directly before the assembly for consideration at that moment. If several motions are pending, it is the one most recently stated by the chair."
+    },
+    {
+      question: "A \"seriatim\" consideration means:",
+      optionA: "Considering a document paragraph by paragraph or section by section",
+      optionB: "Serial voting by ballot",
+      optionC: "Considering motions in strict chronological order",
+      optionD: "Committee consideration before floor debate",
+      correctAnswer: 'A' as const,
+      explanation: "Seriatim consideration is a method of considering a long document (like bylaws) by dividing it into logical parts and considering each section separately before voting on the whole."
+    },
+    {
+      question: "The proper way to bring a question again before the assembly that was postponed indefinitely is to:",
+      optionA: "Move to Reconsider",
+      optionB: "Introduce it as new business",
+      optionC: "Move to Rescind the postponement",
+      optionD: "Both A and B are acceptable",
+      correctAnswer: 'D' as const,
+      explanation: "A motion that was postponed indefinitely can be renewed as new business at a later session, or the decision to postpone can be reconsidered if done within the allowable time limits for reconsideration."
+    },
+    {
+      question: "Which of the following is true about the motion to Reconsider?",
+      optionA: "It can be applied to any vote",
+      optionB: "It can be made by any member",
+      optionC: "It can be made on the same day or the next calendar day",
+      optionD: "It requires a two-thirds vote",
+      correctAnswer: 'C' as const,
+      explanation: "A motion to Reconsider must be made on the same day the original vote was taken or on the next calendar day of the session. It can only be made by someone who voted on the prevailing side."
+    },
+    {
+      question: "In the absence of a rule to the contrary, debate on a pending question:",
+      optionA: "Is limited to 10 minutes per member",
+      optionB: "Is unlimited until someone moves the Previous Question",
+      optionC: "Allows each member to speak once for 10 minutes",
+      optionD: "Must end after one hour",
+      correctAnswer: 'B' as const,
+      explanation: "Unless the organization's rules specify otherwise or the assembly adopts a motion to limit debate, debate continues until no one else wishes to speak or until the Previous Question is adopted."
+    },
+    {
+      question: "The \"Nominating Committee\" in FBLA:",
+      optionA: "Makes the final decision on candidates",
+      optionB: "Has no power in the election process",
+      optionC: "Proposes candidates but cannot restrict other nominations",
+      optionD: "Must approve all candidates before they can run",
+      correctAnswer: 'C' as const,
+      explanation: "A nominating committee proposes candidates for office, but it cannot prevent nominations from the floor. The assembly always has the right to make additional nominations."
+    },
+    {
+      question: "A main motion can be introduced when:",
+      optionA: "No other motion is pending",
+      optionB: "At any time the member has the floor",
+      optionC: "Only during new business",
+      optionD: "The chair calls for main motions",
+      correctAnswer: 'A' as const,
+      explanation: "A main motion, which introduces new business, can only be made when no other motion is pending (when the floor is clear). It is the lowest ranking motion."
+    },
+    {
+      question: "The principle of \"one question at a time\" means:",
+      optionA: "Only one member can speak at a time",
+      optionB: "Only one main motion can be considered at a time",
+      optionC: "Questions must be answered one at a time",
+      optionD: "The chair can only ask one question per member",
+      correctAnswer: 'B' as const,
+      explanation: "This fundamental principle of parliamentary procedure means that only one main motion can be immediately pending for consideration at any time, ensuring focused discussion."
+    },
+    {
+      question: "An amendment is considered adopted when:",
+      optionA: "The maker of the motion accepts it",
+      optionB: "The majority of the assembly votes in favor",
+      optionC: "The chair declares it adopted",
+      optionD: "Both A and B occur",
+      correctAnswer: 'B' as const,
+      explanation: "An amendment requires a majority vote of the assembly to be adopted, regardless of whether the maker of the original motion accepts it. Once adopted, it becomes part of the motion."
+    },
+    {
+      question: "What is the term for an amendment to a primary amendment?",
+      optionA: "Tertiary amendment",
+      optionB: "Secondary amendment",
+      optionC: "Subordinate amendment",
+      optionD: "Derivative amendment",
+      correctAnswer: 'B' as const,
+      explanation: "An amendment to a primary amendment is called a secondary amendment."
+    },
+    {
+      question: "Which of the following is true about a motion to Lay on the Table?",
+      optionA: "It's used to kill a motion",
+      optionB: "It's debatable",
+      optionC: "It's used to temporarily set a motion aside",
+      optionD: "It requires a two-thirds vote",
+      correctAnswer: 'C' as const,
+      explanation: "The legitimate purpose of Lay on the Table is to temporarily set aside a motion to deal with more urgent business. It is often misused to kill a motion."
+    },
+    {
+      question: "The FBLA National President may not serve more than:",
+      optionA: "One full term",
+      optionB: "Two full terms",
+      optionC: "One calendar year",
+      optionD: "Two fiscal cycles",
+      correctAnswer: 'A' as const,
+      explanation: "The FBLA National President is limited to serving one full term in that office."
+    },
+    {
+      question: "In the standard order of business, which item typically comes first?",
+      optionA: "Reports of Officers",
+      optionB: "New Business",
+      optionC: "Reading of Minutes",
+      optionD: "Unfinished Business",
+      correctAnswer: 'C' as const,
+      explanation: "The standard order of business begins with the reading and approval of the minutes from the previous meeting."
+    },
+    {
+      question: "What is the primary purpose of parliamentary procedure?",
+      optionA: "Prioritize senior leadership",
+      optionB: "Protect the rights of the majority",
+      optionC: "Facilitate orderly and fair meetings",
+      optionD: "Limit discussion",
+      correctAnswer: 'C' as const,
+      explanation: "The primary purpose of parliamentary procedure is to ensure that meetings are run in an orderly, fair, and efficient manner, protecting the rights of all members."
+    },
+    {
+      question: "A motion to \"Fix the Time to Which to Adjourn\" can be made:",
+      optionA: "Only at the end of a meeting",
+      optionB: "Anytime business is pending",
+      optionC: "Only if the previous question is adopted",
+      optionD: "Only if there is unfinished business",
+      correctAnswer: 'B' as const,
+      explanation: "As a privileged motion, Fix the Time to Which to Adjourn can be made even when other business is pending."
+    },
+    {
+      question: "What must happen before debate can begin on a motion?",
+      optionA: "The motion must be discussed in committee",
+      optionB: "The motion must be stated by the chair",
+      optionC: "The chair must ask for debate",
+      optionD: "A friendly amendment must be made",
+      correctAnswer: 'B' as const,
+      explanation: "Debate cannot begin until the motion has been stated by the chair, which officially places it before the assembly."
+    },
+    {
+      question: "A motion that introduces new business is classified as a:",
+      optionA: "Privileged motion",
+      optionB: "Incidental motion",
+      optionC: "Main motion",
+      optionD: "Secondary motion",
+      correctAnswer: 'C' as const,
+      explanation: "A main motion is the device used to introduce a new item of business for consideration."
+    },
+    {
+      question: "Who chairs the FBLA National Officer Screening Committee?",
+      optionA: "State President",
+      optionB: "Past National President",
+      optionC: "FBLA CEO",
+      optionD: "FBLA Director of Programs",
+      correctAnswer: 'B' as const,
+      explanation: "The National Officer Screening Committee is typically chaired by a Past National President."
+    },
+    {
+      question: "A motion can be withdrawn after being stated by the chair:",
+      optionA: "Only with the assembly's consent",
+      optionB: "Automatically at any time",
+      optionC: "By the seconding member",
+      optionD: "If the parliamentarian agrees",
+      correctAnswer: 'A' as const,
+      explanation: "Once a motion has been stated by the chair, it belongs to the assembly. The maker can only withdraw it by requesting permission, which is granted by unanimous consent or a majority vote."
+    },
+    {
+      question: "Which motion is not debatable, not amendable, and requires a two-thirds vote?",
+      optionA: "Amend",
+      optionB: "Suspend the Rules",
+      optionC: "Commit or Refer",
+      optionD: "Fix the Time to Which to Adjourn",
+      correctAnswer: 'B' as const,
+      explanation: "The motion to Suspend the Rules is not debatable, not amendable, and requires a two-thirds vote."
+    },
+    {
+      question: "What is the term for reviving a motion previously laid on the table?",
+      optionA: "Rescind",
+      optionB: "Reconsider",
+      optionC: "Take from the Table",
+      optionD: "Return to Order",
+      correctAnswer: 'C' as const,
+      explanation: "The motion to Take from the Table is used to resume consideration of a motion that was previously \"laid on the table.\""
+    }
+  ];
+
+  for (let i = 0; i < extensionQuestions.length; i++) {
+    const q = extensionQuestions[i];
+    await addQuestion(
+      parliamentaryEvent.id,
+      q.question,
+      q.optionA,
+      q.optionB,
+      q.optionC,
+      q.optionD,
+      q.correctAnswer,
+      'Beginner',
+      1,
+      q.explanation
+    );
+  }
+  
+  console.log(`✅ Successfully added ${extensionQuestions.length} extension questions to Introduction to Parliamentary Procedure (Questions 101-200)`);
+}
+
 // Function to run the seeding (can be called directly)
 export async function runSeed() {
   try {
@@ -2933,6 +3825,7 @@ export async function runSeed() {
     await seedAccountingIIExtensionQuestions();
     await seedAccountingIIFinalQuestions();
     await seedParliamentaryProcedureQuestions();
+    await seedParliamentaryProcedureExtensionQuestions();
     console.log("🎉 Database seeding completed successfully!");
   } catch (error) {
     console.error("💥 Seeding failed:", error);
