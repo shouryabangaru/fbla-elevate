@@ -174,7 +174,7 @@ export default function PracticeModePage() {
   const eventId = params?.eventId;
   
   // Create a session timestamp to force fresh data on each practice session
-  const [sessionTimestamp] = useState(() => Date.now());
+  const [sessionTimestamp, setSessionTimestamp] = useState(() => Date.now());
   
   // Fetch event details and questions from database
   const { data: event, isLoading: eventLoading, error: eventError } = useQuery<Event>({
@@ -236,6 +236,7 @@ export default function PracticeModePage() {
     setIsCorrect(false);
     setPracticeComplete(false);
     setAnswers([]);
+    setSessionTimestamp(Date.now()); // Reset timestamp to get fresh questions
   }, [eventId]);
 
   // Validate currentQuestionIndex bounds when questions array changes

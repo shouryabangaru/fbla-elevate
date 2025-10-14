@@ -1,0 +1,719 @@
+1. (Parliamentary Procedure Principles) When a motion is postponed definitely, it may:
+A) Be renewed at the same session once it is postponed
+B) Be laid on the table without debate when it is resumed
+C) Be reconsidered only if debate has not occurred
+D) Resume at the time specified without further action
+
+Answer: D) Resume at the time specified without further action
+
+Explanation: The motion to Postpone to a Certain Time (or "definitely") schedules the main motion to come back automatically at the specified time. No new motion is needed to resume its consideration.
+
+2. (FBLA Bylaws) According to the FBLA National Bylaws, which of the following is not a required officer for a local chapter?
+A) Historian
+B) President
+C) Secretary
+D) Treasurer
+
+Answer: A) Historian
+
+Explanation: While many chapters have a Historian, the FBLA National Bylaws only require a chapter to have, at a minimum, a President, Secretary, and Treasurer.
+
+3. (Parliamentary Procedure Principles) In the absence of a quorum, a deliberative assembly may:
+A) Adopt main motions requiring only a simple majority
+B) Approve routine reports
+C) Adjourn or take measures to obtain a quorum
+D) Refer items to a committee
+
+Answer: C) Adjourn or take measures to obtain a quorum
+
+Explanation: Without a quorum, an assembly cannot conduct substantive business. The only motions in order are those related to obtaining a quorum (like a Recess) or to Adjourn (except to adjourn to a later time).
+
+4. (Parliamentary Procedure Principles) If a motion to “Reconsider” is made while another item is pending:
+A) It is taken up immediately
+B) It is debatable only if the motion it reconsiders is debatable
+C) It is treated as incidental
+D) It is postponed automatically
+
+Answer: C) It is treated as incidental
+
+Explanation: When a motion to Reconsider is made while other business is pending, it is classified as an incidental motion and must be decided immediately before the pending business can continue.
+
+5. (FBLA Bylaws) In national FBLA, a candidate must be screened by which of the following before appearing on the ballot?
+A) Executive Council and National President
+B) State Chair and Regional VP
+C) Screening Committee and Board of Directors
+D) Screening Committee and National Adviser
+
+Answer: C) Screening Committee and Board of Directors
+
+Explanation: The FBLA bylaws stipulate that national officer candidates must be screened and approved by both a Screening Committee and the Board of Directors to ensure they meet all eligibility requirements.
+
+6. (Parliamentary Procedure Principles) The motion to "Commit or Refer" can be applied to:
+A) Privileged motions
+B) Main motions and some amendments
+C) Only main motions
+D) Main and incidental motions
+
+Answer: B) Main motions and some amendments
+
+Explanation: The subsidiary motion to Commit or Refer can be applied to a main motion and any amendments that are pending with it. It cannot be applied to other types of motions.
+
+7. (Parliamentary Procedure Principles) An amendment to an amendment:
+A) Must be germane to the primary amendment
+B) Is debatable only if the main motion is
+C) Requires a two-thirds vote
+D) Can introduce a new subject
+
+Answer: A) Must be germane to the primary amendment
+
+Explanation: A secondary amendment (amendment to an amendment) must be directly related to and within the scope of the primary amendment it seeks to change.
+
+8. (Parliamentary Procedure Principles) Which of the following is true about the motion to “Suspend the Rules”?
+A) It is not allowed under any circumstances to suspend bylaws
+B) It requires a majority vote under all conditions
+C) It allows temporary violation of rules set by the bylaws
+D) It may be applied to standing rules and parliamentary law
+
+Answer: D) It may be applied to standing rules and parliamentary law
+
+Explanation: The motion to Suspend the Rules can be used to temporarily set aside standing rules (rules of order) or an ordinary rule of the assembly. It cannot be used to suspend bylaws or fundamental principles of parliamentary law, and it requires a two-thirds vote.
+
+9. (FBLA Bylaws) A national officer candidate must hold which minimum level of FBLA membership?
+A) Associate
+B) Collegiate
+C) Professional
+D) Active
+
+Answer: D) Active
+
+Explanation: To be eligible for national office, a candidate must be an active member of FBLA, which is the standard membership category for students.
+
+10. (Parliamentary Procedure Principles) A Point of Order can be ruled upon by:
+A) The maker of the motion
+B) The majority vote of the body
+C) The presiding officer, unless appealed
+D) The parliamentarian directly
+
+Answer: C) The presiding officer, unless appealed
+
+Explanation: The chair makes an initial ruling on a Point of Order. This ruling can be appealed to the assembly for a final decision, but the chair's ruling stands unless overturned by a majority vote.
+
+11. (Parliamentary Procedure Principles) Which of the following motions can be renewed after it has been defeated, provided no other motion of the same nature is pending?
+A) Limit Debate
+B) Lay on the Table
+C) Postpone Indefinitely
+D) Previous Question
+
+Answer: A) Limit Debate
+
+Explanation: Motions that do not conflict with a motion previously defeated can be renewed after progress in debate or business. Subsidiary motions like Limit Debate can often be renewed, unlike Lay on the Table.
+
+12. (Parliamentary Procedure Principles) “Fix the Time to Which to Adjourn” is:
+A) A main motion
+B) An incidental motion
+C) A privileged motion of highest rank
+D) A subsidiary motion
+
+Answer: C) A privileged motion of highest rank
+
+Explanation: Fix the Time to Which to Adjourn is the highest-ranking privileged motion. It sets up a future meeting before the current one is adjourned and is in order even when other business is pending.
+
+13. (FBLA Bylaws) Which statement is accurate regarding term limits for FBLA national officers?
+A) No member may serve more than two consecutive terms
+B) Any partial term served counts as a full term
+C) A term is void if resignation occurs before the NLC
+D) Officers may serve one full term regardless of past appointment
+
+Answer: B) Any partial term served counts as a full term
+
+Explanation: FBLA bylaws typically state that if an officer serves more than half a term, it is considered a full term for the purpose of term limits.
+
+14. (Parliamentary Procedure Principles) If a member "calls for the orders of the day," the chair must:
+A) Ask for unanimous consent to continue current business
+B) Take an immediate vote on whether to proceed
+C) Automatically revert to the scheduled order
+D) Rule whether the call is appropriate
+
+Answer: C) Automatically revert to the scheduled order
+
+Explanation: A Call for the Orders of the Day is a demand to follow the adopted agenda or order of business. The chair must immediately comply unless the assembly votes by a two-thirds majority to set the orders aside.
+
+15. (Parliamentary Procedure Principles) The chair votes:
+A) Only when there is a tie
+B) Always as the last vote cast
+C) When their vote would affect the outcome
+D) Only on motions requiring a two-thirds vote
+
+Answer: C) When their vote would affect the outcome
+
+Explanation: The presiding officer usually does not vote to maintain impartiality. They only vote when their vote would change the outcome (e.g., to break a tie or to create a tie to defeat a motion requiring a majority).
+
+16. (Parliamentary Procedure Principles) Which of the following is not a debatable privileged motion?
+A) Fix the Time to Which to Adjourn
+B) Raise a Question of Privilege
+C) Recess
+D) Call for the Orders of the Day
+
+Answer: D) Call for the Orders of the Day
+
+Explanation: Call for the Orders of the Day is not debatable; it is a demand to follow the schedule. The other privileged motions (Fix the Time..., Question of Privilege, Recess) can be debatable under certain circumstances.
+
+17. (Parliamentary Procedure Principles) The motion to “Postpone Indefinitely” is primarily used to:
+A) Delay a vote until a later meeting
+B) End consideration of a question without a direct vote
+C) Suspend the main motion for further amendment
+D) Move discussion into executive session
+
+Answer: B) End consideration of a question without a direct vote
+
+Explanation: Postpone Indefinitely is used to test the assembly's support for a main motion without taking a direct vote on it. If it passes, the main motion is dismissed for the session.
+
+18. (FBLA Bylaws) National officer candidates are required to submit their applications by:
+A) February 1
+B) March 15
+C) April 1
+D) May 15
+
+Answer: B) March 15
+
+Explanation: According to FBLA guidelines, the deadline for national officer candidate applications is typically March 15.
+
+19. (Parliamentary Procedure Principles) When a committee is discharged, this means:
+A) The members are removed from office
+B) Its duties are suspended temporarily
+C) Its responsibilities are concluded or reassigned
+D) Its membership must be reaffirmed
+
+Answer: C) Its responsibilities are concluded or reassigned
+
+Explanation: To discharge a committee means to end its assignment and take the matter back into the hands of the assembly, concluding the committee's work on that task.
+
+20. (Parliamentary Procedure Principles) Which of the following is not true about subsidiary motions?
+A) They are always applied to main motions
+B) They can have higher precedence than main motions
+C) They are always debatable
+D) They modify or dispose of a pending motion
+
+Answer: C) They are always debatable
+
+Explanation: Subsidiary motions are not always debatable. For example, the motion for the Previous Question (to close debate) is itself not debatable.
+
+21. (Parliamentary Procedure Principles) An appeal is:
+A) Decided by the presiding officer
+B) Debatable in all cases
+C) Not in order when another appeal is pending
+D) Only allowed if the ruling was made by majority vote
+
+Answer: C) Not in order when another appeal is pending
+
+Explanation: Only one appeal may be pending at a time. An appeal is debatable only if the motion it relates to was debatable, and it is decided by the assembly, not the chair.
+
+22. (FBLA Bylaws) In FBLA, the duties of the parliamentarian include:
+A) Voting only in the case of a tie
+B) Presiding at all meetings
+C) Advising on the constitutionality of motions
+D) Serving as national board chair
+
+Answer: C) Advising on the constitutionality of motions
+
+Explanation: The parliamentarian is a consultant to the chair on procedural matters, advising on rules and the proper interpretation of the bylaws and parliamentary authority.
+
+23. (Parliamentary Procedure Principles) If a motion requires a two-thirds vote and only a voice vote is taken, any member may:
+A) Demand a roll call
+B) Request a division
+C) Move to table the motion
+D) Suspend the voting requirements
+
+Answer: B) Request a division
+
+Explanation: A Division of the Assembly is a demand for a more precise vote (e.g., a rising vote) when the result of a voice vote is unclear or doubted. This is crucial for motions requiring a two-thirds vote.
+
+24. (Parliamentary Procedure Principles) A “Division of a Question” differs from “Division of the Assembly” in that it:
+A) Requires a majority vote
+B) Requires the presiding officer’s ruling
+C) Applies to visual vote discrepancies
+D) Separates a motion into parts for consideration
+
+Answer: D) Separates a motion into parts for consideration
+
+Explanation: Division of a Question is used to split a motion with multiple independent parts into separate motions for individual voting. Division of the Assembly is used to verify a vote count.
+
+25. (FBLA Bylaws) Which of the following is true regarding the FBLA Board of Directors?
+A) It consists solely of national officers
+B) It is appointed annually by the president
+C) It has the authority to amend the FBLA bylaws
+D) It oversees all state-level officer elections
+
+Answer: C) It has the authority to amend the FBLA bylaws
+
+Explanation: The FBLA Board of Directors holds the ultimate authority for the organization, which includes the power to amend the national bylaws, typically with a final vote by the delegate assembly at the NLC.
+
+26. (Parliamentary Procedure Principles) If a motion is “laid on the table,” what must occur for it to be taken up again?
+A) A majority vote to reconsider
+B) A motion to resume debate at any time
+C) A majority vote to take from the table within the same session or next
+D) A unanimous vote of those present
+
+Answer: C) A majority vote to take from the table within the same session or next
+
+Explanation: The motion to Take from the Table is used to resume consideration of a tabled motion. It requires a second and a majority vote and is only in order during the same session or the next regular session.
+
+27. (Parliamentary Procedure Principles) In the standard order of precedence, which motion outranks “Amend”?
+A) Commit or Refer
+B) Main Motion
+C) Reconsider
+D) Postpone Indefinitely
+
+Answer: A) Commit or Refer
+
+Explanation: In the standard order of precedence, subsidiary motions rank as follows (highest to lowest): Lay on the Table, Previous Question, Limit/Extend Debate, Postpone to a Certain Time, Commit or Refer, Amend, Postpone Indefinitely.
+
+28. (Parliamentary Procedure Principles) If a Point of Order is ruled “not well taken,” the member may:
+A) Move to Lay on the Table
+B) Demand a Roll Call
+C) Appeal the ruling of the chair
+D) Call the previous question
+
+Answer: C) Appeal the ruling of the chair
+
+Explanation: If a member disagrees with the chair's ruling on a Point of Order, they can immediately "appeal from the decision of the chair," which puts the final decision to a majority vote of the assembly.
+
+29. (FBLA Bylaws) Which of the following statements is true regarding the selection of FBLA national officers?
+A) Only current state officers are eligible
+B) Each candidate must be endorsed by two states
+C) Candidates must be approved by the Board of Directors prior to nomination
+D) The officer screening committee has sole discretion on ballot eligibility
+
+Answer: C) Candidates must be approved by the Board of Directors prior to nomination
+
+Explanation: The FBLA bylaws require that the Board of Directors approves the final slate of national officer candidates before they are officially nominated.
+
+30. (Parliamentary Procedure Principles) Which motion can interrupt a speaker and does not require a second?
+A) Reconsider
+B) Lay on the Table
+C) Raise a Question of Privilege
+D) Point of Order
+
+Answer: D) Point of Order
+
+Explanation: A Point of Order is an incidental motion that can interrupt a speaker because it deals with a breach of the rules. It does not require a second.
+
+31. (Parliamentary Procedure Principles) The motion “Reconsider and Enter on the Minutes” is used when:
+A) A motion cannot be debated immediately due to absence of quorum
+B) A vote is reconsidered at the next regular meeting
+C) A member wants to reserve the right to reconsider at a later time
+D) A reconsideration vote is pending and must be recorded in writing
+
+Answer: C) A member wants to reserve the right to reconsider at a later time
+
+Explanation: This special form of the motion to Reconsider is made to prevent a temporary majority from taking action and then adjourning before the minority can muster votes to reconsider. It delays the actual reconsideration vote until the next meeting.
+
+32. (Parliamentary Procedure Principles) The effect of adopting a motion to “Postpone Indefinitely” is to:
+A) Consider the motion at a later time
+B) Commit the motion to a committee
+C) Suppress the main motion for the duration of the session
+D) Suspend the rules related to the motion
+
+Answer: C) Suppress the main motion for the duration of the session
+
+Explanation: Adopting Postpone Indefinitely kills the main motion for the entire session. It cannot be brought up again during that same meeting.
+
+33. (Parliamentary Procedure Principles) Which of the following is true of the motion “Appeal”?
+A) It is not debatable under any circumstances
+B) It can only be made when a motion is on the floor
+C) It allows the assembly to override the chair’s decision
+D) It is in order even after another motion has been stated
+
+Answer: C) It allows the assembly to override the chair’s decision
+
+Explanation: An Appeal from the decision of the chair allows the assembly to vote on whether to uphold or overturn a ruling made by the presiding officer.
+
+34. (FBLA Bylaws) Which of the following is a requirement for all FBLA national officer candidates, regardless of office?
+A) Two letters of recommendation from educators
+B) Demonstration of knowledge in finance and economics
+C) One full year of FBLA national membership
+D) Endorsement by the candidate’s state chapter
+
+Answer: D) Endorsement by the candidate’s state chapter
+
+Explanation: A universal requirement for all national officer candidates is the official endorsement from their respective state chapter.
+
+35. (Parliamentary Procedure Principles) Which motion requires a two-thirds vote without notice?
+A) To adjourn sine die
+B) To limit or extend limits of debate
+C) To postpone indefinitely
+D) To suspend standing rules
+
+Answer: B) To limit or extend limits of debate
+
+Explanation: Motions that restrict the rights of the assembly, such as limiting debate (Previous Question or Limit Debate), require a two-thirds vote because they take away the right of free and full discussion.
+
+36. (Parliamentary Procedure Principles) “Lay on the Table” is often misused to:
+A) Amend a motion in a complex manner
+B) Kill a motion without voting
+C) Refer a motion to a committee
+D) Initiate informal discussion
+
+Answer: B) Kill a motion without voting
+
+Explanation: Lay on the Table is meant to temporarily set aside a motion to deal with more urgent business. It is often misused as a way to kill a motion because if it is not taken from the table, it effectively dies.
+
+37. (Parliamentary Procedure Principles) The motion “Fix the Time to Which to Adjourn” is classified as:
+A) A special main motion
+B) A privileged motion of the highest rank
+C) An incidental main motion
+D) A motion requiring previous notice
+
+Answer: B) A privileged motion of the highest rank
+
+Explanation: This motion is the highest-ranking privileged motion. It is in order even when other business is pending because it relates to the continuation of the assembly itself.
+
+38. (FBLA Bylaws) If no candidate for national FBLA office receives a majority vote:
+A) The candidate with the most votes is elected
+B) A revote is held with all candidates
+C) A runoff election is conducted between the top two candidates
+D) The office remains vacant until the next NLC
+
+Answer: C) A runoff election is conducted between the top two candidates
+
+Explanation: Standard election procedure requires a majority vote. If no candidate achieves this, a runoff is held between the two candidates who received the highest number of votes.
+
+39. (Parliamentary Procedure Principles) Which of the following is not true of incidental motions?
+A) They arise out of pending business
+B) They are always debatable
+C) They must be decided immediately
+D) They deal with questions of procedure
+
+Answer: B) They are always debatable
+
+Explanation: Incidental motions are not always debatable. For example, a Point of Order or an Appeal (in some cases) is not debatable.
+
+40. (Parliamentary Procedure Principles) A majority vote is:
+A) More than half of those eligible to vote
+B) More than half of those voting
+C) Half of the quorum present
+D) A plurality of those present
+
+Answer: B) More than half of those voting
+
+Explanation: A majority vote is defined as more than half of the votes cast by members present and voting. It is not based on the entire membership or those eligible.
+
+41. (Parliamentary Procedure Principles) Debate on a main motion is closed when:
+A) The maker of the motion yields
+B) The Previous Question is adopted
+C) The chair decides the motion has been discussed sufficiently
+D) The motion is tabled
+
+Answer: B) The Previous Question is adopted
+
+Explanation: The formal way to close debate is to adopt the motion for the Previous Question, which requires a two-thirds vote. The chair cannot unilaterally close debate.
+
+42. (Parliamentary Procedure Principles) The number of taps of the gavel to signal the end of a meeting is:
+A) One
+B) Two
+C) Three
+D) It varies by organization’s rules
+
+Answer: A) One
+
+Explanation: A single, sharp tap of the gavel is used to announce the adjournment of a meeting.
+
+43. (Parliamentary Procedure Principles) A motion that seeks to temporarily set aside a matter without assigning a specific time to resume it is:
+A) Refer to a Committee
+B) Postpone Definitely
+C) Postpone Indefinitely
+D) Lay on the Table
+
+Answer: D) Lay on the Table
+
+Explanation: Lay on the Table is used to set aside a motion temporarily to deal with more urgent business. It does not specify when the motion will be resumed.
+
+44. (FBLA Bylaws) According to the bylaws, what is the minimum number of local chapters required to form a state chapter?
+A) 3
+B) 4
+C) 5
+D) 6
+
+Answer: C) 5
+
+Explanation: The FBLA National Bylaws require a minimum of five active local chapters to form a state chapter.
+
+45. (Parliamentary Procedure Principles) A motion to reconsider is in order only when:
+A) A new member joins the assembly
+B) Debate on the original motion was limited
+C) It is made by someone who voted on the prevailing side
+D) The chair has approved its necessity
+
+Answer: C) It is made by someone who voted on the prevailing side
+
+Explanation: A fundamental rule for the motion to Reconsider is that it must be made by a member who voted on the winning side of the original vote.
+
+46. (Parliamentary Procedure Principles) A two-thirds vote is required to:
+A) Refer to a Committee
+B) Postpone Indefinitely
+C) Amend a Motion
+D) Close debate
+
+Answer: D) Close debate
+
+Explanation: Closing debate (the Previous Question) requires a two-thirds vote because it takes away the rights of the minority to discuss the motion.
+
+47. (FBLA Bylaws) Who has the authority to fill a vacancy in a national FBLA office?
+A) National Executive Council
+B) State Leadership Council
+C) FBLA Board of Directors
+D) FBLA President and CEO
+
+Answer: C) FBLA Board of Directors
+
+Explanation: The authority to fill a vacancy in a national office rests with the FBLA Board of Directors.
+
+48. (Parliamentary Procedure Principles) If a motion is adopted “by unanimous consent,” it means:
+A) All members vote in favor by roll call
+B) The chair declares it adopted without objection
+C) The motion passed after extended debate
+D) The motion was required by the bylaws
+
+Answer: B) The chair declares it adopted without objection
+
+Explanation: Unanimous consent (or general consent) is a procedure where the chair assumes a motion will pass without a formal vote if no member objects.
+
+49. (Parliamentary Procedure Principles) If a member rises and says, “Division,” what happens next?
+A) The assembly votes by secret ballot
+B) The chair must retake the vote by standing or show of hands
+C) The member must explain their objection
+D) The motion is automatically postponed
+
+Answer: B) The chair must retake the vote by standing or show of hands
+
+Explanation: A Division of the Assembly is a demand for a rising vote (or a show of hands) to verify an inconclusive voice vote. The chair must comply immediately.
+
+50. (Parliamentary Procedure Principles) Which of the following motions can interrupt another speaker without being out of order?
+A) Move to Commit
+B) Move to Recess
+C) Raise a Point of Order
+D) Postpone to a Certain Time
+
+Answer: C) Raise a Point of Order
+
+Explanation: A Point of Order, which deals with a breach of the rules, is one of the few motions that can interrupt a speaker. The others must wait until the speaker has finished.
+
+51. (Parliamentary Procedure Principles) Which motion cannot be amended?
+A) Postpone to a Certain Time
+B) Recess
+C) Commit or Refer
+D) Main Motion
+
+Answer: B) Recess
+
+Explanation: The privileged motion to Recess cannot be amended. The length of the recess must be included in the motion itself when it is proposed.
+
+52. (Parliamentary Procedure Principles) The minimum essential officers for conducting a meeting are:
+A) President and Parliamentarian
+B) President and Treasurer
+C) Presiding Officer and Secretary
+D) Secretary and Sergeant-at-Arms
+
+Answer: C) Presiding Officer and Secretary
+
+Explanation: The bare minimum required to conduct a business meeting is a Presiding Officer to maintain order and a Secretary to keep the official record (minutes).
+
+53. (FBLA Bylaws) The term of office for national FBLA officers begins:
+A) Immediately after election
+B) At the conclusion of the NLC
+C) When approved by the Board of Directors
+D) After orientation and confirmation
+
+Answer: B) At the conclusion of the NLC
+
+Explanation: The term of office for newly elected national FBLA officers officially begins at the conclusion of the National Leadership Conference (NLC) at which they are elected.
+
+54. (Parliamentary Procedure Principles) Which of the following best describes a quorum?
+A) All members of the organization
+B) Majority of all active members
+C) Minimum number of members required to transact business
+D) Two-thirds of all voting members
+
+Answer: C) Minimum number of members required to transact business
+
+Explanation: A quorum is the minimum number of members that must be present to legally conduct business, as defined in the organization's bylaws.
+
+55. (Parliamentary Procedure Principles) A motion that brings a question back before the assembly as if it had not been previously decided is:
+A) Amend
+B) Rescind
+C) Reconsider
+D) Postpone Indefinitely
+
+Answer: B) Rescind
+
+Explanation: The motion to Rescind (or Repeal) voids a motion that was previously adopted. It brings the question back as if it had never been passed. Reconsider deals with a vote just taken.
+
+56. (Parliamentary Procedure Principles) When the Previous Question is ordered on a series of pending motions, which is voted on first?
+A) The most recently made motion
+B) The main motion
+C) The motion to recess
+D) The motion of lowest precedence
+
+Answer: A) The most recently made motion
+
+Explanation: When the Previous Question is ordered on multiple motions, voting proceeds immediately, starting with the last motion that was made (the one immediately pending).
+
+57. (Parliamentary Procedure Principles) When is the chair allowed to debate a motion?
+A) Always, but only after recognition
+B) Only when presiding over a committee
+C) Never, unless they relinquish the chair
+D) Only if the motion concerns the chair directly
+
+Answer: C) Never, unless they relinquish the chair
+
+Explanation: To maintain impartiality, the presiding officer does not participate in debate while in the chair. If they wish to debate, they must temporarily step down and have another officer preside.
+
+58. (FBLA Bylaws) FBLA’s fiscal year begins on:
+A) July 1
+B) January 1
+C) September 1
+D) August 15
+
+Answer: A) July 1
+
+Explanation: The FBLA fiscal year runs from July 1 to June 30.
+
+59. (Parliamentary Procedure Principles) A motion to Suspend the Rules:
+A) May be debated fully
+B) Is always out of order when another motion is pending
+C) Can only be applied to standing rules
+D) Requires a two-thirds vote
+
+Answer: D) Requires a two-thirds vote
+
+Explanation: Suspending the rules requires a two-thirds vote because it overrides the established procedures of the assembly. It is not debatable.
+
+60. (Parliamentary Procedure Principles) An incidental motion takes precedence over:
+A) Privileged motions
+B) Main motions only
+C) All motions it arises from
+D) Amendments
+
+Answer: C) All motions it arises from
+
+Explanation: Incidental motions (like Point of Order, Appeal) take precedence over the motion out of which they arise and must be decided immediately.
+
+61. (Parliamentary Procedure Principles) A “Division of the Assembly” is typically used when:
+A) Members want the vote taken by ballot
+B) There is uncertainty or disagreement about a voice vote result
+C) The chair wants a visual count
+D) A tie vote has occurred
+
+Answer: B) There is uncertainty or disagreement about a voice vote result
+
+Explanation: A Division is a call for a verification of a voice vote by having members stand for a count. It is used when the outcome is unclear or doubted.
+
+62. (Parliamentary Procedure Principles) What is the purpose of a “Standing Committee”?
+A) To handle temporary tasks
+B) To conduct elections
+C) To perform ongoing functions for the organization
+D) To supervise parliamentary law
+
+Answer: C) To perform ongoing functions for the organization
+
+Explanation: Standing committees are permanent committees that handle continuous areas of responsibility (e.g., membership, finance) as defined in the bylaws or rules.
+
+63. (Parliamentary Procedure Principles) What type of motion is “Amend Something Previously Adopted”?
+A) Privileged
+B) Incidental
+C) Subsidiary
+D) Bring Back
+
+Answer: D) Bring Back
+
+Explanation: Amend Something Previously Adopted is a main motion that brings a previously decided question back for review and change. It is a type of "bring back" motion.
+
+64. (Parliamentary Procedure Principles) Which of the following is in the correct order of precedence (highest to lowest)?
+A) Amend, Recess, Postpone Indefinitely
+B) Adjourn, Previous Question, Amend
+C) Reconsider, Commit, Raise a Question of Privilege
+D) Lay on the Table, Commit, Postpone to a Certain Time
+
+Answer: D) Lay on the Table, Commit, Postpone to a Certain Time
+
+Explanation: This is the correct order: Lay on the Table (highest subsidiary), then Commit or Refer, then Postpone to a Certain Time.
+
+65. (Parliamentary Procedure Principles) What does it mean if a motion is said to be “pending”?
+A) It was referred to a committee
+B) It is being researched
+C) It is under consideration by the assembly
+D) It has already been voted on
+
+Answer: C) It is under consideration by the assembly
+
+Explanation: A "pending" motion is one that has been stated by the chair and is currently before the assembly for debate, amendment, or vote.
+
+66. (Parliamentary Procedure Principles) The primary purpose of a “second” to a motion is to:
+A) Begin debate immediately
+B) Indicate support for the idea
+C) Open the floor for amendments
+D) Prevent the chair from ruling it out of order
+
+Answer: B) Indicate support for the idea
+
+Explanation: A second indicates that at least one other member, besides the mover, thinks the motion should come before the assembly. It does not mean the seconder supports the motion, only that they support discussing it.
+
+67. (Parliamentary Procedure Principles) The maximum number of amendments that can be pending to a single motion at one time is:
+A) Two
+B) Three
+C) Four
+D) Unlimited
+
+Answer: A) Two
+
+Explanation: Only two amendments can be pending at a time: a primary amendment (to the main motion) and a secondary amendment (to the primary amendment).
+
+68. (Parliamentary Procedure Principles) Which of the following motions is used to change a previously adopted agenda during a meeting?
+A) Amend Something Previously Adopted
+B) Suspend the Rules
+C) Lay on the Table
+D) Postpone to a Certain Time
+
+Answer: B) Suspend the Rules
+
+Explanation: An agenda is a type of standing rule. To deviate from it during a meeting, the assembly must Suspend the Rules, which requires a two-thirds vote.
+
+69. (FBLA Bylaws) What is the process by which amendments to the national bylaws are considered?
+A) Majority vote by national officers
+B) Ratified by the Board of Directors only
+C) Adoption by a two-thirds vote at NLC
+D) Approval by all state chapters
+
+Answer: C) Adoption by a two-thirds vote at NLC
+
+Explanation: Amendments to the FBLA National Bylaws are typically proposed and then adopted by a two-thirds vote of the voting delegates at the National Leadership Conference (NLC).
+
+70. (Parliamentary Procedure Principles) What is the difference between “Postpone Indefinitely” and “Lay on the Table”?
+A) Lay on the Table is debatable; Postpone Indefinitely is not
+B) Postpone Indefinitely kills the motion; Lay on the Table sets it aside temporarily
+C) Both are methods to delay, but only Lay on the Table ends debate
+D) Postpone Indefinitely sets a date; Lay on the Table cancels the motion
+
+Answer: B) Postpone Indefinitely kills the motion; Lay on the Table sets it aside temporarily
+
+Explanation: This is the key distinction. Postpone Indefinitely disposes of the motion for the session, while Lay on the Table is for temporary, short-term delay.
+
+71. (Parliamentary Procedure Principles) If a member is ruled out of order and disagrees, what can they do?
+A) Move to Postpone
+B) Rise to a Question of Privilege
+C) Appeal from the decision of the chair
+D) Request a Division
+
+Answer: C) Appeal from the decision of the chair
+
+Explanation: The proper recourse when a member disagrees with a ruling from the chair is to make an Appeal, which allows the assembly to make the final decision by majority vote.
+
+72. (Parliamentary Procedure Principles) The motion “Object to the Consideration of the Question” must be made:
+A) Before any debate has occurred
+B) After an amendment is adopted
+C) At any time during discussion
+D) During committee of the whole
+
+Answer: A) Before any debate has occurred
+
+Explanation: This motion must be made immediately after the main motion is stated by the chair and before any debate or subsidiary motion has been made.
