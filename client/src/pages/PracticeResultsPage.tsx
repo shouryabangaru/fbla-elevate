@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect } from 'react';
-import { useRoute, useLocation } from 'wouter';
+import { useParams, useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { PageLayout } from '@/components/shared/PageLayout';
 import { StyledCard } from '@/components/shared/StyledCard';
@@ -62,9 +64,9 @@ const eventMetadata: Record<string, { icon: string; difficulty: 'Beginner' | 'In
 };
 
 export default function PracticeResultsPage() {
-  const [match, params] = useRoute('/practice/:eventId/results');
-  const [, setLocation] = useLocation();
-  const eventId = params?.eventId;
+  const params = useParams();
+  const router = useRouter();
+  const eventId = params?.eventId as string;
   
   const [resultsData, setResultsData] = useState<ResultsData | null>(null);
   const [eventNotFound, setEventNotFound] = useState(false);
@@ -164,11 +166,11 @@ export default function PracticeResultsPage() {
 
   // Navigation handlers
   const handleBackToPractice = () => {
-    setLocation('/practice');
+    router.push('/practice');
   };
 
   const handlePracticeAgain = () => {
-    setLocation(`/practice/${eventId}`);
+    router.push(`/practice/${eventId}`);
   };
 
   // Loading state
@@ -187,7 +189,7 @@ export default function PracticeResultsPage() {
   }
   
   // Error states with better diagnostics
-  if (!match) {
+  if (!eventId) {
     return (
       <PageLayout
         title="Invalid Results URL"

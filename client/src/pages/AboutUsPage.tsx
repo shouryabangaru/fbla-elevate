@@ -1,3 +1,5 @@
+"use client";
+
 import { PageLayout } from '@/components/shared/PageLayout';
 import { StyledCard } from '@/components/shared/StyledCard';
 import { Badge } from '@/components/ui/badge';

@@ -1,3 +1,5 @@
+"use client";
+
 import { Navbar } from '@/components/homepage/Navbar';
 import { Hero } from '@/components/homepage/Hero';
 import { FeaturesSection } from '@/components/homepage/FeaturesSection';

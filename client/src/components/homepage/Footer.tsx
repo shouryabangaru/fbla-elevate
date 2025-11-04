@@ -1,4 +1,4 @@
-import { Link } from 'wouter';
+import Link from 'next/link';
 import { Trophy, Heart } from 'lucide-react';
 import './Footer.css';
 

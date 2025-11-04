@@ -1,12 +1,15 @@
+"use client";
+
 import { useState } from 'react';
-import { Link, useLocation } from 'wouter';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { Menu, X, Trophy } from 'lucide-react';
 import './Navbar.css';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [location] = useLocation();
+  const pathname = usePathname();
   const { user } = useAuth();
 
   const menuItems = [
@@ -34,7 +37,7 @@ export function Navbar() {
             <Link
               key={item.name}
               href={item.path}
-              className={`navbar-item ${location === item.path ? 'active' : ''}`}
+              className={`navbar-item ${pathname === item.path ? 'active' : ''}`}
             >
               {item.name}
             </Link>
@@ -67,7 +70,7 @@ export function Navbar() {
             <Link
               key={item.name}
               href={item.path}
-              className={`mobile-menu-item ${location === item.path ? 'active' : ''}`}
+              className={`mobile-menu-item ${pathname === item.path ? 'active' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
               {item.name}

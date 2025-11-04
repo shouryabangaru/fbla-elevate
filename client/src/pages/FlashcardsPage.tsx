@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { PageLayout } from '@/components/shared/PageLayout';
 import { StyledCard } from '@/components/shared/StyledCard';

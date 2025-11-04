@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from 'react';
-import { Link, useLocation } from 'wouter';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Menu, X, GraduationCap } from 'lucide-react';
@@ -9,7 +12,7 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [authModal, setAuthModal] = useState<'login' | 'signup' | null>(null);
   const { user, logout } = useAuth();
-  const [location] = useLocation();
+  const pathname = usePathname();
 
   const navLinks = [
     { href: '/', label: 'Home' },
@@ -22,7 +25,7 @@ export function Navbar() {
   ];
 
   const isActive = (href: string) => {
-    return location === href || (href !== '/' && location.startsWith(href));
+    return pathname === href || (href !== '/' && pathname?.startsWith(href));
   };
 
   return (

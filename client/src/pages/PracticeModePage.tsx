@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect } from 'react';
-import { useRoute, useLocation } from 'wouter';
+import { useParams, useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { PageLayout } from '@/components/shared/PageLayout';
 import { StyledCard } from '@/components/shared/StyledCard';
@@ -169,9 +171,9 @@ const eventMetadata: Record<string, { icon: string; difficulty: 'Beginner' | 'In
 };
 
 export default function PracticeModePage() {
-  const [match, params] = useRoute('/practice/:eventId');
-  const [, setLocation] = useLocation();
-  const eventId = params?.eventId;
+  const params = useParams();
+  const router = useRouter();
+  const eventId = params?.eventId as string;
   
   // Create a session timestamp to force fresh data on each practice session
   const [sessionTimestamp, setSessionTimestamp] = useState(() => Date.now());
@@ -396,13 +398,13 @@ export default function PracticeModePage() {
       
       // Add a small delay to ensure storage is complete before navigation
       setTimeout(() => {
-        setLocation(`/practice/${eventId}/results`);
+        router.push(`/practice/${eventId}/results`);
       }, 10);
       
     } catch (error) {
       console.error('Error saving practice results:', error);
       // Still navigate but user will see error page
-      setLocation(`/practice/${eventId}/results`);
+      router.push(`/practice/${eventId}/results`);
     }
   };
 
@@ -418,7 +420,7 @@ export default function PracticeModePage() {
 
   // Handle returning to practice list
   const handleBackToPractice = () => {
-    setLocation('/practice');
+    router.push('/practice');
   };
 
   // Get difficulty color class
@@ -464,7 +466,7 @@ export default function PracticeModePage() {
   }
 
   // If event not found
-  if (!match || !event) {
+  if (!event) {
     return (
       <PageLayout
         title="Practice Not Found"

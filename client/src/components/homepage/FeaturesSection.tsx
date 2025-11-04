@@ -1,5 +1,5 @@
 import { Brain, Users, Medal, ArrowRight } from 'lucide-react';
-import { Link } from 'wouter';
+import Link from 'next/link';
 import './FeaturesSection.css';
 
 export function FeaturesSection() {

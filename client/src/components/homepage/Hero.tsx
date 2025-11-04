@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from 'react';
-import { Link } from 'wouter';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { Trophy, ChevronDown, Sparkles } from 'lucide-react';
 import { AuthModal } from '@/components/AuthModal';
@@ -7,6 +10,7 @@ import './Hero.css';
 
 export function Hero() {
   const { user } = useAuth();
+  const router = useRouter();
   const [authModal, setAuthModal] = useState<{ isOpen: boolean; mode: 'login' | 'signup' }>({
     isOpen: false,
     mode: 'signup'
@@ -15,7 +19,7 @@ export function Hero() {
   const handleGetStarted = () => {
     if (user) {
       // Navigate to dashboard or main app
-      window.location.href = '/flashcards';
+      router.push('/flashcards');
     } else {
       setAuthModal({ isOpen: true, mode: 'signup' });
     }
