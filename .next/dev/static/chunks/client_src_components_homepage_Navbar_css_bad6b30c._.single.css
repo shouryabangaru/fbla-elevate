@@ -1,0 +1,195 @@
+/* [project]/client/src/components/homepage/Navbar.css [app-client] (css) */
+.navbar {
+  z-index: 1000;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, #000 0%, #036 100%);
+  border-bottom: 1px solid #ffd70033;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 4px 20px #0000004d;
+}
+
+.navbar-container {
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  height: 70px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+}
+
+.navbar-logo {
+  align-items: center;
+  gap: .75rem;
+  text-decoration: none;
+  transition: transform .3s;
+  display: flex;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-icon {
+  color: gold;
+  filter: drop-shadow(0 2px 4px #ffd7004d);
+  width: 32px;
+  height: 32px;
+}
+
+.logo-text {
+  color: #fff;
+  text-shadow: 0 2px 4px #0000004d;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.navbar-menu {
+  align-items: center;
+  gap: 2rem;
+  display: flex;
+}
+
+.navbar-item {
+  color: #fff;
+  padding: .5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .3s;
+  position: relative;
+}
+
+.navbar-item:hover {
+  color: gold;
+}
+
+.navbar-item:after {
+  content: "";
+  background: gold;
+  width: 0;
+  height: 2px;
+  transition: width .3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.navbar-item:hover:after, .navbar-item.active:after {
+  width: 100%;
+}
+
+.navbar-item.active {
+  color: gold;
+}
+
+.navbar-user {
+  align-items: center;
+  display: flex;
+}
+
+.user-greeting {
+  color: gold;
+  text-shadow: 0 1px 2px #0000004d;
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.mobile-menu-button {
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: .5rem;
+  transition: all .3s;
+  display: none;
+}
+
+.mobile-menu-button:hover {
+  color: gold;
+  background: #ffd7001a;
+}
+
+.mobile-menu {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, #000 0%, #036 100%);
+  border-top: 1px solid #ffd70033;
+  padding: 1rem 0;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  box-shadow: 0 4px 20px #0000004d;
+}
+
+.mobile-menu-item {
+  color: #fff;
+  border-left: 3px solid #0000;
+  padding: .75rem 2rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all .3s;
+  display: block;
+}
+
+.mobile-menu-item:hover, .mobile-menu-item.active {
+  color: gold;
+  background: #ffd7001a;
+  border-left-color: gold;
+}
+
+.mobile-user-greeting {
+  color: gold;
+  border-top: 1px solid #ffd70033;
+  margin-top: .5rem;
+  padding: .75rem 2rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .navbar-menu, .navbar-user {
+    display: none;
+  }
+
+  .mobile-menu-button, .mobile-menu {
+    display: block;
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+  }
+
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    height: 60px;
+    padding: 0 .75rem;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+
+  .logo-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/*# sourceMappingURL=client_src_components_homepage_Navbar_css_bad6b30c._.single.css.map*/

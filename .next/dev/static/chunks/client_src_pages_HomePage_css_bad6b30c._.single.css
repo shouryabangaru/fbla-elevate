@@ -1,0 +1,93 @@
+/* [project]/client/src/pages/HomePage.css [app-client] (css) */
+.homepage {
+  color: #fff;
+  background: #000;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.homepage * {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus, a:focus {
+  outline-offset: 2px;
+  outline: 2px solid gold;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #036;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: gold;
+}
+
+::selection {
+  color: #000;
+  background: gold;
+}
+
+.homepage {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .homepage {
+    filter: contrast(1.2);
+  }
+}
+
+/*# sourceMappingURL=client_src_pages_HomePage_css_bad6b30c._.single.css.map*/

@@ -22,7 +22,7 @@ export default function PracticeQuestionsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   
   // Fetch events from database
-  const { data: dbEvents, isLoading, error } = useQuery({
+  const { data: dbEvents, isLoading, error } = useQuery<Event[]>({
     queryKey: ['/api/events'],
   });
   

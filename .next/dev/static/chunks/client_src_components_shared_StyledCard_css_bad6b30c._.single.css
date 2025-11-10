@@ -1,0 +1,258 @@
+/* [project]/client/src/components/shared/StyledCard.css [app-client] (css) */
+.styled-card {
+  background: linear-gradient(135deg, #012 0%, #000 100%);
+  border: 1px solid #ffd70033;
+  border-radius: 16px;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px #0000004d;
+}
+
+.styled-card.hover-enabled:hover {
+  border-color: gold;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px #ffd70026;
+}
+
+.styled-card.clickable {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.styled-card.primary {
+  background: linear-gradient(135deg, #036 0%, #012 100%);
+  border-color: #ffd70066;
+}
+
+.styled-card.secondary {
+  background: linear-gradient(135deg, #000 0%, #012 100%);
+  border-color: #ffffff1a;
+}
+
+.card-background {
+  opacity: 0;
+  background: linear-gradient(135deg, #ffd70005 0%, #0000 100%);
+  transition: opacity .3s;
+  position: absolute;
+  inset: 0;
+}
+
+.styled-card.hover-enabled:hover .card-background {
+  opacity: 1;
+}
+
+.card-content {
+  z-index: 2;
+  color: #fff;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.card-header {
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  color: #fff;
+  text-shadow: 0 2px 4px #0000004d;
+  margin-bottom: .5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.card-subtitle {
+  color: #fffc;
+  margin-bottom: .5rem;
+  font-size: .9rem;
+}
+
+.card-description {
+  color: #fffc;
+  margin-bottom: 1rem;
+  font-size: .95rem;
+  line-height: 1.5;
+}
+
+.card-actions {
+  gap: .75rem;
+  margin-top: 1rem;
+  display: flex;
+}
+
+.card-button {
+  color: #000;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  background: linear-gradient(135deg, gold 0%, orange 100%);
+  border: none;
+  border-radius: 25px;
+  padding: .75rem 1.5rem;
+  font-size: .9rem;
+  font-weight: 600;
+  transition: all .3s;
+  box-shadow: 0 4px 15px #ffd7004d;
+}
+
+.card-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px #ffd70066;
+}
+
+.card-button.secondary {
+  color: #fff;
+  background: linear-gradient(135deg, #036 0%, #024 100%);
+  border: 1px solid #ffd7004d;
+}
+
+.card-button.secondary:hover {
+  background: linear-gradient(135deg, #048 0%, #036 100%);
+  border-color: gold;
+}
+
+.card-stats {
+  border-top: 1px solid #ffd7001a;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  display: flex;
+}
+
+.card-stat {
+  text-align: center;
+  flex: 1;
+}
+
+.card-stat-value {
+  color: gold;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: block;
+}
+
+.card-stat-label {
+  color: #ffffffb3;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  font-size: .8rem;
+}
+
+.card-icon {
+  color: #000;
+  background: linear-gradient(135deg, gold 0%, orange 100%);
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  box-shadow: 0 4px 15px #ffd7004d;
+}
+
+.card-icon.large {
+  width: 64px;
+  height: 64px;
+}
+
+.card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.card-icon.large svg {
+  width: 32px;
+  height: 32px;
+}
+
+.progress-bar {
+  background: #ffffff1a;
+  border-radius: 3px;
+  width: 100%;
+  height: 6px;
+  margin-top: .5rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, gold 0%, orange 100%);
+  border-radius: 3px;
+  height: 100%;
+  transition: width .3s;
+}
+
+.card-badge {
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #000;
+  background: linear-gradient(135deg, gold 0%, orange 100%);
+  border-radius: 12px;
+  align-items: center;
+  margin-bottom: .5rem;
+  padding: .25rem .75rem;
+  font-size: .75rem;
+  font-weight: 600;
+  display: inline-flex;
+}
+
+.card-badge.success {
+  color: #fff;
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+}
+
+.card-badge.warning {
+  color: #fff;
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+}
+
+.card-badge.info {
+  color: #fff;
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+}
+
+@media (max-width: 768px) {
+  .card-content {
+    padding: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+  }
+
+  .card-button {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .card-stats {
+    gap: .5rem;
+  }
+
+  .card-stat-value {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-content {
+    padding: 1rem;
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/*# sourceMappingURL=client_src_components_shared_StyledCard_css_bad6b30c._.single.css.map*/

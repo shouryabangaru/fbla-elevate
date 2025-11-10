@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/aarya/Desktop/coding%20projects/fbla-elevate/app/about/page.tsx"],"sourcesContent":["import dynamic from 'next/dynamic';\r\n\r\nconst AboutUsPage = dynamic(() => import('@/pages/AboutUsPage'), { ssr: false });\r\n\r\nexport default function About() {\r\n  return <AboutUsPage />;\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;;AAEA,MAAM,cAAc,IAAA,0KAAO,EAAC;;;;;;IAAuC,KAAK;;AAEzD,SAAS;IACtB,qBAAO,8OAAC;;;;;AACV","debugId":null}}]
+}

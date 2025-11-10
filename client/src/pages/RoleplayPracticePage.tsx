@@ -199,7 +199,7 @@ export default function RoleplayPracticePage() {
     const scenarios: RoleplayScenario[] = [];
     
     // Get Banking & Financial Systems scenarios from database
-    const bankingEvent = getEventDetails('banking-financial');
+    const bankingEvent = getEventDetails('banking-financial') as { name: string; prompts: string[] } | undefined;
     if (bankingEvent) {
       const bankingScenarios = [
         {
@@ -386,7 +386,7 @@ export default function RoleplayPracticePage() {
     }
 
     // Get other events from database - create structured data for each
-    const businessEvent = getEventDetails('business-management');
+    const businessEvent = getEventDetails('business-management') as { name: string; prompts: string[] } | undefined;
     if (businessEvent) {
       businessEvent.prompts.forEach((prompt: string, i: number) => {
         // Extract meaningful background context and create distinct sections
@@ -415,7 +415,7 @@ export default function RoleplayPracticePage() {
       });
     }
 
-    const customerEvent = getEventDetails('customer-service');
+    const customerEvent = getEventDetails('customer-service') as { name: string; prompts: string[] } | undefined;
     if (customerEvent) {
       customerEvent.prompts.forEach((prompt: string, i: number) => {
         const background = `You are working in a customer service role where excellent service and problem-solving skills are essential for ${i < 5 ? 'routine' : i < 10 ? 'challenging' : 'complex'} customer interactions.`;
@@ -442,7 +442,7 @@ export default function RoleplayPracticePage() {
       });
     }
 
-    const entrepreneurEvent = getEventDetails('entrepreneurship');
+    const entrepreneurEvent = getEventDetails('entrepreneurship') as { name: string; prompts: string[] } | undefined;
     if (entrepreneurEvent) {
       entrepreneurEvent.prompts.forEach((prompt: string, i: number) => {
         const background = `You are an entrepreneur facing a ${i < 5 ? 'common startup' : i < 10 ? 'significant business' : 'critical strategic'} challenge that requires innovative thinking and decisive action.`;
