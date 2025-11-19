@@ -1,7 +1,7 @@
 /* Features Section Styles */
 .features-section {
   padding: 100px 0;
-  background: linear-gradient(180deg, #000000 0%, #001122 50%, #000000 100%);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -17,6 +17,7 @@
     radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(0, 51, 102, 0.1) 0%, transparent 50%);
   pointer-events: none;
+  z-index: 0;
 }
 
 .features-container {

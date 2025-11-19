@@ -1,3 +1,5 @@
+"use client";
+
 import dynamic from 'next/dynamic';
 
 const PracticeQuestionsPage = dynamic(() => import('@/pages/PracticeQuestionsPage'), { ssr: false });

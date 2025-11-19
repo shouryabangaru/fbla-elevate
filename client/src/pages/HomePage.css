@@ -2,8 +2,10 @@
 .homepage {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #FFFFFF;
-  background: #000000;
+  background: transparent;
   overflow-x: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 .homepage * {
@@ -63,11 +65,11 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #003366;
+  background: rgba(0, 51, 102, 0.8);
   border-radius: 4px;
 }
 

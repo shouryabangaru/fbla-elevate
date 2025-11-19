@@ -1,3 +1,5 @@
+"use client";
+
 import dynamic from 'next/dynamic';
 
 const FlashcardsPage = dynamic(() => import('@/pages/FlashcardsPage'), { ssr: false });

@@ -1,6 +1,7 @@
 /* Footer Styles */
 .footer {
-  background: linear-gradient(135deg, #000000 0%, #001122 50%, #000000 100%);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
   border-top: 1px solid rgba(255, 215, 0, 0.2);
   padding: 3rem 0 1rem;
   position: relative;
@@ -18,6 +19,7 @@
     radial-gradient(circle at 10% 10%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
     radial-gradient(circle at 90% 90%, rgba(0, 51, 102, 0.05) 0%, transparent 50%);
   pointer-events: none;
+  z-index: 0;
 }
 
 .footer-container {
