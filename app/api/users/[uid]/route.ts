@@ -6,10 +6,10 @@ import { z } from 'zod';
 // GET /api/users/[uid] - Get user by Firebase UID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { uid: string } }
+  { params }: { params: Promise<{ uid: string }> }
 ) {
   try {
-    const { uid } = params;
+    const { uid } = await params;
     const user = await storage.getUserByUid(uid);
     
     if (!user) {

@@ -7,10 +7,16 @@ import { z } from 'zod';
 // GET /api/events/[eventId]/questions - Get all questions for an event
 export async function GET(
   request: NextRequest,
-  { params }: { params: { eventId: string } }
+  { params }: { params: Promise<{ eventId: string }> }
 ) {
   try {
-    const eventId = parseInt(params.eventId);
+    const { eventId: eventIdParam } = await params;
+    const eventId = parseInt(eventIdParam, 10);
+    
+    if (isNaN(eventId)) {
+      return NextResponse.json({ error: 'Invalid event ID' }, { status: 400 });
+    }
+    
     const eventQuestions = await db
       .select()
       .from(questions)
@@ -26,10 +32,15 @@ export async function GET(
 // POST /api/events/[eventId]/questions - Add new question to an event
 export async function POST(
   request: NextRequest,
-  { params }: { params: { eventId: string } }
+  { params }: { params: Promise<{ eventId: string }> }
 ) {
   try {
-    const eventId = parseInt(params.eventId);
+    const { eventId: eventIdParam } = await params;
+    const eventId = parseInt(eventIdParam, 10);
+    
+    if (isNaN(eventId)) {
+      return NextResponse.json({ error: 'Invalid event ID' }, { status: 400 });
+    }
     
     // Verify event exists
     const event = await db.select().from(events).where(eq(events.id, eventId));

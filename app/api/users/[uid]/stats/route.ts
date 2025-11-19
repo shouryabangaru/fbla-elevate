@@ -5,10 +5,10 @@ import { z } from 'zod';
 // PATCH /api/users/[uid]/stats - Update user points and streak
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { uid: string } }
+  { params }: { params: Promise<{ uid: string }> }
 ) {
   try {
-    const { uid } = params;
+    const { uid } = await params;
     const body = await request.json();
     
     // Validate updates

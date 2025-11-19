@@ -6,10 +6,15 @@ import { eq } from 'drizzle-orm';
 // GET /api/events/[eventId] - Get specific event by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { eventId: string } }
+  { params }: { params: Promise<{ eventId: string }> }
 ) {
   try {
-    const eventId = parseInt(params.eventId);
+    const { eventId: eventIdParam } = await params;
+    const eventId = parseInt(eventIdParam, 10);
+    
+    if (isNaN(eventId)) {
+      return NextResponse.json({ error: 'Invalid event ID' }, { status: 400 });
+    }
     const event = await db.select().from(events).where(eq(events.id, eventId));
     
     if (event.length === 0) {

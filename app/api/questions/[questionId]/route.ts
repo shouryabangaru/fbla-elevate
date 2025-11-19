@@ -6,10 +6,15 @@ import { eq } from 'drizzle-orm';
 // GET /api/questions/[questionId] - Get specific question by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { questionId: string } }
+  { params }: { params: Promise<{ questionId: string }> }
 ) {
   try {
-    const questionId = parseInt(params.questionId);
+    const { questionId: questionIdParam } = await params;
+    const questionId = parseInt(questionIdParam, 10);
+    
+    if (isNaN(questionId)) {
+      return NextResponse.json({ error: 'Invalid question ID' }, { status: 400 });
+    }
     const question = await db.select().from(questions).where(eq(questions.id, questionId));
     
     if (question.length === 0) {
