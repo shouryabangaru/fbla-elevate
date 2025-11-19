@@ -9,6 +9,7 @@ dist/
 /.turbo
 /.vercel
 /.cache
+/.next
 coverage/
 vite.config.ts.*
 *.tar.gz
