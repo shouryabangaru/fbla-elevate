@@ -19,7 +19,8 @@ import {
   Monitor,
   Network,
   Scale,
-  Timer
+  Timer,
+  ChevronRight
 } from 'lucide-react';
 import { PageLayout } from '@/components/shared/PageLayout';
 // @ts-ignore
@@ -55,6 +56,7 @@ export default function RoleplayPracticePage() {
   const [timeLeft, setTimeLeft] = useState<number>(20 * 60); // 20 minutes in seconds
   const [timerActive, setTimerActive] = useState<boolean>(false);
   const [timeUp, setTimeUp] = useState<boolean>(false);
+  const [difficultyFilter, setDifficultyFilter] = useState<'Beginner' | 'Intermediate' | 'Advanced'>('Beginner');
   
   // Timer effect
   useEffect(() => {
@@ -522,60 +524,62 @@ export default function RoleplayPracticePage() {
         title={scenario.eventName}
         subtitle={`Scenario ${scenario.scenarioNumber} of 15`}
       >
-        <div className="roleplay-container">
-          <div className="practice-header">
-            <button onClick={handleFinishPractice} className="back-button">
+        <div className="rp-container">
+          <div className="rp-practice">
+            <button onClick={handleFinishPractice} className="rp-back-btn">
               <ArrowLeft className="w-4 h-4" />
               Back to Scenarios
             </button>
-            <div className="practice-title">
-              <div className="scenario-meta">
-                <span className={`difficulty ${scenario.difficulty.toLowerCase()}`}>
+
+            <div className="rp-practice-header">
+              <div className="rp-practice-badges">
+                <span className={`rp-badge rp-badge-${scenario.difficulty.toLowerCase()}`}>
                   {scenario.difficulty}
                 </span>
-                <span className="duration-pill">
+                <span className="rp-badge rp-badge-time">
                   <Clock className="w-4 h-4" />
                   20 min
                 </span>
-                <span className="points-pill">
+                <span className="rp-badge rp-badge-points">
                   <Target className="w-4 h-4" />
                   50 points
                 </span>
               </div>
             </div>
-          </div>
 
-          <div className="practice-content">
-            {/* Background Information Section */}
-            <div className="scenario-section background-section">
-              <h2>Background Information</h2>
-              <p>{scenario.background}</p>
+            <div className="rp-practice-content">
+              <div className="rp-section">
+                <div className="rp-section-header">
+                  <BookOpen className="w-5 h-5" />
+                  <h3>Background Information</h3>
+                </div>
+                <p>{scenario.background}</p>
+              </div>
+
+              <div className="rp-section">
+                <div className="rp-section-header">
+                  <Lightbulb className="w-5 h-5" />
+                  <h3>Scenario</h3>
+                </div>
+                <p>{scenario.scenario}</p>
+              </div>
+
+              <div className="rp-section">
+                <div className="rp-section-header">
+                  <Target className="w-5 h-5" />
+                  <h3>Objectives</h3>
+                </div>
+                <ul className="rp-objectives">
+                  {scenario.objectives.map((objective, index) => (
+                    <li key={index}>{objective}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            {/* Scenario Section */}
-            <div className="scenario-section scenario-main">
-              <h2>Scenario</h2>
-              <p>{scenario.scenario}</p>
-            </div>
-
-            {/* Objectives Section */}
-            <div className="scenario-section objectives-section">
-              <h2>Objectives</h2>
-              <ul>
-                {scenario.objectives.map((objective, index) => (
-                  <li key={index}>{objective}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Timer at bottom */}
-          <div className={`timer-bar ${timeUp ? 'time-up' : ''}`}>
-            <div className="timer-content">
+            <div className={`rp-timer ${timeUp ? 'rp-timer-up' : ''}`}>
               <Timer className="w-5 h-5" />
-              <span className="timer-text">
-                {timeUp ? "Time's Up!" : formatTime(timeLeft)}
-              </span>
+              <span>{timeUp ? "Time's Up!" : formatTime(timeLeft)}</span>
             </div>
           </div>
         </div>
@@ -585,9 +589,11 @@ export default function RoleplayPracticePage() {
 
   // If viewing scenarios for a specific event
   if (selectedEvent) {
-    const filteredScenarios = roleplayScenarios.filter(scenario => 
-      scenario.id.startsWith(selectedEvent)
-    );
+    const filteredScenarios = roleplayScenarios.filter(scenario => {
+      const matchesEvent = scenario.id.startsWith(selectedEvent);
+      const matchesDifficulty = scenario.difficulty === difficultyFilter;
+      return matchesEvent && matchesDifficulty;
+    });
     const event = roleplayEvents.find(e => e.id === selectedEvent);
 
     return (
@@ -595,55 +601,94 @@ export default function RoleplayPracticePage() {
         title={`${event?.name} Practice`}
         subtitle="Choose a scenario to practice"
       >
-        <div className="roleplay-container">
-          <div className="scenarios-header">
-            <button onClick={handleBackToEvents} className="back-button">
+        <div className="rp-container">
+          <div className="rp-header-actions">
+            <button onClick={handleBackToEvents} className="rp-back-btn">
               <ArrowLeft className="w-4 h-4" />
               Back to Events
             </button>
+
+            <div className="rp-difficulty-filters">
+              <button 
+                className={`rp-filter-btn rp-filter-beginner ${difficultyFilter === 'Beginner' ? 'active' : ''}`}
+                onClick={() => setDifficultyFilter('Beginner')}
+              >
+                Beginner
+              </button>
+              <button 
+                className={`rp-filter-btn rp-filter-intermediate ${difficultyFilter === 'Intermediate' ? 'active' : ''}`}
+                onClick={() => setDifficultyFilter('Intermediate')}
+              >
+                Intermediate
+              </button>
+              <button 
+                className={`rp-filter-btn rp-filter-advanced ${difficultyFilter === 'Advanced' ? 'active' : ''}`}
+                onClick={() => setDifficultyFilter('Advanced')}
+              >
+                Advanced
+              </button>
+            </div>
           </div>
 
-          <div className="scenarios-grid">
+          <div className="rp-scenarios-grid">
             {filteredScenarios.map((scenario) => (
-              <div key={scenario.id} className="scenario-card">
-                <div className="scenario-header">
-                  <div className="roleplay-header-left">
-                    <div className="scenario-number">
-                      {scenario.scenarioNumber}
+              <div 
+                key={scenario.id} 
+                className="rp-scenario-card"
+                onClick={() => handleStartScenario(selectedEvent, scenario.scenarioNumber - 1)}
+              >
+                <div className="rp-scenario-header">
+                  <div className="rp-scenario-number-badge">
+                    <span className="rp-scenario-num">{scenario.scenarioNumber}</span>
+                    <span className="rp-scenario-total">/ 15</span>
+                  </div>
+                  <span className={`rp-difficulty-badge rp-difficulty-${scenario.difficulty.toLowerCase()}`}>
+                    {scenario.difficulty}
+                  </span>
+                </div>
+
+                <div className="rp-scenario-content">
+                  <div className="rp-scenario-section">
+                    <div className="rp-section-icon">
+                      <BookOpen className="w-4 h-4" />
                     </div>
-                    <div className={`scenario-difficulty ${scenario.difficulty.toLowerCase()}`}>
-                      {scenario.difficulty}
+                    <div className="rp-section-content">
+                      <h4 className="rp-section-title">Background</h4>
+                      <p className="rp-section-text">{scenario.background.substring(0, 120)}...</p>
                     </div>
                   </div>
-                  <div className="scenario-pills">
-                    <span className="duration-pill">
+
+                  <div className="rp-scenario-section">
+                    <div className="rp-section-icon">
+                      <Lightbulb className="w-4 h-4" />
+                    </div>
+                    <div className="rp-section-content">
+                      <h4 className="rp-section-title">Scenario</h4>
+                      <p className="rp-section-text">{scenario.scenario.substring(0, 140)}...</p>
+                    </div>
+                  </div>
+
+                  <div className="rp-scenario-meta">
+                    <div className="rp-meta-item">
                       <Clock className="w-4 h-4" />
-                      20 min
-                    </span>
-                    <span className="points-pill">
+                      <span>20 minutes</span>
+                    </div>
+                    <div className="rp-meta-item">
                       <Target className="w-4 h-4" />
-                      50 points
-                    </span>
+                      <span>50 points</span>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="scenario-preview">
-                  <h4>Background:</h4>
-                  <p className="scenario-background">{scenario.background.substring(0, 80)}...</p>
-                  
-                  <h4>Scenario:</h4>
-                  <p className="scenario-description">{scenario.scenario.substring(0, 120)}...</p>
-                </div>
-                
-                <div className="scenario-footer">
-                  <button 
-                    className="scenario-start-btn"
-                    onClick={() => handleStartScenario(selectedEvent, scenario.scenarioNumber - 1)}
-                  >
-                    <PlayCircle className="w-4 h-4" />
-                    Start Practice
+
+                <div className="rp-scenario-footer-new">
+                  <button className="rp-start-practice-btn">
+                    <PlayCircle className="w-5 h-5" />
+                    <span>Start Practice</span>
+                    <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>
+
+                <div className="rp-card-glow"></div>
               </div>
             ))}
           </div>
@@ -657,34 +702,33 @@ export default function RoleplayPracticePage() {
       title="Roleplay Practice"
       subtitle="Master real FBLA roleplay scenarios and prepare to win"
     >
-      <div className="roleplay-container">
-        <div className="events-grid">
+      <div className="rp-container">
+        <div className="rp-events-list">
           {roleplayEvents.map((event) => (
             <div 
               key={event.id} 
-              className="event-card"
+              className="rp-event-card"
               onClick={() => handleEventClick(event.id)}
             >
-              <div className="event-icon-wrapper">
-                <div className="event-icon">
-                  <event.icon />
-                </div>
+              <div className="rp-event-icon">
+                <event.icon />
               </div>
               
-              <h3 className="event-name">{event.name}</h3>
-              
-              <div className="event-scenarios">
-                <BookOpen className="w-4 h-4 inline mr-1" />
-                {event.scenarioCount} scenarios
+              <div className="rp-event-info">
+                <h3 className="rp-event-name">{event.name}</h3>
+                <p className="rp-event-desc">{event.description}</p>
               </div>
               
-              <p className="event-description">
-                {event.description}
-              </p>
+              <div className="rp-event-meta">
+                <span className="rp-event-count">
+                  <BookOpen className="w-4 h-4" />
+                  {event.scenarioCount} scenarios
+                </span>
+              </div>
               
-              <button className="event-button">
-                Practice Now
-              </button>
+              <div className="rp-event-arrow">
+                <ChevronRight className="w-5 h-5" />
+              </div>
             </div>
           ))}
         </div>

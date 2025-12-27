@@ -1,808 +1,812 @@
-/* Roleplay Practice Page Styles */
+/* Roleplay Practice Page - Modern Design */
 
-.roleplay-container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #000000 0%, #003366 50%, #000000 100%);
-  padding: 2rem 1rem;
+/* Container uses transparent background - relies on LiquidEther */
+.rp-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+  position: relative;
+  z-index: 2;
 }
 
-.roleplay-header {
+/* ============================================
+   EVENT SELECTION VIEW
+   ============================================ */
+
+/* Hero Section */
+.rp-hero {
   text-align: center;
   margin-bottom: 3rem;
-  animation: fadeInUp 0.8s ease-out;
 }
 
-.roleplay-title {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #FFFFFF;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-.roleplay-tagline {
-  font-size: 1.2rem;
-  color: #FFD700;
+.rp-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 50px;
+  color: #60a5fa;
+  font-size: 0.8125rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.roleplay-subtitle {
+.rp-hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 0.75rem 0;
+}
+
+.rp-hero-subtitle {
   font-size: 1rem;
-  color: #CCCCCC;
-  max-width: 600px;
+  color: #94a3b8;
+  max-width: 500px;
   margin: 0 auto;
-  line-height: 1.6;
 }
 
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+/* Category Filter */
+.rp-categories {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
 }
 
-.event-card {
-  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
-  border-radius: 20px;
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
+.rp-category-btn {
+  padding: 0.5rem 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 0.8125rem;
+  font-weight: 500;
   cursor: pointer;
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  position: relative;
-  overflow: hidden;
-  animation: fadeInUp 0.8s ease-out;
+  transition: all 200ms ease;
 }
 
-.event-card::before {
+.rp-category-btn:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.2);
+  color: #e2e8f0;
+}
+
+.rp-category-btn.active {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+}
+
+/* Events Grid - Horizontal Cards */
+.rp-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rp-event-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+
+.rp-event-card:hover {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(59, 130, 246, 0.2);
+  transform: translateX(4px);
+}
+
+.rp-event-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+  flex-shrink: 0;
+}
+
+.rp-event-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.rp-event-info {
+  min-width: 0;
+}
+
+.rp-event-name {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.25rem 0;
+}
+
+.rp-event-desc {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rp-event-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.rp-event-count {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #64748b;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.rp-event-count svg {
+  width: 16px;
+  height: 16px;
+}
+
+.rp-event-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+  transition: all 200ms ease;
+}
+
+.rp-event-card:hover .rp-event-arrow {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateX(2px);
+}
+
+.rp-event-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ============================================
+   SCENARIO LIST VIEW
+   ============================================ */
+
+.rp-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.rp-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.rp-back-btn:hover {
+  background: rgba(30, 41, 59, 0.8);
+  color: #f8fafc;
+}
+
+.rp-back-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.rp-difficulty-filters {
+  display: flex;
+  gap: 0.625rem;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 0.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.rp-filter-btn {
+  padding: 0.625rem 1.125rem;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms ease;
+  position: relative;
+}
+
+.rp-filter-btn:hover {
+  color: #f8fafc;
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.rp-filter-btn.active {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.rp-filter-beginner.active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.rp-filter-intermediate.active {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.rp-filter-advanced.active {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Scenarios Grid */
+.rp-scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .rp-scenarios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .rp-scenarios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rp-scenario-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rp-scenario-card::before {
   content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.rp-scenario-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.15), 0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+.rp-scenario-card:hover::before {
+  opacity: 1;
+}
+
+.rp-scenario-card:hover .rp-card-glow {
+  opacity: 1;
+}
+
+.rp-card-glow {
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-  animation: rotate 3s linear infinite;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 300ms ease;
+  pointer-events: none;
 }
 
-.event-card:hover::before {
-  opacity: 1;
-}
-
-/* Individual Practice Screen Styles */
-.practice-header {
+.rp-scenario-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+  justify-content: space-between;
+  padding: 1rem 1.25rem 0.75rem;
 }
 
-.back-button {
+.rp-scenario-number-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  padding: 0.5rem 0.875rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 12px;
+}
+
+.rp-scenario-num {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #60a5fa;
+  line-height: 1;
+}
+
+.rp-scenario-total {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  line-height: 1;
+}
+
+.rp-scenario-badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.rp-difficulty-badge {
+  padding: 0.5rem 0.875rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid;
+  transition: all 200ms ease;
+}
+
+.rp-difficulty-beginner {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.rp-scenario-card:hover .rp-difficulty-beginner {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.rp-difficulty-intermediate {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #f59e0b;
+}
+
+.rp-scenario-card:hover .rp-difficulty-intermediate {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.rp-difficulty-advanced {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.rp-scenario-card:hover .rp-difficulty-advanced {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.rp-scenario-content {
+  padding: 0 1.25rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rp-scenario-section {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.rp-section-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+  flex-shrink: 0;
+  transition: all 200ms ease;
+}
+
+.rp-scenario-card:hover .rp-section-icon {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.rp-section-content {
+  min-width: 0;
+}
+
+.rp-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #60a5fa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.375rem 0;
+}
+
+.rp-section-text {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rp-scenario-meta {
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.rp-meta-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 215, 0, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  color: #FFD700;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: #94a3b8;
+  font-size: 0.8125rem;
   font-weight: 500;
 }
 
-.back-button:hover {
-  background: rgba(255, 215, 0, 0.2);
-  border-color: #FFD700;
+.rp-meta-item svg {
+  width: 16px;
+  height: 16px;
+  color: #64748b;
 }
 
-.practice-title h1 {
-  color: #FFFFFF;
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+.rp-scenario-footer-new {
+  padding: 0.75rem 1.25rem 1.25rem;
 }
 
-.practice-title p {
-  color: #CCCCCC;
-  font-size: 1rem;
-}
-
-.scenario-meta {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.scenario-meta span {
+.rp-start-practice-btn {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.75rem;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1.25rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border: none;
   border-radius: 12px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.difficulty {
-  border: 1px solid;
+.rp-start-practice-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 500ms ease;
 }
 
-.difficulty.beginner {
-  color: #10B981;
-  border-color: #10B981;
-  background: rgba(16, 185, 129, 0.1);
+.rp-scenario-card:hover .rp-start-practice-btn {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
-.difficulty.intermediate {
-  color: #F59E0B;
-  border-color: #F59E0B;
-  background: rgba(245, 158, 11, 0.1);
+.rp-scenario-card:hover .rp-start-practice-btn::before {
+  left: 100%;
 }
 
-.difficulty.advanced {
-  color: #EF4444;
-  border-color: #EF4444;
+.rp-start-practice-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.rp-start-practice-btn svg:first-child {
+  position: relative;
+  z-index: 1;
+  transition: transform 200ms ease;
+}
+
+.rp-start-practice-btn svg:last-child {
+  position: relative;
+  z-index: 1;
+  transition: transform 200ms ease;
+}
+
+.rp-scenario-card:hover .rp-start-practice-btn svg:last-child {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   PRACTICE VIEW
+   ============================================ */
+
+.rp-practice {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.rp-practice-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.rp-practice-info h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 0.5rem 0;
+}
+
+.rp-practice-meta {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.rp-timer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 12px;
+}
+
+.rp-timer svg {
+  width: 20px;
+  height: 20px;
+  color: #f59e0b;
+}
+
+.rp-timer-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #f8fafc;
+}
+
+.rp-timer.warning {
+  border-color: rgba(239, 68, 68, 0.3);
   background: rgba(239, 68, 68, 0.1);
 }
 
-.time-limit, .points {
-  color: #FFD700;
-  background: rgba(255, 215, 0, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.3);
+.rp-timer.warning svg,
+.rp-timer.warning .rp-timer-text {
+  color: #ef4444;
 }
 
-.practice-content {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.scenario-prompt {
-  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
-  border-radius: 12px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(255, 215, 0, 0.2);
-}
-
-.scenario-prompt h2 {
-  color: #FFD700;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.scenario-prompt p {
-  color: #FFFFFF;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.response-section {
-  margin-bottom: 2rem;
-}
-
-.response-section h3 {
-  color: #FFFFFF;
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.response-textarea {
-  width: 100%;
-  min-height: 300px;
-  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  border-radius: 12px;
-  padding: 1.5rem;
-  color: #FFFFFF;
-  font-size: 1rem;
-  line-height: 1.6;
-  resize: vertical;
-  transition: all 0.3s ease;
-}
-
-.response-textarea:focus {
-  outline: none;
-  border-color: #FFD700;
-  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
-}
-
-.response-textarea::placeholder {
-  color: #888888;
-}
-
-.practice-actions {
-  text-align: center;
-}
-
-.finish-button {
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  border: none;
-  color: #000000;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-}
-
-.finish-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
-}
-
-/* Scenarios List Screen Styles */
-.scenarios-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-}
-
-.scenarios-title {
-  color: #FFFFFF;
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.scenarios-subtitle {
-  color: #CCCCCC;
-  font-size: 1rem;
-}
-
-.scenarios-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Updated Pill Styles */
-.duration-pill, .points-pill {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  background: #FFD700;
-  color: #000000;
-  border: none;
-}
-
-.scenario-pills {
+.rp-timer-controls {
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.5rem;
 }
 
-/* New Scenario Section Styles */
-.scenario-section {
-  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
-  border-radius: 12px;
-  padding: 2rem;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(255, 215, 0, 0.2);
-}
-
-.scenario-section h2 {
-  color: #FFD700;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.background-section h2 {
-  color: #10B981;
-}
-
-.scenario-main h2 {
-  color: #FFD700;
-}
-
-.objectives-section h2 {
-  color: #F59E0B;
-}
-
-.scenario-section p {
-  color: #FFFFFF;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.objectives-section ul {
-  color: #FFFFFF;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0;
-  padding-left: 1.5rem;
-}
-
-.objectives-section li {
-  margin-bottom: 0.5rem;
-}
-
-/* Timer Bar at Bottom */
-.timer-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(135deg, #003366 0%, #000000 100%);
-  border-top: 2px solid #FFD700;
-  padding: 1rem;
-  z-index: 1000;
-  transition: all 0.3s ease;
-}
-
-.timer-bar.time-up {
-  background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
-  border-top-color: #EF4444;
-  animation: pulse 1s infinite;
-}
-
-.timer-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  color: #FFFFFF;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.timer-bar.time-up .timer-content {
-  color: #FFFFFF;
-}
-
-.timer-text {
-  font-family: 'Courier New', monospace;
-  font-size: 1.2rem;
-}
-
-/* Updated Scenario Card Styles */
-.scenario-preview {
-  margin: 1rem 0;
-}
-
-.scenario-preview h4 {
-  color: #FFD700;
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-  margin-top: 0.75rem;
-}
-
-.scenario-preview h4:first-child {
-  margin-top: 0;
-}
-
-.scenario-background, .scenario-description {
-  color: #CCCCCC;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
-}
-
-.scenario-start-btn {
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  border: none;
-  color: #000000;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  justify-content: center;
-}
-
-.scenario-start-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-}
-
-/* Practice content spacing adjustment for timer */
-.practice-content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding-bottom: 100px; /* Space for timer bar */
-}
-
-/* Pulse animation for time up */
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.event-card:hover {
-  transform: scale(1.05) translateY(-10px);
-  box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
-  border-color: #FFD700;
-}
-
-.event-icon-wrapper {
-  position: relative;
-  z-index: 2;
-  margin-bottom: 1.5rem;
-}
-
-.event-icon {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
-}
-
-.event-card:hover .event-icon {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 12px 24px rgba(255, 215, 0, 0.5);
-  animation: pulse 1s ease-in-out infinite;
-}
-
-.event-icon svg {
+.rp-timer-btn {
   width: 40px;
   height: 40px;
-  color: #000000;
-}
-
-.event-name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.event-scenarios {
-  font-size: 0.9rem;
-  color: #FFD700;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  position: relative;
-  z-index: 2;
-}
-
-.event-description {
-  font-size: 0.95rem;
-  color: #CCCCCC;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.event-button {
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  color: #000000;
-  border: none;
-  padding: 0.8rem 2rem;
-  border-radius: 25px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 2;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.event-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(255, 215, 0, 0.4);
-  background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
-}
-
-.scenario-view {
-  background: linear-gradient(135deg, #000000 0%, #003366 50%, #000000 100%);
-  min-height: 100vh;
-  padding: 2rem 1rem;
-}
-
-.scenario-header {
-  max-width: 1200px;
-  margin: 0 auto 2rem;
-  color: #FFFFFF;
-}
-
-.back-button {
-  background: rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.8rem 1.5rem;
-  border-radius: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 2rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.back-button:hover {
-  background: rgba(255, 215, 0, 0.2);
-  border-color: #FFD700;
-  transform: translateY(-2px);
-}
-
-.scenario-event-info {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.scenario-event-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
-}
-
-.scenario-event-icon svg {
-  width: 30px;
-  height: 30px;
-  color: #000000;
-}
-
-.scenario-event-details h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #FFFFFF;
-}
-
-.scenario-event-details p {
-  color: #CCCCCC;
-  font-size: 1.1rem;
-}
-
-.scenarios-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.scenario-card {
-  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
-  border-radius: 15px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.scenario-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
-  border-color: #FFD700;
-}
-
-.scenario-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.roleplay-header-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.scenario-number {
-  background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
-  color: #FFFFFF;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.9rem;
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  flex-shrink: 0;
-}
-
-.scenario-difficulty {
-  padding: 4px 10px;
   border-radius: 10px;
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.rp-timer-btn:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.rp-timer-btn.active {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.rp-timer-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Scenario Content Sections */
+.rp-section {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.rp-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 1rem;
+}
+
+.rp-section-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rp-section-icon.bg {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.rp-section-icon.scenario {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.rp-section-icon.objectives {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.rp-section-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.rp-section-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.rp-section-content {
+  font-size: 0.9375rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.rp-objectives-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.rp-objectives-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.rp-objectives-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  margin-top: 0.5rem;
   flex-shrink: 0;
 }
 
-.scenario-difficulty.beginner {
-  background: #1d5f3f;
-  color: #FFFFFF;
-  border: 1px solid #10b981;
-}
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
-.scenario-difficulty.intermediate {
-  background: #854d0e;
-  color: #FFFFFF;
-  border: 1px solid #f59e0b;
-}
-
-.scenario-difficulty.advanced {
-  background: #7f1d1d;
-  color: #FFFFFF;
-  border: 1px solid #ef4444;
-}
-
-/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-  .roleplay-header-left {
-    gap: 8px;
+  .rp-container {
+    padding: 0 1rem 3rem;
   }
-  
-  .scenario-number {
-    width: 24px;
-    height: 24px;
-    font-size: 0.8rem;
+
+  .rp-event-card {
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    padding: 1rem;
   }
-  
-  .scenario-difficulty {
-    font-size: 10px;
-    padding: 3px 8px;
+
+  .rp-event-meta {
+    display: none;
   }
-  
-  .scenarios-grid {
+
+  .rp-header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .rp-difficulty-filters {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .rp-filter-btn {
+    white-space: nowrap;
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.875rem;
+  }
+
+  .rp-scenarios-grid {
     grid-template-columns: 1fr;
+  }
+
+  .rp-practice-header {
+    flex-direction: column;
     gap: 1rem;
   }
-}
 
-.scenario-time {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: #CCCCCC;
-  font-size: 0.85rem;
-}
-
-.scenario-prompt {
-  color: #FFFFFF;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.scenario-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.scenario-points {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #FFD700;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.scenario-start-btn {
-  background: linear-gradient(135deg, #003366 0%, #0066CC 100%);
-  color: #FFFFFF;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.scenario-start-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 102, 204, 0.3);
-  background: linear-gradient(135deg, #0066CC 0%, #003366 100%);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1.1) rotate(5deg);
-  }
-  50% {
-    transform: scale(1.15) rotate(5deg);
-  }
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .roleplay-title {
-    font-size: 2rem;
-  }
-  
-  .roleplay-tagline {
-    font-size: 1rem;
-  }
-  
-  .events-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .scenarios-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .scenario-event-info {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .scenario-event-details h2 {
-    font-size: 1.5rem;
+  .rp-timer {
+    width: 100%;
+    justify-content: center;
   }
 }

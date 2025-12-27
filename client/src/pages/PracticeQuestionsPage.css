@@ -1,0 +1,170 @@
+/* Practice Questions Page Styles */
+
+/* Main Layout */
+.practice-page-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 60vh;
+}
+
+/* Sidebar */
+.practice-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+/* Main Content Area */
+.practice-content {
+  min-width: 0;
+}
+
+/* Filter Sections */
+.practice-filter-section {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: #60a5fa;
+}
+
+.filter-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+/* Vertical Filter Buttons */
+.filter-buttons-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-btn-vertical {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.filter-btn-vertical:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(148, 163, 184, 0.3);
+  color: #f8fafc;
+  transform: translateX(4px);
+}
+
+.filter-btn-vertical.active {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #60a5fa;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* Difficulty-specific colors */
+.filter-difficulty-beginner.active {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #10b981;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.filter-difficulty-intermediate.active {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #f59e0b;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.filter-difficulty-advanced.active {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+/* Events Count */
+.events-count {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.count-number {
+  color: #60a5fa;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .practice-page-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .practice-sidebar {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .practice-filter-section {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .events-count {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .practice-page-container {
+    padding: 1rem;
+  }
+
+  .practice-sidebar {
+    flex-direction: column;
+  }
+
+  .practice-filter-section {
+    min-width: 0;
+  }
+
+  .filter-btn-vertical {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+  }
+}

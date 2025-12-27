@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { Trophy, ChevronDown, Sparkles } from 'lucide-react';
 import { AuthModal } from '@/components/AuthModal';
+import TextType from '@/components/shared/TextType';
 import './Hero.css';
 
 export function Hero() {
@@ -48,8 +49,15 @@ export function Hero() {
 
           {/* Main Headlines */}
           <h1 className="hero-title">
-            <span className="title-main">FBLA Elevate</span>
-            <span className="title-accent">Championship Ready</span>
+            <span className="title-main">
+              <TextType 
+                text={["FBLA Elevate", "Master Every Challenge", "Become Championship Ready"]}
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+              />
+            </span>
           </h1>
 
           <p className="hero-subtitle">
@@ -73,11 +81,7 @@ export function Hero() {
             )}
           </div>
 
-          {/* Scroll Indicator */}
-          <div className="scroll-indicator">
-            <ChevronDown className="scroll-arrow" />
-            <span className="scroll-text">Discover More</span>
-          </div>
+
         </div>
       </div>
 

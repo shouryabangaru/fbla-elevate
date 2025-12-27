@@ -2,10 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { PageLayout } from '@/components/shared/PageLayout';
+import TextType from '@/components/shared/TextType';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { PlayCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { PlayCircle, AlertCircle, Loader2, Filter } from 'lucide-react';
+import './PracticeQuestionsPage.css';
 
 interface Event {
   id: number;
@@ -72,8 +75,10 @@ export default function PracticeQuestionsPageNew() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
 
   const categories = ['all', 'Business', 'Finance', 'Marketing', 'Technology', 'Management', 'Communication', 'Leadership', 'Legal'];
+  const difficulties = ['all', 'Beginner', 'Intermediate', 'Advanced'];
 
   useEffect(() => {
     fetchEvents();
@@ -113,9 +118,11 @@ export default function PracticeQuestionsPageNew() {
     }
   };
 
-  const filteredEvents = selectedCategory === 'all' 
-    ? events 
-    : events.filter(event => event.category === selectedCategory);
+  const filteredEvents = events.filter(event => {
+    const matchesCategory = selectedCategory === 'all' || event.category === selectedCategory;
+    const matchesDifficulty = selectedDifficulty === 'all' || event.difficulty === selectedDifficulty;
+    return matchesCategory && matchesDifficulty;
+  });
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -164,46 +171,61 @@ export default function PracticeQuestionsPageNew() {
   }
 
   return (
-    <div className="min-h-screen py-24 px-4 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4">
-            Practice Questions
-          </h1>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Test your knowledge with comprehensive FBLA practice events. Choose from {events.length} different competitive events.
-          </p>
-        </div>
-
-        {/* Category Filter */}
-        <Card className="mb-8 bg-gray-900/50 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">Filter by Category</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
+    <PageLayout
+      title="Practice Questions"
+      subtitle="Test your knowledge with comprehensive FBLA competitive events"
+    >
+      <div className="practice-page-container">
+        {/* Sidebar Filters */}
+        <aside className="practice-sidebar">
+          {/* Category Filter */}
+          <div className="practice-filter-section">
+            <div className="filter-header">
+              <Filter className="w-5 h-5" />
+              <h3 className="filter-title">Category</h3>
+            </div>
+            <div className="filter-buttons-vertical">
               {categories.map((category) => (
-                <Button
+                <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  variant={selectedCategory === category ? 'default' : 'outline'}
-                  className={selectedCategory === category 
-                    ? 'bg-yellow-500 hover:bg-yellow-600 text-black' 
-                    : 'border-gray-600 text-gray-300 hover:bg-gray-800'
-                  }
+                  className={`filter-btn-vertical ${selectedCategory === category ? 'active' : ''}`}
                 >
                   {category === 'all' ? 'All Events' : category}
-                </Button>
+                </button>
               ))}
             </div>
-          </CardContent>
-        </Card>
+          </div>
 
-        {/* Events Count */}
-        <div className="mb-6 text-gray-400 text-sm">
-          Showing {filteredEvents.length} of {events.length} events
-        </div>
+          {/* Difficulty Filter */}
+          <div className="practice-filter-section">
+            <div className="filter-header">
+              <Filter className="w-5 h-5" />
+              <h3 className="filter-title">Difficulty</h3>
+            </div>
+            <div className="filter-buttons-vertical">
+              {difficulties.map((difficulty) => (
+                <button
+                  key={difficulty}
+                  onClick={() => setSelectedDifficulty(difficulty)}
+                  className={`filter-btn-vertical filter-difficulty-${difficulty.toLowerCase()} ${
+                    selectedDifficulty === difficulty ? 'active' : ''
+                  }`}
+                >
+                  {difficulty === 'all' ? 'All Levels' : difficulty}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Events Count */}
+          <div className="events-count">
+            Showing <span className="count-number">{filteredEvents.length}</span> of {events.length} events
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="practice-content">
 
         {/* Events Grid */}
         {filteredEvents.length === 0 ? (
@@ -251,7 +273,8 @@ export default function PracticeQuestionsPageNew() {
             ))}
           </div>
         )}
+        </main>
       </div>
-    </div>
+    </PageLayout>
   );
 }

@@ -1,58 +1,70 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { PageLayout } from '@/components/shared/PageLayout';
-import { StyledCard } from '@/components/shared/StyledCard';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ChevronLeft, ChevronRight, RotateCcw, BookOpen, Trophy, Layers } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { 
+  ChevronLeft, 
+  ChevronRight, 
+  RotateCcw, 
+  BookOpen, 
+  Search, 
+  X, 
+  Sparkles,
+  ArrowRight,
+  Clock,
+  Flame,
+  Check,
+  Command
+} from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import './FlashcardsPage.css';
 
 const events = [
-  { id: 'accounting', name: 'Accounting', icon: '📊' },
-  { id: 'advanced-accounting', name: 'Advanced Accounting', icon: '🧮' },
-  { id: 'advertising', name: 'Advertising', icon: '📢' },
-  { id: 'agribusiness', name: 'Agribusiness', icon: '🌾' },
-  { id: 'banking-financial-systems', name: 'Banking & Financial Systems', icon: '🏦' },
-  { id: 'business-communication', name: 'Business Communication', icon: '💬' },
-  { id: 'business-law', name: 'Business Law', icon: '⚖️' },
-  { id: 'business-management', name: 'Business Management', icon: '📋' },
-  { id: 'computer-problem-solving', name: 'Computer Problem Solving', icon: '💻' },
-  { id: 'customer-service', name: 'Customer Service', icon: '🤝' },
-  { id: 'cybersecurity', name: 'Cybersecurity', icon: '🔒' },
-  { id: 'data-science-ai', name: 'Data Science & AI', icon: '🤖' },
-  { id: 'economics', name: 'Economics', icon: '💰' },
-  { id: 'entrepreneurship', name: 'Entrepreneurship', icon: '🚀' },
-  { id: 'healthcare-administration', name: 'Healthcare Administration', icon: '🏥' },
-  { id: 'hospitality-event-management', name: 'Hospitality & Event Management', icon: '🎉' },
-  { id: 'human-resource-management', name: 'Human Resource Management', icon: '👥' },
-  { id: 'insurance-risk-management', name: 'Insurance & Risk Management', icon: '🛡️' },
-  { id: 'international-business', name: 'International Business', icon: '🌍' },
-  { id: 'intro-business-communication', name: 'Introduction to Business Communication (9-10)', icon: '📝' },
-  { id: 'intro-business-concepts', name: 'Introduction to Business Concepts (9-10)', icon: '💡' },
-  { id: 'intro-business-procedures', name: 'Introduction to Business Procedures (9-10)', icon: '📄' },
-  { id: 'intro-fbla', name: 'Introduction to FBLA (9-10)', icon: '🏆' },
-  { id: 'intro-information-technology', name: 'Introduction to Information Technology (9-10)', icon: '💾' },
-  { id: 'intro-marketing-concepts', name: 'Introduction to Marketing Concepts (9-10)', icon: '📈' },
-  { id: 'intro-parliamentary-procedure', name: 'Introduction to Parliamentary Procedure (9-10)', icon: '🗳️' },
-  { id: 'intro-retail-merchandising', name: 'Introduction to Retail & Merchandising (9-10)', icon: '🛍️' },
-  { id: 'intro-supply-chain-management', name: 'Introduction to Supply Chain Management (9-10)', icon: '🚚' },
-  { id: 'journalism', name: 'Journalism', icon: '📰' },
-  { id: 'management-information-systems', name: 'Management Information Systems', icon: '📊' },
-  { id: 'marketing', name: 'Marketing', icon: '📈' },
-  { id: 'network-design', name: 'Network Design', icon: '🔗' },
-  { id: 'networking-infrastructures', name: 'Networking Infrastructures', icon: '🌐' },
-  { id: 'organizational-leadership', name: 'Organizational Leadership', icon: '👔' },
-  { id: 'parliamentary-procedure', name: 'Parliamentary Procedure', icon: '🗳️' },
-  { id: 'personal-finance', name: 'Personal Finance', icon: '💳' },
-  { id: 'project-management', name: 'Project Management', icon: '📅' },
-  { id: 'public-administration-management', name: 'Public Administration & Management', icon: '🏛️' },
-  { id: 'real-estate', name: 'Real Estate', icon: '🏠' },
-  { id: 'retail-management', name: 'Retail Management', icon: '🏪' },
-  { id: 'securities-investments', name: 'Securities & Investments', icon: '📈' },
-  { id: 'sports-entertainment-management', name: 'Sports & Entertainment Management', icon: '🎭' },
-  { id: 'technology-support-services', name: 'Technology Support & Services', icon: '🔧' }
+  { id: 'accounting', name: 'Accounting', icon: '📊', category: 'Finance' },
+  { id: 'advanced-accounting', name: 'Advanced Accounting', icon: '🧮', category: 'Finance' },
+  { id: 'advertising', name: 'Advertising', icon: '📢', category: 'Marketing' },
+  { id: 'agribusiness', name: 'Agribusiness', icon: '🌾', category: 'Business' },
+  { id: 'banking-financial-systems', name: 'Banking & Financial Systems', icon: '🏦', category: 'Finance' },
+  { id: 'business-communication', name: 'Business Communication', icon: '💬', category: 'Communication' },
+  { id: 'business-law', name: 'Business Law', icon: '⚖️', category: 'Law' },
+  { id: 'business-management', name: 'Business Management', icon: '📋', category: 'Management' },
+  { id: 'computer-problem-solving', name: 'Computer Problem Solving', icon: '💻', category: 'Technology' },
+  { id: 'customer-service', name: 'Customer Service', icon: '🤝', category: 'Business' },
+  { id: 'cybersecurity', name: 'Cybersecurity', icon: '🔒', category: 'Technology' },
+  { id: 'data-science-ai', name: 'Data Science & AI', icon: '🤖', category: 'Technology' },
+  { id: 'economics', name: 'Economics', icon: '💰', category: 'Finance' },
+  { id: 'entrepreneurship', name: 'Entrepreneurship', icon: '🚀', category: 'Business' },
+  { id: 'healthcare-administration', name: 'Healthcare Administration', icon: '🏥', category: 'Healthcare' },
+  { id: 'hospitality-event-management', name: 'Hospitality & Event Management', icon: '🎉', category: 'Hospitality' },
+  { id: 'human-resource-management', name: 'Human Resource Management', icon: '👥', category: 'Management' },
+  { id: 'insurance-risk-management', name: 'Insurance & Risk Management', icon: '🛡️', category: 'Finance' },
+  { id: 'international-business', name: 'International Business', icon: '🌍', category: 'Business' },
+  { id: 'intro-business-communication', name: 'Introduction to Business Communication', icon: '📝', category: 'Intro' },
+  { id: 'intro-business-concepts', name: 'Introduction to Business Concepts', icon: '💡', category: 'Intro' },
+  { id: 'intro-business-procedures', name: 'Introduction to Business Procedures', icon: '📄', category: 'Intro' },
+  { id: 'intro-fbla', name: 'Introduction to FBLA', icon: '🏆', category: 'Intro' },
+  { id: 'intro-information-technology', name: 'Introduction to Information Technology', icon: '💾', category: 'Intro' },
+  { id: 'intro-marketing-concepts', name: 'Introduction to Marketing Concepts', icon: '📈', category: 'Intro' },
+  { id: 'intro-parliamentary-procedure', name: 'Introduction to Parliamentary Procedure', icon: '🗳️', category: 'Intro' },
+  { id: 'intro-retail-merchandising', name: 'Introduction to Retail & Merchandising', icon: '🛍️', category: 'Intro' },
+  { id: 'intro-supply-chain-management', name: 'Introduction to Supply Chain Management', icon: '🚚', category: 'Intro' },
+  { id: 'journalism', name: 'Journalism', icon: '📰', category: 'Communication' },
+  { id: 'management-information-systems', name: 'Management Information Systems', icon: '📊', category: 'Technology' },
+  { id: 'marketing', name: 'Marketing', icon: '📈', category: 'Marketing' },
+  { id: 'network-design', name: 'Network Design', icon: '🔗', category: 'Technology' },
+  { id: 'networking-infrastructures', name: 'Networking Infrastructures', icon: '🌐', category: 'Technology' },
+  { id: 'organizational-leadership', name: 'Organizational Leadership', icon: '👔', category: 'Management' },
+  { id: 'parliamentary-procedure', name: 'Parliamentary Procedure', icon: '🗳️', category: 'Communication' },
+  { id: 'personal-finance', name: 'Personal Finance', icon: '💳', category: 'Finance' },
+  { id: 'project-management', name: 'Project Management', icon: '📅', category: 'Management' },
+  { id: 'public-administration-management', name: 'Public Administration & Management', icon: '🏛️', category: 'Management' },
+  { id: 'real-estate', name: 'Real Estate', icon: '🏠', category: 'Business' },
+  { id: 'retail-management', name: 'Retail Management', icon: '🏪', category: 'Business' },
+  { id: 'securities-investments', name: 'Securities & Investments', icon: '📈', category: 'Finance' },
+  { id: 'sports-entertainment-management', name: 'Sports & Entertainment Management', icon: '🎭', category: 'Business' },
+  { id: 'technology-support-services', name: 'Technology Support & Services', icon: '🔧', category: 'Technology' }
 ];
 
 interface Flashcard {
@@ -65,11 +77,27 @@ interface Flashcard {
 
 export default function FlashcardsPage() {
   const [selectedEvent, setSelectedEvent] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredEvents, setFilteredEvents] = useState(events);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
   const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showDefinition, setShowDefinition] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [masteredCards, setMasteredCards] = useState<number[]>([]);
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (searchQuery.trim() === '') {
+      setFilteredEvents(events);
+    } else {
+      const filtered = events.filter(event =>
+        event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredEvents(filtered);
+    }
+  }, [searchQuery]);
 
   useEffect(() => {
     if (selectedEvent) {
@@ -80,15 +108,15 @@ export default function FlashcardsPage() {
   const loadFlashcards = async () => {
     setLoading(true);
     try {
-      // For demo purposes, we'll use sample flashcards
       const sampleCards = getSampleFlashcards(selectedEvent);
       setFlashcards(sampleCards);
       setCurrentIndex(0);
       setShowDefinition(false);
+      setMasteredCards([]);
       
       toast({
-        title: "Flashcards Loaded",
-        description: `${sampleCards.length} flashcards loaded for ${events.find(e => e.id === selectedEvent)?.name}`,
+        title: "Ready to Study!",
+        description: `${sampleCards.length} cards loaded for ${events.find(e => e.id === selectedEvent)?.name}`,
       });
     } catch (error) {
       console.error('Error loading flashcards:', error);
@@ -103,7 +131,7 @@ export default function FlashcardsPage() {
   };
 
   const getSampleFlashcards = (eventId: string): Flashcard[] => {
-    const samples = {
+    const samples: { [key: string]: Flashcard[] } = {
       'accounting': [
         { id: 1, eventId, term: 'Balance Sheet', definition: 'A financial statement that shows a company\'s assets, liabilities, and shareholder equity at a specific point in time.', createdAt: new Date() },
         { id: 2, eventId, term: 'Double-Entry Bookkeeping', definition: 'A method of bookkeeping in which every transaction is recorded in at least two accounts.', createdAt: new Date() },
@@ -113,9 +141,9 @@ export default function FlashcardsPage() {
       ],
       'business-law': [
         { id: 1, eventId, term: 'Contract', definition: 'A legally binding agreement between two or more parties that creates mutual obligations enforceable by law.', createdAt: new Date() },
-        { id: 2, eventId, term: 'Tort', definition: 'A civil wrong that causes harm to another person or their property, resulting in legal liability for the person who commits the tortious act.', createdAt: new Date() },
-        { id: 3, eventId, term: 'Intellectual Property', definition: 'Creations of the mind, such as inventions, literary and artistic works, designs, symbols, names, and images used in commerce.', createdAt: new Date() },
-        { id: 4, eventId, term: 'Breach of Contract', definition: 'A violation of any of the agreed-upon terms and conditions of a binding contract.', createdAt: new Date() },
+        { id: 2, eventId, term: 'Tort', definition: 'A civil wrong that causes harm to another person or their property, resulting in legal liability.', createdAt: new Date() },
+        { id: 3, eventId, term: 'Intellectual Property', definition: 'Creations of the mind: inventions, literary works, designs, symbols, names, and images used in commerce.', createdAt: new Date() },
+        { id: 4, eventId, term: 'Breach of Contract', definition: 'A violation of any agreed-upon terms and conditions of a binding contract.', createdAt: new Date() },
         { id: 5, eventId, term: 'Negligence', definition: 'Failure to exercise the care that a reasonably prudent person would exercise in like circumstances.', createdAt: new Date() },
       ],
       'marketing': [
@@ -140,7 +168,7 @@ export default function FlashcardsPage() {
         { id: 5, eventId, term: 'MVP', definition: 'Minimum Viable Product - a version of a product with just enough features to satisfy early customers.', createdAt: new Date() },
       ],
       'personal-finance': [
-        { id: 1, eventId, term: 'Emergency Fund', definition: 'A cash reserve that is specifically set aside for unplanned expenses or financial emergencies.', createdAt: new Date() },
+        { id: 1, eventId, term: 'Emergency Fund', definition: 'A cash reserve specifically set aside for unplanned expenses or financial emergencies.', createdAt: new Date() },
         { id: 2, eventId, term: 'Credit Score', definition: 'A numerical expression of creditworthiness based on credit files and credit history.', createdAt: new Date() },
         { id: 3, eventId, term: '401(k)', definition: 'An employer-sponsored retirement savings plan that allows employees to contribute pre-tax dollars.', createdAt: new Date() },
         { id: 4, eventId, term: 'Compound Interest', definition: 'Interest calculated on the initial principal and also on the accumulated interest from previous periods.', createdAt: new Date() },
@@ -161,8 +189,8 @@ export default function FlashcardsPage() {
         { id: 5, eventId, term: 'Delegation', definition: 'The assignment of responsibility and authority to another person to carry out specific activities.', createdAt: new Date() },
       ],
     };
-    return samples[eventId as keyof typeof samples] || [
-      { id: 1, eventId, term: 'Coming Soon', definition: 'Flashcards for this event are being developed. Check back later for study materials!', createdAt: new Date() }
+    return samples[eventId] || [
+      { id: 1, eventId, term: 'Coming Soon', definition: 'Flashcards for this event are being developed. Check back soon!', createdAt: new Date() }
     ];
   };
 
@@ -184,150 +212,292 @@ export default function FlashcardsPage() {
     setShowDefinition(!showDefinition);
   };
 
+  const markAsMastered = () => {
+    if (!masteredCards.includes(currentIndex)) {
+      setMasteredCards([...masteredCards, currentIndex]);
+      toast({
+        title: "Card Mastered! 🎉",
+        description: "Great job! Keep up the momentum.",
+      });
+    }
+    nextCard();
+  };
+
   const resetProgress = () => {
     setCurrentIndex(0);
     setShowDefinition(false);
+    setMasteredCards([]);
   };
 
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (flashcards.length === 0) return;
+    
+    switch(e.key) {
+      case 'ArrowLeft':
+        if (currentIndex > 0) {
+          setCurrentIndex(prev => prev - 1);
+          setShowDefinition(false);
+        }
+        break;
+      case 'ArrowRight':
+        if (currentIndex < flashcards.length - 1) {
+          setCurrentIndex(prev => prev + 1);
+          setShowDefinition(false);
+        }
+        break;
+      case ' ':
+      case 'Enter':
+        e.preventDefault();
+        setShowDefinition(prev => !prev);
+        break;
+    }
+  }, [currentIndex, flashcards.length]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
   const currentCard = flashcards[currentIndex];
+  const progressPercent = flashcards.length > 0 ? ((currentIndex + 1) / flashcards.length) * 100 : 0;
+  const masteryPercent = flashcards.length > 0 ? (masteredCards.length / flashcards.length) * 100 : 0;
 
   return (
     <PageLayout
-      title="Interactive Flashcards"
-      subtitle="Master FBLA concepts with our adaptive learning system"
+      title="Flashcards"
+      subtitle="Master FBLA concepts with interactive study cards"
     >
-      <div className="flashcards-container">
-        <div className="flashcards-content">
-          {/* Event Selection */}
-          <div className="event-selection">
-            <StyledCard className="selection-card">
-              <div className="card-content">
-                <div className="card-header">
-                  <BookOpen className="card-icon-inline" />
-                  <h3 className="card-title">Choose Your Event</h3>
-                </div>
-                <Select value={selectedEvent} onValueChange={setSelectedEvent}>
-                  <SelectTrigger className="event-select">
-                    <SelectValue placeholder="Select an FBLA event to study" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {events.map((event) => (
-                      <SelectItem key={event.id} value={event.id}>
-                        <div className="event-option">
-                          <span className="event-icon">{event.icon}</span>
-                          <span className="event-name">{event.name}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </StyledCard>
+      <div className="fc-page">
+        {/* Left Panel - Event Selection */}
+        <aside className="fc-sidebar">
+          <div className="fc-sidebar-header">
+            <div className="fc-sidebar-title">
+              <BookOpen className="w-5 h-5" />
+              <span>Study Topics</span>
+            </div>
+            <span className="fc-event-count">{events.length} Events</span>
           </div>
 
-          {/* Flashcard Study Area */}
-          {selectedEvent && flashcards.length > 0 && currentCard && (
-            <div className="study-area">
-              {/* Progress Bar */}
-              <div className="progress-section">
-                <div className="progress-info">
-                  <div className="progress-stats">
-                    <span className="progress-text">
-                      Card {currentIndex + 1} of {flashcards.length}
-                    </span>
-                    <div className="progress-actions">
-                      <Button
-                        onClick={resetProgress}
-                        variant="outline"
-                        size="sm"
-                        className="reset-button"
-                      >
-                        <RotateCcw className="w-4 h-4 mr-2" />
-                        Reset
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="progress-bar">
-                    <div 
-                      className="progress-fill"
-                      style={{ width: `${((currentIndex + 1) / flashcards.length) * 100}%` }}
-                    />
-                  </div>
+          {/* Search */}
+          <div className="fc-search" ref={searchContainerRef}>
+            <Search className="fc-search-icon" />
+            <Input
+              type="text"
+              placeholder="Search events..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="fc-search-input"
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery('')} className="fc-search-clear">
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+
+          {/* Event List */}
+          <div className="fc-event-list">
+            {filteredEvents.map((event) => (
+              <button
+                key={event.id}
+                onClick={() => {
+                  setSelectedEvent(event.id);
+                  setSearchQuery('');
+                }}
+                className={`fc-event-item ${selectedEvent === event.id ? 'active' : ''}`}
+              >
+                <span className="fc-event-icon">{event.icon}</span>
+                <div className="fc-event-info">
+                  <span className="fc-event-name">{event.name}</span>
+                  <span className="fc-event-category">{event.category}</span>
                 </div>
+                {selectedEvent === event.id && (
+                  <ArrowRight className="fc-event-arrow" />
+                )}
+              </button>
+            ))}
+            
+            {filteredEvents.length === 0 && (
+              <div className="fc-no-results">
+                <Search className="w-8 h-8 mb-3 opacity-40" />
+                <p>No events found</p>
+                <span>Try a different search term</span>
+              </div>
+            )}
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="fc-main">
+          {!selectedEvent ? (
+            /* Empty State */
+            <div className="fc-empty">
+              <div className="fc-empty-icon">
+                <Sparkles className="w-12 h-12" />
+              </div>
+              <h2>Select an Event to Start</h2>
+              <p>Choose a topic from the sidebar to begin studying flashcards</p>
+              <div className="fc-empty-features">
+                <div className="fc-empty-feature">
+                  <Command className="w-5 h-5" />
+                  <span>Keyboard shortcuts for fast navigation</span>
+                </div>
+                <div className="fc-empty-feature">
+                  <Flame className="w-5 h-5" />
+                  <span>Track your mastery progress</span>
+                </div>
+                <div className="fc-empty-feature">
+                  <Clock className="w-5 h-5" />
+                  <span>Study at your own pace</span>
+                </div>
+              </div>
+            </div>
+          ) : loading ? (
+            /* Loading State */
+            <div className="fc-loading">
+              <div className="fc-loading-spinner"></div>
+              <p>Loading flashcards...</p>
+            </div>
+          ) : flashcards.length === 0 ? (
+            /* No Cards State */
+            <div className="fc-empty">
+              <div className="fc-empty-icon">
+                <BookOpen className="w-12 h-12" />
+              </div>
+              <h2>No Flashcards Available</h2>
+              <p>Flashcards for this event are coming soon!</p>
+            </div>
+          ) : (
+            /* Study Area */
+            <>
+              {/* Stats Bar */}
+              <div className="fc-stats">
+                <div className="fc-stat">
+                  <div className="fc-stat-value">{currentIndex + 1}/{flashcards.length}</div>
+                  <div className="fc-stat-label">Progress</div>
+                </div>
+                <div className="fc-stat">
+                  <div className="fc-stat-value">{masteredCards.length}</div>
+                  <div className="fc-stat-label">Mastered</div>
+                </div>
+                <div className="fc-stat">
+                  <div className="fc-stat-value">{flashcards.length - masteredCards.length}</div>
+                  <div className="fc-stat-label">Remaining</div>
+                </div>
+                <button onClick={resetProgress} className="fc-reset-btn">
+                  <RotateCcw className="w-4 h-4" />
+                  Reset
+                </button>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="fc-progress-container">
+                <div className="fc-progress-bar">
+                  <div 
+                    className="fc-progress-fill" 
+                    style={{ width: `${progressPercent}%` }}
+                  />
+                </div>
+                <div className="fc-mastery-bar">
+                  <div 
+                    className="fc-mastery-fill" 
+                    style={{ width: `${masteryPercent}%` }}
+                  />
+                </div>
+              </div>
+
+              {/* Card Indicators */}
+              <div className="fc-card-indicators">
+                {flashcards.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setCurrentIndex(idx);
+                      setShowDefinition(false);
+                    }}
+                    className={`fc-indicator ${idx === currentIndex ? 'active' : ''} ${masteredCards.includes(idx) ? 'mastered' : ''}`}
+                  />
+                ))}
               </div>
 
               {/* Flashcard */}
-              <div className="flashcard-section">
-                <StyledCard className="flashcard-wrapper">
-                  <div className={`flashcard ${showDefinition ? 'flipped' : ''}`}>
-                    <div className="flashcard-inner">
-                      <div className="flashcard-front">
-                        <div className="card-type">
-                          <Layers className="w-5 h-5 mr-2" />
-                          <span>Term</span>
-                        </div>
-                        <h2 className="flashcard-term">{currentCard?.term}</h2>
-                        <p className="flashcard-hint">Click to reveal definition</p>
+              <div className="fc-card-container" onClick={flipCard}>
+                <div className={`fc-card ${showDefinition ? 'flipped' : ''}`}>
+                  <div className="fc-card-inner">
+                    {/* Front */}
+                    <div className="fc-card-front">
+                      <div className="fc-card-badge">
+                        <span>TERM</span>
                       </div>
-                      
-                      <div className="flashcard-back">
-                        <div className="card-type">
-                          <Trophy className="w-5 h-5 mr-2" />
-                          <span>Definition</span>
-                        </div>
-                        <p className="flashcard-definition">{currentCard?.definition}</p>
+                      <h2 className="fc-card-term">{currentCard?.term}</h2>
+                      <div className="fc-card-action">
+                        <span>Tap to reveal definition</span>
+                      </div>
+                    </div>
+                    {/* Back */}
+                    <div className="fc-card-back">
+                      <div className="fc-card-badge definition">
+                        <span>DEFINITION</span>
+                      </div>
+                      <p className="fc-card-definition">{currentCard?.definition}</p>
+                      <div className="fc-card-action">
+                        <span>Tap to see term</span>
                       </div>
                     </div>
                   </div>
-                </StyledCard>
+                </div>
               </div>
 
-              {/* Navigation Controls */}
-              <div className="navigation-controls">
+              {/* Navigation */}
+              <div className="fc-nav">
                 <Button
                   onClick={prevCard}
                   disabled={currentIndex === 0}
-                  className="nav-button prev"
+                  className="fc-nav-btn"
+                  variant="outline"
                 >
-                  <ChevronLeft className="w-5 h-5 mr-2" />
-                  Previous
+                  <ChevronLeft className="w-5 h-5" />
+                  <span>Previous</span>
                 </Button>
 
                 <Button
-                  onClick={flipCard}
-                  className="flip-button"
-                  variant="outline"
+                  onClick={markAsMastered}
+                  className="fc-mastered-btn"
+                  disabled={masteredCards.includes(currentIndex)}
                 >
-                  {showDefinition ? 'Show Term' : 'Show Definition'}
+                  <Check className="w-5 h-5" />
+                  <span>{masteredCards.includes(currentIndex) ? 'Mastered!' : 'Mark as Mastered'}</span>
                 </Button>
 
                 <Button
                   onClick={nextCard}
                   disabled={currentIndex === flashcards.length - 1}
-                  className="nav-button next"
+                  className="fc-nav-btn"
+                  variant="outline"
                 >
-                  Next
-                  <ChevronRight className="w-5 h-5 ml-2" />
+                  <span>Next</span>
+                  <ChevronRight className="w-5 h-5" />
                 </Button>
               </div>
-            </div>
-          )}
 
-          {/* Empty State */}
-          {selectedEvent && flashcards.length === 0 && (
-            <div className="empty-state">
-              <StyledCard className="empty-card">
-                <div className="card-content">
-                  <BookOpen className="empty-icon" />
-                  <h3 className="empty-title">No Flashcards Available</h3>
-                  <p className="empty-description">
-                    Flashcards for this event are coming soon. Check back later!
-                  </p>
+              {/* Keyboard Hints */}
+              <div className="fc-shortcuts">
+                <div className="fc-shortcut">
+                  <kbd>←</kbd>
+                  <span>Previous</span>
                 </div>
-              </StyledCard>
-            </div>
+                <div className="fc-shortcut">
+                  <kbd>Space</kbd>
+                  <span>Flip</span>
+                </div>
+                <div className="fc-shortcut">
+                  <kbd>→</kbd>
+                  <span>Next</span>
+                </div>
+              </div>
+            </>
           )}
-        </div>
+        </main>
       </div>
     </PageLayout>
   );
