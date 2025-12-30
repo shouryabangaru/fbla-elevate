@@ -19,7 +19,6 @@ export function Footer() {
     {
       title: 'Resources',
       links: [
-        { name: 'About FBLA', path: '/about' },
         { name: 'Study Guide', path: '/study' },
         { name: 'Competition Events', path: '/events' }
       ]

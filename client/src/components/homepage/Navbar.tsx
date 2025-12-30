@@ -19,7 +19,6 @@ export function Navbar() {
     { name: 'Flashcards', path: '/flashcards' },
     { name: 'Leaderboard', path: '/leaderboard' },
     { name: 'Achievements', path: '/achievements' },
-    { name: 'About', path: '/about' },
   ];
 
   return (

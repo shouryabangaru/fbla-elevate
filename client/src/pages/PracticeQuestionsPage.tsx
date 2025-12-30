@@ -3,75 +3,25 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { PageLayout } from '@/components/shared/PageLayout';
-import TextType from '@/components/shared/TextType';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { PlayCircle, AlertCircle, Loader2, Filter } from 'lucide-react';
 import './PracticeQuestionsPage.css';
 
-interface Event {
-  id: number;
+// Practice event from Supabase API
+interface PracticeEvent {
+  id: string;
   name: string;
   description: string;
-}
-
-interface EventWithMeta extends Event {
   icon: string;
   difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
   category: string;
 }
 
-const eventMetadata: Record<string, { icon: string; difficulty: 'Beginner' | 'Intermediate' | 'Advanced'; category: string }> = {
-  'Accounting I': { icon: '📊', difficulty: 'Intermediate', category: 'Finance' },
-  'Advanced Accounting': { icon: '🧮', difficulty: 'Advanced', category: 'Finance' },
-  'Advertising': { icon: '📢', difficulty: 'Intermediate', category: 'Marketing' },
-  'Agribusiness': { icon: '🌾', difficulty: 'Intermediate', category: 'Business' },
-  'Banking & Financial Systems': { icon: '🏦', difficulty: 'Intermediate', category: 'Finance' },
-  'Business Communication': { icon: '💬', difficulty: 'Intermediate', category: 'Communication' },
-  'Business Ethics': { icon: '🎯', difficulty: 'Intermediate', category: 'Business' },
-  'Business Law': { icon: '⚖️', difficulty: 'Advanced', category: 'Legal' },
-  'Business Management': { icon: '💼', difficulty: 'Intermediate', category: 'Management' },
-  'Computer Problem Solving': { icon: '💻', difficulty: 'Advanced', category: 'Technology' },
-  'Customer Service': { icon: '🤝', difficulty: 'Beginner', category: 'Communication' },
-  'Cybersecurity': { icon: '🔒', difficulty: 'Advanced', category: 'Technology' },
-  'Data Science & AI': { icon: '🤖', difficulty: 'Advanced', category: 'Technology' },
-  'Economics': { icon: '📈', difficulty: 'Intermediate', category: 'Finance' },
-  'Entrepreneurship': { icon: '🚀', difficulty: 'Advanced', category: 'Business' },
-  'Healthcare Administration': { icon: '🏥', difficulty: 'Intermediate', category: 'Management' },
-  'Hospitality & Event Management': { icon: '🏨', difficulty: 'Intermediate', category: 'Management' },
-  'Human Resource Management': { icon: '👥', difficulty: 'Intermediate', category: 'Management' },
-  'Insurance & Risk Management': { icon: '🛡️', difficulty: 'Intermediate', category: 'Finance' },
-  'International Business': { icon: '🌍', difficulty: 'Advanced', category: 'Business' },
-  'Introduction to Business Communication': { icon: '📝', difficulty: 'Beginner', category: 'Communication' },
-  'Introduction to Business Concepts': { icon: '📋', difficulty: 'Beginner', category: 'Business' },
-  'Introduction to Business Procedures': { icon: '📑', difficulty: 'Beginner', category: 'Business' },
-  'Introduction to FBLA': { icon: '🏛️', difficulty: 'Beginner', category: 'Leadership' },
-  'Introduction to Information Technology': { icon: '🖥️', difficulty: 'Beginner', category: 'Technology' },
-  'Introduction to Marketing Concepts': { icon: '📢', difficulty: 'Beginner', category: 'Marketing' },
-  'Introduction to Parliamentary Procedure': { icon: '🏛️', difficulty: 'Beginner', category: 'Leadership' },
-  'Introduction to Retail & Merchandising': { icon: '🛍️', difficulty: 'Beginner', category: 'Business' },
-  'Introduction to Supply Chain Management': { icon: '📦', difficulty: 'Beginner', category: 'Business' },
-  'Journalism': { icon: '📰', difficulty: 'Intermediate', category: 'Communication' },
-  'Management Information Systems': { icon: '💾', difficulty: 'Advanced', category: 'Technology' },
-  'Marketing': { icon: '📈', difficulty: 'Intermediate', category: 'Marketing' },
-  'Network Design': { icon: '🔗', difficulty: 'Advanced', category: 'Technology' },
-  'Networking Infrastructures': { icon: '🌐', difficulty: 'Advanced', category: 'Technology' },
-  'Organizational Leadership': { icon: '👑', difficulty: 'Intermediate', category: 'Leadership' },
-  'Parliamentary Procedure': { icon: '🏛️', difficulty: 'Intermediate', category: 'Leadership' },
-  'Personal Finance': { icon: '💰', difficulty: 'Beginner', category: 'Finance' },
-  'Project Management': { icon: '📊', difficulty: 'Intermediate', category: 'Management' },
-  'Public Administration & Management': { icon: '🏢', difficulty: 'Intermediate', category: 'Management' },
-  'Real Estate': { icon: '🏠', difficulty: 'Intermediate', category: 'Finance' },
-  'Retail Management': { icon: '🛒', difficulty: 'Intermediate', category: 'Management' },
-  'Securities & Investments': { icon: '📊', difficulty: 'Advanced', category: 'Finance' },
-  'Sports & Entertainment Management': { icon: '🎭', difficulty: 'Intermediate', category: 'Management' },
-  'Technology Support & Services': { icon: '🔧', difficulty: 'Intermediate', category: 'Technology' },
-};
-
-export default function PracticeQuestionsPageNew() {
+export default function PracticeQuestionsPage() {
   const router = useRouter();
-  const [events, setEvents] = useState<EventWithMeta[]>([]);
+  const [events, setEvents] = useState<PracticeEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -89,7 +39,8 @@ export default function PracticeQuestionsPageNew() {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('/api/events', {
+      // Fetch from new Supabase-backed API
+      const response = await fetch('/api/practice/events', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -102,14 +53,7 @@ export default function PracticeQuestionsPageNew() {
       }
 
       const data = await response.json();
-      
-      // Combine with metadata
-      const eventsWithMeta: EventWithMeta[] = data.map((event: Event) => ({
-        ...event,
-        ...(eventMetadata[event.name] || { icon: '📝', difficulty: 'Beginner' as const, category: 'General' })
-      }));
-
-      setEvents(eventsWithMeta);
+      setEvents(data);
     } catch (err) {
       console.error('Error fetching events:', err);
       setError(err instanceof Error ? err.message : 'Failed to load events');
