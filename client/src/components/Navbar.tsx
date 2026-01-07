@@ -15,13 +15,10 @@ export function Navbar() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: '/', label: 'Home' },
+    { href: '/', label: 'Dashboard' },
     { href: '/practice', label: 'Practice Questions' },
     { href: '/roleplay', label: 'Roleplay' },
     { href: '/flashcards', label: 'Flashcards' },
-    { href: '/leaderboard', label: 'Leaderboard' },
-    { href: '/achievements', label: 'Achievements' },
-    { href: '/about', label: 'About Us' },
   ];
 
   const isActive = (href: string) => {
@@ -35,10 +32,10 @@ export function Navbar() {
           <div className="flex justify-between items-center h-16">
             {/* Logo and Brand */}
             <div className="flex items-center">
-              <Link href="/" className="flex items-center">
+              <div className="flex items-center cursor-default">
                 <GraduationCap className="text-fbla-yellow w-8 h-8 mr-2" />
                 <span className="text-fbla-white font-bold text-xl">FBLA Elevate</span>
-              </Link>
+              </div>
             </div>
 
             {/* Desktop Navigation */}

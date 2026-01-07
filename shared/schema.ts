@@ -1,154 +1,200 @@
-import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
-import { relations } from "drizzle-orm";
-import { z } from "zod";
+import { z } from 'zod';
 
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  uid: text("uid").notNull().unique(),
-  name: text("name").notNull(),
-  email: text("email").notNull().unique(),
-  schoolId: text("school_id").notNull(),
-  points: integer("points").default(0),
-  streak: integer("streak").default(0),
-  createdAt: timestamp("created_at").defaultNow(),
+// ==========================================
+// USER TYPES
+// ==========================================
+
+export interface User {
+  id: number;
+  uid: string;
+  name: string;
+  email: string;
+  school_id: string;
+  points: number;
+  streak: number;
+  created_at: string;
+}
+
+export interface InsertUser {
+  uid: string;
+  name: string;
+  email: string;
+  schoolId: string;
+}
+
+export const insertUserSchema = z.object({
+  uid: z.string().min(1, 'UID is required'),
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email('Invalid email address'),
+  schoolId: z.string().min(1, 'School ID is required'),
 });
 
-export const flashcards = pgTable("flashcards", {
-  id: serial("id").primaryKey(),
-  eventId: text("event_id").notNull(),
-  term: text("term").notNull(),
-  definition: text("definition").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
+// ==========================================
+// FLASHCARD TYPES
+// ==========================================
+
+export interface Flashcard {
+  id: number;
+  event_id: string;
+  term: string;
+  definition: string;
+  created_at: string;
+}
+
+export interface InsertFlashcard {
+  eventId: string;
+  term: string;
+  definition: string;
+}
+
+export const insertFlashcardSchema = z.object({
+  eventId: z.string().min(1),
+  term: z.string().min(1),
+  definition: z.string().min(1),
 });
 
-export const userProgress = pgTable("user_progress", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull(),
-  flashcardId: integer("flashcard_id").notNull(),
-  correct: boolean("correct").default(false),
-  attempts: integer("attempts").default(0),
-  lastAttempt: timestamp("last_attempt").defaultNow(),
+// ==========================================
+// USER PROGRESS TYPES
+// ==========================================
+
+export interface UserProgress {
+  id: number;
+  user_id: number;
+  flashcard_id: number;
+  correct: boolean;
+  attempts: number;
+  last_attempt: string;
+}
+
+export interface InsertUserProgress {
+  userId: number;
+  flashcardId: number;
+  correct?: boolean;
+  attempts?: number;
+}
+
+export const insertUserProgressSchema = z.object({
+  userId: z.number(),
+  flashcardId: z.number(),
+  correct: z.boolean().optional(),
+  attempts: z.number().optional(),
 });
 
-export const achievements = pgTable("achievements", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  description: text("description").notNull(),
-  icon: text("icon").notNull(),
-  category: text("category").notNull(),
-  requirement: integer("requirement").notNull(),
-  points: integer("points").default(0),
+// ==========================================
+// ACHIEVEMENT TYPES
+// ==========================================
+
+export interface Achievement {
+  id: number;
+  name: string;
+  description: string;
+  icon: string;
+  category: string;
+  requirement: number;
+  points: number;
+}
+
+export interface InsertAchievement {
+  name: string;
+  description: string;
+  icon: string;
+  category: string;
+  requirement: number;
+  points?: number;
+}
+
+export const insertAchievementSchema = z.object({
+  name: z.string().min(1),
+  description: z.string().min(1),
+  icon: z.string().min(1),
+  category: z.string().min(1),
+  requirement: z.number(),
+  points: z.number().optional(),
 });
 
-export const userAchievements = pgTable("user_achievements", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull(),
-  achievementId: integer("achievement_id").notNull(),
-  earnedAt: timestamp("earned_at").defaultNow(),
+// ==========================================
+// USER ACHIEVEMENT TYPES
+// ==========================================
+
+export interface UserAchievement {
+  id: number;
+  user_id: number;
+  achievement_id: number;
+  earned_at: string;
+}
+
+export interface InsertUserAchievement {
+  userId: number;
+  achievementId: number;
+}
+
+export const insertUserAchievementSchema = z.object({
+  userId: z.number(),
+  achievementId: z.number(),
 });
 
-export const events = pgTable("events", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull().unique(),
-  description: text("description"),
-  createdAt: timestamp("created_at").defaultNow(),
+// ==========================================
+// EVENT TYPES
+// ==========================================
+
+export interface Event {
+  id: number;
+  name: string;
+  description: string | null;
+  created_at: string;
+}
+
+export interface InsertEvent {
+  name: string;
+  description?: string;
+}
+
+export const insertEventSchema = z.object({
+  name: z.string().min(1),
+  description: z.string().optional(),
 });
 
-export const questions = pgTable("questions", {
-  id: serial("id").primaryKey(),
-  eventId: integer("event_id").notNull(),
-  questionText: text("question_text").notNull(),
-  optionA: text("option_a").notNull(),
-  optionB: text("option_b").notNull(),
-  optionC: text("option_c").notNull(),
-  optionD: text("option_d").notNull(),
-  correctAnswer: text("correct_answer").notNull(), // stores 'A', 'B', 'C', or 'D'
-  difficulty: text("difficulty").notNull(), // 'Beginner', 'Intermediate', 'Advanced'
-  points: integer("points").default(1),
-  explanation: text("explanation"), // explanation for the correct answer
-  createdAt: timestamp("created_at").defaultNow(),
+// ==========================================
+// QUESTION TYPES
+// ==========================================
+
+export interface Question {
+  id: number;
+  event_id: number;
+  question_text: string;
+  option_a: string;
+  option_b: string;
+  option_c: string;
+  option_d: string;
+  correct_answer: string;
+  difficulty: string;
+  points: number;
+  explanation: string | null;
+  created_at: string;
+}
+
+export interface InsertQuestion {
+  eventId: number;
+  questionText: string;
+  optionA: string;
+  optionB: string;
+  optionC: string;
+  optionD: string;
+  correctAnswer: string;
+  difficulty: string;
+  points?: number;
+  explanation?: string;
+}
+
+export const insertQuestionSchema = z.object({
+  eventId: z.number(),
+  questionText: z.string().min(1),
+  optionA: z.string().min(1),
+  optionB: z.string().min(1),
+  optionC: z.string().min(1),
+  optionD: z.string().min(1),
+  correctAnswer: z.enum(['A', 'B', 'C', 'D']),
+  difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
+  points: z.number().optional(),
+  explanation: z.string().optional(),
 });
-
-export const insertUserSchema = createInsertSchema(users).omit({
-  id: true,
-  points: true,
-  streak: true,
-  createdAt: true,
-});
-
-export const insertFlashcardSchema = createInsertSchema(flashcards).omit({
-  id: true,
-  createdAt: true,
-});
-
-export const insertUserProgressSchema = createInsertSchema(userProgress).omit({
-  id: true,
-  lastAttempt: true,
-});
-
-export const insertAchievementSchema = createInsertSchema(achievements).omit({
-  id: true,
-});
-
-export const insertUserAchievementSchema = createInsertSchema(userAchievements).omit({
-  id: true,
-  earnedAt: true,
-});
-
-export const insertEventSchema = createInsertSchema(events).omit({
-  id: true,
-  createdAt: true,
-});
-
-export const insertQuestionSchema = createInsertSchema(questions).omit({
-  id: true,
-  createdAt: true,
-});
-
-// Relations
-export const usersRelations = relations(users, ({ many }) => ({
-  progress: many(userProgress),
-  achievements: many(userAchievements),
-}));
-
-export const flashcardsRelations = relations(flashcards, ({ many }) => ({
-  progress: many(userProgress),
-}));
-
-export const userProgressRelations = relations(userProgress, ({ one }) => ({
-  user: one(users, { fields: [userProgress.userId], references: [users.id] }),
-  flashcard: one(flashcards, { fields: [userProgress.flashcardId], references: [flashcards.id] }),
-}));
-
-export const achievementsRelations = relations(achievements, ({ many }) => ({
-  userAchievements: many(userAchievements),
-}));
-
-export const userAchievementsRelations = relations(userAchievements, ({ one }) => ({
-  user: one(users, { fields: [userAchievements.userId], references: [users.id] }),
-  achievement: one(achievements, { fields: [userAchievements.achievementId], references: [achievements.id] }),
-}));
-
-export const eventsRelations = relations(events, ({ many }) => ({
-  questions: many(questions),
-}));
-
-export const questionsRelations = relations(questions, ({ one }) => ({
-  event: one(events, { fields: [questions.eventId], references: [events.id] }),
-}));
-
-export type User = typeof users.$inferSelect;
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type Flashcard = typeof flashcards.$inferSelect;
-export type InsertFlashcard = z.infer<typeof insertFlashcardSchema>;
-export type UserProgress = typeof userProgress.$inferSelect;
-export type InsertUserProgress = z.infer<typeof insertUserProgressSchema>;
-export type Achievement = typeof achievements.$inferSelect;
-export type InsertAchievement = z.infer<typeof insertAchievementSchema>;
-export type UserAchievement = typeof userAchievements.$inferSelect;
-export type InsertUserAchievement = z.infer<typeof insertUserAchievementSchema>;
-export type Event = typeof events.$inferSelect;
-export type InsertEvent = z.infer<typeof insertEventSchema>;
-export type Question = typeof questions.$inferSelect;
-export type InsertQuestion = z.infer<typeof insertQuestionSchema>;

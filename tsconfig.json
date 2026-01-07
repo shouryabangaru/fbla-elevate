@@ -50,9 +50,6 @@
       "@shared/*": [
         "./shared/*"
       ],
-      "@/server/*": [
-        "./server/*"
-      ],
       "@/lib/*": [
         "./lib/*"
       ]

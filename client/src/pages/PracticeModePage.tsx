@@ -3,12 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { PageLayout } from '@/components/shared/PageLayout';
-import { StyledCard } from '@/components/shared/StyledCard';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, CheckCircle, XCircle, RotateCcw, Loader2 } from 'lucide-react';
+import { ArrowLeft, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { PracticeQuestion, UIQuestion, transformQuestionToUI } from '@/lib/types';
+import './PracticeModePage.css';
 
 // Practice event interface from API
 interface PracticeEventInfo {
@@ -207,16 +204,6 @@ export default function PracticeModePage() {
     router.push('/practice');
   };
 
-  // Get difficulty color class
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case 'Beginner': return 'bg-green-100 text-green-800';
-      case 'Intermediate': return 'bg-yellow-100 text-yellow-800';
-      case 'Advanced': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
-
   // Loading state
   if (isLoading) {
     return (
@@ -224,9 +211,9 @@ export default function PracticeModePage() {
         title="Loading Practice..."
         subtitle="Preparing your practice session"
       >
-        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
-          <Loader2 className="h-12 w-12 animate-spin text-yellow-500" />
-          <p className="text-gray-600">Loading practice questions...</p>
+        <div className="loading-container">
+          <Loader2 className="loading-spinner" />
+          <p className="loading-text">Loading practice questions...</p>
         </div>
       </PageLayout>
     );
@@ -239,11 +226,11 @@ export default function PracticeModePage() {
         title="Practice Error"
         subtitle="Failed to load practice session"
       >
-        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
-          <p className="text-red-600">{error}</p>
-          <Button onClick={() => window.location.reload()}>
+        <div className="error-container">
+          <p className="error-text">{error}</p>
+          <button className="retry-button" onClick={() => window.location.reload()}>
             Retry
-          </Button>
+          </button>
         </div>
       </PageLayout>
     );
@@ -256,12 +243,12 @@ export default function PracticeModePage() {
         title="Practice Not Found"
         subtitle="The practice event you're looking for doesn't exist"
       >
-        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
-          <p className="text-gray-600">Sorry, we couldn't find that practice event.</p>
-          <Button onClick={handleBackToPractice}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
+        <div className="empty-container">
+          <p className="empty-text">Sorry, we couldn't find that practice event.</p>
+          <button className="back-button" onClick={handleBackToPractice}>
+            <ArrowLeft className="w-4 h-4" />
             Back to Practice
-          </Button>
+          </button>
         </div>
       </PageLayout>
     );
@@ -274,12 +261,12 @@ export default function PracticeModePage() {
         title={eventInfo.name}
         subtitle="No questions available for this event"
       >
-        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
-          <p className="text-gray-600">Questions for this event are coming soon!</p>
-          <Button onClick={handleBackToPractice}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
+        <div className="empty-container">
+          <p className="empty-text">Questions for this event are coming soon!</p>
+          <button className="back-button" onClick={handleBackToPractice}>
+            <ArrowLeft className="w-4 h-4" />
             Back to Practice
-          </Button>
+          </button>
         </div>
       </PageLayout>
     );
@@ -292,16 +279,16 @@ export default function PracticeModePage() {
         title={eventInfo.name}
         subtitle="Question not available"
       >
-        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
-          <p className="text-gray-600">Unable to load question. Please try again.</p>
-          <div className="space-x-3">
-            <Button onClick={() => setCurrentQuestionIndex(0)} variant="outline">
+        <div className="empty-container">
+          <p className="empty-text">Unable to load question. Please try again.</p>
+          <div className="flex gap-3">
+            <button className="back-button" onClick={() => setCurrentQuestionIndex(0)}>
               Restart Practice
-            </Button>
-            <Button onClick={handleBackToPractice}>
-              <ArrowLeft className="w-4 h-4 mr-2" />
+            </button>
+            <button className="back-button" onClick={handleBackToPractice}>
+              <ArrowLeft className="w-4 h-4" />
               Back to Practice
-            </Button>
+            </button>
           </div>
         </div>
       </PageLayout>
@@ -314,130 +301,136 @@ export default function PracticeModePage() {
       title={eventInfo.name}
       subtitle={`Question ${currentQuestionIndex + 1} of ${questions.length}`}
     >
-      <div className="max-w-4xl mx-auto p-6 space-y-6">
+      <div className="practice-mode-container">
         {/* Header with progress and event info */}
-        <div className="flex items-center justify-between">
-          <Button 
-            onClick={handleBackToPractice} 
-            variant="outline"
-            className="text-gray-900 hover:text-gray-900"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+        <div className="practice-header">
+          <button className="back-button" onClick={handleBackToPractice}>
+            <ArrowLeft className="w-4 h-4" />
             Back to Practice
-          </Button>
+          </button>
           
-          <div className="flex items-center space-x-4">
-            <Badge className={getDifficultyColor(eventInfo.difficulty)}>
+          <div className="badge-group">
+            <span className={`difficulty-badge ${eventInfo.difficulty.toLowerCase()}`}>
               {eventInfo.difficulty}
-            </Badge>
-            <Badge variant="outline">{eventInfo.category}</Badge>
+            </span>
+            <span className="category-badge">{eventInfo.category}</span>
           </div>
         </div>
 
         {/* Progress bar */}
-        <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Progress</span>
-            <span className="text-sm text-gray-600">
+        <div className="progress-section">
+          <div className="progress-info">
+            <span className="progress-label">Progress</span>
+            <span className="progress-count">
               {currentQuestionIndex + 1} / {questions.length}
             </span>
           </div>
-          <Progress 
-            value={((currentQuestionIndex + 1) / questions.length) * 100} 
-            className="h-2"
-          />
+          <div className="progress-bar-container">
+            <div 
+              className="progress-bar-fill" 
+              style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+            />
+          </div>
         </div>
 
         {/* Question card */}
-        <StyledCard className="p-8">
-          <div className="space-y-6">
-            <h2 className="text-xl font-semibold">
-              {currentQuestion.question}
-            </h2>
-            
-            {/* Answer options */}
-            <div className="space-y-3">
-              {currentQuestion.options.map((option, index) => (
+        <div className="question-card">
+          <h2 className="question-text">
+            {currentQuestion.question}
+          </h2>
+          
+          {/* Answer options */}
+          <div className="options-container">
+            {currentQuestion.options.map((option, index) => {
+              let buttonClass = 'option-button';
+              if (showFeedback) {
+                buttonClass += ' disabled';
+                if (index === currentQuestion.correctAnswer) {
+                  buttonClass += ' correct';
+                } else if (selectedAnswer === index) {
+                  buttonClass += ' incorrect';
+                }
+              } else if (selectedAnswer === index) {
+                buttonClass += ' selected';
+              }
+
+              return (
                 <button
                   key={index}
                   onClick={() => handleAnswerSelect(index)}
                   disabled={showFeedback}
-                  className={`w-full p-4 text-left rounded-lg border transition-all ${
-                    selectedAnswer === index
-                      ? showFeedback
-                        ? index === currentQuestion.correctAnswer
-                          ? 'bg-green-50 border-green-500 text-green-800'
-                          : 'bg-red-50 border-red-500 text-red-800'
-                        : 'bg-fbla-blue text-white border-fbla-blue'
-                      : showFeedback && index === currentQuestion.correctAnswer
-                      ? 'bg-green-50 border-green-500 text-green-800'
-                      : 'bg-white border-gray-200 text-gray-900 hover:border-fbla-blue hover:bg-gray-50 hover:text-gray-900'
-                  } ${showFeedback ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                  className={buttonClass}
                 >
-                  <div className="flex items-center space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-sm font-medium">
+                  <div className="option-content">
+                    <span className="option-letter">
                       {String.fromCharCode(65 + index)}
                     </span>
-                    <span>{option}</span>
+                    <span className="option-text">{option}</span>
                     {showFeedback && index === currentQuestion.correctAnswer && (
-                      <CheckCircle className="w-5 h-5 text-green-600 ml-auto" />
+                      <CheckCircle className="option-icon correct" />
                     )}
                     {showFeedback && selectedAnswer === index && index !== currentQuestion.correctAnswer && (
-                      <XCircle className="w-5 h-5 text-red-600 ml-auto" />
+                      <XCircle className="option-icon incorrect" />
                     )}
                   </div>
                 </button>
-              ))}
-            </div>
+              );
+            })}
+          </div>
 
-            {/* Feedback section */}
-            {showFeedback && (
-              <div className={`p-4 rounded-lg ${
-                isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
-              }`}>
-                <div className="flex items-start space-x-3">
-                  {isCorrect ? (
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
-                  ) : (
-                    <XCircle className="w-5 h-5 text-red-600 mt-0.5" />
-                  )}
-                  <div>
-                    <p className={`font-medium ${isCorrect ? 'text-green-800' : 'text-red-800'}`}>
-                      {isCorrect ? 'Correct!' : 'Incorrect'}
-                    </p>
-                    <p className="text-gray-700 mt-1">{currentQuestion.explanation}</p>
-                  </div>
+          {/* Feedback section */}
+          {showFeedback && (
+            <div className={`feedback-section ${isCorrect ? 'correct' : 'incorrect'}`}>
+              <div className="feedback-content">
+                {isCorrect ? (
+                  <CheckCircle className="feedback-icon correct" />
+                ) : (
+                  <XCircle className="feedback-icon incorrect" />
+                )}
+                <div>
+                  <p className={`feedback-title ${isCorrect ? 'correct' : 'incorrect'}`}>
+                    {isCorrect ? 'Correct!' : 'Incorrect'}
+                  </p>
+                  <p className="feedback-explanation">{currentQuestion.explanation}</p>
                 </div>
               </div>
-            )}
-
-            {/* Action buttons */}
-            <div className="flex justify-between items-center pt-4">
-              <Button 
-                onClick={handleEndPractice} 
-                variant="outline"
-                className="text-gray-900 hover:text-gray-900"
-              >
-                End Practice
-              </Button>
-              
-              <div className="space-x-3">
-                {!showFeedback ? (
-                  <Button 
-                    onClick={handleSubmitAnswer}
-                    disabled={selectedAnswer === null}
-                  >
-                    Submit Answer
-                  </Button>
-                ) : (
-                  <Button onClick={handleNextQuestion}>
-                    {currentQuestionIndex === questions.length - 1 ? 'Finish Practice' : 'Next Question'}
-                  </Button>
-                )}
-              </div>
             </div>
+          )}
+
+          {/* Action buttons */}
+          <div className="action-buttons">
+            <button className="end-button" onClick={handleEndPractice}>
+              End Practice
+            </button>
+            
+            {!showFeedback ? (
+              <button 
+                className="primary-button"
+                onClick={handleSubmitAnswer}
+                disabled={selectedAnswer === null}
+              >
+                Submit Answer
+              </button>
+            ) : (
+              <button className="primary-button" onClick={handleNextQuestion}>
+                {currentQuestionIndex === questions.length - 1 ? 'Finish Practice' : 'Next Question'}
+              </button>
+            )}
           </div>
-        </StyledCard>
+
+          {/* Keyboard shortcuts hint */}
+          <div className="keyboard-hints">
+            <span className="keyboard-hint">
+              <span className="keyboard-key">1-4</span> or <span className="keyboard-key">A-D</span> Select answer
+            </span>
+            <span className="keyboard-hint">
+              <span className="keyboard-key">Enter</span> Submit / Next
+            </span>
+            <span className="keyboard-hint">
+              <span className="keyboard-key">Esc</span> End practice
+            </span>
+          </div>
+        </div>
       </div>
     </PageLayout>
   );

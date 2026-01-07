@@ -1,7 +1,7 @@
 import { Brain, Users, Medal, ArrowRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-import { motion, useMotionValue, useSpring } from 'motion/react';
-import type { SpringOptions } from 'motion/react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import type { SpringOptions } from 'framer-motion';
 import { useRef } from 'react';
 import './FeaturesSection.css';
 
@@ -123,11 +123,11 @@ export function FeaturesSection() {
         <div className="features-header">
           <div className="header-badge">
             <Sparkles className="badge-icon" />
-            <span>Why Choose</span>
+            <span>Features</span>
           </div>
           <h2 className="features-title">
-            <span className="title-gradient">FBLA Elevate</span>
-            <span className="title-question">?</span>
+            <span className="title-gradient">Key Benefits</span>
+            <span className="title-question"></span>
           </h2>
           <p className="features-subtitle">
             Everything you need to excel in FBLA competitions,

@@ -2,18 +2,38 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('Supabase environment variables are not set. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY');
 }
 
-export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '');
+// Client for browser/authenticated operations
+export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '', {
+  auth: {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true,
+  }
+});
+
+// Admin client for server-side operations (bypasses RLS)
+export const supabaseAdmin = createClient(
+  supabaseUrl || '',
+  supabaseServiceRoleKey || supabaseAnonKey || '',
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false
+    }
+  }
+);
 
 // ==========================================
 // PRACTICE QUESTIONS TYPES & FUNCTIONS
 // ==========================================
 
-// Question type matching your JSON structure
+// Question type matching your database structure
 export interface PracticeQuestion {
   id: number;
   question: string;
@@ -23,65 +43,67 @@ export interface PracticeQuestion {
   answer_choice_d: string;
   correct_answer: string; // 'A', 'B', 'C', or 'D'
   explanation: string;
+  topic?: string;
+  created_at?: string;
 }
 
 // Event configuration - maps event IDs to their Supabase table names
 export const practiceEventTables: Record<string, string> = {
   // Accounting & Finance
-  'accounting-i': 'accounting_i_questions',
-  'accounting-ii': 'accounting_ii_questions',
-  'banking-financial-systems': 'banking_financial_systems_questions',
-  'economics': 'economics_questions',
-  'personal-finance': 'personal_finance_questions',
-  'securities-investments': 'securities_investments_questions',
-  'insurance-risk-management': 'insurance_risk_management_questions',
-  'real-estate': 'real_estate_questions',
+  'accounting-i': 'accounting-i',
+  'accounting-ii': 'accounting-ii',
+  'banking-financial-systems': 'banking-financial-systems',
+  'economics': 'economics',
+  'personal-finance': 'personal-finance',
+  'securities-investments': 'securities-investments',
+  'insurance-risk-management': 'insurance-risk-management',
+  'real-estate': 'real-estate',
   
   // Business & Management
-  'business-management': 'business_management_questions',
-  'business-ethics': 'business_ethics_questions',
-  'business-law': 'business_law_questions',
-  'entrepreneurship': 'entrepreneurship_questions',
-  'international-business': 'international_business_questions',
-  'agribusiness': 'agribusiness_questions',
-  'healthcare-administration': 'healthcare_administration_questions',
-  'hospitality-event-management': 'hospitality_event_management_questions',
-  'human-resource-management': 'human_resource_management_questions',
-  'project-management': 'project_management_questions',
-  'public-administration-management': 'public_administration_management_questions',
-  'retail-management': 'retail_management_questions',
-  'sports-entertainment-management': 'sports_entertainment_management_questions',
+  'business-management': 'business-management',
+  'business-ethics': 'business-ethics',
+  'business-law': 'business-law',
+  'entrepreneurship': 'entrepreneurship',
+  'international-business': 'international-business',
+  'agribusiness': 'agribusiness',
+  'healthcare-administration': 'healthcare-administration',
+  'hospitality-event-management': 'hospitality-event-management',
+  'human-resource-management': 'human-resource-management',
+  'project-management': 'project-management',
+  'public-administration-management': 'public-administration-management',
+  'retail-management': 'retail-management',
+  'sports-entertainment-management': 'sports-entertainment-management',
   
   // Marketing & Communication
-  'marketing': 'marketing_questions',
-  'advertising': 'advertising_questions',
-  'business-communication': 'business_communication_questions',
-  'journalism': 'journalism_questions',
-  'customer-service': 'customer_service_questions',
+  'marketing': 'marketing',
+  'advertising': 'advertising',
+  'business-communication': 'business-communication',
+  'journalism': 'journalism',
+  'customer-service': 'customer-service',
   
   // Technology
-  'computer-problem-solving': 'computer_problem_solving_questions',
-  'cybersecurity': 'cybersecurity_questions',
-  'data-science-ai': 'data_science_ai_questions',
-  'management-information-systems': 'management_information_systems_questions',
-  'network-design': 'network_design_questions',
-  'networking-infrastructures': 'networking_infrastructures_questions',
-  'technology-support-services': 'technology_support_services_questions',
+  'computer-problem-solving': 'computer-problem-solving',
+  'cybersecurity': 'cybersecurity',
+  'data-science-ai': 'data-science-ai',
+  'management-information-systems': 'management-information-systems',
+  'network-design': 'network-design',
+  'networking-infrastructures': 'networking-infrastructures',
+  'technology-support-services': 'technology-support-services',
   
   // Leadership
-  'organizational-leadership': 'organizational_leadership_questions',
-  'parliamentary-procedure': 'parliamentary_procedure_questions',
+  'organizational-leadership': 'organizational-leadership',
+  'parliamentary-procedure': 'parliamentary-procedure',
   
   // Introduction Events
-  'intro-business-communication': 'intro_business_communication_questions',
-  'intro-business-concepts': 'intro_business_concepts_questions',
-  'intro-business-procedures': 'intro_business_procedures_questions',
-  'intro-fbla': 'intro_fbla_questions',
-  'intro-information-technology': 'intro_information_technology_questions',
-  'intro-marketing-concepts': 'intro_marketing_concepts_questions',
-  'intro-parliamentary-procedure': 'intro_parliamentary_procedure_questions',
-  'intro-retail-merchandising': 'intro_retail_merchandising_questions',
-  'intro-supply-chain-management': 'intro_supply_chain_management_questions',
+  'intro-business-communication': 'intro-business-communication',
+  'intro-business-concepts': 'intro-business-concepts',
+  'intro-business-procedures': 'intro-business-procedures',
+  'intro-fbla': 'intro-fbla',
+  'intro-information-technology': 'intro-information-technology',
+  'intro-marketing-concepts': 'intro-marketing-concepts',
+  'intro-parliamentary-procedure': 'intro-parliamentary-procedure',
+  'intro-retail-merchandising': 'intro-retail-merchandising',
+  'intro-supply-chain-management': 'intro-supply-chain-management',
 };
 
 // Fetch questions for a specific event

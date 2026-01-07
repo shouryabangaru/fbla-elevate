@@ -13,22 +13,20 @@ export function Navbar() {
   const { user } = useAuth();
 
   const menuItems = [
-    { name: 'Home', path: '/' },
+    { name: 'Dashboard', path: '/' },
     { name: 'Practice', path: '/practice' },
     { name: 'Roleplay', path: '/roleplay' },
     { name: 'Flashcards', path: '/flashcards' },
-    { name: 'Leaderboard', path: '/leaderboard' },
-    { name: 'Achievements', path: '/achievements' },
   ];
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
         {/* Logo */}
-        <Link href="/" className="navbar-logo">
+        <div className="navbar-logo" style={{ cursor: 'default' }}>
           <Trophy className="logo-icon" />
           <span className="logo-text">FBLA Elevate</span>
-        </Link>
+        </div>
 
         {/* Desktop Menu */}
         <div className="navbar-menu">
